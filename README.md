@@ -5,7 +5,7 @@ Backend para una aplicacion web sobre ventas de productos de un local o tienda.
 
 ## Integrantes de Equipo
 
-Juan David Guarecuco Fernandez
+Juan David Guarecuco Fernandez GitHub: Juanitoxxplay
 ### Especificaciones técnicas / Referencias
 
 - Documentación oficial `https://expressjs.com/` 
