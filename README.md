@@ -5,8 +5,7 @@ Backend para una aplicacion web sobre ventas de productos de un local o tienda.
 
 ## Integrantes de Equipo
 
-- Eduardo Nieves Email: zedmous@gmail.com
-
+Juan David Guarecuco Fernandez GitHub: Juanitoxxplay
 ### Especificaciones técnicas / Referencias
 
 - Documentación oficial `https://expressjs.com/` 
