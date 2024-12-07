@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-# Nombre de la API
+# gt-backend-2024
 **API IWU**
 
 ## Introducción
@@ -24,6 +23,4 @@ Instala las dependencias con el comando `npm install`.
 
 **Paso 6:**  
 Levanta el servidor con el comando `npm run dev`, que compila el código TypeScript y ejecuta el código JavaScript generado, ya que este es un script combinado.
-=======
-# gt-backend-2024
->>>>>>> 7163929222ceb981756f4d38a30dbff5f23d9493
+
