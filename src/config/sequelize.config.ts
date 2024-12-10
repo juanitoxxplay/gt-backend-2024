@@ -1,10 +1,12 @@
 import { Sequelize } from "sequelize";
 import {
   CategoryModel,
-  ProductModel,
+  InventoryModel,
   RoleModel,
   ServiceModel,
   UserModel,
+  InventoryhistoryModel,
+
 } from "../models";
 const dbName: string | undefined = process.env.DATABASE_NAME
   ? process.env.DATABASE_NAME
@@ -23,10 +25,11 @@ const db = new Sequelize(dbName, dbUser, dbPassword, {
 });
 // CREAMOS LAS TABLAS EN ORDEN ALFABETICO
 const CategoryDB = db.define("categories", CategoryModel);
-const ProductDB = db.define("products", ProductModel);
+const InventoryDB = db.define("inventories", InventoryModel);
 const RoleDB = db.define("roles", RoleModel);
 const ServiceDB = db.define("services", ServiceModel);
 const UserDB = db.define("users", UserModel);
+const InventoryhistoryDB = db.define("inventoriesistories", InventoryhistoryModel);
 // En las relaciones importa el orden de la jerarquia
 RoleDB.hasMany(UserDB, { foreignKey: "role_id" });
 UserDB.belongsTo(RoleDB, { foreignKey: "role_id" });
@@ -47,9 +50,10 @@ syncModels();
 
 export {
   CategoryDB,
-  ProductDB,
+  InventoryDB,
   RoleDB,
   ServiceDB,
   UserDB,
+  InventoryhistoryDB,
   db,
 };
