@@ -53,7 +53,6 @@ syncModels();
 
 export {
   CategoryDB,
-
   HotelDB,
   InventoryDB,
   RoleDB,
