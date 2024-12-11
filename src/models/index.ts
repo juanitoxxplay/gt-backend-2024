@@ -16,3 +16,4 @@ export * from './services.model';
 export * from './user.model';
 export * from './inventory-history.model';
 export * from './purcharse_order.model';
+export * from './details-orderBuy.model';

@@ -18,6 +18,7 @@ import {
   UserModel,
   InventoryhistoryModel,
   PurcharseOrderModel,
+  DetailsPurcharseOrderModel,
 
 } from "../models";
 const dbName: string | undefined = process.env.DATABASE_NAME
@@ -37,6 +38,7 @@ const db = new Sequelize(dbName, dbUser, dbPassword, {
 });
 // CREAMOS LAS TABLAS EN ORDEN ALFABETICO
 const CategoryDB = db.define("categories", CategoryModel);
+const DetailsPurcharseOrderModelDB = db.define("detailspurcharses", DetailsPurcharseOrderModel);
 const HotelDB = db.define("hotels", HotelModel);
 const InventoryDB = db.define("inventories", InventoryModel);
 const RoleDB = db.define("roles", RoleModel);
@@ -91,5 +93,6 @@ export {
   UserDB,
   InventoryhistoryDB,
   PurcharseOrderDB,
+  DetailsPurcharseOrderModelDB,
   db,
 };

@@ -18,7 +18,6 @@ const PurcharseOrderModel = {
     },
     name_seller:{
         type: DataTypes.STRING(50),
-        allowNull: true
     },
     deletedAt: {
         type: DataTypes.DATE,
