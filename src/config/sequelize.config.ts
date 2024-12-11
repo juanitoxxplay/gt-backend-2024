@@ -17,6 +17,7 @@ import {
   ServiceModel,
   UserModel,
   InventoryhistoryModel,
+  PurcharseOrderModel,
 
 } from "../models";
 const dbName: string | undefined = process.env.DATABASE_NAME
@@ -46,6 +47,7 @@ const RestaurantDB = db.define("restaurants", RestaurantModel);
 const BookingRestaurantDB = db.define("bookingrestaurants", BookingRestaurantModel);
 const ContractDB = db.define("contracts", ContractModel);
 const PositionDB = db.define("positions", PositionModel);
+const PurcharseOrderDB = db.define("purcharses", PurcharseOrderModel);
 const EmployeeDB = db.define("employees", EmployeeModel);
 const SupervisorDB = db.define("supervisors", SupervisorModel);
 const AssistanceEmployeeDB = db.define("assistanceemployees", AssistanceemployeeModel);
@@ -88,5 +90,6 @@ export {
   ServiceDB,
   UserDB,
   InventoryhistoryDB,
+  PurcharseOrderDB,
   db,
 };
