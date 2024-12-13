@@ -2,7 +2,9 @@ import { Sequelize } from "sequelize";
 import {
   ContractModel,
   PositionModel,
+  ClientModel,
   SupervisorModel,
+  ProductModel,
   EmployeeModel,
   AssistanceemployeeModel,
   RosterModel,
@@ -41,6 +43,7 @@ const CategoryDB = db.define("categories", CategoryModel);
 const DetailsPurcharseOrderModelDB = db.define("detailspurcharses", DetailsPurcharseOrderModel);
 const HotelDB = db.define("hotels", HotelModel);
 const InventoryDB = db.define("inventories", InventoryModel);
+const ProductDB = db.define("products", ProductModel);
 const RoleDB = db.define("roles", RoleModel);
 const ServiceDB = db.define("services", ServiceModel);
 const UserDB = db.define("users", UserModel);
@@ -56,6 +59,7 @@ const AssistanceEmployeeDB = db.define("assistanceemployees", Assistanceemployee
 const RosterDB=db.define("rosters",RosterModel);
 const DetailsRosterDB=db.define("detailsrosters",DetailsRosterModel);
 const ConceptDB=db.define("concepts",ConceptModel);
+const ClientDB=db.define("clients",ClientModel);
 // En las relaciones importa el orden de la jerarquia
 RoleDB.hasMany(UserDB, { foreignKey: "role_id" });
 UserDB.belongsTo(RoleDB, { foreignKey: "role_id" });
@@ -77,7 +81,9 @@ syncModels();
 export {
   ContractDB,
   PositionDB,
+  ClientDB,
   EmployeeDB,
+  ProductDB,
   SupervisorDB,
   AssistanceEmployeeDB,
   RosterDB,

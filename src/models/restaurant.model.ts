@@ -1,4 +1,5 @@
 import { DataTypes } from "sequelize";
+
 const RestaurantModel = {
     id_restaurant: {
         type: DataTypes.INTEGER,
