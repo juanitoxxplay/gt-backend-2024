@@ -6,7 +6,7 @@ import {
   SupervisorModel,
   ProductModel,
   EmployeeModel,
-  AssistanceemployeeModel,
+  EmployeeassistanceModel,
   RosterModel,
   DetailsRosterModel,
   ConceptModel,
@@ -78,7 +78,7 @@ const PositionDB = db.define("positions", PositionModel);
 const PurcharseOrderDB = db.define("purcharses", PurcharseOrderModel);
 const EmployeeDB = db.define("employees", EmployeeModel);
 const SupervisorDB = db.define("supervisors", SupervisorModel);
-const AssistanceEmployeeDB = db.define("assistanceemployees", AssistanceemployeeModel);
+const AssistanceEmployeeDB = db.define("assistanceemployees", EmployeeassistanceModel);
 const RosterDB=db.define("rosters",RosterModel);
 const DetailsRosterDB=db.define("detailsrosters",DetailsRosterModel);
 const ConceptDB=db.define("concepts",ConceptModel);
