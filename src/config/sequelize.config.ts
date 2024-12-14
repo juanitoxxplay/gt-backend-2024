@@ -21,6 +21,17 @@ import {
   InventoryhistoryModel,
   PurcharseOrderModel,
   DetailsPurcharseOrderModel,
+  ActivityHistoryModel,
+  DetailsSaleServiceModel,
+  EventRegistrationModel,
+  EventsModel,
+  IndividualServicesModel,
+  PerformanceEvaluationsModel,
+  SaleServicesModel,
+  SatisfactionSurveysModel,
+  SettingsModel,
+  SupplierModel,
+  UnitMeasurementModel,
 
 } from "../models";
 const dbName: string | undefined = process.env.DATABASE_NAME
@@ -39,14 +50,26 @@ const db = new Sequelize(dbName, dbUser, dbPassword, {
   logging: false,
 });
 // CREAMOS LAS TABLAS EN ORDEN ALFABETICO
+const ActivityHistoryDB = db.define("activityHistory", ActivityHistoryModel);
 const CategoryDB = db.define("categories", CategoryModel);
 const DetailsPurcharseOrderModelDB = db.define("detailspurcharses", DetailsPurcharseOrderModel);
+const DetailsSaleServiceDB = db.define("detailsSaleService", DetailsSaleServiceModel);
+const EventRegistrationDB = db.define("eventRegistration", EventRegistrationModel);
+const EventsDB = db.define("events", EventsModel);
 const HotelDB = db.define("hotels", HotelModel);
+const IndividualServicesDB = db.define("individualServices", IndividualServicesModel);
 const InventoryDB = db.define("inventories", InventoryModel);
+const PerformanceEvaluationsDB = db.define("performanceEvaluationsDB", PerformanceEvaluationsModel);
 const ProductDB = db.define("products", ProductModel);
 const RoleDB = db.define("roles", RoleModel);
+const SaleServicesDB = db.define("saleServicesDB", SaleServicesModel);
+const SatisfactionSurveysDB = db.define("satisfactionSurveysDB", SatisfactionSurveysModel);
 const ServiceDB = db.define("services", ServiceModel);
+const SettingsDB = db.define("settingsDB", SettingsModel);
+const SupplierDB = db.define("supplierDB", SupplierModel);
+const UnitMeasurementDB = db.define("unitMeasurementDB", UnitMeasurementModel);
 const UserDB = db.define("users", UserModel);
+
 const InventoryhistoryDB = db.define("inventoriesistories", InventoryhistoryModel);
 const RestaurantDB = db.define("restaurants", RestaurantModel);
 const BookingRestaurantDB = db.define("bookingrestaurants", BookingRestaurantModel);
@@ -60,6 +83,7 @@ const RosterDB=db.define("rosters",RosterModel);
 const DetailsRosterDB=db.define("detailsrosters",DetailsRosterModel);
 const ConceptDB=db.define("concepts",ConceptModel);
 const ClientDB=db.define("clients",ClientModel);
+
 // En las relaciones importa el orden de la jerarquia
 RoleDB.hasMany(UserDB, { foreignKey: "role_id" });
 UserDB.belongsTo(RoleDB, { foreignKey: "role_id" });
@@ -100,5 +124,16 @@ export {
   InventoryhistoryDB,
   PurcharseOrderDB,
   DetailsPurcharseOrderModelDB,
+  ActivityHistoryDB,
+  DetailsSaleServiceDB,
+  EventRegistrationDB,
+  EventsDB,
+  IndividualServicesDB,
+  PerformanceEvaluationsDB,
+  SaleServicesDB,
+  SatisfactionSurveysDB,
+  SettingsDB,
+  SupplierDB,
+  UnitMeasurementDB,
   db,
 };
