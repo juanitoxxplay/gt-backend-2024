@@ -78,7 +78,7 @@ const PositionDB = db.define("positions", PositionModel);
 const PurcharseOrderDB = db.define("purcharses", PurcharseOrderModel);
 const EmployeeDB = db.define("employees", EmployeeModel);
 const SupervisorDB = db.define("supervisors", SupervisorModel);
-const AssistanceEmployeeDB = db.define("assistanceemployees", EmployeeassistanceModel);
+const EmployeeassistanceDB = db.define("employeesassistance", EmployeeassistanceModel);
 const RosterDB=db.define("rosters",RosterModel);
 const DetailsRosterDB=db.define("detailsrosters",DetailsRosterModel);
 const ConceptDB=db.define("concepts",ConceptModel);
@@ -109,7 +109,7 @@ export {
   EmployeeDB,
   ProductDB,
   SupervisorDB,
-  AssistanceEmployeeDB,
+  EmployeeassistanceDB,
   RosterDB,
   DetailsRosterDB,
   ConceptDB,
