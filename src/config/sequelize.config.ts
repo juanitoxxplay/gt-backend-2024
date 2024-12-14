@@ -1,5 +1,6 @@
 import { Sequelize } from "sequelize";
 import {
+  AttractionModel,
   ContractModel,
   PositionModel,
   ClientModel,
@@ -51,9 +52,15 @@ const db = new Sequelize(dbName, dbUser, dbPassword, {
 });
 // CREAMOS LAS TABLAS EN ORDEN ALFABETICO
 const ActivityHistoryDB = db.define("activityHistory", ActivityHistoryModel);
+const AttractionDB = db.define("attractions", AttractionModel);
+const BookingRestaurantDB = db.define("bookingrestaurants", BookingRestaurantModel);
 const CategoryDB = db.define("categories", CategoryModel);
+const ConceptDB=db.define("concepts",ConceptModel);
+const ClientDB=db.define("clients",ClientModel);
 const DetailsPurcharseOrderModelDB = db.define("detailspurcharses", DetailsPurcharseOrderModel);
+const DetailsRosterDB=db.define("detailsrosters",DetailsRosterModel);
 const DetailsSaleServiceDB = db.define("detailsSaleService", DetailsSaleServiceModel);
+const EmployeeDB = db.define("employees", EmployeeModel);1
 const EventRegistrationDB = db.define("eventRegistration", EventRegistrationModel);
 const EventsDB = db.define("events", EventsModel);
 const HotelDB = db.define("hotels", HotelModel);
@@ -69,20 +76,14 @@ const SettingsDB = db.define("settingsDB", SettingsModel);
 const SupplierDB = db.define("supplierDB", SupplierModel);
 const UnitMeasurementDB = db.define("unitMeasurementDB", UnitMeasurementModel);
 const UserDB = db.define("users", UserModel);
-
 const InventoryhistoryDB = db.define("inventoriesistories", InventoryhistoryModel);
 const RestaurantDB = db.define("restaurants", RestaurantModel);
-const BookingRestaurantDB = db.define("bookingrestaurants", BookingRestaurantModel);
 const ContractDB = db.define("contracts", ContractModel);
 const PositionDB = db.define("positions", PositionModel);
 const PurcharseOrderDB = db.define("purcharses", PurcharseOrderModel);
-const EmployeeDB = db.define("employees", EmployeeModel);
 const SupervisorDB = db.define("supervisors", SupervisorModel);
 const EmployeeassistanceDB = db.define("employeesassistance", EmployeeassistanceModel);
 const RosterDB=db.define("rosters",RosterModel);
-const DetailsRosterDB=db.define("detailsrosters",DetailsRosterModel);
-const ConceptDB=db.define("concepts",ConceptModel);
-const ClientDB=db.define("clients",ClientModel);
 
 // En las relaciones importa el orden de la jerarquia
 RoleDB.hasMany(UserDB, { foreignKey: "role_id" });
@@ -103,6 +104,7 @@ const syncModels = async () => {
 syncModels();
 
 export {
+  AttractionDB,
   ContractDB,
   PositionDB,
   ClientDB,
