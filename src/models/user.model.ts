@@ -1,12 +1,12 @@
 import { DataTypes } from "sequelize";
 
 const UserModel = {
-  id: {
+  id_user: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true,
   },
-  name: {
+  user: {
     type: DataTypes.STRING(50),
     allowNull: false
   },
@@ -22,16 +22,20 @@ const UserModel = {
   password: {
     type: DataTypes.STRING(400),
   },
-  role_id: {
-    type: DataTypes.INTEGER,
-  },
-  deletedAt: {
-    type: DataTypes.DATE,
-  },
+
+  
   status: {
     type: DataTypes.BOOLEAN,
     defaultValue: true,
   },
+   
+  createdAt: {
+  type: DataTypes.DATE,
+},
+
+deletedAt: {
+  type: DataTypes.DATE,
+},
 };
 
 export { UserModel };
