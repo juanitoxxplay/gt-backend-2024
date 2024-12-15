@@ -7,7 +7,7 @@ import {
   SupervisorModel,
   ProductModel,
   EmployeeModel,
-  EmployeeassistanceModel,
+  AssistanceemployeeModel,
   RosterModel,
   DetailsRosterModel,
   ConceptModel,
@@ -53,6 +53,7 @@ const db = new Sequelize(dbName, dbUser, dbPassword, {
 // CREAMOS LAS TABLAS EN ORDEN ALFABETICO
 const ActivityHistoryDB = db.define("activityHistory", ActivityHistoryModel);
 const AttractionDB = db.define("attractions", AttractionModel);
+const AssistanceEmployeeDB = db.define("assistanceemployees", AssistanceemployeeModel);
 const BookingRestaurantDB = db.define("bookingrestaurants", BookingRestaurantModel);
 const CategoryDB = db.define("categories", CategoryModel);
 const ConceptDB=db.define("concepts",ConceptModel);
@@ -82,7 +83,6 @@ const ContractDB = db.define("contracts", ContractModel);
 const PositionDB = db.define("positions", PositionModel);
 const PurcharseOrderDB = db.define("purcharses", PurcharseOrderModel);
 const SupervisorDB = db.define("supervisors", SupervisorModel);
-const EmployeeassistanceDB = db.define("employeesassistance", EmployeeassistanceModel);
 const RosterDB=db.define("rosters",RosterModel);
 
 // En las relaciones importa el orden de la jerarquia
@@ -111,7 +111,7 @@ export {
   EmployeeDB,
   ProductDB,
   SupervisorDB,
-  EmployeeassistanceDB,
+  AssistanceEmployeeDB,
   RosterDB,
   DetailsRosterDB,
   ConceptDB,
