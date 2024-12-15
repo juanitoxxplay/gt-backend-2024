@@ -35,7 +35,7 @@ const ContractModel = {
         defaultValue: true
     },
 
-    deparment_id: {
+    department_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {

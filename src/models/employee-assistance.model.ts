@@ -1,6 +1,6 @@
 import { DataTypes } from "sequelize";
 
-const AssistanceemployeeModel = {
+const EmployeeassistanceModel = {
     id_assistance: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -28,4 +28,4 @@ const AssistanceemployeeModel = {
     },
    
 };
-export {AssistanceemployeeModel};
+export {EmployeeassistanceModel};
