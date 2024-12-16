@@ -1,23 +1,31 @@
 import { Sequelize } from "sequelize";
 import {
+  ChargeModel,
+  ConceptModel,
   ContractModel,
+  DepartamentModel,
+  EmpleoyeeAssistanceModel,
+  EmpleoyeeModel,
+  EmpleoyeeUserModel,
+  PaysheetDetailModel,
+  PaysheetModel,
+  PerformanceEvaluationModel,
+  SupervisorModel,
+
+  RoleModel,
+  ServiceModel,
+  UserModel,
+
   PositionModel,
   ClientModel,
-  SupervisorModel,
   ProductModel,
-  EmployeeModel,
-  AssistanceemployeeModel,
   RosterModel,
   DetailsRosterModel,
-  ConceptModel,
   CategoryModel,
   RestaurantModel,
   BookingRestaurantModel,
   HotelModel,
   InventoryModel,
-  RoleModel,
-  ServiceModel,
-  UserModel,
   InventoryhistoryModel,
   PurcharseOrderModel,
   DetailsPurcharseOrderModel,
@@ -26,7 +34,6 @@ import {
   EventRegistrationModel,
   EventsModel,
   IndividualServicesModel,
-  PerformanceEvaluationsModel,
   SaleServicesModel,
   SatisfactionSurveysModel,
   SettingsModel,
@@ -59,7 +66,6 @@ const EventsDB = db.define("events", EventsModel);
 const HotelDB = db.define("hotels", HotelModel);
 const IndividualServicesDB = db.define("individualServices", IndividualServicesModel);
 const InventoryDB = db.define("inventories", InventoryModel);
-const PerformanceEvaluationsDB = db.define("performanceEvaluationsDB", PerformanceEvaluationsModel);
 const ProductDB = db.define("products", ProductModel);
 const RoleDB = db.define("roles", RoleModel);
 const SaleServicesDB = db.define("saleServicesDB", SaleServicesModel);
@@ -70,25 +76,73 @@ const SupplierDB = db.define("supplierDB", SupplierModel);
 const UnitMeasurementDB = db.define("unitMeasurementDB", UnitMeasurementModel);
 const UserDB = db.define("users", UserModel);
 
+const ChargeDB = db.define("Charge", ChargeModel);
+const DepartamentDB = db.define("departament", DepartamentModel);
+const EmpleoyeeAssistanceDB = db.define("EmpleoyeeAssistance", EmpleoyeeAssistanceModel);
+const EmpleoyeeDB = db.define("empleoyee", EmpleoyeeModel);
+const EmpleoyeeUserDB = db.define("EmpleoyeeUser", EmpleoyeeUserModel);
+const PaysheetDB = db.define("Paysheet", PaysheetModel);
+const PaysheetDetailDB = db.define("PaysheetDetail", PaysheetDetailModel);
+const PerformanceEvaluationDB = db.define("PerformanceEvaluation", PerformanceEvaluationModel);
+
+
+
 const InventoryhistoryDB = db.define("inventoriesistories", InventoryhistoryModel);
 const RestaurantDB = db.define("restaurants", RestaurantModel);
 const BookingRestaurantDB = db.define("bookingrestaurants", BookingRestaurantModel);
-const ContractDB = db.define("contracts", ContractModel);
+const ContractDB = db.define("Contract", ContractModel);
 const PositionDB = db.define("positions", PositionModel);
 const PurcharseOrderDB = db.define("purcharses", PurcharseOrderModel);
-const EmployeeDB = db.define("employees", EmployeeModel);
-const SupervisorDB = db.define("supervisors", SupervisorModel);
-const AssistanceEmployeeDB = db.define("assistanceemployees", AssistanceemployeeModel);
+const EmployeeDB = db.define("employees", EmpleoyeeModel);
+const SupervisorDB = db.define("Supervisor", SupervisorModel);
 const RosterDB=db.define("rosters",RosterModel);
 const DetailsRosterDB=db.define("detailsrosters",DetailsRosterModel);
-const ConceptDB=db.define("concepts",ConceptModel);
+const ConceptDB = db.define("Concept", ConceptModel);
 const ClientDB=db.define("clients",ClientModel);
 
 // En las relaciones importa el orden de la jerarquia
 RoleDB.hasMany(UserDB, { foreignKey: "role_id" });
 UserDB.belongsTo(RoleDB, { foreignKey: "role_id" });
 
+//Relaciones tabla Empleado
+EmpleoyeeDB.hasMany(EmpleoyeeUserDB, { foreignKey: "id_empleoyee" });
+EmpleoyeeUserDB.belongsTo(EmpleoyeeDB, { foreignKey: "id_empleoyee" });
 
+//Relaciones tabla Contrato
+ChargeDB.hasMany(ContractDB, { foreignKey: "id_charge" });
+ContractDB.belongsTo(ChargeDB, { foreignKey: "id_charge" });
+
+DepartamentDB.hasMany(ContractDB, { foreignKey: "id_departament" });
+ContractDB.belongsTo(DepartamentDB, { foreignKey: "id_departament" });
+
+EmpleoyeeDB.hasMany(ContractDB, { foreignKey: "id_empleoyee" });
+ContractDB.belongsTo(EmpleoyeeDB, { foreignKey: "id_empleoyee" });
+
+//Relaciones tabla Asistencias
+ContractDB.hasMany(EmpleoyeeAssistanceDB, { foreignKey: "id_contract" });
+EmpleoyeeAssistanceDB.belongsTo(ContractDB, { foreignKey: "id_contract" });
+
+//Relaciones tabla Supervisor
+ContractDB.hasMany(SupervisorDB, { foreignKey: "id_contrato" });
+SupervisorDB.belongsTo(ContractDB, { foreignKey: "id_contrato" });
+
+//Relaciones tabla Evaluacion de desempeño
+EmpleoyeeDB.hasMany(PerformanceEvaluationDB, { foreignKey: "id_empleoyee" });
+PerformanceEvaluationDB.belongsTo(EmpleoyeeDB, { foreignKey: "id_empleoyee" });
+
+SupervisorDB.hasMany(PerformanceEvaluationDB, { foreignKey: "id_supervisor" });
+PerformanceEvaluationDB.belongsTo(SupervisorDB, { foreignKey: "id_supervisor" });
+
+//Relaciones tabla Nomina
+ContractDB.hasMany(PaysheetDB, { foreignKey: "id_contract" });
+PaysheetDB.belongsTo(ContractDB, { foreignKey: "id_contract" });
+
+//Relaciones tabla Detalle Nomina
+PaysheetDB.hasMany(PaysheetDetailDB, { foreignKey: "id_paysheet" });
+PaysheetDetailDB.belongsTo(PaysheetDB, { foreignKey: "id_paysheet" });
+
+ConceptDB.hasMany(PaysheetDetailDB, { foreignKey: "id_concept" });
+PaysheetDetailDB.belongsTo(ConceptDB, { foreignKey: "id_concept" });
 
 
 // Sincroniza los modelos con la base de datos
@@ -103,16 +157,24 @@ const syncModels = async () => {
 syncModels();
 
 export {
+ ChargeDB,
+  ConceptDB,
   ContractDB,
+  DepartamentDB,
+  EmpleoyeeAssistanceDB,
+  EmpleoyeeDB,
+  EmpleoyeeUserDB,
+  PaysheetDB,
+  PaysheetDetailDB,
+  PerformanceEvaluationDB,
+  SupervisorDB,
+
   PositionDB,
   ClientDB,
   EmployeeDB,
   ProductDB,
-  SupervisorDB,
-  AssistanceEmployeeDB,
   RosterDB,
   DetailsRosterDB,
-  ConceptDB,
   CategoryDB,
   RestaurantDB,
   BookingRestaurantDB,
@@ -129,7 +191,6 @@ export {
   EventRegistrationDB,
   EventsDB,
   IndividualServicesDB,
-  PerformanceEvaluationsDB,
   SaleServicesDB,
   SatisfactionSurveysDB,
   SettingsDB,
