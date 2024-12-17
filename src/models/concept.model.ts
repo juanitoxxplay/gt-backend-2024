@@ -1,19 +1,23 @@
-import { DataTypes} from "sequelize";
+import { DataTypes } from "sequelize";
+
 const ConceptModel = {
-    id_concept:{
-        type : DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true,
-    },
-    type_concept: {
-        type: DataTypes.STRING(50), 
-        allowNull: false,
-    },
-
-    formula: {
-        type: DataTypes.STRING(50), 
-        allowNull: false,
-    },
-
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+  },
+  name: {
+    type: DataTypes.STRING(50),
+    allowNull: false,
+  },
+  type: {
+    type: DataTypes.STRING(50),
+    allowNull: false,
+  },
+  formule: {
+    type: DataTypes.STRING(100),
+    allowNull: false,
+  },
 };
-export {ConceptModel};
+
+export { ConceptModel };
