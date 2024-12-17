@@ -1,7 +1,9 @@
 import { Sequelize } from "sequelize";
 import {
+  
   ChargeModel,
   ConceptModel,
+  AttractionModel,
   ContractModel,
   DepartamentModel,
   EmpleoyeeAssistanceModel,
@@ -58,9 +60,16 @@ const db = new Sequelize(dbName, dbUser, dbPassword, {
 });
 // CREAMOS LAS TABLAS EN ORDEN ALFABETICO
 const ActivityHistoryDB = db.define("activityHistory", ActivityHistoryModel);
+const AttractionDB = db.define("attractions", AttractionModel);
+const AssistanceEmployeeDB = db.define("assistanceemployees", AssistanceemployeeModel);
+const BookingRestaurantDB = db.define("bookingrestaurants", BookingRestaurantModel);
 const CategoryDB = db.define("categories", CategoryModel);
+const ConceptDB=db.define("concepts",ConceptModel);
+const ClientDB=db.define("clients",ClientModel);
 const DetailsPurcharseOrderModelDB = db.define("detailspurcharses", DetailsPurcharseOrderModel);
+const DetailsRosterDB=db.define("detailsrosters",DetailsRosterModel);
 const DetailsSaleServiceDB = db.define("detailsSaleService", DetailsSaleServiceModel);
+const EmployeeDB = db.define("employees", EmployeeModel);1
 const EventRegistrationDB = db.define("eventRegistration", EventRegistrationModel);
 const EventsDB = db.define("events", EventsModel);
 const HotelDB = db.define("hotels", HotelModel);
@@ -75,6 +84,7 @@ const SettingsDB = db.define("settingsDB", SettingsModel);
 const SupplierDB = db.define("supplierDB", SupplierModel);
 const UnitMeasurementDB = db.define("unitMeasurementDB", UnitMeasurementModel);
 const UserDB = db.define("users", UserModel);
+
 
 const ChargeDB = db.define("Charge", ChargeModel);
 const DepartamentDB = db.define("departament", DepartamentModel);
@@ -99,6 +109,8 @@ const RosterDB=db.define("rosters",RosterModel);
 const DetailsRosterDB=db.define("detailsrosters",DetailsRosterModel);
 const ConceptDB = db.define("Concept", ConceptModel);
 const ClientDB=db.define("clients",ClientModel);
+
+
 
 // En las relaciones importa el orden de la jerarquia
 RoleDB.hasMany(UserDB, { foreignKey: "role_id" });
@@ -157,8 +169,10 @@ const syncModels = async () => {
 syncModels();
 
 export {
+
  ChargeDB,
   ConceptDB,
+  AttractionDB,
   ContractDB,
   DepartamentDB,
   EmpleoyeeAssistanceDB,

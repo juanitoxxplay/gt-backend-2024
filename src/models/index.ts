@@ -20,6 +20,7 @@ export * from './contract.model';
 export * from './client.model';
 export * from './position.model';
 export * from './product.model';
+export * from './attraction.model';
 export * from './supervisor.model';
 export * from './empleoyee.model';
 export * from './empleoyeeAssistance.model';
