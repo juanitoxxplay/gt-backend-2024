@@ -73,7 +73,7 @@ class ServiceValidator {
           errors: [
             {
               type: "field",
-              msg: `Nombre en uso : ${name}, para el nuevo rol`,
+              msg: `Nombre en uso : ${name}, para el nuevo registro`,
               path: "name",
               location: "body",
             },

@@ -4,18 +4,10 @@ const BookingRestaurantModel = {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
-        references : {
-            model: "reservations",
-            key: "id_reservation",
-        }
     },
     id_restaurant: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        references: {
-            model: "restaurants",
-            key: "id_restaurant",
-        },
     },
     Reservation_rate: {
         type: DataTypes.DECIMAL,

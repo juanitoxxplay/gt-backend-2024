@@ -29,10 +29,6 @@ const RosterModel = {
   contract_id: {
     type: DataTypes.INTEGER,
     allowNull: false,
-    references: {
-      model: "contract",
-      key: "id_contract",
-    },
   }, 
 };
 export {RosterModel};

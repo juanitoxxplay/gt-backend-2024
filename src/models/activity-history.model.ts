@@ -9,10 +9,6 @@ const ActivityHistoryModel = {
   user_id: {
     type: DataTypes.INTEGER,
     allowNull: false,
-    references: {
-      model: "users",
-      key: "id_user",
-    },
   },
   date_time: {
     type: DataTypes.DATE,
