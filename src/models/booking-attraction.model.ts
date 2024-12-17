@@ -14,4 +14,5 @@ const BookingAttractionModel = {
         allowNull: false,
 
     },
-};
+}; 
+export { BookingAttractionModel };

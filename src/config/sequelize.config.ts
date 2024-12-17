@@ -1,44 +1,64 @@
 import { Sequelize } from "sequelize";
 import {
-  
-  ChargeModel,
-  ConceptModel,
+  ActivityHistoryModel,
   AttractionModel,
-  EmpleoyeeAssistanceModel,
+  BookingAttractionModel,
+  BookingRestaurantModel,
+  BookingRoomModel,
+  BookingTransportationModel,
+  BookingModel,
+  CategoryModel,
+  ChargeModel,
+  ClientModel,
+  ConceptModel,
   ContractModel,
   DepartamentModel,
+  DetailsOrderBuyModel,
+  DetailsRosterModel,
+  DetailsSaleProductModel,
+  DetailsSaleServiceModel,
+  EmpleoyeeAssistanceModel,
   EmpleoyeeModel,
   EmpleoyeeUserModel,
+  EventRegistrationModel,
+  EventsModel,
+  HotelModel,
+  IndividualServicesModel,
+  InventoryModel,
+  InventoryhistoryModel,
+  PackageSaleModel,
   PaysheetDetailModel,
   PaysheetModel,
   PerformanceEvaluationModel,
-  SupervisorModel,
-  RoleModel,
-  ServiceModel,
-  UserModel,
-  ClientModel,
   ProductModel,
-  RosterModel,
-  DetailsRosterModel,
-  CategoryModel,
-  RestaurantModel,
-  BookingRestaurantModel,
-  HotelModel,
-  InventoryModel,
-  InventoryhistoryModel,
   PurcharseOrderModel,
-  DetailsPurcharseOrderModel,
-  ActivityHistoryModel,
-  DetailsSaleServiceModel,
-  EventRegistrationModel,
-  EventsModel,
-  IndividualServicesModel,
+  ResourceAllocationModel,
+  RestaurantModel,
+  RoleModel,
+  RoomModel,
+  RosterModel,
+  RouteModel,
+  SaleProductModel,
   SaleServicesModel,
   SatisfactionSurveysModel,
+  ServiceAttractionModel,
+  ServiceHotelModel,
+  ServiceRestaurantModel,
+  ServiceTransportModel,
+  ServiceModel,
+  SettingsEventModel,
+  SettingsPackageModel,
+  SettingsProductModel,
+  SettingsServiceModel,
   SettingsModel,
+  stateModel,
   SupplierModel,
+  SupervisorModel,
+  TouristPackageModel,
+  TransportModel,
+  TypeRoomModel,
   UnitMeasurementModel,
-
+  UserModel,
 } from "../models";
 const dbName: string | undefined = process.env.DATABASE_NAME
   ? process.env.DATABASE_NAME
@@ -58,42 +78,63 @@ const db = new Sequelize(dbName, dbUser, dbPassword, {
 // CREAMOS LAS TABLAS EN ORDEN ALFABETICO
 const ActivityHistoryDB = db.define("activityHistory", ActivityHistoryModel);
 const AttractionDB = db.define("attractions", AttractionModel);
-const EmpleoyeeAssistanceDB = db.define("assistanceemployees", EmpleoyeeAssistanceModel);
+const BookingAttractionDB = db.define("bookingattractions", BookingAttractionModel);
+const BookingDB = db.define("bookings", BookingModel);
 const BookingRestaurantDB = db.define("bookingrestaurants", BookingRestaurantModel);
+const BookingRoomDB = db.define("bookingrooms", BookingRoomModel);
+const BookingTransportationDB = db.define("bookingtransportations", BookingTransportationModel);
 const CategoryDB = db.define("categories", CategoryModel);
-const ConceptDB=db.define("concepts",ConceptModel);
-const ClientDB=db.define("clients",ClientModel);
-const DetailsPurcharseOrderModelDB = db.define("detailspurcharses", DetailsPurcharseOrderModel);
-const DetailsRosterDB=db.define("detailsrosters",DetailsRosterModel);
+const ChargeDB = db.define("Charge", ChargeModel);
+const ClientDB = db.define("clients", ClientModel);
+const ConceptDB = db.define("concepts", ConceptModel);
+const ContractDB = db.define("Contract", ContractModel);
+const DepartamentDB = db.define("departament", DepartamentModel);
+const DetailsOrderBuyDB = db.define("detailspurcharses", DetailsOrderBuyModel);
+const DetailsRosterDB = db.define("detailsrosters", DetailsRosterModel);
+const DetailsSaleProductDb = db.define("detailsSaleProduct", DetailsSaleProductModel);
 const DetailsSaleServiceDB = db.define("detailsSaleService", DetailsSaleServiceModel);
-const EmployeeDB = db.define("employees", EmpleoyeeModel);1
+const EmpleoyeeAssistanceDB = db.define("assistanceemployees", EmpleoyeeAssistanceModel);
+const EmpleoyeeDB = db.define("empleoyee", EmpleoyeeModel);
+const EmpleoyeeUserDB = db.define("EmpleoyeeUser", EmpleoyeeUserModel);
 const EventRegistrationDB = db.define("eventRegistration", EventRegistrationModel);
 const EventsDB = db.define("events", EventsModel);
 const HotelDB = db.define("hotels", HotelModel);
 const IndividualServicesDB = db.define("individualServices", IndividualServicesModel);
 const InventoryDB = db.define("inventories", InventoryModel);
-const ProductDB = db.define("products", ProductModel);
-const RoleDB = db.define("roles", RoleModel);
-const SaleServicesDB = db.define("saleServicesDB", SaleServicesModel);
-const SatisfactionSurveysDB = db.define("satisfactionSurveysDB", SatisfactionSurveysModel);
-const ServiceDB = db.define("services", ServiceModel);
-const SettingsDB = db.define("settingsDB", SettingsModel);
-const SupplierDB = db.define("supplierDB", SupplierModel);
-const UnitMeasurementDB = db.define("unitMeasurementDB", UnitMeasurementModel);
-const UserDB = db.define("users", UserModel);
-const ChargeDB = db.define("Charge", ChargeModel);
-const DepartamentDB = db.define("departament", DepartamentModel);
-const EmpleoyeeDB = db.define("empleoyee", EmpleoyeeModel);
-const EmpleoyeeUserDB = db.define("EmpleoyeeUser", EmpleoyeeUserModel);
+const InventoryhistoryDB = db.define("inventoriesistories", InventoryhistoryModel);
+const PackageSaleDb = db.define("packagesale", PackageSaleModel);
 const PaysheetDB = db.define("Paysheet", PaysheetModel);
 const PaysheetDetailDB = db.define("PaysheetDetail", PaysheetDetailModel);
 const PerformanceEvaluationDB = db.define("PerformanceEvaluation", PerformanceEvaluationModel);
-const InventoryhistoryDB = db.define("inventoriesistories", InventoryhistoryModel);
-const RestaurantDB = db.define("restaurants", RestaurantModel);
-const ContractDB = db.define("Contract", ContractModel);
+const ProductDB = db.define("products", ProductModel);
 const PurcharseOrderDB = db.define("purcharses", PurcharseOrderModel);
-const SupervisorDB = db.define("Supervisor", SupervisorModel);
-const RosterDB=db.define("rosters",RosterModel);
+const RestaurantDB = db.define("restaurants", RestaurantModel);
+const ResourceAllocationDb = db.define("resourceallocation", ResourceAllocationModel);
+const RosterDB = db.define("rosters", RosterModel);
+const RoleDB = db.define("roles", RoleModel);
+const RoomDB = db.define("rooms", RoomModel);
+const RouteDb = db.define("routes", RouteModel);
+const SaleProductDb = db.define("saleproducts", SaleProductModel);
+const SaleServicesDB = db.define("saleServicesDB", SaleServicesModel);
+const SatisfactionSurveysDB = db.define("satisfactionSurveysDB", SatisfactionSurveysModel);
+const ServiceAttraction = db.define("serviceattractions", ServiceAttractionModel);
+const ServiceDB = db.define("services", ServiceModel);
+const ServiceHotel = db.define("servicehotels", ServiceHotelModel);
+const ServiceRestaurant = db.define("servicerestaurants", ServiceRestaurantModel);
+const ServiceTransport = db.define("servicetransports", ServiceTransportModel);
+const SettingsDB = db.define("settingsDB", SettingsModel);
+const SettingsEventDb = db.define("settingsevent", SettingsEventModel);
+const SettingsPackageDb = db.define("settingspackage", SettingsPackageModel);
+const SettingsProductDb = db.define("settingsproduct", SettingsProductModel);
+const SettingsServiceDb = db.define("settingservice", SettingsServiceModel);
+const StateDb = db.define("states", stateModel);
+const SupervisorDB = db.define("supervisors", SupervisorModel);
+const SupplierDB = db.define("supplierDB", SupplierModel);
+const TouristPackageDB = db.define("touristpackages", TouristPackageModel);
+const TransportDB = db.define("transports", TransportModel);
+const TypeRoomDb = db.define("typerooms", TypeRoomModel);
+const UnitMeasurementDB = db.define("unitMeasurementDB", UnitMeasurementModel);
+const UserDB = db.define("users", UserModel);
 
 
 
@@ -155,44 +196,63 @@ const syncModels = async () => {
 syncModels();
 
 export {
-
- ChargeDB,
-  ConceptDB,
+  ActivityHistoryDB,
   AttractionDB,
+  BookingAttractionDB,
+  BookingDB,
+  BookingRestaurantDB,
+  BookingRoomDB,
+  BookingTransportationDB,
+  CategoryDB,
+  ChargeDB,
+  ClientDB,
+  ConceptDB,
   ContractDB,
   DepartamentDB,
+  DetailsOrderBuyDB,
+  DetailsRosterDB,
+  DetailsSaleProductDb,
+  DetailsSaleServiceDB,
   EmpleoyeeAssistanceDB,
   EmpleoyeeDB,
   EmpleoyeeUserDB,
+  EventRegistrationDB,
+  EventsDB,
+  HotelDB,
+  IndividualServicesDB,
+  InventoryDB,
+  InventoryhistoryDB,
+  PackageSaleDb,
   PaysheetDB,
   PaysheetDetailDB,
   PerformanceEvaluationDB,
-  SupervisorDB,
-  ClientDB,
-  EmployeeDB,
   ProductDB,
-  RosterDB,
-  DetailsRosterDB,
-  CategoryDB,
-  RestaurantDB,
-  BookingRestaurantDB,
-  HotelDB,
-  InventoryDB,
-  RoleDB,
-  ServiceDB,
-  UserDB,
-  InventoryhistoryDB,
   PurcharseOrderDB,
-  DetailsPurcharseOrderModelDB,
-  ActivityHistoryDB,
-  DetailsSaleServiceDB,
-  EventRegistrationDB,
-  EventsDB,
-  IndividualServicesDB,
+  RestaurantDB,
+  ResourceAllocationDb,
+  RoleDB,
+  RoomDB,
+  RouteDb,
+  RosterDB,
+  SaleProductDb,
   SaleServicesDB,
   SatisfactionSurveysDB,
+  ServiceAttraction,
+  ServiceDB,
+  ServiceHotel,
+  ServiceRestaurant,
+  ServiceTransport,
   SettingsDB,
+  SettingsEventDb,
+  SettingsPackageDb,
+  SettingsProductDb,
+  SettingsServiceDb,
+  StateDb,
   SupplierDB,
+  TouristPackageDB,
+  TransportDB,
+  TypeRoomDb,
   UnitMeasurementDB,
+  UserDB,
   db,
 };

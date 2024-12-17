@@ -27,4 +27,4 @@ const RoomModel = {
         allowNull: false,
       },
       
-};
+}; export { RoomModel };

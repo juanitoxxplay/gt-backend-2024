@@ -1,6 +1,6 @@
 import { DataTypes } from "sequelize";
 
-const DetailsPurcharseOrderModel = {
+const DetailsOrderBuyModel = {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -27,4 +27,4 @@ const DetailsPurcharseOrderModel = {
       },
 };
 
-export { DetailsPurcharseOrderModel };
+export { DetailsOrderBuyModel };
