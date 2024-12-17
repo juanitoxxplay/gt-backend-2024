@@ -12,10 +12,6 @@ const SaleServicesModel = {
   },
   clientId: {
     type: DataTypes.INTEGER,
-    references: {
-      model: "clients",
-      key: "id_client",
-    },
     allowNull: false,
   },
   deletedAt: {

@@ -9,18 +9,10 @@ const SatisfactionSurveysModel = {
   client_id: {
     type: DataTypes.INTEGER,
     allowNull: false,
-    references: {
-      model: "clients",
-      key: "id_client",
-    },
   },
   attraction_id: {
     type: DataTypes.INTEGER,
     allowNull: false,
-    references: {
-      model: "attractions",
-      key: "id",
-    },
   },
   survey_date: {
     type: DataTypes.DATE,

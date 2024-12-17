@@ -9,18 +9,10 @@ const EventRegistrationModel = {
       eventId: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        references: {
-          model: 'events', 
-          key: 'id',
-        },
       },
       clientId: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        references: {
-          model: 'clients', 
-          key: 'id_client',
-        },
       },
       registrationDate: {
         type: DataTypes.DATE,

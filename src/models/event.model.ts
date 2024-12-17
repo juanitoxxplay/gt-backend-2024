@@ -19,18 +19,10 @@ const EventsModel = {
   attraction_id: {
     type: DataTypes.INTEGER,
     allowNull: false,
-    references: {
-      model: 'attraction_id', 
-      key: 'id',
-    },
   },
   contract_Id: {
     type: DataTypes.BIGINT,
     allowNull: false,
-    references: {
-      model: 'contracts',  
-      key: 'id_contract',
-    },
   },
   capacity: {
     type: DataTypes.BIGINT,

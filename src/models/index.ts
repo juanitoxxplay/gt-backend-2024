@@ -9,16 +9,13 @@ export * from './paysheet.model';
 export * from './paysheetDetail.model';
 export * from './performanceEvaluation.model';
 export * from './supervisor.model';
-
-export * from './categories.model';
+export * from './category.model';
 export * from './product.model';
 export * from './role.model';
 export * from './services.model';
 export * from './user.model';
-
 export * from './contract.model';
 export * from './client.model';
-export * from './position.model';
 export * from './product.model';
 export * from './attraction.model';
 export * from './supervisor.model';
@@ -27,7 +24,6 @@ export * from './empleoyeeAssistance.model';
 export * from './roster.model';
 export * from './details-roster.model';
 export * from './concept.model';
-export * from './categories.model';
 export * from './restaurant.model';
 export * from './booking-restaurant.model';
 export * from './hotel.model';

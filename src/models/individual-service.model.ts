@@ -16,26 +16,14 @@ const IndividualServicesModel = {
   },
   hotelId: {
     type: DataTypes.INTEGER,
-    references: {
-      model: "hotels",
-      key: "id",
-    },
     allowNull: true,
   },
   transport_id: {
     type: DataTypes.INTEGER,
-    references: {
-      model: "transports",
-      key: "id",
-    },
     allowNull: true,
   },
   attraction_id: {
     type: DataTypes.INTEGER,
-    references: {
-      model: "attractions", 
-      key: "id",
-    },
     allowNull: true,
   },
   deleted_at: {

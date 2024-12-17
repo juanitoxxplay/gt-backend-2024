@@ -25,7 +25,7 @@ const HotelModel = {
   deletedAt: {
     type: DataTypes.DATE,
   },
-  id_in_charge: {
+  id_supervisor: {
     type: DataTypes.STRING(50),
     allowNull: false
   },
