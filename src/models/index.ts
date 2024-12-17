@@ -56,4 +56,5 @@ export * from './type_room.model';
 export * from './tourist-package.model';
 export * from './supervisor.model';
 export * from './unit-measurement.model';
+export * from './user_client.model';
 export * from './user.model';

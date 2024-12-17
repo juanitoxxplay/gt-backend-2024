@@ -58,6 +58,7 @@ import {
   TransportModel,
   TypeRoomModel,
   UnitMeasurementModel,
+  UserClientModel,
   UserModel,
 } from "../models";
 const dbName: string | undefined = process.env.DATABASE_NAME
@@ -117,11 +118,11 @@ const RouteDb = db.define("routes", RouteModel);
 const SaleProductDb = db.define("saleproducts", SaleProductModel);
 const SaleServicesDB = db.define("saleServicesDB", SaleServicesModel);
 const SatisfactionSurveysDB = db.define("satisfactionSurveysDB", SatisfactionSurveysModel);
-const ServiceAttraction = db.define("serviceattractions", ServiceAttractionModel);
+const ServiceAttractionDb = db.define("serviceattractions", ServiceAttractionModel);
 const ServiceDB = db.define("services", ServiceModel);
-const ServiceHotel = db.define("servicehotels", ServiceHotelModel);
-const ServiceRestaurant = db.define("servicerestaurants", ServiceRestaurantModel);
-const ServiceTransport = db.define("servicetransports", ServiceTransportModel);
+const ServiceHotelDb = db.define("servicehotels", ServiceHotelModel);
+const ServiceRestaurantDb = db.define("servicerestaurants", ServiceRestaurantModel);
+const ServiceTransportDb = db.define("servicetransports", ServiceTransportModel);
 const SettingsDB = db.define("settingsDB", SettingsModel);
 const SettingsEventDb = db.define("settingsevent", SettingsEventModel);
 const SettingsPackageDb = db.define("settingspackage", SettingsPackageModel);
@@ -134,7 +135,9 @@ const TouristPackageDB = db.define("touristpackages", TouristPackageModel);
 const TransportDB = db.define("transports", TransportModel);
 const TypeRoomDb = db.define("typerooms", TypeRoomModel);
 const UnitMeasurementDB = db.define("unitMeasurementDB", UnitMeasurementModel);
+const UserClientdb = db.define("userclients", UserClientModel);
 const UserDB = db.define("users", UserModel);
+
 
 
 
@@ -182,6 +185,152 @@ PaysheetDetailDB.belongsTo(PaysheetDB, { foreignKey: "id_paysheet" });
 
 ConceptDB.hasMany(PaysheetDetailDB, { foreignKey: "id_concept" });
 PaysheetDetailDB.belongsTo(ConceptDB, { foreignKey: "id_concept" });
+
+
+//Relaciones Usuarios Clientes
+ClientDB.hasMany(UserClientdb, { foreignKey: "id_client" });
+UserClientdb.belongsTo(ClientDB, { foreignKey: "id_client" });
+UserDB.hasMany(UserClientdb, { foreignKey: "id_user" });
+UserClientdb.belongsTo(UserDB, { foreignKey: "id_user" });
+
+//Relaciones de las tablas Venta de servicios
+SaleServicesDB.hasMany(DetailsSaleServiceDB, { foreignKey: "id_saleService" });
+DetailsSaleServiceDB.belongsTo(SaleServicesDB, { foreignKey: "id_saleService" })
+
+// Relaciones de las tablas detalle de Venta servicios
+ServiceDB.hasMany(DetailsSaleServiceDB, { foreignKey: "id_service" });
+DetailsSaleServiceDB.belongsTo(ServiceDB, { foreignKey: "id_service" });
+
+//relaciones de servicios de hotel
+ServiceDB.hasMany(ServiceHotelDb, { foreignKey: "id_service" });
+ServiceHotelDb.belongsTo(ServiceDB, { foreignKey: "id_service" });
+HotelDB.hasMany(ServiceHotelDb, { foreignKey: "id_hotel" });
+ServiceHotelDb.belongsTo(HotelDB, { foreignKey: "id_hotel" });
+
+//relaciones de servicios de restaurante
+ServiceDB.hasMany(ServiceRestaurantDb, { foreignKey: "id_service" });
+ServiceRestaurantDb.belongsTo(ServiceDB, { foreignKey: "id_service" });
+RestaurantDB.hasMany(ServiceRestaurantDb, { foreignKey: "id_restaurant" });
+ServiceRestaurantDb.belongsTo(RestaurantDB, { foreignKey: "id_restaurant" });
+
+
+//relaciones de servicios de transporte
+ServiceDB.hasMany(ServiceTransportDb, { foreignKey: "id_service" });
+ServiceTransportDb.belongsTo(ServiceDB, { foreignKey: "id_service" });
+TransportDB.hasMany(ServiceTransportDb, { foreignKey: "id_transport" });
+ServiceTransportDb.belongsTo(TransportDB, { foreignKey: "id_transport" });
+
+//relaciones de servicios de atracciones
+ServiceDB.hasMany(ServiceAttractionDb, { foreignKey: "id_service" });
+ServiceAttractionDb.belongsTo(ServiceDB, { foreignKey: "id_service" });
+AttractionDB.hasMany(ServiceAttractionDb, { foreignKey: "id_attraction" });
+ServiceAttractionDb.belongsTo(AttractionDB, { foreignKey: "id_attraction" });
+
+//Relaciones de las tablas Venta de productos
+SaleProductDb.hasMany(DetailsSaleProductDb, { foreignKey: "id_saleProduct" });
+DetailsSaleProductDb.belongsTo(SaleProductDb, { foreignKey: "id_saleProduct" })
+
+// Relaciones de las tablas detalle de Venta productos
+ProductDB.hasMany(DetailsSaleProductDb, { foreignKey: "id_product" });
+DetailsSaleProductDb.belongsTo(ProductDB, { foreignKey: "id_product" });
+
+
+//Relaciones de las tablas Venta de paquetes
+TouristPackageDB.hasMany(PackageSaleDb, { foreignKey: "id_touristPackage" });
+PackageSaleDb.belongsTo(TouristPackageDB, { foreignKey: "id_touristPackage" });
+BookingDB.hasMany(PackageSaleDb, { foreignKey: "id_booking" });
+PackageSaleDb.belongsTo(BookingDB, { foreignKey: "id_booking" });
+
+// Relaciones de la tabla ajustes con eventos
+SettingsDB.hasMany(SettingsEventDb, { foreignKey: "id_settings" });
+SettingsEventDb.belongsTo(SettingsDB, { foreignKey: "id_settings" });
+EventsDB.hasMany(SettingsEventDb, { foreignKey: "id_event" });
+SettingsEventDb.belongsTo(EventsDB, { foreignKey: "id_event" });
+
+
+// Relaciones de la tabla ajustes con paquetes
+SettingsDB.hasMany(SettingsPackageDb, { foreignKey: "id_settings" });
+SettingsPackageDb.belongsTo(SettingsDB, { foreignKey: "id_settings" });
+TouristPackageDB.hasMany(SettingsPackageDb, { foreignKey: "id_touristPackage" });
+SettingsPackageDb.belongsTo(TouristPackageDB, { foreignKey: "id_touristPackage" });
+
+// Relaciones de la tabla ajustes con productos
+SettingsDB.hasMany(SettingsProductDb, { foreignKey: "id_settings" });
+SettingsProductDb.belongsTo(SettingsDB, { foreignKey: "id_settings" });
+ProductDB.hasMany(SettingsProductDb, { foreignKey: "id_product" });
+SettingsProductDb.belongsTo(ProductDB, { foreignKey: "id_product" });
+
+// Relaciones de la tabla ajustes con servicios
+SettingsDB.hasMany(SettingsServiceDb, { foreignKey: "id_settings" });
+SettingsServiceDb.belongsTo(SettingsDB, { foreignKey: "id_settings" });
+ServiceDB.hasMany(SettingsServiceDb, { foreignKey: "id_service" });
+SettingsServiceDb.belongsTo(ServiceDB, { foreignKey: "id_service" });
+
+//Relaciones de la reservas
+//Reservas con Atraccion
+BookingDB.hasMany(BookingAttractionDB, { foreignKey: "id_booking" });
+BookingAttractionDB.belongsTo(BookingDB, { foreignKey: "id_booking" });
+AttractionDB.hasMany(BookingAttractionDB, { foreignKey: "id_attraction" });
+BookingAttractionDB.belongsTo(AttractionDB, { foreignKey: "id_attraction" });
+
+//Reservas con Hoteles 
+BookingDB.hasMany(BookingRoomDB, { foreignKey: "id_booking" });
+BookingRoomDB.belongsTo(BookingDB, { foreignKey: "id_booking" });
+RoomDB.hasMany(BookingRoomDB, { foreignKey: "id_room" });
+BookingRoomDB.belongsTo(RoomDB, { foreignKey: "id_room" });
+//Reservas con Transporte
+BookingDB.hasMany(BookingTransportationDB, { foreignKey: "id_booking" });
+BookingTransportationDB.belongsTo(BookingDB, { foreignKey: "id_booking" });
+TransportDB.hasMany(BookingTransportationDB, { foreignKey: "id_transport" });
+BookingTransportationDB.belongsTo(TransportDB, { foreignKey: "id_transport" });
+// Reservas con Restaurant
+BookingDB.hasMany(BookingRestaurantDB, { foreignKey: "id_booking" });
+BookingRestaurantDB.belongsTo(BookingDB, { foreignKey: "id_booking" });
+RestaurantDB.hasMany(BookingRestaurantDB, { foreignKey: "id_restaurant" });
+BookingRestaurantDB.belongsTo(RestaurantDB, { foreignKey: "id_restaurant" });
+
+//Relaciones de la tabla  categoria de Productos
+CategoryDB.hasMany(ProductDB, { foreignKey: "category_id" });
+ProductDB.belongsTo(CategoryDB, { foreignKey: "category_id" });
+
+//Relaciones de la tabla unidad de medida de Productos
+UnitMeasurementDB.hasMany(ProductDB, { foreignKey: "id_unitMeasurement" });
+ProductDB.belongsTo(UnitMeasurementDB, { foreignKey: "id_unitMeasurement" });
+
+// Relaciones de la tabla orden de compra
+PurcharseOrderDB.hasMany(DetailsOrderBuyDB, { foreignKey: "id_purcharseOrder" });
+DetailsOrderBuyDB.belongsTo(PurcharseOrderDB, { foreignKey: "id_purcharseOrder" });
+
+// Relaciones de la tabla detalle de la orden de compra
+ProductDB.hasMany(DetailsOrderBuyDB, { foreignKey: "id_product" });
+DetailsOrderBuyDB.belongsTo(ProductDB, { foreignKey: "id_product" });
+
+//Relaciones de la tabla inventario
+ProductDB.hasMany(InventoryDB, { foreignKey: "id_product" });
+InventoryDB.belongsTo(ProductDB, { foreignKey: "id_product" });
+InventoryDB.hasMany(InventoryhistoryDB, { foreignKey: "id_inventory" });
+InventoryhistoryDB.belongsTo(InventoryDB, { foreignKey: "id_inventory" });
+DepartamentDB.hasMany(InventoryDB, { foreignKey: "id_departament" });
+InventoryDB.belongsTo(DepartamentDB, { foreignKey: "id_departament" });
+
+//Relaciones de la tabla Historiales Inventarios
+InventoryDB.hasMany(InventoryhistoryDB, { foreignKey: "id_inventory" });
+InventoryhistoryDB.belongsTo(InventoryDB, { foreignKey: "id_inventory" });
+ContractDB.hasMany(InventoryhistoryDB, { foreignKey: "id_contract" });
+InventoryhistoryDB.belongsTo(ContractDB, { foreignKey: "id_contract" });
+
+
+//Relaciones de la tabla asignacion de recursos
+ProductDB.hasMany(ResourceAllocationDb, { foreignKey: "id_product" });
+ResourceAllocationDb.belongsTo(ProductDB, { foreignKey: "id_product" });
+ContractDB.hasMany(ResourceAllocationDb, { foreignKey: "id_contract" });
+ResourceAllocationDb.belongsTo(ContractDB, { foreignKey: "id_contract" });
+
+
+
+
+
+
 
 
 // Sincroniza los modelos con la base de datos
@@ -237,11 +386,11 @@ export {
   SaleProductDb,
   SaleServicesDB,
   SatisfactionSurveysDB,
-  ServiceAttraction,
+  ServiceAttractionDb,
   ServiceDB,
-  ServiceHotel,
-  ServiceRestaurant,
-  ServiceTransport,
+  ServiceHotelDb,
+  ServiceRestaurantDb,
+  ServiceTransportDb,
   SettingsDB,
   SettingsEventDb,
   SettingsPackageDb,
@@ -254,5 +403,6 @@ export {
   TypeRoomDb,
   UnitMeasurementDB,
   UserDB,
+  UserClientdb,
   db,
 };
