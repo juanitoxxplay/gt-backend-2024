@@ -25,7 +25,7 @@ const RestaurantModel = {
         allowNull: false,
     },  
 
-  contract_id: {
+  id_supervisor : {
     type: DataTypes.INTEGER,
     allowNull: false,
   },

@@ -1,11 +1,11 @@
 
-import { ServiceDB } from "../config";
-import { ServiceInterface } from "../interfaces";
+import { IndividualServicesDB } from "../config";
+import { IndividualServiceInterface } from "../interfaces";
 
-const serviceServices = {
+const serviceIndividualServices = {
   getAll: async () => {
     try {
-      const services = await ServiceDB.findAll({ where: { status: true } });
+      const services = await IndividualServicesDB.findAll({ where: { status: true } });
       if (services.length === 0) {
         return {
           message: `Registros no encontrados`,
@@ -32,7 +32,7 @@ const serviceServices = {
   },
   getOne: async (id: number|string) => {
     try {
-      const service = await ServiceDB.findOne({
+      const service = await IndividualServicesDB.findOne({
         where: {
           id: id,
           status: true
@@ -61,10 +61,10 @@ const serviceServices = {
       };
     }
   },
-  create: async (data: Partial<ServiceInterface>) => {
+  create: async (data: Partial<IndividualServiceInterface>) => {
     data.name=data.name?.toLowerCase();
     try {
-      const service = await ServiceDB.create({ ...data });
+      const service = await IndividualServicesDB.create({ ...data });
       return {
         message: `Creación exitosa`,
         status: 201,
@@ -80,11 +80,11 @@ const serviceServices = {
       };
     }
   },
-  update: async (id: number|string, dat: Partial<ServiceInterface>) => {
+  update: async (id: number|string, dat: Partial<IndividualServiceInterface>) => {
     dat.name=dat.name?.toLowerCase();
     try {
-      let service: ServiceInterface | any = await ServiceDB.update(dat, { where: { id } });
-      const { data } = await serviceServices.getOne(id);
+      let service: IndividualServiceInterface | any = await IndividualServicesDB.update(dat, { where: { id } });
+      const { data } = await serviceIndividualServices.getOne(id);
       return {
         message: `Actualización exitosa`,
         status: 200,
@@ -102,7 +102,7 @@ const serviceServices = {
   },
   delete: async (id: number) => {
     try {
-      const service = await ServiceDB.update(
+      const service = await IndividualServicesDB.update(
         {
           status: false,
           deletedAt: new Date(),
@@ -125,7 +125,7 @@ const serviceServices = {
   },
   findByName: async (name: string) => {
     try {
-      const service = await ServiceDB.findAll({ where: { name } });
+      const service = await IndividualServicesDB.findAll({ where: { name } });
       if (service.length===0) {
         console.log("Registro no encontrado")
         return {
@@ -153,7 +153,7 @@ const serviceServices = {
 };
 
 export {
-  serviceServices
+  serviceIndividualServices
 }
 
 

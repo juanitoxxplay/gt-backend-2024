@@ -6,7 +6,7 @@ const RoomModel = {
         autoIncrement: true,
         primaryKey: true,
       },
-      name_room: {
+      id_type_room: {
         type: DataTypes.STRING(50),
         allowNull: false,
       },

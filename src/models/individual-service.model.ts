@@ -1,32 +1,24 @@
 import { DataTypes } from "sequelize";
 
-const IndividualServicesModel = {
+const IndividualServicesModel= {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true,
   },
-  name: {  
-    type: DataTypes.STRING(100),
+  name: {
+    type: DataTypes.STRING(50),
     allowNull: false,
+    unique: true,
   },
   price: {
     type: DataTypes.DECIMAL(10, 2),
-    allowNull: false,
+    allowNull: false
   },
-  hotelId: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
+  updatedAt : {
+    type: DataTypes.DATE,
   },
-  transport_id: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
-  },
-  attraction_id: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
-  },
-  deleted_at: {
+  deletedAt: {
     type: DataTypes.DATE,
   },
   status: {
@@ -36,4 +28,5 @@ const IndividualServicesModel = {
 };
 
 export { IndividualServicesModel };
+
 

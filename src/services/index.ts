@@ -9,9 +9,7 @@ export * from './paysheet.service';
 export * from './paysheetDetail.service';
 export * from './performanceEvaluation.service';
 export * from './supervisor.service';
-
 export * from './category.service';
 export * from './role.service';
-export * from './service.service';
-export * from './test.service';
+export * from './individualService.service';
 export * from './user.service';

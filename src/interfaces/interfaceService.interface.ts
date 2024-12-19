@@ -1,5 +1,5 @@
 
-export interface ServiceInterface{
+export interface IndividualServiceInterface{
     id?:number;
     name:string;
     price:number;
