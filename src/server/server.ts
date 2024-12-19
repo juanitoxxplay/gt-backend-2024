@@ -19,9 +19,9 @@ import {
   categoryRoute,
   roleRoute,
   serviceRoute,
-  testRoute,
   userRoute,
 } from "../routes/index.route";
+
 import { db } from "../config/sequelize.config";
 import { swaggerOptions } from "../config";
 export class Server {
@@ -81,7 +81,6 @@ export class Server {
     this.app.use(this.paths.categories, categoryRoute);
     this.app.use(this.paths.roles, roleRoute);
     this.app.use(this.paths.services,serviceRoute);
-    this.app.use(this.paths.tests,testRoute);
     this.app.use(this.paths.users, userRoute);
   }
   async connectDB() {

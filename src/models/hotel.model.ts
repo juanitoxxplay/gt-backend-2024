@@ -26,7 +26,7 @@ const HotelModel = {
     type: DataTypes.DATE,
   },
   id_supervisor: {
-    type: DataTypes.STRING(50),
+    type: DataTypes.INTEGER,
     allowNull: false
   },
 };

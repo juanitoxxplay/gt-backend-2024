@@ -12,8 +12,7 @@ import supervisorRoute from "./supervisor.route";
 
 import categoryRoute from "./category.route";
 import roleRoute from "./role.route";
-import serviceRoute from "./service.route";
-import testRoute from "./test.route";
+import serviceRoute from "./individualService.route";
 import userRoute from "./user.route";
 
 export {
@@ -28,10 +27,8 @@ export {
   paysheetRoute,
   performanceEvaluationRoute,
   supervisorRoute,
-  
   categoryRoute,
   roleRoute,
   serviceRoute,
-  testRoute,
   userRoute,
 };

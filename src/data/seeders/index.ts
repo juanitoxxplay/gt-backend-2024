@@ -11,7 +11,7 @@ export * from './empleoyeeUser.seed';
 export * from './paysheet.seed';
 export * from './paysheetDetail.seed';
 export * from './performanceEvaluation.seed';
-export * from './service.seed';
+export * from './individualService.seed';
 export * from './supervisor.seed';
 export * from './role.seed';
 export * from './test.seed';

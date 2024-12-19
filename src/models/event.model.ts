@@ -20,8 +20,8 @@ const EventsModel = {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  contract_Id: {
-    type: DataTypes.BIGINT,
+  id_supervisor: {
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
   capacity: {

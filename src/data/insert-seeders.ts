@@ -1,10 +1,10 @@
 import "dotenv/config";
 import { CategoryDB, db, RoleDB, UserDB, ChargeDB, ConceptDB, ContractDB, DepartamentDB, EmpleoyeeDB, EmpleoyeeAssistanceDB, EmpleoyeeUserDB,
-PaysheetDB, PaysheetDetailDB, PerformanceEvaluationDB, ServiceDB, SupervisorDB
+PaysheetDB, PaysheetDetailDB, PerformanceEvaluationDB, IndividualServicesDB, SupervisorDB
  } from "../config";
 
 import { categoriesSeeds, rolesSeeds, userSeeds, chargeSeeds, conceptSeeds, contractSeeds, departamentSeeds, empleoyeeSeeds, empleoyeeAssistanceSeeds, empleoyeeUserSeeds,
-  paysheetSeeds, paysheetDetailSeeds, performanceEvaluationSeeds, serviceSeeds, supervisorSeeds
+  paysheetSeeds, paysheetDetailSeeds, performanceEvaluationSeeds, individualserviceSeeds, supervisorSeeds
  } from "./seeders";
 
 const eject = async () => {
@@ -135,7 +135,7 @@ async function insertSeeders() {
   }
   try {
     console.log(`Insertando seeds de : ${models.service}`);
-    const result = await ServiceDB.bulkCreate(serviceSeeds, { ignoreDuplicates: true,validate: true });
+    const result = await IndividualServicesDB.bulkCreate(individualserviceSeeds, { ignoreDuplicates: true,validate: true });
     console.log(`Registros insertado exitosamente de ${models.service}`);
   } catch (error) {
     console.error(`Error al insertar registros de ${models.service}:`, error);

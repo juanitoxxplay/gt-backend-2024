@@ -25,7 +25,7 @@ const InventoryhistoryModel = {
         type: DataTypes.DATE,
         allowNull:false
     },
-    id_employee:{
+    id_contract:{
         type: DataTypes.INTEGER,
     },
     deletedAt: {
