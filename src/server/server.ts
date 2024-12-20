@@ -20,6 +20,7 @@ import {
   roleRoute,
   serviceRoute,
   userRoute,
+  eventRegistrationRoute,
 } from "../routes/index.route";
 
 import { db } from "../config/sequelize.config";
@@ -52,6 +53,7 @@ export class Server {
       services: this.pre + "/services",
       tests: this.pre + "/tests",
       users: this.pre + "/users",
+      eventregistration: this.pre + "/event-registration",
     };
     this.connectDB();
     this.middlewares();
@@ -82,6 +84,7 @@ export class Server {
     this.app.use(this.paths.roles, roleRoute);
     this.app.use(this.paths.services,serviceRoute);
     this.app.use(this.paths.users, userRoute);
+    this.app.use(this.paths.eventregistration, eventRegistrationRoute);
   }
   async connectDB() {
     await db

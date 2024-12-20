@@ -9,6 +9,7 @@ export * from './paysheet.validators';
 export * from './paysheetDetail.validators';
 export * from './performanceEvaluation.validators';
 export * from './supervisor.validators';
+export * from './event-registration.validators';
 
 export * from './category.validators';
 export * from './role.validators';

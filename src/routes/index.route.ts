@@ -9,6 +9,7 @@ import paysheetDetailRoute from "./paysheetDetail.route";
 import paysheetRoute from "./paysheet.route";
 import performanceEvaluationRoute from "./performanceEvaluation.route";
 import supervisorRoute from "./supervisor.route";
+import eventRegistrationRoute from "./event-registration.route";
 
 import categoryRoute from "./category.route";
 import roleRoute from "./role.route";
@@ -31,4 +32,5 @@ export {
   roleRoute,
   serviceRoute,
   userRoute,
+  eventRegistrationRoute,
 };
