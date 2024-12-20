@@ -1,34 +1,34 @@
 import { Router } from "express";
 import { validateFields } from "../middlewares";
 import { AttractionController } from "../controllers";
-import { attractionvalidator } from "../validators";
+import { Attractionvalidator } from "../validators";
 const router = Router();
-const attractionvalidator = new attractionvalidator();
-const categoryController = new CategoryController();
+const attractionvalidator = new Attractionvalidator();
+const attractioncontroller = new AttractionController();
 
 
 
 
-router.get("/", categoryController.all);
+router.get("/", attractioncontroller.all);
 
-router.get("/:id", categoryController.one);
+router.get("/:id", attractioncontroller.one);
 
 router.post(
   "/",
-  caregoryValidator.validateCategory,
-  caregoryValidator.validateIfNameIsUse,
+  attractionvalidator.validatorattractions,
+  attractionvalidator.validateIfNameIsUse,
   validateFields,
-  categoryController.create
+  attractioncontroller.create
 );
 
 router.put(
   "/:id",
-  caregoryValidator.validateCategory,
-  caregoryValidator.validateIfIdExist,
-  caregoryValidator.validateIfNameIsUse,
+  attractionvalidator.validatorattractions,
+  attractionvalidator.validateIfIdExist,
+  attractionvalidator.validateIfNameIsUse,
   validateFields,
-  categoryController.update
+  attractioncontroller.update
 );
 
-router.delete("/:id", categoryController.delete); 
+router.delete("/:id", attractioncontroller.delete); 
 export default router;
