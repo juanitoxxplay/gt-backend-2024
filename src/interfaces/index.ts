@@ -9,6 +9,7 @@ export * from './paysheet.interface';
 export * from './paysheetDetail.interface';
 export * from './performanceEvaluation.interface';
 export * from './supervisor.interface';
+export * from './event-registration.interface';
 
 export * from './category.interface';
 export * from './role.interface';
