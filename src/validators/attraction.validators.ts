@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { body } from "express-validator";
 import { attractionservice } from "../services";
 
-class attractionvalidator {
+class Attractionvalidator {
     public validatorattractions = 
         [
             body("name").notEmpty().withMessage("The name of attractions is required"),
@@ -86,4 +86,4 @@ class attractionvalidator {
           };      
 };
 
-export { attractionvalidator };
+export { Attractionvalidator };
