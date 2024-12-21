@@ -6,7 +6,7 @@ const DetailsOrderBuyModel = {
         autoIncrement: true,
         primaryKey: true,
     },
-    id_order: {
+    id_purcharseOrder: {
         type: DataTypes.INTEGER,
     },
     id_product: {

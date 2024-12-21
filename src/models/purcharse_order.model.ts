@@ -13,7 +13,7 @@ const PurcharseOrderModel = {
     id_supplier: {
         type: DataTypes.INTEGER,
     },
-    id_manager: {
+    id_contract: {
         type: DataTypes.INTEGER,
     },
     name_seller:{

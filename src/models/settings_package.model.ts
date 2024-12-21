@@ -1,11 +1,11 @@
 import { DataTypes } from "sequelize";
 
 const SettingsPackageModel = {
-  package_id: {
+  id_touristPackage: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  settings_id: {
+   id_settings: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },

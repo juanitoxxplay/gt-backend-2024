@@ -10,7 +10,7 @@ const SaleServicesModel = {
     type: DataTypes.DATE,
     allowNull: false,
   },
-  clientId: {
+ id_client: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },

@@ -9,6 +9,10 @@ const BookingRestaurantModel = {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
+    id_booking: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
     Reservation_rate: {
         type: DataTypes.DECIMAL,
         allowNull: false,   
@@ -29,6 +33,8 @@ const BookingRestaurantModel = {
         allowNull: false,
         defaultValue: false
     },
+
+    
 } 
 export {BookingRestaurantModel};
 

@@ -6,7 +6,7 @@ const InventoryModel = {
         autoIncrement: true,
         primaryKey: true,
     },
-    id_department: {
+    id_departament: {
         type: DataTypes.INTEGER,
     },
     location: {

@@ -4,7 +4,7 @@ const SettingsServiceModel = {
   id_service: {
     type: DataTypes.INTEGER,
   },
-  id_setting: {
+  id_settings: {
     type: DataTypes.INTEGER,
   },
   };

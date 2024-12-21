@@ -6,11 +6,11 @@ const EventRegistrationModel = {
         autoIncrement: true,
         primaryKey: true,
       },
-      eventId: {
+      id_event: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      clientId: {
+      id_client: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
