@@ -6,11 +6,11 @@ const DetailsSaleServiceModel = {
     autoIncrement: true,
     primaryKey: true,
   },
-  sale_id: {
+  id_sale: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  service_id: {
+  id_service: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },

@@ -1,10 +1,10 @@
 import { DataTypes } from "sequelize";
 
 const ServiceAttractionModel = {
-  attraction_id: {
+  id_attraction: {
     type: DataTypes.INTEGER,
     },
-  service_id:{
+  id_service:{
     type: DataTypes.INTEGER,
   },
   

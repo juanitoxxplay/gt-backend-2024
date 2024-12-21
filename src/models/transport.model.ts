@@ -14,7 +14,7 @@ const TransportModel = {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      id_ruote: {   
+      id_route: {   
         type: DataTypes.INTEGER,
         allowNull: false,
       },

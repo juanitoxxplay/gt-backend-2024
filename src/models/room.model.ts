@@ -6,8 +6,8 @@ const RoomModel = {
         autoIncrement: true,
         primaryKey: true,
       },
-      id_type_room: {
-        type: DataTypes.STRING(50),
+      id_typeRoom: {
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       capacity: {

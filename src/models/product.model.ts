@@ -29,8 +29,8 @@ const ProductModel = {
         allowNull: false
     },
 
-    unit_measure:{
-        type: DataTypes.STRING(50),
+    id_unitMeasurement:{
+        type: DataTypes.INTEGER,
         allowNull: false,
     },
 

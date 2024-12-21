@@ -1,10 +1,10 @@
 import { DataTypes } from "sequelize";
 
 const ServiceTransportModel = {
-  transport_id: {
+  id_transport: {
     type: DataTypes.INTEGER,
     },
-  service_id:{
+  id_service:{
     type: DataTypes.INTEGER,
   },
   

@@ -14,5 +14,4 @@ export * from './performanceEvaluation.seed';
 export * from './individualService.seed';
 export * from './supervisor.seed';
 export * from './role.seed';
-export * from './test.seed';
 export * from './user.seed';

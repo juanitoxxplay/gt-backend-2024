@@ -9,7 +9,7 @@ const PackageSaleModel = {
         type: DataTypes.STRING(50),
         allowNull: false,
       },
-      booking_id: {
+      id_booking_: {
         type: DataTypes.INTEGER,
         allowNull: false,   
       },
