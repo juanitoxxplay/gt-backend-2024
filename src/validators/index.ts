@@ -10,6 +10,7 @@ export * from './paysheet.validators';
 export * from './paysheetDetail.validators';
 export * from './performanceEvaluation.validators';
 export * from './product.validators';
+export * from './restaurant.validators';
 export * from './supervisor.validators';
 
 export * from './category.validators';

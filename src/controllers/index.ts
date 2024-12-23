@@ -11,6 +11,7 @@ export * from './paysheet.controller';
 export * from './paysheetDetail.controller';
 export * from './performanceEvaluation.controller';
 export * from './product.controller';
+export * from './restaurant.controller';
 export * from './role.controller';
 export * from './individualService.controller';
 export * from './supervisor.controller';
