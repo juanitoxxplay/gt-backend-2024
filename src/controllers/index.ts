@@ -13,3 +13,4 @@ export * from './role.controller';
 export * from './individualService.controller';
 export * from './supervisor.controller';
 export * from './user.controller';
+export * from './attraction.controller';

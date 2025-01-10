@@ -14,6 +14,7 @@ import categoryRoute from "./category.route";
 import roleRoute from "./role.route";
 import serviceRoute from "./individualService.route";
 import userRoute from "./user.route";
+import attractionRoute from "./attraction.route";
 
 export {
   chargeRoute,
@@ -31,4 +32,5 @@ export {
   roleRoute,
   serviceRoute,
   userRoute,
+  attractionRoute,
 };
