@@ -1,4 +1,4 @@
-export * from './Attraction.service';
+export * from './attraction.service';
 export * from './charge.service';
 export * from './concept.service';
 export * from './contract.service';
