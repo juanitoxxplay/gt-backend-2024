@@ -17,6 +17,8 @@ import roleRoute from "./role.route";
 import serviceRoute from "./individualService.route";
 import userRoute from "./user.route";
 import unitmeasurementRoute from "./unitMeasurement.route";
+import attractionRoute from "./attraction.route";
+
 export {
   chargeRoute,
   conceptRoute,
@@ -37,4 +39,5 @@ export {
   serviceRoute,
   userRoute,
   unitmeasurementRoute,
+  attractionRoute,
 };
