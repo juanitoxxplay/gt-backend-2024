@@ -9,6 +9,10 @@ const categoriesSeeds: Partial<CategoryInterface>[] = [
     id:2,
     name: "limpiezas",
   },
+  {
+    id:3,
+    name: "Musicologia",
+  }
 ];
 
 export{
