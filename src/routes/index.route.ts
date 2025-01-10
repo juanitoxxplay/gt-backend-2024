@@ -11,7 +11,6 @@ import paysheetRoute from "./paysheet.route";
 import performanceEvaluationRoute from "./performanceEvaluation.route";
 import productRoute from "./product.route";
 import supervisorRoute from "./supervisor.route";
-import  RestaurantRoute  from "./restaurant.route";
 import categoryRoute from "./category.route";
 import roleRoute from "./role.route";
 import serviceRoute from "./individualService.route";
@@ -35,7 +34,6 @@ export {
   supervisorRoute,
   categoryRoute,
   roleRoute,
-  RestaurantRoute,
   serviceRoute,
   userRoute,
   unitmeasurementRoute,

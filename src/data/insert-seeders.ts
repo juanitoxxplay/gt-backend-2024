@@ -4,8 +4,7 @@ PaysheetDB,InventoryDB, PaysheetDetailDB, ProductDB, PerformanceEvaluationDB, In
  } from "../config";
 
 import { categoriesSeeds, rolesSeeds, userSeeds, chargeSeeds, conceptSeeds, contractSeeds, departamentSeeds, empleoyeeSeeds, empleoyeeAssistanceSeeds, empleoyeeUserSeeds,
-  paysheetSeeds, inventorySeeds, paysheetDetailSeeds, performanceEvaluationSeeds,productSeeds, individualserviceSeeds, supervisorSeeds,
-  restaurantSeeds
+  paysheetSeeds, inventorySeeds, paysheetDetailSeeds, performanceEvaluationSeeds,productSeeds, individualserviceSeeds, supervisorSeeds
  } from "./seeders";
 
 const eject = async () => {
@@ -38,7 +37,6 @@ async function insertSeeders() {
     paysheetDetail: "paysheetDetail",
     performanceEvaluation: "performanceEvaluation",
     product: "product",
-    restaurant: "restaurant",
     service: "service",
     supervisor: "supervisor",
   };
@@ -65,13 +63,6 @@ async function insertSeeders() {
     console.log(`Registros insertado exitosamente de ${models.users}`);
   } catch (error) {
     console.error(`Error al insertar registros de ${models.users}:`, error);
-  }
-  try {
-    console.log(`Insertando seeds de : ${models.restaurant}`);
-    const result = await UserDB.bulkCreate(restaurantSeeds, { ignoreDuplicates: true,validate: true });
-    console.log(`Registros insertado exitosamente de ${models.restaurant}`);
-  } catch (error) {
-    console.error(`Error al insertar registros de ${models.restaurant}:`, error);
   }
   //NIVEL 3
  try {
