@@ -1,4 +1,4 @@
-export * from './Attraction.service';
+export * from './attraction.service';
 export * from './charge.service';
 export * from './concept.service';
 export * from './contract.service';
@@ -11,7 +11,6 @@ export * from './paysheetDetail.service';
 export * from './performanceEvaluation.service';
 export * from './supervisor.service';
 export * from './category.service';
-export * from './restaurant.service';
 export * from './role.service';
 export * from './individualService.service';
 export * from './inventory.service';

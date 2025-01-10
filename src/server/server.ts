@@ -17,7 +17,6 @@ import {
   performanceEvaluationRoute,
   productRoute,
   supervisorRoute,
-RestaurantRoute,
   categoryRoute,
   roleRoute,
   serviceRoute,
@@ -45,19 +44,18 @@ export class Server {
       empleoyeeAssistance: this.pre + "/empleoyeeAssistance",
       empleoyees: this.pre + "/empleoyees",
       empleoyeeUser: this.pre + "/empleoyeeUser",
-      inventory: this.pre + "/invetory",
+      inventory: this.pre + "/inventory",
       paysheetDetail: this.pre + "/paysheetDetail",
       paysheet: this.pre + "/paysheet",
       performanceEvaluation: this.pre + "/performanceEvaluation",
       product: this.pre + "/product",
       supervisor: this.pre + "/supervisor",
-      restaurant: this.pre + "/restaurant",
       categories: this.pre + "/categories",
       roles: this.pre + "/roles",
       services: this.pre + "/services",
       tests: this.pre + "/tests",
       users: this.pre + "/users",
-      unitmeasurement: this.pre + "/unitmeasurement"
+      unitMeasurement: this.pre + "/unitmeasurement"
     };
     this.connectDB();
     this.middlewares();
@@ -85,7 +83,6 @@ export class Server {
     this.app.use(this.paths.performanceEvaluation, performanceEvaluationRoute);
     this.app.use(this.paths.product, productRoute);
     this.app.use(this.paths.supervisor, supervisorRoute);
-    this.app.use(this.paths.restaurant, RestaurantRoute);
     this.app.use(this.paths.categories, categoryRoute);
     this.app.use(this.paths.roles, roleRoute);
     this.app.use(this.paths.services,serviceRoute);
