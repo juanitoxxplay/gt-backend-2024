@@ -1,3 +1,4 @@
+export * from './attraction.interface';
 export * from './charge.interface';
 export * from './concept.interface';
 export * from './contract.interface';
