@@ -15,7 +15,6 @@ import {
   paysheetRoute,
   performanceEvaluationRoute,
   supervisorRoute,
-
   categoryRoute,
   roleRoute,
   serviceRoute,
