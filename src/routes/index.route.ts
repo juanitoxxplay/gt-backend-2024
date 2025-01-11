@@ -9,7 +9,6 @@ import inventoryRoute from "./inventory.route";
 import paysheetDetailRoute from "./paysheetDetail.route";
 import paysheetRoute from "./paysheet.route";
 import performanceEvaluationRoute from "./performanceEvaluation.route";
-import restaurantRoute from "./restaurant.route";
 import productRoute from "./product.route";
 import supervisorRoute from "./supervisor.route";
 import categoryRoute from "./category.route";
@@ -31,7 +30,6 @@ export {
   paysheetDetailRoute,
   paysheetRoute,
   performanceEvaluationRoute,
-  restaurantRoute,
   productRoute,
   supervisorRoute,
   categoryRoute,
