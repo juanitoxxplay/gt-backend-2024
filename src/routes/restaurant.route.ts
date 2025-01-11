@@ -2,6 +2,7 @@ import { Router } from "express";
 import { validateFields } from "../middlewares";
 import { RestaurantController } from "../controllers";
 import { RestaurantValidator } from "../validators";
+
 const restaurantValidator = new RestaurantValidator();
 const router = Router();
 const restaurantController = new RestaurantController();

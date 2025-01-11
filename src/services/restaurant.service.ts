@@ -1,6 +1,7 @@
 
 import { RestaurantDB } from "../config";
 import { RestaurantInterface } from "../interfaces";
+
 const RestaurantServices = {
     getAll: async () => {
         try {

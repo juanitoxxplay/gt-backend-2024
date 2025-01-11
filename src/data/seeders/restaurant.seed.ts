@@ -1,5 +1,6 @@
 import { RestaurantInterface } from "../../interfaces";
 
+
 const restaurantSeeds: Partial<RestaurantInterface>[] = [
     {
         id: 1,

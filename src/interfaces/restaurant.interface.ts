@@ -1,5 +1,6 @@
 import { SupervisorInterface } from "./supervisor.interface";
 
+
 export interface RestaurantInterface {
     id?: number | string;
     name: string;
