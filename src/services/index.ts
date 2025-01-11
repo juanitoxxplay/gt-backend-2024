@@ -9,6 +9,7 @@ export * from './empleoyeeUser.service';
 export * from './paysheet.service';
 export * from './paysheetDetail.service';
 export * from './performanceEvaluation.service';
+export * from './restaurant.service';
 export * from './supervisor.service';
 export * from './category.service';
 export * from './role.service';
