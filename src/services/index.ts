@@ -13,3 +13,4 @@ export * from './category.service';
 export * from './role.service';
 export * from './individualService.service';
 export * from './user.service';
+export * from './restaurant.service';

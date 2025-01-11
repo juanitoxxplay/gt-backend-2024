@@ -14,8 +14,8 @@ import {
   paysheetDetailRoute,
   paysheetRoute,
   performanceEvaluationRoute,
+  restaurantRoute,
   supervisorRoute,
-
   categoryRoute,
   roleRoute,
   serviceRoute,
@@ -45,8 +45,8 @@ export class Server {
       paysheetDetail: this.pre + "/paysheetDetail",
       paysheet: this.pre + "/paysheet",
       performanceEvaluation: this.pre + "/performanceEvaluation",
+      restaurant: this.pre + "/restaurants",
       supervisor: this.pre + "/supervisor",
-      
       categories: this.pre + "/categories",
       roles: this.pre + "/roles",
       services: this.pre + "/services",
@@ -76,8 +76,8 @@ export class Server {
     this.app.use(this.paths.paysheetDetail, paysheetDetailRoute);
     this.app.use(this.paths.paysheet, paysheetRoute);
     this.app.use(this.paths.performanceEvaluation, performanceEvaluationRoute);
+    this.app.use(this.paths.restaurant, restaurantRoute);
     this.app.use(this.paths.supervisor, supervisorRoute);
-    
     this.app.use(this.paths.categories, categoryRoute);
     this.app.use(this.paths.roles, roleRoute);
     this.app.use(this.paths.services,serviceRoute);

@@ -13,3 +13,4 @@ export * from './category.interface';
 export * from './role.interface';
 export * from './interfaceService.interface';
 export * from './user.interface';
+export * from './restaurant.interface';

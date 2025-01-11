@@ -8,8 +8,8 @@ import empleoyeeUserRoute from "./empleoyeeUser.route";
 import paysheetDetailRoute from "./paysheetDetail.route";
 import paysheetRoute from "./paysheet.route";
 import performanceEvaluationRoute from "./performanceEvaluation.route";
+import restaurantRoute from "./restaurant.route";
 import supervisorRoute from "./supervisor.route";
-
 import categoryRoute from "./category.route";
 import roleRoute from "./role.route";
 import serviceRoute from "./individualService.route";
@@ -26,6 +26,7 @@ export {
   paysheetDetailRoute,
   paysheetRoute,
   performanceEvaluationRoute,
+  restaurantRoute,
   supervisorRoute,
   categoryRoute,
   roleRoute,
