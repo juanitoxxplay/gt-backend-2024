@@ -11,15 +11,18 @@ import {
   empleoyeeAssistanceRoute,
   empleoyeeRoute,
   empleoyeeUserRoute,
+  inventoryRoute,
   paysheetDetailRoute,
   paysheetRoute,
   performanceEvaluationRoute,
   restaurantRoute,
+  productRoute,
   supervisorRoute,
   categoryRoute,
   roleRoute,
   serviceRoute,
   userRoute,
+  unitmeasurementRoute,
 } from "../routes/index.route";
 
 import { db } from "../config/sequelize.config";
@@ -42,16 +45,19 @@ export class Server {
       empleoyeeAssistance: this.pre + "/empleoyeeAssistance",
       empleoyees: this.pre + "/empleoyees",
       empleoyeeUser: this.pre + "/empleoyeeUser",
+      inventory: this.pre + "/inventory",
       paysheetDetail: this.pre + "/paysheetDetail",
       paysheet: this.pre + "/paysheet",
       performanceEvaluation: this.pre + "/performanceEvaluation",
       restaurant: this.pre + "/restaurants",
+      product: this.pre + "/product",
       supervisor: this.pre + "/supervisor",
       categories: this.pre + "/categories",
       roles: this.pre + "/roles",
       services: this.pre + "/services",
       tests: this.pre + "/tests",
       users: this.pre + "/users",
+      unitMeasurement: this.pre + "/unitmeasurement"
     };
     this.connectDB();
     this.middlewares();
@@ -73,15 +79,18 @@ export class Server {
     this.app.use(this.paths.empleoyeeAssistance, empleoyeeAssistanceRoute);
     this.app.use(this.paths.empleoyees, empleoyeeRoute);
     this.app.use(this.paths.empleoyeeUser, empleoyeeUserRoute);
+    this.app.use(this.paths.inventory, inventoryRoute);
     this.app.use(this.paths.paysheetDetail, paysheetDetailRoute);
     this.app.use(this.paths.paysheet, paysheetRoute);
     this.app.use(this.paths.performanceEvaluation, performanceEvaluationRoute);
     this.app.use(this.paths.restaurant, restaurantRoute);
+    this.app.use(this.paths.product, productRoute);
     this.app.use(this.paths.supervisor, supervisorRoute);
     this.app.use(this.paths.categories, categoryRoute);
     this.app.use(this.paths.roles, roleRoute);
     this.app.use(this.paths.services,serviceRoute);
     this.app.use(this.paths.users, userRoute);
+    this.app.use(this.paths.unitMeasurement, unitmeasurementRoute);
   }
   async connectDB() {
     await db

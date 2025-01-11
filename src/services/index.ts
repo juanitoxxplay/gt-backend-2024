@@ -1,3 +1,4 @@
+export * from './attraction.service';
 export * from './charge.service';
 export * from './concept.service';
 export * from './contract.service';
@@ -12,5 +13,8 @@ export * from './supervisor.service';
 export * from './category.service';
 export * from './role.service';
 export * from './individualService.service';
-export * from './user.service';
 export * from './restaurant.service';
+export * from './inventory.service';
+export * from './product.service';
+export * from './unitMeasurement.service';
+export * from './user.service';

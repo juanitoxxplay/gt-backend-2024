@@ -1,10 +1,10 @@
 import "dotenv/config";
 import { CategoryDB, db, RoleDB, UserDB, ChargeDB, ConceptDB, ContractDB, DepartamentDB, EmpleoyeeDB, EmpleoyeeAssistanceDB, EmpleoyeeUserDB,
-PaysheetDB, PaysheetDetailDB, PerformanceEvaluationDB, IndividualServicesDB, SupervisorDB
+PaysheetDB,InventoryDB, PaysheetDetailDB, ProductDB, PerformanceEvaluationDB, IndividualServicesDB, SupervisorDB
  } from "../config";
 
 import { categoriesSeeds, rolesSeeds, userSeeds, chargeSeeds, conceptSeeds, contractSeeds, departamentSeeds, empleoyeeSeeds, empleoyeeAssistanceSeeds, empleoyeeUserSeeds,
-  paysheetSeeds, paysheetDetailSeeds, performanceEvaluationSeeds, individualserviceSeeds, supervisorSeeds
+  paysheetSeeds, inventorySeeds, paysheetDetailSeeds, performanceEvaluationSeeds,productSeeds, individualserviceSeeds, supervisorSeeds
  } from "./seeders";
 
 const eject = async () => {
@@ -32,9 +32,11 @@ async function insertSeeders() {
     empleoyee: "empleoyee",
     empleoyeeAssistance:"empleoyeeAssistance",
     empleoyeeUser: "empleoyeeUser",
+    inventory: "inventory",
     paysheet: "paysheet",
     paysheetDetail: "paysheetDetail",
     performanceEvaluation: "performanceEvaluation",
+    product: "product",
     service: "service",
     supervisor: "supervisor",
   };
@@ -134,6 +136,13 @@ async function insertSeeders() {
     console.error(`Error al insertar registros de ${models.performanceEvaluation}:`, error);
   }
   try {
+    console.log(`Insertando seeds de : ${models.product}`);
+    const result = await ProductDB.bulkCreate(productSeeds, { ignoreDuplicates: true,validate: true });
+    console.log(`Registros insertado exitosamente de ${models.product}`);
+  } catch (error) {
+    console.error(`Error al insertar registros de ${models.product}:`, error);
+  }
+  try {
     console.log(`Insertando seeds de : ${models.service}`);
     const result = await IndividualServicesDB.bulkCreate(individualserviceSeeds, { ignoreDuplicates: true,validate: true });
     console.log(`Registros insertado exitosamente de ${models.service}`);
@@ -146,6 +155,13 @@ async function insertSeeders() {
     console.log(`Registros insertado exitosamente de ${models.supervisor}`);
   } catch (error) {
     console.error(`Error al insertar registros de ${models.supervisor}:`, error);
+  }
+  try {
+    console.log(`Insertando seeds de : ${models.inventory}`);
+    const result = await InventoryDB.bulkCreate(inventorySeeds, { ignoreDuplicates: true,validate: true });
+    console.log(`Registros insertado exitosamente de ${models.inventory}`);
+  } catch (error) {
+    console.error(`Error al insertar registros de ${models.inventory}:`, error);
   }
 }
 eject();
