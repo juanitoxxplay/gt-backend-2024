@@ -13,6 +13,7 @@ export * from './supervisor.service';
 export * from './category.service';
 export * from './role.service';
 export * from './individualService.service';
+export * from './restaurant.service';
 export * from './inventory.service';
 export * from './product.service';
 export * from './unitMeasurement.service';

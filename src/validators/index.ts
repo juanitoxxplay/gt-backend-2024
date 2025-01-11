@@ -17,4 +17,5 @@ export * from './role.validators';
 export * from './service.validators';
 export * from './unitMeasurement.validators';
 export * from './user.validators';
+export * from './restaurant.validators';
 

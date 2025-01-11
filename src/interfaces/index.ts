@@ -14,7 +14,9 @@ export * from './supervisor.interface';
 export * from './category.interface';
 export * from './role.interface';
 export * from './interfaceService.interface';
+export * from './user.interface';
+export * from './restaurant.interface';
 export * from './tourist-package.interface';
 export * from './unitMeasurement.interface';
-export * from './user.interface';
 export * from './inventory.interface';
+

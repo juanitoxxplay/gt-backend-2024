@@ -14,6 +14,8 @@ export * from './product.controller';
 export * from './role.controller';
 export * from './individualService.controller';
 export * from './supervisor.controller';
+export * from './restaurant.controller';
 export * from './unit-measurement.controller';
 export * from './user.controller';
 export * from './attraction.controller';
+
