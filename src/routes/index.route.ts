@@ -17,6 +17,7 @@ import roleRoute from "./role.route";
 import serviceRoute from "./individualService.route";
 import userRoute from "./user.route";
 import unitmeasurementRoute from "./unitMeasurement.route";
+import touristPackageRoute from "./tourist-package.route";
 import attractionRoute from "./attraction.route";
 
 export {
@@ -35,6 +36,7 @@ export {
   restaurantRoute,
   supervisorRoute,
   categoryRoute,
+  touristPackageRoute,
   roleRoute,
   serviceRoute,
   userRoute,

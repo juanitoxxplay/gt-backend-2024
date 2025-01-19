@@ -16,5 +16,6 @@ export * from './individualService.controller';
 export * from './supervisor.controller';
 export * from './restaurant.controller';
 export * from './unit-measurement.controller';
+export * from './tourist-package.controller';
 export * from './user.controller';
 export * from './attraction.controller';

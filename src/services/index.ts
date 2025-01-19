@@ -13,6 +13,7 @@ export * from './restaurant.service';
 export * from './supervisor.service';
 export * from './category.service';
 export * from './role.service';
+export * from './tourist-package.service';
 export * from './individualService.service';
 export * from './inventory.service';
 export * from './product.service';

@@ -17,6 +17,7 @@ import {
   performanceEvaluationRoute,
   productRoute,
   supervisorRoute,
+  touristPackageRoute,
   categoryRoute,
   roleRoute,
   serviceRoute,
@@ -55,7 +56,8 @@ export class Server {
       services: this.pre + "/services",
       tests: this.pre + "/tests",
       users: this.pre + "/users",
-      unitMeasurement: this.pre + "/unitmeasurement"
+      unitMeasurement: this.pre + "/unitmeasurement",
+      touristPackage: this.pre + "/touristPackage",
     };
     this.connectDB();
     this.middlewares();
@@ -87,6 +89,7 @@ export class Server {
     this.app.use(this.paths.roles, roleRoute);
     this.app.use(this.paths.services,serviceRoute);
     this.app.use(this.paths.users, userRoute);
+    this.app.use(this.paths.touristPackage, touristPackageRoute);
     this.app.use(this.paths.unitMeasurement, unitmeasurementRoute);
   }
   async connectDB() {
