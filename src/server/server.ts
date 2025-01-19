@@ -2,6 +2,8 @@ import express from "express";
 import cors from "cors";
 import swaggerJsDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
+import bodyParser from "body-parser";
+
 import {
 
   chargeRoute,
@@ -17,6 +19,7 @@ import {
   performanceEvaluationRoute,
   productRoute,
   supervisorRoute,
+  supplierRoute,
   categoryRoute,
   roleRoute,
   serviceRoute,
@@ -33,7 +36,7 @@ export class Server {
   private paths: any;
   constructor() {
     this.app = express();
-    this.port = process.env.API_PORT || 3880;
+    this.port = process.env.API_PORT || 3800;
     this.pre = "/api";
     this.paths = {
       
@@ -50,6 +53,7 @@ export class Server {
       performanceEvaluation: this.pre + "/performanceEvaluation",
       product: this.pre + "/product",
       supervisor: this.pre + "/supervisor",
+      supplier: this.pre + "/supplier",
       categories: this.pre + "/categories",
       roles: this.pre + "/roles",
       services: this.pre + "/services",
@@ -66,7 +70,9 @@ export class Server {
   middlewares() {
     this.app.use(cors());
     this.app.use(express.json());
-    this.app.use(express.static("src/public"));
+    this.app.use(express.static("src/public")); 
+    this.app.use(bodyParser.json()); 
+    this.app.use(bodyParser.urlencoded({ extended: true })); 
   }
 
   routes() {
@@ -85,6 +91,7 @@ export class Server {
     this.app.use(this.paths.supervisor, supervisorRoute);
     this.app.use(this.paths.categories, categoryRoute);
     this.app.use(this.paths.roles, roleRoute);
+    this.app.use(this.paths.supplier, supplierRoute);
     this.app.use(this.paths.services,serviceRoute);
     this.app.use(this.paths.users, userRoute);
     this.app.use(this.paths.unitMeasurement, unitmeasurementRoute);

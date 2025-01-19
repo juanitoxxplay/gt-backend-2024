@@ -16,5 +16,6 @@ export * from './role.service';
 export * from './individualService.service';
 export * from './inventory.service';
 export * from './product.service';
+export * from './supplier.service';
 export * from './unitMeasurement.service';
 export * from './user.service';

@@ -19,3 +19,4 @@ export * from './tourist-package.interface';
 export * from './unitMeasurement.interface';
 export * from './user.interface';
 export * from './inventory.interface';
+export * from './supplier.interface';
