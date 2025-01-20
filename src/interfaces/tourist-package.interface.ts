@@ -2,7 +2,7 @@
 export interface TouristPackageInterface{
     id?:number;
     name:string;
-    description:Text;
+    description:String;
     price:number;
     status?:boolean;
     createdAt:Date;

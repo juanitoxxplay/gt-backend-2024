@@ -17,6 +17,7 @@ export * from './category.validators';
 export * from './role.validators';
 export * from './service.validators';
 export * from './supplier.validators';
+export * from './tourist-package.validator';
 export * from './unitMeasurement.validators';
 export * from './user.validators';
 
