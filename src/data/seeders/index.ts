@@ -15,6 +15,7 @@ export * from './product.seed';
 export * from './individualService.seed';
 export * from './inventory.seed';
 export * from './supervisor.seed';
+export * from './supplier.seed';
 export * from './restaurant.seed';
 export * from './role.seed';
 export * from './user.seed';
