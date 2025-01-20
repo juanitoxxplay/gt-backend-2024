@@ -16,6 +16,7 @@ export * from './supervisor.validators';
 export * from './category.validators';
 export * from './role.validators';
 export * from './service.validators';
+export * from './supplier.validators';
 export * from './unitMeasurement.validators';
 export * from './user.validators';
 

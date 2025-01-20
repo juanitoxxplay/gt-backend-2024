@@ -13,6 +13,7 @@ import productRoute from "./product.route";
 import restaurantRoute from "./restaurant.route";
 import supervisorRoute from "./supervisor.route";
 import categoryRoute from "./category.route";
+import supplierRoute from "./supplier.route";
 import roleRoute from "./role.route";
 import serviceRoute from "./individualService.route";
 import userRoute from "./user.route";
@@ -37,6 +38,7 @@ export {
   categoryRoute,
   roleRoute,
   serviceRoute,
+  supplierRoute,
   userRoute,
   unitmeasurementRoute,
   attractionRoute,

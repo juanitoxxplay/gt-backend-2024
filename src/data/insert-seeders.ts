@@ -1,10 +1,10 @@
 import "dotenv/config";
 import { CategoryDB, db, RoleDB, UserDB, ChargeDB, ConceptDB, ContractDB, DepartamentDB, EmpleoyeeDB, EmpleoyeeAssistanceDB, EmpleoyeeUserDB,
-PaysheetDB,InventoryDB, PaysheetDetailDB, ProductDB, PerformanceEvaluationDB, IndividualServicesDB, SupervisorDB
+PaysheetDB,InventoryDB, PaysheetDetailDB, ProductDB, PerformanceEvaluationDB, IndividualServicesDB, SupervisorDB, SupplierDB
  } from "../config";
 
 import { categoriesSeeds, rolesSeeds, userSeeds, chargeSeeds, conceptSeeds, contractSeeds, departamentSeeds, empleoyeeSeeds, empleoyeeAssistanceSeeds, empleoyeeUserSeeds,
-  paysheetSeeds, inventorySeeds, paysheetDetailSeeds, performanceEvaluationSeeds,productSeeds, individualserviceSeeds, supervisorSeeds
+  paysheetSeeds, inventorySeeds, paysheetDetailSeeds, performanceEvaluationSeeds,productSeeds, individualserviceSeeds, supervisorSeeds, suppliersSeeds
  } from "./seeders";
 
 const eject = async () => {
@@ -39,6 +39,7 @@ async function insertSeeders() {
     product: "product",
     service: "service",
     supervisor: "supervisor",
+    supplier: "supplier",
   };
 
   //NIVEL 1
@@ -155,6 +156,13 @@ async function insertSeeders() {
     console.log(`Registros insertado exitosamente de ${models.supervisor}`);
   } catch (error) {
     console.error(`Error al insertar registros de ${models.supervisor}:`, error);
+  }
+  try {
+    console.log(`Insertando seeds de : ${models.supplier}`);
+    const result = await SupplierDB.bulkCreate(suppliersSeeds, { ignoreDuplicates: true,validate: true });
+    console.log(`Registros insertado exitosamente de ${models.supplier}`);
+  } catch (error) {
+    console.error(`Error al insertar registros de ${models.supplier}:`, error);
   }
   try {
     console.log(`Insertando seeds de : ${models.inventory}`);
