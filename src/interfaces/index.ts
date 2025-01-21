@@ -20,4 +20,4 @@ export * from "./supplier.interface";
 export * from "./tourist-package.interface";
 export * from "./unitMeasurement.interface";
 export * from "./user.interface";
-export * from "./booking-transport.interface";
+export * from "./booking-transportation.interface"; 
