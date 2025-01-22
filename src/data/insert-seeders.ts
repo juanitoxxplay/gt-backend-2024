@@ -1,10 +1,10 @@
 import "dotenv/config";
 import { CategoryDB, db, RoleDB, UserDB, ChargeDB, ConceptDB, ContractDB, DepartamentDB, EmpleoyeeDB, EmpleoyeeAssistanceDB, EmpleoyeeUserDB,
-PaysheetDB, PaysheetDetailDB, PerformanceEvaluationDB, IndividualServicesDB, SupervisorDB
+PaysheetDB, PaysheetDetailDB, PerformanceEvaluationDB, IndividualServicesDB, SupervisorDB, BookingRestaurantDB, RestaurantDB
  } from "../config";
 
 import { categoriesSeeds, rolesSeeds, userSeeds, chargeSeeds, conceptSeeds, contractSeeds, departamentSeeds, empleoyeeSeeds, empleoyeeAssistanceSeeds, empleoyeeUserSeeds,
-  paysheetSeeds, paysheetDetailSeeds, performanceEvaluationSeeds, individualserviceSeeds, supervisorSeeds
+  paysheetSeeds, paysheetDetailSeeds, performanceEvaluationSeeds, individualserviceSeeds, supervisorSeeds, BookingrestaurantSeeds, restaurantSeeds
  } from "./seeders";
 
 const eject = async () => {
@@ -37,6 +37,8 @@ async function insertSeeders() {
     performanceEvaluation: "performanceEvaluation",
     service: "service",
     supervisor: "supervisor",
+    bookingrestaurant: "bookingrestaurant",
+    restaurant: "restaurant",
   };
 
   //NIVEL 1
@@ -146,6 +148,20 @@ async function insertSeeders() {
     console.log(`Registros insertado exitosamente de ${models.supervisor}`);
   } catch (error) {
     console.error(`Error al insertar registros de ${models.supervisor}:`, error);
+  }
+  try {
+    console.log(`Insertando seeds de : ${models.restaurant}`);
+    const result = await RestaurantDB.bulkCreate(restaurantSeeds, { ignoreDuplicates: true,validate: true });
+    console.log(`Registros insertado exitosamente de ${models.restaurant}`);
+  } catch (error) {
+    console.error(`Error al insertar registros de ${models.restaurant}:`, error);
+  }
+  try {
+    console.log(`Insertando seeds de : ${models.bookingrestaurant}`);
+    const result = await BookingRestaurantDB.bulkCreate(BookingrestaurantSeeds, { ignoreDuplicates: true,validate: true });
+    console.log(`Registros insertado exitosamente de ${models.bookingrestaurant}`);
+  } catch (error) {
+    console.error(`Error al insertar registros de ${models.bookingrestaurant}:`, error);
   }
 }
 eject();

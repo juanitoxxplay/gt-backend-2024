@@ -1,4 +1,5 @@
 export * from './charge.controller';
+export * from './booking_restaurant.controller';
 export * from './category.controller';
 export * from './concept.controller';
 export * from './contract.controller';

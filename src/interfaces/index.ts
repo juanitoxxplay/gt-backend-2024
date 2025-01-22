@@ -1,4 +1,5 @@
 export * from './charge.interface';
+export * from './booking-restaurant.interface';
 export * from './concept.interface';
 export * from './contract.interface';
 export * from './departament.interface';
@@ -13,3 +14,4 @@ export * from './category.interface';
 export * from './role.interface';
 export * from './interfaceService.interface';
 export * from './user.interface';
+export * from './restaurant.interface';

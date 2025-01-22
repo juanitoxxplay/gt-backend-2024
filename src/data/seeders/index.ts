@@ -1,5 +1,6 @@
 
 //orden alfabetico
+export * from './booking-restaurant.seed';
 export * from './charge.seed';
 export * from './concept.seed';
 export * from './contract.seed';
@@ -15,3 +16,4 @@ export * from './individualService.seed';
 export * from './supervisor.seed';
 export * from './role.seed';
 export * from './user.seed';
+export * from './restaurant.seed';

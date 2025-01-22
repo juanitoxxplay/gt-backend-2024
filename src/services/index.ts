@@ -1,4 +1,5 @@
 export * from './charge.service';
+export * from './booking-restaurant.service';
 export * from './concept.service';
 export * from './contract.service';
 export * from './departament.service';

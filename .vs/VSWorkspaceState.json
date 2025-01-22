@@ -2,8 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\models"
+    "\\src\\data",
+    "\\src\\data\\seeders",
+    "\\src\\interfaces"
   ],
-  "SelectedNode": "\\src\\models\\services_transport.model.ts",
+  "SelectedNode": "\\src\\data\\seeders\\restaurant.seed.ts",
   "PreviewInSolutionExplorer": false
 }

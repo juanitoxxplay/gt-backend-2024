@@ -9,7 +9,7 @@ import paysheetDetailRoute from "./paysheetDetail.route";
 import paysheetRoute from "./paysheet.route";
 import performanceEvaluationRoute from "./performanceEvaluation.route";
 import supervisorRoute from "./supervisor.route";
-
+import bookingrestaurantRoute from "./booking-restaurant.route";
 import categoryRoute from "./category.route";
 import roleRoute from "./role.route";
 import serviceRoute from "./individualService.route";
@@ -17,6 +17,7 @@ import userRoute from "./user.route";
 
 export {
   chargeRoute,
+  bookingrestaurantRoute,
   conceptRoute,
   contractRoute,
   departamentRoute,
