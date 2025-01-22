@@ -4,6 +4,7 @@ import swaggerJsDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 import {
 
+  accountRoute,
   chargeRoute,
   conceptRoute,
   contractRoute,
@@ -37,6 +38,7 @@ export class Server {
     this.pre = "/api";
     this.paths = {
       
+      account: this.pre + "/account",
       charge: this.pre + "/chargeRoute",
       concept: this.pre + "/conceptRoute",
       contract: this.pre + "/contract",
@@ -70,6 +72,7 @@ export class Server {
   }
 
   routes() {
+    this.app.use(this.paths.account, accountRoute);
     this.app.use(this.paths.charge, chargeRoute);
     this.app.use(this.paths.concept, conceptRoute);
     this.app.use(this.paths.contract, contractRoute);

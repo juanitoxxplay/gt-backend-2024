@@ -1,5 +1,6 @@
 import { Sequelize } from "sequelize";
 import {
+  AccountModel,
   ActivityHistoryModel,
   AttractionModel,
   BookingAttractionModel,
@@ -74,6 +75,7 @@ const db = new Sequelize(dbName, dbUser, dbPassword, {
   logging: false,
 });
 // CREAMOS LAS TABLAS EN ORDEN ALFABETICO
+const AccountDB = db.define("account", AccountModel);
 const ActivityHistoryDB = db.define("activityHistory", ActivityHistoryModel);
 const AttractionDB = db.define("attractions", AttractionModel);
 const BookingAttractionDB = db.define("bookingattractions", BookingAttractionModel);
@@ -405,6 +407,7 @@ const syncModels = async () => {
 syncModels();
 
 export {
+  AccountDB,
   ActivityHistoryDB,
   AttractionDB,
   BookingAttractionDB,

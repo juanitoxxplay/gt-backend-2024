@@ -1,3 +1,4 @@
+import accountRoute from "./account.route";
 import chargeRoute from "./charge.route";
 import conceptRoute from "./concept.route";
 import contractRoute from "./contract.route";
@@ -20,6 +21,7 @@ import unitmeasurementRoute from "./unitMeasurement.route";
 import attractionRoute from "./attraction.route";
 
 export {
+  accountRoute,
   chargeRoute,
   conceptRoute,
   contractRoute,

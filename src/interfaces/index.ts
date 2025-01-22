@@ -1,3 +1,4 @@
+export * from './account.interface';
 export * from './attraction.interface';
 export * from './charge.interface';
 export * from './concept.interface';

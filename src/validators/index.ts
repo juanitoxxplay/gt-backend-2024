@@ -1,4 +1,5 @@
 export * from './attraction.validators';
+export * from './account.validators';
 export * from './charge.validators';
 export * from './concept.validators';
 export * from './contract.validators';
