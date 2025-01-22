@@ -20,3 +20,4 @@ export * from './supplier.service';
 export * from './tourist-package.service';
 export * from './unitMeasurement.service';
 export * from './user.service';
+export * from './event.service';
