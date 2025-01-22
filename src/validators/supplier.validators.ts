@@ -1,18 +1,13 @@
 import { NextFunction, Request, Response } from "express";
 import { body } from "express-validator";
-import { TouristPackageServices } from "../services";
+import { supplierServices } from "../services";
 
-class TouristPackageValidator {
-
-  public validateTouristPackage = [
-    body("name").notEmpty().withMessage("Package Name is required"),
-    body("name").isString().withMessage("Package Name must be string"),
-    body("description").notEmpty().withMessage("Package description is required"),
-    body("description").isString().withMessage("Package description must be string"),
-    body("price").notEmpty().withMessage("Package price is required"),
-    body("price").isFloat().withMessage("Package price must be float"),
-    body("status").notEmpty().withMessage("Package status is required"),
-    body("status").isBoolean().withMessage("Package status must be boolean"),
+class SupplierValidator {
+  public validateSupplier = [
+    body("name").notEmpty().withMessage("Supplier Name is required"),
+    body("name").isString().withMessage("Supplier Name must be string"),
+    body("phone").notEmpty().withMessage("Supplier Phone is required"),
+    body("phone").isNumeric().withMessage("Supplier Phone not is numeric"),
   ];
 
   //un middleware en el caso de campo id
@@ -22,7 +17,7 @@ class TouristPackageValidator {
     next: NextFunction
   ) => {
     const { id } = req.params;
-    const { status, message, data } = await TouristPackageServices.getOne(id);
+    const { status, message, data } = await supplierServices.getOne(id);
     if (status == 500) {
       return res.status(status).json({
         message,
@@ -51,13 +46,13 @@ class TouristPackageValidator {
   ) => {
     const { id } = req.params;
     let { name } = req.body;
-    const { status, message, data } = await TouristPackageServices.findByName(name);
+    const { status, message, data } = await supplierServices.findByName(name);
     if (status == 500) {
       return res.status(status).json({
         message,
       });
     } else if (status == 200) {
-      const service: any = data?.touristPackage;
+      const service: any = data?.supplier;
       if (id) {
         //caso si es para actualizar datos
         if (id != service.id) {
@@ -89,4 +84,4 @@ class TouristPackageValidator {
     next();
   };
 }
-export { TouristPackageValidator};
+export {SupplierValidator};

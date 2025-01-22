@@ -2,8 +2,11 @@ import express from "express";
 import cors from "cors";
 import swaggerJsDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
-import {
+import bodyParser from "body-parser";
 
+import {
+  attractionRoute,
+  categoryRoute,
   chargeRoute,
   conceptRoute,
   contractRoute,
@@ -16,12 +19,16 @@ import {
   paysheetRoute,
   performanceEvaluationRoute,
   productRoute,
-  supervisorRoute,
-  categoryRoute,
+  restaurantRoute,
   roleRoute,
   serviceRoute,
-  userRoute,
+  supervisorRoute,
+  supplierRoute,
+  touristPackageRoute,
   unitmeasurementRoute,
+  userRoute,
+  eventRoute,
+  routesRoute
 } from "../routes/index.route";
 
 import { db } from "../config/sequelize.config";
@@ -33,29 +40,32 @@ export class Server {
   private paths: any;
   constructor() {
     this.app = express();
-    this.port = process.env.API_PORT || 3880;
+    this.port = process.env.API_PORT || 3800;
     this.pre = "/api";
     this.paths = {
-      
-      charge: this.pre + "/chargeRoute",
-      concept: this.pre + "/conceptRoute",
-      contract: this.pre + "/contract",
-      departament: this.pre + "/departamentRoute",
-      empleoyeeAssistance: this.pre + "/empleoyeeAssistance",
-      empleoyees: this.pre + "/empleoyees",
-      empleoyeeUser: this.pre + "/empleoyeeUser",
-      inventory: this.pre + "/inventory",
-      paysheetDetail: this.pre + "/paysheetDetail",
-      paysheet: this.pre + "/paysheet",
-      performanceEvaluation: this.pre + "/performanceEvaluation",
-      product: this.pre + "/product",
-      supervisor: this.pre + "/supervisor",
+      attractions:this.pre + "/attractions",
+      charge: this.pre + "/charge",
       categories: this.pre + "/categories",
+      concept: this.pre + "/concepts",
+      contract: this.pre + "/contract",
+      departament: this.pre + "/departaments",
+      empleoyeeAssistance: this.pre + "/empleoyee_assistance",
+      empleoyeeUser: this.pre + "/empleoyee_user",
+      empleoyees: this.pre + "/empleoyees",
+      inventory: this.pre + "/inventory",
+      paysheet: this.pre + "/paysheet",
+      paysheetDetail: this.pre + "/paysheet_details",
+      performanceEvaluation: this.pre + "/performance_evaluation",
+      product: this.pre + "/products",
       roles: this.pre + "/roles",
       services: this.pre + "/services",
-      tests: this.pre + "/tests",
+      supervisor: this.pre + "/supervisor",
+      supplier: this.pre + "/supplier",
+      touristPackage: this.pre + "/tourist_packages",
+      unitMeasurement: this.pre + "/unit_measurement",
       users: this.pre + "/users",
-      unitMeasurement: this.pre + "/unitmeasurement"
+      eventRoute: this.pre + "/event",
+      routesRoute: this.pre + "/route"
     };
     this.connectDB();
     this.middlewares();
@@ -67,9 +77,12 @@ export class Server {
     this.app.use(cors());
     this.app.use(express.json());
     this.app.use(express.static("src/public"));
+    this.app.use(bodyParser.json());
+    this.app.use(bodyParser.urlencoded({ extended: true }));
   }
 
   routes() {
+    this.app.use(this.paths.attractions, attractionRoute);
     this.app.use(this.paths.charge, chargeRoute);
     this.app.use(this.paths.concept, conceptRoute);
     this.app.use(this.paths.contract, contractRoute);
@@ -85,9 +98,14 @@ export class Server {
     this.app.use(this.paths.supervisor, supervisorRoute);
     this.app.use(this.paths.categories, categoryRoute);
     this.app.use(this.paths.roles, roleRoute);
-    this.app.use(this.paths.services,serviceRoute);
+    this.app.use(this.paths.supplier, supplierRoute);
+    this.app.use(this.paths.services, serviceRoute);
     this.app.use(this.paths.users, userRoute);
+    this.app.use(this.paths.touristPackage, touristPackageRoute);
     this.app.use(this.paths.unitMeasurement, unitmeasurementRoute);
+    this.app.use(this.paths.eventRoute, eventRoute);
+    this.app.use(this.paths.routesRoute, routesRoute);
+  
   }
   async connectDB() {
     await db
