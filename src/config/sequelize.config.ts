@@ -61,7 +61,7 @@ import {
 } from "../models";
 const dbName: string | undefined = process.env.DATABASE_NAME
   ? process.env.DATABASE_NAME
-  : "api_iwu";
+  : "turismo";
 const dbUser: string | undefined = process.env.DATABASE_USER
   ? process.env.DATABASE_USER
   : "root";

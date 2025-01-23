@@ -1,18 +1,21 @@
 import { NextFunction, Request, Response } from "express";
 import { body } from "express-validator";
-import { TouristPackageServices } from "../services";
+import { TransportServices } from "../services";
 
-class TouristPackageValidator {
-
-  public validateTouristPackage = [
-    body("name").notEmpty().withMessage("Package Name is required"),
-    body("name").isString().withMessage("Package Name must be string"),
-    body("description").notEmpty().withMessage("Package description is required"),
-    body("description").isString().withMessage("Package description must be string"),
-    body("price").notEmpty().withMessage("Package price is required"),
-    body("price").isFloat().withMessage("Package price must be float"),
-    body("status").notEmpty().withMessage("Package status is required"),
-    body("status").isBoolean().withMessage("Package status must be boolean"),
+class TransportValidator {
+  public validateTransport = [
+    body("model").notEmpty().withMessage("Transport Model is required"),
+    body("model").isString().withMessage("Transport Model must be string"),
+    body("capacity").notEmpty().withMessage("Capacity is required"),
+    body("capacity").isNumeric().withMessage("Capacity must be a number"),
+    body("state").notEmpty().withMessage("State is required"),
+    body("state").isNumeric().withMessage("State must be a number"),
+    body("id_routes").notEmpty().withMessage("id_routes is required"),
+    body("id_routes").isNumeric().withMessage("id_routes must be a number"),  
+    body("id_vehicle").notEmpty().withMessage("id_vehicle is required"),
+    body("id_vehicle").isNumeric().withMessage("id_vehicle must be a number"),
+    body("id_contract").notEmpty().withMessage("id_contract is required"),
+    body("id_contract").isNumeric().withMessage("id_contract must be a number"),
   ];
 
   //un middleware en el caso de campo id
@@ -22,7 +25,7 @@ class TouristPackageValidator {
     next: NextFunction
   ) => {
     const { id } = req.params;
-    const { status, message, data } = await TouristPackageServices.getOne(id);
+    const { status, message, data } = await TransportServices.getOne(id);
     if (status == 500) {
       return res.status(status).json({
         message,
@@ -51,13 +54,13 @@ class TouristPackageValidator {
   ) => {
     const { id } = req.params;
     let { name } = req.body;
-    const { status, message, data } = await TouristPackageServices.findByName(name);
+    const { status, message, data } = await TransportServices.findByName(name);
     if (status == 500) {
       return res.status(status).json({
         message,
       });
     } else if (status == 200) {
-      const service: any = data?.touristPackage;
+      const service: any = data?.Transport;
       if (id) {
         //caso si es para actualizar datos
         if (id != service.id) {
@@ -89,4 +92,4 @@ class TouristPackageValidator {
     next();
   };
 }
-export { TouristPackageValidator};
+export {TransportValidator};

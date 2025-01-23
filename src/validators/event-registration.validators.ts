@@ -1,18 +1,21 @@
 import { NextFunction, Request, Response } from "express";
 import { body } from "express-validator";
-import { TouristPackageServices } from "../services";
+import { EventRegistrationServices } from "../services";
 
-class TouristPackageValidator {
-
-  public validateTouristPackage = [
-    body("name").notEmpty().withMessage("Package Name is required"),
-    body("name").isString().withMessage("Package Name must be string"),
-    body("description").notEmpty().withMessage("Package description is required"),
-    body("description").isString().withMessage("Package description must be string"),
-    body("price").notEmpty().withMessage("Package price is required"),
-    body("price").isFloat().withMessage("Package price must be float"),
-    body("status").notEmpty().withMessage("Package status is required"),
-    body("status").isBoolean().withMessage("Package status must be boolean"),
+class EventRegistrationValidator {
+  public validateEventRegistration = [
+    body("name").notEmpty().withMessage("EventRegistration Name is required"),
+    body("name").isString().withMessage("EventRegistration Name must be string"),
+    body("eventId").notEmpty().withMessage("Event ID is required"),
+    body("eventId").isInt().withMessage("Event ID must be integer"),
+    body("clienId").notEmpty().withMessage("Client ID is required"),
+    body("clienId").isInt().withMessage("Client ID must be integer"),
+    body("registrationDate").notEmpty().withMessage("Registration Date is required"),
+    body("registrationDate").isDate().withMessage("Registration Date must be a valid date"),
+    body("status").notEmpty().withMessage("Status is required"),
+    body("status").isInt().withMessage("Status must be integer"),
+    body("unitPrice").notEmpty().withMessage("Unit Price is required"),
+    body("unitPrice").isFloat().withMessage("Unit Price must be a number"),
   ];
 
   //un middleware en el caso de campo id
@@ -22,7 +25,7 @@ class TouristPackageValidator {
     next: NextFunction
   ) => {
     const { id } = req.params;
-    const { status, message, data } = await TouristPackageServices.getOne(id);
+    const { status, message, data } = await EventRegistrationServices.getOne(id);
     if (status == 500) {
       return res.status(status).json({
         message,
@@ -51,13 +54,13 @@ class TouristPackageValidator {
   ) => {
     const { id } = req.params;
     let { name } = req.body;
-    const { status, message, data } = await TouristPackageServices.findByName(name);
+    const { status, message, data } = await EventRegistrationServices.findByName(name);
     if (status == 500) {
       return res.status(status).json({
         message,
       });
     } else if (status == 200) {
-      const service: any = data?.touristPackage;
+      const service: any = data?.EventRegistration;
       if (id) {
         //caso si es para actualizar datos
         if (id != service.id) {
@@ -89,4 +92,4 @@ class TouristPackageValidator {
     next();
   };
 }
-export { TouristPackageValidator};
+export { EventRegistrationValidator };
