@@ -1,5 +1,5 @@
-import { RouteInterface } from "./routes.interface";
-import { VehicleInterface } from "./vehicle.interface";
+import { RoutesInterface } from "./routes.interface";
+//import { VehicleInterface } from "./vehicle.interface";
 import { ContractInterface } from "./contract.interface";
 
 
@@ -9,9 +9,9 @@ export interface TransportInterface {
     capacity: number;
     state: number;
     id_routes?: number;
-    routes?: RouteInterface;
+    routes?: RoutesInterface;
     id_vehicle?: number;
-    vehicle?: VehicleInterface;
+    //vehicle?: VehicleInterface;
     id_contract?: number;
     contract?: ContractInterface;
 }
