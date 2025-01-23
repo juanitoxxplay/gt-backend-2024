@@ -60,7 +60,7 @@ import {
 } from "../models";
 const dbName: string | undefined = process.env.DATABASE_NAME
   ? process.env.DATABASE_NAME
-  : "api_iwu";
+  : "turismo";
 const dbUser: string | undefined = process.env.DATABASE_USER
   ? process.env.DATABASE_USER
   : "root";
@@ -200,8 +200,10 @@ ClientDB.hasMany(SatisfactionSurveysDB, { foreignKey: "id_client" });
 SatisfactionSurveysDB.belongsTo(ClientDB, { foreignKey: "id_client" });
 
 //Relaciones de las tablas Venta de servicios
-SaleServicesDB.hasMany(DetailsSaleServiceDB, { foreignKey: "id_saleService" });
-DetailsSaleServiceDB.belongsTo(SaleServicesDB, { foreignKey: "id_saleService" })
+SaleServicesDB.hasMany(DetailsSaleServiceDB, { foreignKey: "id_sale" });
+DetailsSaleServiceDB.belongsTo(SaleServicesDB, { foreignKey: "id_sale" })
+ClientDB.hasMany(SaleServicesDB, { foreignKey: "id_client" });
+SaleServicesDB.belongsTo(ClientDB, { foreignKey: "id_client" });
 
 // Relaciones de las tablas detalle de Venta servicios
 IndividualServicesDB.hasMany(DetailsSaleServiceDB, { foreignKey: "id_service" });
@@ -235,6 +237,8 @@ ServiceAttractionDb.belongsTo(AttractionDB, { foreignKey: "id_attraction" });
 //Relaciones de las tablas Venta de productos
 SaleProductDb.hasMany(DetailsSaleProductDb, { foreignKey: "id_saleProduct" });
 DetailsSaleProductDb.belongsTo(SaleProductDb, { foreignKey: "id_saleProduct" })
+ClientDB.hasMany(SaleProductDb, { foreignKey: "id_client" });
+SaleProductDb.belongsTo(ClientDB, { foreignKey: "id_client" });
 
 // Relaciones de las tablas detalle de Venta productos
 ProductDB.hasMany(DetailsSaleProductDb, { foreignKey: "id_product" });
@@ -322,10 +326,13 @@ ProductDB.belongsTo(UnitMeasurementDB, { foreignKey: "id_unitMeasurement" });
 // Relaciones de la tabla orden de compra
 PurcharseOrderDB.hasMany(DetailsOrderBuyDB, { foreignKey: "id_purcharseOrder" });
 DetailsOrderBuyDB.belongsTo(PurcharseOrderDB, { foreignKey: "id_purcharseOrder" });
+ContractDB.hasMany(DetailsOrderBuyDB, { foreignKey: "id_contract" });
+DetailsOrderBuyDB.belongsTo(ContractDB, { foreignKey: "id_contract" });
 
 // Relaciones de la tabla detalle de la orden de compra
 ProductDB.hasMany(DetailsOrderBuyDB, { foreignKey: "id_product" });
 DetailsOrderBuyDB.belongsTo(ProductDB, { foreignKey: "id_product" });
+
 
 // Relaciones de la tabla de orden de compra con proveedor
 SupplierDB.hasMany(PurcharseOrderDB, { foreignKey: "id_supplier" });
@@ -358,8 +365,8 @@ HotelDB.belongsTo(SupervisorDB, { foreignKey: "id_supervisor" });
 
 //Relaciones de la tabla habitacion y hotel
 
-RoomDB.hasMany(HotelDB, { foreignKey: "id_hotel" });
-HotelDB.belongsTo(RoomDB, { foreignKey: "id_hotel" });
+HotelDB.hasMany(RoomDB, { foreignKey: "id_hotel" });
+RoomDB.belongsTo(HotelDB, { foreignKey: "id_hotel" });
 
 //Relacion de habitacion con tipo de habitacion 
 TypeRoomDb.hasMany(RoomDB, { foreignKey: "id_typeRoom" });

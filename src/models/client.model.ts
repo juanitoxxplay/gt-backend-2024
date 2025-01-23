@@ -42,9 +42,6 @@ const ClientModel = {
     type: DataTypes.DATE,
   },
 
-  idHistory: { // Corrected typo (camelCase)
-    type: DataTypes.INTEGER,
-  },
 };
 
 export { ClientModel };

@@ -5,7 +5,7 @@ const DetailsSaleProductModel = {
         autoIncrement: true,
         primaryKey: true,
     },
-    id_sale: {
+    id_saleProduct: {
         type: DataTypes.INTEGER,
         allowNull: false,
     },

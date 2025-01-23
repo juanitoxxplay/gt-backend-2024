@@ -1,11 +1,11 @@
 import { DataTypes } from "sequelize";
 
 const SettingsProductModel = {
-  product_id: {
+  id_product: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  settings_id: {
+  id_settings: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },

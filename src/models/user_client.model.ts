@@ -5,11 +5,11 @@ const UserClientModel = {
         autoIncrement: true,
         primaryKey: true,
     },
-user_id:{
+id_user:{
     type: DataTypes.INTEGER,
     allowNull: false,
 },
-client_id: {
+id_client: {
     type: DataTypes.INTEGER,
     allowNull: false,
 },
