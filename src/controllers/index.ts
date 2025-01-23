@@ -1,3 +1,4 @@
+export * from './account.controller';
 export * from './charge.controller';
 export * from './category.controller';
 export * from './concept.controller';

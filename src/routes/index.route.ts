@@ -1,3 +1,5 @@
+
+import accountRoute from "./account.route";
 import attractionRoute from "./attraction.route";
 import categoryRoute from "./category.route";
 import chargeRoute from "./charge.route";
@@ -27,6 +29,7 @@ import routesRoute from "./routes.route";
 
 
 export {
+  accountRoute,
   attractionRoute,
   categoryRoute,
   chargeRoute,

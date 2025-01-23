@@ -1,4 +1,5 @@
 export * from './attraction.service';
+export * from './account.service';
 export * from './category.service';
 export * from './charge.service';
 export * from './concept.service';

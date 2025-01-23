@@ -4,6 +4,8 @@ import swaggerJsDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 import bodyParser from "body-parser";
 
+
+  accountRoute,
 import {
   attractionRoute,
   categoryRoute,
@@ -44,6 +46,10 @@ export class Server {
     this.port = process.env.API_PORT || 3800;
     this.pre = "/api";
     this.paths = {
+    
+      account: this.pre + "/account",
+      charge: this.pre + "/chargeRoute",
+      concept: this.pre + "/conceptRoute",
       attractions:this.pre + "/attractions",
       charge: this.pre + "/charge",
       categories: this.pre + "/categories",
@@ -85,6 +91,7 @@ export class Server {
   }
 
   routes() {
+    this.app.use(this.paths.account, accountRoute);
     this.app.use(this.paths.attractions, attractionRoute);
     this.app.use(this.paths.charge, chargeRoute);
     this.app.use(this.paths.concept, conceptRoute);
