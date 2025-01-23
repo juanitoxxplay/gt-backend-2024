@@ -1,3 +1,5 @@
+
+export * from './event-registration.interface'
 export * from "./attraction.interface";
 export * from "./category.interface";
 export * from "./charge.interface";
@@ -21,3 +23,5 @@ export * from "./tourist-package.interface";
 export * from "./unitMeasurement.interface";
 export * from "./user.interface";
 export * from "./booking-transportation.interface"; 
+export * from "./event.interface";
+export * from "./routes.interface";
