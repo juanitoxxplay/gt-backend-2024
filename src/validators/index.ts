@@ -22,4 +22,6 @@ export * from './tourist-package.validator';
 export * from './unitMeasurement.validators';
 export * from './user.validators';
 export * from './event.validators';
+export * from './routes.validators';
+
 
