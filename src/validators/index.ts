@@ -13,6 +13,7 @@ export * from './performanceEvaluation.validators';
 export * from './product.validators';
 export * from './restaurant.validators';
 export * from './supervisor.validators';
+export * from './event-registration.validators';
 export * from './category.validators';
 export * from './role.validators';
 export * from './service.validators';

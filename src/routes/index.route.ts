@@ -11,6 +11,7 @@ import inventoryRoute from "./inventory.route";
 import paysheetDetailRoute from "./paysheetDetail.route";
 import paysheetRoute from "./paysheet.route";
 import performanceEvaluationRoute from "./performanceEvaluation.route";
+import eventRegistrationRoute from "./event-registration.route";
 import productRoute from "./product.route";
 import restaurantRoute from "./restaurant.route";
 import roleRoute from "./role.route";
@@ -45,5 +46,6 @@ export {
   touristPackageRoute,
   unitmeasurementRoute,
   userRoute,
+  eventRegistrationRoute,
   eventRoute
 };
