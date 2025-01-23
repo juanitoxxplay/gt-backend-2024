@@ -5,8 +5,9 @@ import swaggerUi from "swagger-ui-express";
 import bodyParser from "body-parser";
 
 
-  accountRoute,
+
 import {
+  accountRoute,
   attractionRoute,
   categoryRoute,
   chargeRoute,
@@ -51,9 +52,7 @@ export class Server {
       charge: this.pre + "/chargeRoute",
       concept: this.pre + "/conceptRoute",
       attractions:this.pre + "/attractions",
-      charge: this.pre + "/charge",
       categories: this.pre + "/categories",
-      concept: this.pre + "/concepts",
       contract: this.pre + "/contract",
       departament: this.pre + "/departaments",
       empleoyeeAssistance: this.pre + "/empleoyee_assistance",
