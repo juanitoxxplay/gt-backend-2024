@@ -23,6 +23,7 @@ import unitmeasurementRoute from "./unitMeasurement.route";
 import userRoute from "./user.route";
 import eventRoute from "./event.route";
 
+
 export {
   attractionRoute,
   categoryRoute,
