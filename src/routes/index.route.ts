@@ -1,5 +1,4 @@
 import attractionRoute from "./attraction.route";
-import bookingtransportationRoute from "./booking-transportation.route"; //
 import categoryRoute from "./category.route";
 import chargeRoute from "./charge.route";
 import conceptRoute from "./concept.route";
@@ -28,7 +27,6 @@ import routesRoute from "./routes.route";
 
 export {
   attractionRoute,
-  bookingtransportationRoute,
   categoryRoute,
   chargeRoute,
   conceptRoute,

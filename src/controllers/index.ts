@@ -21,6 +21,5 @@ export * from './unit-measurement.controller';
 export * from './tourist-package.controller';
 export * from './user.controller';
 export * from './attraction.controller';
-export * from './booking_transportation.controller';
 export * from './event.controller';
 export * from './route.controller';
