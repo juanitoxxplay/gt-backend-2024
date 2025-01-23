@@ -27,8 +27,9 @@ import {
   touristPackageRoute,
   unitmeasurementRoute,
   userRoute,
+  eventRegistrationRoute,
   eventRoute,
-  routesRoute
+ 
 } from "../routes/index.route";
 
 import { db } from "../config/sequelize.config";
@@ -64,8 +65,10 @@ export class Server {
       touristPackage: this.pre + "/tourist_packages",
       unitMeasurement: this.pre + "/unit_measurement",
       users: this.pre + "/users",
+      eventregistration: this.pre + "/event-registration",
       eventRoute: this.pre + "/event",
-      routesRoute: this.pre + "/route"
+    
+
     };
     this.connectDB();
     this.middlewares();
@@ -101,11 +104,11 @@ export class Server {
     this.app.use(this.paths.supplier, supplierRoute);
     this.app.use(this.paths.services, serviceRoute);
     this.app.use(this.paths.users, userRoute);
+    this.app.use(this.paths.eventregistration, eventRegistrationRoute);
     this.app.use(this.paths.touristPackage, touristPackageRoute);
     this.app.use(this.paths.unitMeasurement, unitmeasurementRoute);
     this.app.use(this.paths.eventRoute, eventRoute);
-    this.app.use(this.paths.routesRoute, routesRoute);
-  
+
   }
   async connectDB() {
     await db
