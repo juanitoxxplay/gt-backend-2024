@@ -1,3 +1,4 @@
+export * from './account.model';
 export * from './activity-history.model';
 export * from './attraction.model';
 export * from './booking-attraction.model';

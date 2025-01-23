@@ -1,16 +1,16 @@
-import { BookingTransportationDB } from "../config";
-import { bookingtransportationinterface } from "../interfaces/booking-transportation.interface";
+import { AccountDB } from "../config";
+import { accountinterface } from "../interfaces/account.interface";
 
-const bookingtransportationservice = {
+const accountservice = {
     getAll: async () => {
         try {
-            const bookingtransportation = await BookingTransportationDB.findAll({ where: { status: true } });
-            if (bookingtransportation.length === 0) {
+            const account = await AccountDB.findAll({ where: { status: true } });
+            if (account.length === 0) {
                 return {
                     message: `Registros no encontrados`,
                     status: 404,
                     data: {
-                        bookingtransportation,
+                      account,
                     },
                 };
         }; 
@@ -18,7 +18,7 @@ const bookingtransportationservice = {
             message: `Registros encontrados`,
             status: 200,
             data: {
-                bookingtransportation,
+              account,
             },        
         };
 } catch (error) {
@@ -31,13 +31,13 @@ const bookingtransportationservice = {
 },
 getOne: async (id: number|string) => {
     try {
-      const bookingtransportation = await BookingTransportationDB.findOne({
+      const account = await AccountDB.findOne({
         where: {
           id: id,
           status: true
         }
       });
-      if (!bookingtransportation) {
+      if (!account) {
         return {
           message: `Registro no encontrado`,
           status: 404,
@@ -48,7 +48,7 @@ getOne: async (id: number|string) => {
           message: `Registro encontrado`,
           status: 200,
           data: {
-            bookingtransportation,
+            account,
           },
         };
       }
@@ -60,15 +60,15 @@ getOne: async (id: number|string) => {
       };
     }
   },
-  create: async (data: Partial<bookingtransportationinterface>) => {
-  /*  data.name=data.name?.toLowerCase(); */
+  create: async (data: Partial<accountinterface>) => {
+    data.name=data.name?.toLowerCase();
     try {
-      const bookingtransportation = await BookingTransportationDB.create({ ...data });
+      const account = await AccountDB.create({ ...data });
       return {
         message: `Creación exitosa`,
         status: 201,
         data: {
-            bookingtransportation,
+            account,
         },
       };
     } catch (error) {
@@ -79,16 +79,16 @@ getOne: async (id: number|string) => {
       };
     }
   },
-  update: async (id: number|string, dat: Partial<bookingtransportationinterface>) => {
-   /* dat.name=dat.name?.toLowerCase(); */
+  update: async (id: number|string, dat: Partial<accountinterface>) => {
+    dat.name=dat.name?.toLowerCase();
     try {
-      let bookingtransportation: bookingtransportationinterface | any = await BookingTransportationDB.update(dat, { where: { id } });
-      const { data } = await bookingtransportationservice.getOne(id);
+      let account: accountinterface | any = await AccountDB.update(dat, { where: { id } });
+      const { data } = await accountservice.getOne(id);
       return {
         message: `Actualización exitosa`,
         status: 200,
         data: {
-            bookingtransportation: data?.bookingtransportation,
+            account: data?.account,
         },
       };
     } catch (error) {
@@ -101,7 +101,7 @@ getOne: async (id: number|string) => {
   },
   delete: async (id: number) => {
     try {
-      const bookingtransportation = await BookingTransportationDB.update(
+      const account = await AccountDB.update(
         {
           status: false,
           deletedAt: new Date(),
@@ -112,7 +112,7 @@ getOne: async (id: number|string) => {
         message: `Eliminación exitosa`,
         status: 204,
         data: {
-            bookingtransportation:null,
+            account:null,
         },
       };
     } catch (error) {
@@ -124,8 +124,8 @@ getOne: async (id: number|string) => {
   },
   findByName: async (name: string) => {
     try {
-      const bookingtransportation = await BookingTransportationDB.findAll({ where: { name } });
-      if (bookingtransportation.length===0) {
+      const account = await AccountDB.findAll({ where: { name } });
+      if (account.length===0) {
         console.log("Registro no encontrado")
         return {
           message: `Registro no encontrado`,
@@ -137,7 +137,7 @@ getOne: async (id: number|string) => {
           message: `Service encontrado`,
           status: 200,
           data: {
-            bookingtransportation:bookingtransportation[0],
+            account:account[0],
           },
         };
       }
@@ -152,5 +152,5 @@ getOne: async (id: number|string) => {
 };
 
 export {
-    bookingtransportationservice
+  accountservice
 }

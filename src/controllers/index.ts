@@ -1,3 +1,4 @@
+export * from './account.controller';
 export * from './charge.controller';
 export * from './category.controller';
 export * from './concept.controller';
@@ -21,6 +22,7 @@ export * from './unit-measurement.controller';
 export * from './tourist-package.controller';
 export * from './user.controller';
 export * from './attraction.controller';
-export * from './booking_transportation.controller';
+export * from './transport.controller';
 export * from './event.controller';
 export * from './route.controller';
+

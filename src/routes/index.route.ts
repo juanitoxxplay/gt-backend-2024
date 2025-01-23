@@ -1,5 +1,6 @@
+
+import accountRoute from "./account.route";
 import attractionRoute from "./attraction.route";
-import bookingtransportationRoute from "./booking-transportation.route"; //
 import categoryRoute from "./category.route";
 import chargeRoute from "./charge.route";
 import conceptRoute from "./concept.route";
@@ -22,13 +23,14 @@ import supplierRoute from "./supplier.route";
 import touristPackageRoute from "./tourist-package.route";
 import unitmeasurementRoute from "./unitMeasurement.route";
 import userRoute from "./user.route";
+import TransportRoute from "./transport.route";
 import eventRoute from "./event.route";
 import routesRoute from "./routes.route";
 
 
 export {
+  accountRoute,
   attractionRoute,
-  bookingtransportationRoute,
   categoryRoute,
   chargeRoute,
   conceptRoute,
@@ -50,6 +52,7 @@ export {
   touristPackageRoute,
   unitmeasurementRoute,
   userRoute,
+  TransportRoute,
   eventRegistrationRoute,
   eventRoute,
   routesRoute
