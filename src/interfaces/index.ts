@@ -22,5 +22,7 @@ export * from "./supplier.interface";
 export * from "./tourist-package.interface";
 export * from "./unitMeasurement.interface";
 export * from "./user.interface";
+export * from "./transport.interface";
 export * from "./event.interface";
 export * from "./routes.interface";
+
