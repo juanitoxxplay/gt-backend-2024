@@ -22,3 +22,4 @@ export * from './tourist-package.controller';
 export * from './user.controller';
 export * from './attraction.controller';
 export * from './event.controller';
+export * from './route.controller';

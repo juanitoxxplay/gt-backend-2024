@@ -22,3 +22,4 @@ export * from './supplier.service';
 export * from './tourist-package.service';
 export * from './unitMeasurement.service';
 export * from './event.service';
+export * from './routes.service';
