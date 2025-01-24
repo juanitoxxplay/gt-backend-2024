@@ -7,6 +7,8 @@ import {
   roleRoute,
   serviceRoute,
   userRoute,
+  purcharsesRoute,
+  detailspurcharsesRoute,
 } from "../routes/index.route";
 import { db } from "../config/sequelize.config";
 import { swaggerOptions } from "../config";
@@ -23,6 +25,8 @@ export class Server {
       roles: this.pre + "/roles",
       services: this.pre + "/services",
       users: this.pre + "/users",
+      purcharses: this.pre + "/purcharses",
+      detailspurcharses: this.pre + "/detailspurcharses",
     };
     this.connectDB();
     this.middlewares();
@@ -40,6 +44,8 @@ export class Server {
     this.app.use(this.paths.roles, roleRoute);
     this.app.use(this.paths.services,serviceRoute);
     this.app.use(this.paths.users, userRoute);
+    this.app.use(this.paths.users, purcharsesRoute);
+    this.app.use(this.paths.users, detailspurcharsesRoute);
   }
   async connectDB() {
     await db
