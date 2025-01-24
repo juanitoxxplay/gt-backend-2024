@@ -11,7 +11,7 @@ const AccountModel = {
     allowNull: false
   },
   type_account: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.ENUM('Activo','Pasivo','Ingreso','Egreso','Capital'),
     allowNull: false,
   },
   deletedAt: {
