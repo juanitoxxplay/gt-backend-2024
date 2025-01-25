@@ -14,6 +14,7 @@ export * from './performanceEvaluation.controller';
 export * from './product.controller';
 export * from './role.controller';
 export * from './individualService.controller';
+export * from './setting.controller';
 export * from './supervisor.controller';
 export * from './event-registration.controller';
 export * from './supplier.controller';

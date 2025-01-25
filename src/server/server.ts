@@ -25,6 +25,7 @@ import {
   restaurantRoute,
   roleRoute,
   serviceRoute,
+  settingRoute,
   supervisorRoute,
   supplierRoute,
   touristPackageRoute,
@@ -65,6 +66,7 @@ export class Server {
       product: this.pre + "/products",
       roles: this.pre + "/roles",
       services: this.pre + "/services",
+      setting: this.pre + "/settings",
       supervisor: this.pre + "/supervisor",
       supplier: this.pre + "/supplier",
       touristPackage: this.pre + "/tourist_packages",
@@ -109,6 +111,7 @@ export class Server {
     this.app.use(this.paths.roles, roleRoute);
     this.app.use(this.paths.supplier, supplierRoute);
     this.app.use(this.paths.services, serviceRoute);
+    this.app.use(this.paths.setting, settingRoute);
     this.app.use(this.paths.users, userRoute);
     this.app.use(this.paths.eventregistration, eventRegistrationRoute);
     this.app.use(this.paths.touristPackage, touristPackageRoute);
