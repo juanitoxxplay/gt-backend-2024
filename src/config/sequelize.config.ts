@@ -37,6 +37,7 @@ import {
   RoleModel,
   RoomModel,
   RouteModel,
+  RequestTypeModel,
   SaleProductModel,
   SaleServicesModel,
   SatisfactionSurveysModel,
@@ -112,6 +113,7 @@ const ResourceAllocationDb = db.define("resourceallocation", ResourceAllocationM
 const RoleDB = db.define("roles", RoleModel);
 const RoomDB = db.define("rooms", RoomModel);
 const RouteDb = db.define("routes", RouteModel);
+const RequestTypeDb = db.define("requestTypes", RequestTypeModel);
 const SaleProductDb = db.define("saleproducts", SaleProductModel);
 const SaleServicesDB = db.define("saleServicesDB", SaleServicesModel);
 const SatisfactionSurveysDB = db.define("satisfactionSurveysDB", SatisfactionSurveysModel);
@@ -444,6 +446,7 @@ export {
   RoleDB,
   RoomDB,
   RouteDb,
+  RequestTypeDb,
   SaleProductDb,
   SaleServicesDB,
   SatisfactionSurveysDB,

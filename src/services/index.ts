@@ -10,6 +10,7 @@ export * from './empleoyeeAssistance.service';
 export * from './empleoyeeUser.service';
 export * from './restaurant.service';
 export * from './role.service';
+export * from './request_type.service';
 export * from './individualService.service';
 export * from './inventory.service';
 export * from './paysheet.service';
