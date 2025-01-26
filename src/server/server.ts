@@ -24,6 +24,7 @@ import {
   productRoute,
   restaurantRoute,
   roleRoute,
+  requestTypeRoute,
   serviceRoute,
   settingRoute,
   supervisorRoute,
@@ -64,6 +65,7 @@ export class Server {
       performanceEvaluation: this.pre + "/performance_evaluation",
       product: this.pre + "/products",
       roles: this.pre + "/roles",
+      requestType: this.pre + "/request_type",
       services: this.pre + "/services",
       setting: this.pre + "/settings",
       supervisor: this.pre + "/supervisor",
@@ -106,6 +108,7 @@ export class Server {
     this.app.use(this.paths.supervisor, supervisorRoute);
     this.app.use(this.paths.categories, categoryRoute);
     this.app.use(this.paths.roles, roleRoute);
+    this.app.use(this.paths.requestType, requestTypeRoute);
     this.app.use(this.paths.supplier, supplierRoute);
     this.app.use(this.paths.services, serviceRoute);
     this.app.use(this.paths.setting, settingRoute);

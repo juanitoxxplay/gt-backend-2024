@@ -17,6 +17,7 @@ import eventRegistrationRoute from "./event-registration.route";
 import productRoute from "./product.route";
 import restaurantRoute from "./restaurant.route";
 import roleRoute from "./role.route";
+import requestTypeRoute from "./request_type.route";
 import serviceRoute from "./individualService.route";
 import settingRoute from "./setting.route";
 import supervisorRoute from "./supervisor.route";
@@ -47,6 +48,7 @@ export {
   productRoute,
   restaurantRoute,
   roleRoute,
+  requestTypeRoute,
   serviceRoute,
   settingRoute,
   supervisorRoute,

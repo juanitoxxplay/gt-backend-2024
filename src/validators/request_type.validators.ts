@@ -1,16 +1,14 @@
 import { NextFunction, Request, Response } from "express";
 import { body } from "express-validator";
-import { accountservice } from "../services";
+import { RequestTypeService } from "../services";
 
-class Accountvalidator {
-    public validatoraccount = 
+class RequestTypeValidator {
+    public validatorRequestType = 
         [
-            body("name").notEmpty().withMessage("The name of account is required"),
-            body("name").isString().withMessage("The name of account must be a string"),
-            body("type_account").notEmpty().withMessage("type account is required"),
-            body("type_account").isIn(['Activo','Pasivo','Ingreso','Egreso','Capital']).withMessage("Type account does not match"),
-            body("status").notEmpty().withMessage("account status is required"),
-            body("status").isBoolean().withMessage("account status must be a Boolean"),
+            body("name").notEmpty().withMessage("The name of Request Types is required"),
+            body("name").isString().withMessage("The name of Request Types must be a string"),
+            body("bot").notEmpty().withMessage("Request Types bot is required"),
+            body("bot").isBoolean().withMessage("Request Types bot must be a Boolean"),
         ];
 
         public validateIfIdExist = async (
@@ -19,7 +17,7 @@ class Accountvalidator {
             next: NextFunction
           ) => {
             const { id } = req.params;
-            const { status, message, data } = await accountservice.getOne(id);
+            const { status, message, data } = await RequestTypeService.getOne(id);
             if (status == 500) {
               return res.status(status).json({
                 message,
@@ -47,13 +45,13 @@ class Accountvalidator {
           ) => {
             const { id } = req.params;
             let { name } = req.body;
-            const { status, message, data } = await accountservice.findByName(name);
+            const { status, message, data } = await RequestTypeService.findByName(name);
             if (status == 500) {
               return res.status(status).json({
                 message,
               });
             } else if (status == 200) {
-              const service: any = data?.account;
+              const service: any = data?.RequestType;
               if (id) {
                 //caso si es para actualizar datos
                 if (id != service.id) {
@@ -86,4 +84,4 @@ class Accountvalidator {
           };      
 };
 
-export { Accountvalidator };
+export { RequestTypeValidator };

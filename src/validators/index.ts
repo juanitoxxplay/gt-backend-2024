@@ -18,6 +18,7 @@ export * from './supervisor.validators';
 export * from './event-registration.validators';
 export * from './category.validators';
 export * from './role.validators';
+export * from './request_type.validators';
 export * from './service.validators';
 export * from './supplier.validators';
 export * from './tourist-package.validator';
