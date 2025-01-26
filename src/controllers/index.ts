@@ -7,6 +7,7 @@ export * from './departament.controller';
 export * from './empleoyee.controller';
 export * from './empleoyeeAssistance.controller';
 export * from './empleoyeeUser.controller';
+
 export * from './inventory.controller';
 export * from './paysheet.controller';
 export * from './paysheetDetail.controller';

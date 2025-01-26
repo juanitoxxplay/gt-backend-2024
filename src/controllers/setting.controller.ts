@@ -1,9 +1,7 @@
 import { Request, Response } from "express";
 import { SettingsServices } from "../services";
 export class SettingsController {
-  constructor() {
-    
-  }
+  constructor() {}
 
   all = async (req: Request, res: Response) => {
     const { status, message, data } = await SettingsServices.getAll();
@@ -14,7 +12,7 @@ export class SettingsController {
   };
 
   one = async (req: Request, res: Response) => {
-    const {id}=req.params
+    const { id } = req.params;
     const { status, message, data } = await SettingsServices.getOne(Number(id));
     return res.status(status).json({
       message,
@@ -29,10 +27,13 @@ export class SettingsController {
     });
   };
   update = async (req: Request, res: Response) => {
-    const {id}=req.params;
-    console.log('Valor de id antes de llamar a update:', id);
+    const { id } = req.params;
+    console.log("Valor de id antes de llamar a update:", id);
     console.log(id);
-    const { status, message, data } = await SettingsServices.update(Number(id),req.body);
+    const { status, message, data } = await SettingsServices.update(
+      Number(id),
+      req.body
+    );
     return res.status(status).json({
       message,
       data,
@@ -40,7 +41,7 @@ export class SettingsController {
   };
 
   delete = async (req: Request, res: Response) => {
-    const {id}=req.params
+    const { id } = req.params;
     const { status, message, data } = await SettingsServices.delete(Number(id));
     return res.status(status).json({
       message,
