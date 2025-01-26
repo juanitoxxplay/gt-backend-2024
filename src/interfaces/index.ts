@@ -12,6 +12,7 @@ export * from './paysheetDetail.interface';
 export * from './product.interface';
 export * from './performanceEvaluation.interface';
 export * from './restaurant.interface';
+export * from './settings.interface';
 export * from './request_type.interface';
 export * from './supervisor.interface';
 export * from './category.interface';

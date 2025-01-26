@@ -7,6 +7,7 @@ export * from './departament.controller';
 export * from './empleoyee.controller';
 export * from './empleoyeeAssistance.controller';
 export * from './empleoyeeUser.controller';
+
 export * from './inventory.controller';
 export * from './paysheet.controller';
 export * from './paysheetDetail.controller';
@@ -15,6 +16,7 @@ export * from './product.controller';
 export * from './role.controller';
 export * from './request_type.controller';
 export * from './individualService.controller';
+export * from './setting.controller';
 export * from './supervisor.controller';
 export * from './event-registration.controller';
 export * from './supplier.controller';
