@@ -1,21 +1,17 @@
 import { DataTypes } from "sequelize";
-const RequestsModel = {
-    request_id: {
+const RequestTypeModel = {
+    request_type_id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
     },
-    description: {
+    name: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    request_type_id: {
-        type: DataTypes.INTEGER,
+    bot: {
+        type: DataTypes.BOOLEAN,
         allowFalse: false,
-        references: {
-            model: 'resquest_type',
-            key: 'request_type_id',
-        },
     },
     
     status: {
@@ -34,4 +30,4 @@ const RequestsModel = {
     },
 };    
 
-export {RequestsModel}; 
+export {RequestTypeModel}; 

@@ -34,6 +34,7 @@ import {
   ProductModel,
   PurcharseOrderModel,
   RequestsModel,
+  RequestTypeModel,
   ResourceAllocationModel,
   RestaurantModel,
   RoleModel,
