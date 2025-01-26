@@ -48,7 +48,6 @@ export class Server {
     this.port = process.env.API_PORT || 3800;
     this.pre = "/api";
     this.paths = {
-    
       account: this.pre + "/account",
       charge: this.pre + "/chargeRoute",
       concept: this.pre + "/conceptRoute",
@@ -85,10 +84,8 @@ export class Server {
 
   middlewares() {
     this.app.use(cors());
-    this.app.use(express.json());
+    this.app.use(express.json());//estos erializa las respeusta json cuando consumen no es necesario body parser
     this.app.use(express.static("src/public"));
-    this.app.use(bodyParser.json());
-    this.app.use(bodyParser.urlencoded({ extended: true }));
   }
 
   routes() {

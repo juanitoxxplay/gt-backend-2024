@@ -28,8 +28,6 @@ export class SettingsController {
   };
   update = async (req: Request, res: Response) => {
     const { id } = req.params;
-    console.log("Valor de id antes de llamar a update:", id);
-    console.log(id);
     const { status, message, data } = await SettingsServices.update(
       Number(id),
       req.body

@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { body } from "express-validator";
-import { EmpleoyeeServices } from "../services";
+import { empleoyeeServices } from "../services";
 
 class EmpleoyeeValidator {
   public validateEmpleoyee = [
@@ -24,7 +24,7 @@ class EmpleoyeeValidator {
     next: NextFunction
   ) => {
     const { id } = req.params;
-    const { status, message, data } = await EmpleoyeeServices.getOne(id);
+    const { status, message, data } = await empleoyeeServices.getOne(id);
     if (status == 500) {
       return res.status(status).json({
         message,
@@ -53,7 +53,7 @@ class EmpleoyeeValidator {
   ) => {
     const { id } = req.params;
     let { name } = req.body;
-    const { status, message, data } = await EmpleoyeeServices.findByName(name);
+    const { status, message, data } = await empleoyeeServices.findByName(name);
     if (status == 500) {
       return res.status(status).json({
         message,

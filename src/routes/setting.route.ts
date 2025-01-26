@@ -12,20 +12,20 @@ router.get("/:id", settingController.one);
 
 router.post(
   "/",
- settingValidator.validateSettings,
-  settingValidator.validateIfNameIsUse,
+  settingValidator.validateSettings,
   validateFields,
+  settingValidator.validateIfNameIsUse,
   settingController.create
 );
 
 router.put(
   "/:id",
   settingValidator.validateSettings,
+  validateFields,
   settingValidator.validateIfIdExist,
   settingValidator.validateIfNameIsUse,
-  validateFields,
   settingController.update
 );
 
-router.delete("/:id", settingController.delete); 
+router.delete("/:id", settingController.delete);
 export default router;

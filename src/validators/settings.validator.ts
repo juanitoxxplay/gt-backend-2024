@@ -16,7 +16,7 @@ class SettingsValidators {
   res: Response,
   next: NextFunction
 ) => {
-  const{ id } = req.body;
+  const{ id } = req.params;
   const { status, message, data } = await SettingsServices.getOne(id);
   if (status == 500) {
     return res.status(status).json({
