@@ -27,5 +27,5 @@ router.put(
   settingController.update
 );
 
-router.delete("/:id", settingController.delete);
+router.delete("/:id",settingValidator.validateIfIdExist, settingController.delete);
 export default router;
