@@ -8,7 +8,7 @@ class Accountvalidator {
             body("name").notEmpty().withMessage("The name of account is required"),
             body("name").isString().withMessage("The name of account must be a string"),
             body("type_account").notEmpty().withMessage("type account is required"),
-            body("type_account").isString().withMessage("type account must be integer"), 
+            body("type_account").isIn(['Activo','Pasivo','Ingreso','Egreso','Capital']).withMessage("Type account does not match"),
             body("status").notEmpty().withMessage("account status is required"),
             body("status").isBoolean().withMessage("account status must be a Boolean"),
         ];
