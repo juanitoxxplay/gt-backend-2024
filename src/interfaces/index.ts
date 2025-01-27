@@ -21,6 +21,8 @@ export * from "./tourist-package.interface";
 export * from "./unitMeasurement.interface";
 export * from "./user.interface";
 export * from "./routes.interface";
+
 export * from "./journal.interface";
 export * from "./requests.interface";
+export * from "./request_type.interface"
 export * from "./account_records.interface";

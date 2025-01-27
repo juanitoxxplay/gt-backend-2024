@@ -6,12 +6,12 @@ const RequestTypeModel = {
         primaryKey: true,
     },
     name: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(50),
         allowNull: false,
     },
     bot: {
         type: DataTypes.BOOLEAN,
-        allowFalse: false,
+        allowNull: false,
     },
     
     status: {
