@@ -20,6 +20,8 @@ import {
   performanceEvaluationRoute,
   productRoute,
   restaurantRoute,
+  request_typeRoute,
+  requestsRoute,
   roleRoute,
   serviceRoute,
   supervisorRoute,
@@ -68,7 +70,9 @@ export class Server {
       unitMeasurement:        this.pre + "/unit_measurement",
       users:                  this.pre + "/users",
       eventRoute:             this.pre + "/event",
-      routesRoute:            this.pre + "/route"
+      routesRoute:            this.pre + "/route",
+      requests:               this.pre + "/requests",
+      request_type:           this.pre + "/request-type"
     };
     this.connectDB();
     this.middlewares();
@@ -109,7 +113,8 @@ export class Server {
     this.app.use(this.paths.unitMeasurement, unitmeasurementRoute);
     /*this.app.use(this.paths.eventRoute, eventRoute);*/
     this.app.use(this.paths.routesRoute, routesRoute);
-  
+    this.app.use(this.paths.requests, requestsRoute);
+    this.app.use(this.paths.request_type, request_typeRoute);
   }
   async connectDB() {
     await db

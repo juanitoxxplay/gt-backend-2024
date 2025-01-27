@@ -18,7 +18,7 @@ const RequestsModel = {
         },*/
     },
     amount: {
-        type: DataTypes.DOUBLE,
+        type: DataTypes.DECIMAL(12,2),
         allowNull: false,
     },
     request_status: {

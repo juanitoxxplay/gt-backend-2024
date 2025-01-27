@@ -23,6 +23,8 @@ import userRoute from "./user.route";
 /*import eventRoute from "./event.route"*/
 import journalRoute from "./journal.route";
 import routesRoute from "./routes.route";
+import requestsRoute from "./requests.route";
+import request_typeRoute from "./request_type.route";
 
 export {
   attractionRoute,
@@ -49,5 +51,7 @@ export {
   userRoute,
   /*eventRoute,*/
   journalRoute,
-  routesRoute
+  routesRoute,
+  requestsRoute,
+  request_typeRoute
 };
