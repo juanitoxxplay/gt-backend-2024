@@ -19,6 +19,9 @@ export * from './service.validators';
 export * from './supplier.validators';
 export * from './tourist-package.validator';
 export * from './unitMeasurement.validators';
+
 export * from './user.validators';
 export * from './routes.validators';
 export * from './journal.valitators';
+export * from './request.validators';
+export * from './request_type.validators';

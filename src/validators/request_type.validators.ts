@@ -3,6 +3,9 @@ import { body } from "express-validator";
 import { RequestTypeServices } from "../services";
 
 class RequestTypeValidator {
+  static validateRequestType(arg0: string, validateRequestType: any, validateFields: (req: Request, res: Response, next: NextFunction) => Response<any, Record<string, any>> | undefined, create: any) {
+      throw new Error("Method not implemented.");
+  }
   public validateRequestType = [
     body("name").notEmpty().withMessage("This field is required"),
     body("name").isString().withMessage("The transaction name must be string"),
@@ -56,4 +59,5 @@ class RequestTypeValidator {
     next();
   };
 }
+
 export { RequestTypeValidator };

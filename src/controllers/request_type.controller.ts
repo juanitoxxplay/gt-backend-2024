@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import { RequestTypeServices } from "../services";
 
 export class RequestTypeController {
-
     constructor() {}
 
     all = async (req: Request, res: Response) => {
