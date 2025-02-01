@@ -10,8 +10,8 @@ export interface RoomInterface {
     id_hotel?: number;
     hotel: HotelInterface;
 
-    createdAt:Date;
-    updatedAt:Date;
-    deletedAt:Date;
+    createdAt?:Date;
+    updatedAt?:Date;
+    deletedAt?:Date;
     status?:boolean
 }

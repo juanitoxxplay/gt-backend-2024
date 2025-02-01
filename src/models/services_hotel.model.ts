@@ -1,10 +1,16 @@
 import { DataTypes } from "sequelize";
 
 const ServiceHotelModel = {
-  hotel_id: {
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    allowNull: false,
+    autoIncrement: true
+  },
+  id_hotel: {
     type: DataTypes.INTEGER,
     },
-  service_id:{
+  id_service:{
     type: DataTypes.INTEGER,
   },
   
