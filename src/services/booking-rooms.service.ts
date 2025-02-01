@@ -1,7 +1,7 @@
 import { BookingRoomDB } from "../config";
 import { bookingRoomInterface } from "../interfaces/booking-room.interface";
 
-const bookingRoomService = {
+const BookingRoomServices = {
     getAll: async () => {
         try {
             const bookingRooms = await BookingRoomDB.findAll({ where: { status: true } });
@@ -84,7 +84,7 @@ getOne: async (id: number|string) => {
   update: async (id: number|string, dat: Partial<bookingRoomInterface>) => {
     try {
       let bookingRooms: bookingRoomInterface | any = await BookingRoomDB.update(dat, { where: { id } });
-      const { data } = await bookingRoomService.getOne(id);
+      const { data } = await BookingRoomServices.getOne(id);
       return {
         message: `Actualización exitosa`,
         status: 200,
@@ -155,5 +155,5 @@ getOne: async (id: number|string) => {
 };
 
 export {
-  bookingRoomService
+  BookingRoomServices
 }

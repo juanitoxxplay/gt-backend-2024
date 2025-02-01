@@ -1,8 +1,7 @@
-import { exportExcelAtoA } from "../helpers";
 import { HotelDB, RoomDB } from "../config";
 import { RoomInterface } from "../interfaces";
 
-const roomServices = {
+const RoomServices = {
   getAll: async () => {
     try {
       const rooms = await RoomDB.findAll({ where: { status: true } });
@@ -85,7 +84,7 @@ const roomServices = {
   update: async (id: number|string, dat: Partial<RoomInterface>) => {
     try {
       let room: RoomInterface | any = await RoomDB.update(dat, { where: { id } });
-      const { data } = await roomServices.getOne(id);
+      const { data } = await RoomServices.getOne(id);
       return {
         message: `Actualización exitosa`,
         status: 200,
@@ -162,36 +161,10 @@ const roomServices = {
       };
     }
   },
-
-  /* reportToExcelRoles: async () => {
-    try {
-      const rooms: any = await RoomDB.findAll();
-      let report = rooms.map((room: any) => room.dataValues); // Accede a dataValues de cada rol
-      let mappedReport = report.map((res: any) => {
-        return [res.id, res.name]; // Mapea a un arreglo de arreglos
-      });
-      const { status, message, data } = await exportExcelAtoA(
-        ["id", "name"],
-        mappedReport,
-        "datosTest"
-      );//usamos el helper para pasarle los parametros 
-      return {
-        message,
-        status,
-        data,
-      };
-    } catch (error) {
-      console.log(error);
-      return {
-        message: `Contacte con el administrador`,
-        status: 500,
-      };
-    }
-  }*/
 };
 
 export {
-  roomServices
+  RoomServices
 }
 
 
