@@ -163,7 +163,7 @@ const roomServices = {
     }
   },
 
-  reportToExcelRoles: async () => {
+  /* reportToExcelRoles: async () => {
     try {
       const rooms: any = await RoomDB.findAll();
       let report = rooms.map((room: any) => room.dataValues); // Accede a dataValues de cada rol
@@ -187,7 +187,7 @@ const roomServices = {
         status: 500,
       };
     }
-  }
+  }*/
 };
 
 export {
