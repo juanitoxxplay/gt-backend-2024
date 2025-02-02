@@ -3,7 +3,7 @@ import { body } from "express-validator";
 import { HotelServices, SupervisorServices } from "../services";
 
 class HotelValidator {
-  public validateRole = [
+  public validateHotel = [
     body("name").notEmpty().withMessage("Hotel Name is required"),
     body("name").isString().withMessage("Hotel Name must be string"),
     

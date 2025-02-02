@@ -3,7 +3,7 @@ import { body } from "express-validator";
 import { HotelServices, RoomServices, TypeRoomServices } from "../services";
 
 class RoomValidator {
-  public validateRole = [
+  public validateRoom = [
     body("id_typeRoom").notEmpty().withMessage("Id_typeRooms is required"),
     body("id_typeRoom").isInt().withMessage("Id_typeRooms must be integer number"),
 
