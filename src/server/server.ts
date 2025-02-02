@@ -9,6 +9,7 @@ import bodyParser from "body-parser";
 import {
   accountRoute,
   attractionRoute,
+  BookingRoute,
   categoryRoute,
   chargeRoute,
   conceptRoute,
@@ -17,24 +18,26 @@ import {
   empleoyeeAssistanceRoute,
   empleoyeeRoute,
   empleoyeeUserRoute,
+  eventRegistrationRoute,
+  eventRoute,
+  HotelRoute,
   inventoryRoute,
   paysheetDetailRoute,
   paysheetRoute,
   performanceEvaluationRoute,
   productRoute,
+  requestTypeRoute,
   restaurantRoute,
   roleRoute,
-  requestTypeRoute,
+  RoomRoute,
   serviceRoute,
   settingRoute,
   supervisorRoute,
   supplierRoute,
   touristPackageRoute,
+  TransportRoute,
   unitmeasurementRoute,
   userRoute,
-  TransportRoute,
-  eventRegistrationRoute,
-  eventRoute,
 } from "../routes/index.route";
 
 import { db } from "../config/sequelize.config";
@@ -76,6 +79,9 @@ export class Server {
       transport: this.pre + "/transport",
       eventregistration: this.pre + "/event-registration",
       eventRoute: this.pre + "/event",
+      rooms: this.pre + "/rooms",
+      hotels: this.pre + "/hotels",
+      bookings: this.pre + "/bookings",
     
     };
     this.connectDB();
@@ -93,6 +99,8 @@ export class Server {
   routes() {
     this.app.use(this.paths.account, accountRoute);
     this.app.use(this.paths.attractions, attractionRoute);
+    this.app.use(this.paths.bookings, BookingRoute);
+    this.app.use(this.paths.categories, categoryRoute);
     this.app.use(this.paths.charge, chargeRoute);
     this.app.use(this.paths.concept, conceptRoute);
     this.app.use(this.paths.contract, contractRoute);
@@ -100,24 +108,25 @@ export class Server {
     this.app.use(this.paths.empleoyeeAssistance, empleoyeeAssistanceRoute);
     this.app.use(this.paths.empleoyees, empleoyeeRoute);
     this.app.use(this.paths.empleoyeeUser, empleoyeeUserRoute);
+    this.app.use(this.paths.eventregistration, eventRegistrationRoute);
+    this.app.use(this.paths.eventRoute, eventRoute);
+    this.app.use(this.paths.hotels, HotelRoute);
     this.app.use(this.paths.inventory, inventoryRoute);
-    this.app.use(this.paths.paysheetDetail, paysheetDetailRoute);
     this.app.use(this.paths.paysheet, paysheetRoute);
+    this.app.use(this.paths.paysheetDetail, paysheetDetailRoute);
     this.app.use(this.paths.performanceEvaluation, performanceEvaluationRoute);
     this.app.use(this.paths.product, productRoute);
-    this.app.use(this.paths.supervisor, supervisorRoute);
-    this.app.use(this.paths.categories, categoryRoute);
-    this.app.use(this.paths.roles, roleRoute);
     this.app.use(this.paths.requestType, requestTypeRoute);
-    this.app.use(this.paths.supplier, supplierRoute);
+    this.app.use(this.paths.roles, roleRoute);
+    this.app.use(this.paths.rooms, RoomRoute);
     this.app.use(this.paths.services, serviceRoute);
     this.app.use(this.paths.setting, settingRoute);
-    this.app.use(this.paths.users, userRoute);
-    this.app.use(this.paths.eventregistration, eventRegistrationRoute);
+    this.app.use(this.paths.supervisor, supervisorRoute);
+    this.app.use(this.paths.supplier, supplierRoute);
     this.app.use(this.paths.touristPackage, touristPackageRoute);
-    this.app.use(this.paths.unitMeasurement, unitmeasurementRoute);
     this.app.use(this.paths.transport, TransportRoute);
-    this.app.use(this.paths.eventRoute, eventRoute);
+    this.app.use(this.paths.unitMeasurement, unitmeasurementRoute);
+    this.app.use(this.paths.users, userRoute);
   }
   async connectDB() {
     await db
