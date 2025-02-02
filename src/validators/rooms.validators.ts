@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { body } from "express-validator";
-import { HotelServices, RoomServices } from "../services";
+import { HotelServices, RoomServices, TypeRoomServices } from "../services";
 
 class RoomValidator {
   public validateRole = [
@@ -87,7 +87,7 @@ class RoomValidator {
     next: NextFunction
   ) => {
     const { id } = req.params;
-    const { status, message, data } = await TypeRoomService.getOne(id);
+    const { status, message, data } = await TypeRoomServices.getOne(id);
     if (status == 500) {
       return res.status(status).json({
         message,

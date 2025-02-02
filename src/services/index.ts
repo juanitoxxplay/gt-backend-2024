@@ -1,4 +1,3 @@
-
 export * from './account.service';
 export * from './attraction.service';
 export * from './booking-rooms.service';
@@ -32,5 +31,6 @@ export * from './supervisor.service';
 export * from './supplier.service';
 export * from './tourist-package.service';
 export * from './transport.service';
+export * from './typeroom.service'
 export * from './unitMeasurement.service';
 export * from './user.service';
