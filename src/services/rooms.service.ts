@@ -4,7 +4,12 @@ import { RoomInterface } from "../interfaces";
 const RoomServices = {
   getAll: async () => {
     try {
-      const rooms = await RoomDB.findAll({ where: { status: true } });
+      const rooms = await RoomDB.findAll({
+        attributes: { exclude: ['status']},
+        where: {
+          status: true
+      }
+    });
       if (rooms.length === 0) {
         return {
           message: `Registros no encontrados`,
@@ -33,6 +38,7 @@ const RoomServices = {
   getOne: async (id: number|string) => {
     try {
       const room = await RoomDB.findOne({
+        attributes: { exclude: ['status']},
         where: {
           id: id,
           status: true
@@ -83,7 +89,10 @@ const RoomServices = {
 
   update: async (id: number|string, dat: Partial<RoomInterface>) => {
     try {
-      let room: RoomInterface | any = await RoomDB.update(dat, { where: { id } });
+      let room: RoomInterface | any = await RoomDB.update(dat, { where: {
+        id,
+      }
+    });
       const { data } = await RoomServices.getOne(id);
       return {
         message: `Actualización exitosa`,
@@ -128,11 +137,12 @@ const RoomServices = {
   findByIdOrNameHotel: async (id_hotel: number | string) => {
     try {
       const rooms = await RoomDB.findAll({
+        attributes: { exclude: ['status']},
         where: {
             include: [
                 {
-                    model: HotelDB,
-                    where: { id_hotel, status: true }
+                  model: HotelDB,
+                  where: { id_hotel, status: true }
                 }
             ]
         }

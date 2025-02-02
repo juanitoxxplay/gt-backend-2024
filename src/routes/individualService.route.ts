@@ -14,6 +14,7 @@ router.post(
   "/",
   individualserviceValidator.validateIndividualService,
   individualserviceValidator.validateIfNameIsUse,
+  individualserviceValidator.validateIfExistStatusField,
   validateFields,
   individualserviceController.create
 );
@@ -23,9 +24,12 @@ router.put(
   individualserviceValidator.validateIndividualService,
   individualserviceValidator.validateIfIdExist,
   individualserviceValidator.validateIfNameIsUse,
+  individualserviceValidator.validateIfExistStatusField,
   validateFields,
   individualserviceController.update
 );
 
-router.delete("/:id", individualserviceController.delete); 
+router.delete("/:id",
+  individualserviceValidator.validateIfIdExist,
+  individualserviceController.delete); 
 export default router;

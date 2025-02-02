@@ -15,6 +15,7 @@ router.post(
   roomvalidator.validateRoom,
   roomvalidator.validateIfIdHotelExist,
   roomvalidator.validateIfIdTypeRoomExist,
+  roomvalidator.validateIfExistStatusField,
   validateFields,
   roomController.create
 );
@@ -25,10 +26,13 @@ router.put(
   roomvalidator.validateIfIdHotelExist,
   roomvalidator.validateIfIdTypeRoomExist,
   roomvalidator.validateIfIdExist,
+  roomvalidator.validateIfExistStatusField,
   validateFields,
   roomController.update
 );
 
-router.delete("/:id", roomController.delete); 
+router.delete("/:id",
+  roomvalidator.validateIfIdExist,
+  roomController.delete); 
 
 export default router;

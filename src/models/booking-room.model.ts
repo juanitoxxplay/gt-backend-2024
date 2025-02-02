@@ -3,6 +3,7 @@ const BookingRoomModel = {
     id: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        primaryKey: true
     },
     id_room: {
         type: DataTypes.INTEGER,
@@ -17,7 +18,7 @@ const BookingRoomModel = {
         allowNull: false,
     },
 
-    createAt: {
+    createdAt: {
         type: DataTypes.DATE,
 
     },

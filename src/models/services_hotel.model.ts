@@ -14,6 +14,18 @@ const ServiceHotelModel = {
     type: DataTypes.INTEGER,
   },
   
+  createdAt: {
+    type: DataTypes.DATE,
+
+  },
+  deletedAt: {
+      type: DataTypes.DATE,
+  },
+  status: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
+  }
+  
 };
 
 export { ServiceHotelModel };

@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { body } from "express-validator";
+import { body, check } from "express-validator";
 import { serviceIndividualServices } from "../services";
 
 class IndividualServiceValidator {
@@ -9,6 +9,27 @@ class IndividualServiceValidator {
     body("price").notEmpty().withMessage("Service Price is required"),
     body("price").isNumeric().withMessage("Service Price must be numeric"),
   ];
+
+  // Verifica que el campo status no pueda actualizrse
+  public validateIfExistStatusField = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
+    if(check("status").isEmpty()) {
+      return res.status(403).json({
+        errors: [
+          {
+            type: "field",
+            msg: `El campo status, no debe actualizarse.`,
+            path: "id",
+            location: "body",
+          },
+        ],
+      });
+    }
+    next();
+  };
 
   //un middleware en el caso de campo id
   public validateIfIdExist = async (

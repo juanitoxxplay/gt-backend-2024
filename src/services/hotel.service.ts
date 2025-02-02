@@ -4,7 +4,12 @@ import { HotelInterface } from "../interfaces";
 const HotelServices = {
   getAll: async () => {
     try {
-      const hotels = await HotelDB.findAll({ where: { status: true } });
+      const hotels = await HotelDB.findAll({
+        attributes: { exclude: ['status']},
+        where: {
+          status: true,
+      }
+    });
       if (hotels.length === 0) {
         return {
           message: `Registros no encontrados`,
@@ -32,6 +37,7 @@ const HotelServices = {
   getOne: async (id: number|string) => {
     try {
       const hotel = await HotelDB.findOne({
+        attributes: { exclude: ['status']},
         where: {
           id: id,
           status: true
@@ -124,7 +130,12 @@ const HotelServices = {
   },
   findByName: async (name: string) => {
     try {
-      const hotel = await HotelDB.findAll({ where: { name: name } });
+      const hotel = await HotelDB.findAll({
+        attributes: { exclude: ['status']},
+        where: {
+          name: name
+      }
+    });
       if (hotel.length===0) {
         console.log("Registro no encontrado")
         return {
@@ -151,7 +162,12 @@ const HotelServices = {
   },
   findByIdSupervisor: async (id_supervisor: number) => {
     try {
-      const hotel = await HotelDB.findAll({ where: { id_supervisor: id_supervisor } });
+      const hotel = await HotelDB.findAll({
+        attributes: { exclude: ['status']},
+        where: {
+          id_supervisor: id_supervisor
+      }
+    });
       if (hotel.length===0) {
         console.log("Registro no encontrado")
         return {

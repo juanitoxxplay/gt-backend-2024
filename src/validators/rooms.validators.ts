@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { body } from "express-validator";
+import { body, check } from "express-validator";
 import { HotelServices, RoomServices, TypeRoomServices } from "../services";
 
 class RoomValidator {
@@ -22,6 +22,29 @@ class RoomValidator {
   verifyId = (req: Request, res: Response, next: NextFunction) => {
     next();
   };
+  
+    // Verifica que el campo status no pueda actualizrse
+  public validateIfExistStatusField = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
+    const { status } = req.body;
+    if (typeof status != 'undefined'){
+      return res.status(403).json({
+        errors: [
+          {
+            type: "field",
+            msg: `El campo status, no debe actualizarse.`,
+            path: "id",
+            location: "body",
+          },
+        ],
+      });
+    }
+    next();
+  };
+
   // Un middleware en el caso de no existir el id
   public validateIfIdExist = async (
     req: Request,

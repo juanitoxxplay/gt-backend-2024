@@ -5,7 +5,10 @@ import { BookingInterface } from "../interfaces";
 const BookingServices = {
   getAll: async () => {
     try {
-      const bookings = await BookingDB.findAll({ where: { status: true } });
+      const bookings = await BookingDB.findAll({
+        where: { status: true, },
+        attributes: { exclude: ['status']}
+      });
       if (bookings.length === 0) {
         return {
           message: `Registros no encontrados`,
@@ -33,10 +36,11 @@ const BookingServices = {
   getOne: async (id: number | string) => {
     try {
       const booking = await BookingDB.findOne({
+        attributes: { exclude: ['status']},
         where: {
           id: id,
-          status: true
-        }
+          status: true,
+        },
       });
       if (!booking) {
         return {

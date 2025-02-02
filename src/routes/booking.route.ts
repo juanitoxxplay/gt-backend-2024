@@ -13,6 +13,8 @@ router.get("/:id", bookingController.one);
 router.post(
   "/",
   bookingvalidator.validateBooking,
+  bookingvalidator.validateIfIdExist,
+  bookingvalidator.validateIfExistStatusField,
   validateFields,
   bookingController.create
 );
@@ -21,10 +23,14 @@ router.put(
   "/:id",
   bookingvalidator.validateBooking,
   bookingvalidator.validateIfIdExist,
+  bookingvalidator.validateIfExistStatusField,
   validateFields,
   bookingController.update
 );
 
-router.delete("/:id", bookingController.delete); 
+router.delete("/:id",
+  bookingvalidator.validateIfIdExist,
+  bookingController.delete
+); 
 
 export default router;

@@ -15,6 +15,7 @@ router.post(
   hotelvalidator.validateHotel,
   hotelvalidator.validateIfNameIsUse,
   hotelvalidator.validateIfIdSupervisorExist,
+  hotelvalidator.validateIfExistStatusField,
   validateFields,
   hotelController.create
 );
@@ -25,6 +26,7 @@ router.put(
   hotelvalidator.validateIfIdExist,
   hotelvalidator.validateIfNameIsUse,
   hotelvalidator.validateIfIdSupervisorExist,
+  hotelvalidator.validateIfExistStatusField,
   validateFields,
   hotelController.update
 );
