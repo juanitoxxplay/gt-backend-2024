@@ -1,4 +1,6 @@
-export * from "./attraction.interface";
+
+export * from './account_record.interface';
+export * from './accounts.interface';export * from "./attraction.interface";
 export * from "./category.interface";
 export * from "./charge.interface";
 export * from "./concept.interface";
@@ -9,6 +11,7 @@ export * from "./empleoyeeAssistance.interface";
 export * from "./empleoyeeUser.interface";
 export * from "./interfaceService.interface";
 export * from "./inventory.interface";
+export * from './journal.interface';
 export * from "./paysheet.interface";
 export * from "./paysheetDetail.interface";
 export * from "./performanceEvaluation.interface";
@@ -20,4 +23,6 @@ export * from "./supplier.interface";
 export * from "./tourist-package.interface";
 export * from "./unitMeasurement.interface";
 export * from "./user.interface";
+export * from './resquest_types.interface';
+export * from './resquest.interface';
 export * from "./routes.interface";

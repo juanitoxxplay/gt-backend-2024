@@ -1,27 +1,11 @@
 import { NextFunction, Request, Response } from "express";
 import { body } from "express-validator";
-import { ContractServices } from "../services";
+import { Resquest_TypesServices } from "../services";
 
-class ContractValidator {
-  public validateContract = [
-    body("name").notEmpty().withMessage("Contract Name is required"),
-    body("name").isString().withMessage("Contract Name must be string"),
-    body("date").notEmpty().withMessage("Contract Date is required"),
-    body("date").isDate().withMessage("Contract Date must be date"),
-    body("salary").notEmpty().withMessage("Contract salary is required"),
-    body("salary").isFloat().withMessage("Contract salary must be float"),
-    body("state").notEmpty().withMessage("Contract state is required"),
-    body("state").isBoolean().withMessage("Contract state must be boolean"),
-    body("hours").notEmpty().withMessage("Contract hours is required"),
-    body("hours").isInt().withMessage("Contract hours must be integer"),
-    body("days").notEmpty().withMessage("Contract days is required"),
-    body("days").isInt().withMessage("Contract days must be integer"),
-    body("id_empleoyee").notEmpty().withMessage("Contract id_empleoyee is required"),
-    body("id_empleoyee").isInt().withMessage("Contract id_empleoyee must be integer"),
-    body("id_charge").notEmpty().withMessage("Contract id_charge is required"),
-    body("id_charge").isInt().withMessage("Contract id_charge must be integer"),
-    body("id_departament").notEmpty().withMessage("Contract id_departament is required"),
-    body("id_departament").isInt().withMessage("Contract id_departament must be integer"),
+class Resquest_TypesValidator {
+  public validateResquest_Types = [
+    body("name").notEmpty().withMessage("Resquest_Types Name is required"),
+    body("name").isString().withMessage("Resquest_Types Name must be string"),
   ];
 
   //un middleware en el caso de campo id
@@ -31,7 +15,7 @@ class ContractValidator {
     next: NextFunction
   ) => {
     const { id } = req.params;
-    const { status, message, data } = await ContractServices.getOne(id);
+    const { status, message, data } = await Resquest_TypesServices.getOne(id);
     if (status == 500) {
       return res.status(status).json({
         message,
@@ -60,13 +44,13 @@ class ContractValidator {
   ) => {
     const { id } = req.params;
     let { name } = req.body;
-    const { status, message, data } = await ContractServices.findByname(name);
+    const { status, message, data } = await Resquest_TypesServices.findByName(name);
     if (status == 500) {
       return res.status(status).json({
         message,
       });
     } else if (status == 200) {
-      const service: any = data?.Contract;
+      const service: any = data?.Resquest_Types;
       if (id) {
         //caso si es para actualizar datos
         if (id != service.id) {
@@ -98,4 +82,4 @@ class ContractValidator {
     next();
   };
 }
-export { ContractValidator };
+export { Resquest_TypesValidator };

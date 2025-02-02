@@ -1,3 +1,5 @@
+import account_recordRoute from "./account_record.route";
+import accountsRoute from "./account.route";
 import attractionRoute from "./attraction.route";
 import categoryRoute from "./category.route";
 import chargeRoute from "./charge.route";
@@ -8,6 +10,7 @@ import empleoyeeAssistanceRoute from "./empleoyeeAssistance.route";
 import empleoyeeRoute from "./empleoyee.route";
 import empleoyeeUserRoute from "./empleoyeeUser.route";
 import inventoryRoute from "./inventory.route";
+import journalRoute from "./journal.route";
 import paysheetDetailRoute from "./paysheetDetail.route";
 import paysheetRoute from "./paysheet.route";
 import performanceEvaluationRoute from "./performanceEvaluation.route";
@@ -21,9 +24,13 @@ import touristPackageRoute from "./tourist-package.route";
 import unitmeasurementRoute from "./unitMeasurement.route";
 import userRoute from "./user.route";
 import eventRoute from "./event.route"
+import resquest_typeRoute from "./resquest_type.route";
+import resquestRoute from "./resquest.route";
 import routesRoute from "./routes.route";
 
 export {
+  account_recordRoute,
+  accountsRoute,
   attractionRoute,
   categoryRoute,
   chargeRoute,
@@ -34,6 +41,7 @@ export {
   empleoyeeRoute,
   empleoyeeUserRoute,
   inventoryRoute,
+  journalRoute,
   paysheetDetailRoute,
   paysheetRoute,
   performanceEvaluationRoute,
@@ -47,5 +55,7 @@ export {
   unitmeasurementRoute,
   userRoute,
   eventRoute,
+  resquest_typeRoute,
+  resquestRoute,
   routesRoute
 };

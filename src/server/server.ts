@@ -5,6 +5,8 @@ import swaggerUi from "swagger-ui-express";
 import bodyParser from "body-parser";
 
 import {
+  account_recordRoute,
+  accountsRoute,
   attractionRoute,
   categoryRoute,
   chargeRoute,
@@ -15,6 +17,7 @@ import {
   empleoyeeRoute,
   empleoyeeUserRoute,
   inventoryRoute,
+  journalRoute,
   paysheetDetailRoute,
   paysheetRoute,
   performanceEvaluationRoute,
@@ -28,6 +31,8 @@ import {
   unitmeasurementRoute,
   userRoute,
   eventRoute,
+  resquest_typeRoute,
+  resquestRoute,
   routesRoute
 } from "../routes/index.route";
 
@@ -43,6 +48,8 @@ export class Server {
     this.port = process.env.API_PORT || 3800;
     this.pre = "/api";
     this.paths = {
+      account_record: this.pre + "/account_record",
+      account: this.pre + "/account",
       attractions:this.pre + "/attractions",
       charge: this.pre + "/charge",
       categories: this.pre + "/categories",
@@ -51,8 +58,9 @@ export class Server {
       departament: this.pre + "/departaments",
       empleoyeeAssistance: this.pre + "/empleoyee_assistance",
       empleoyeeUser: this.pre + "/empleoyee_user",
-      empleoyees: this.pre + "/empleoyees",
+      empleoyee: this.pre + "/empleoyee",
       inventory: this.pre + "/inventory",
+      journal: this.pre + "/journal",
       paysheet: this.pre + "/paysheet",
       paysheetDetail: this.pre + "/paysheet_details",
       performanceEvaluation: this.pre + "/performance_evaluation",
@@ -65,6 +73,8 @@ export class Server {
       unitMeasurement: this.pre + "/unit_measurement",
       users: this.pre + "/users",
       eventRoute: this.pre + "/event",
+      resquest_type: this.pre + "/resquest_type",
+      resquest: this.pre + "/resquest",
       routesRoute: this.pre + "/route"
     };
     this.connectDB();
@@ -82,6 +92,8 @@ export class Server {
   }
 
   routes() {
+    this.app.use(this.paths.account_record, account_recordRoute);
+    this.app.use(this.paths.account, accountsRoute);
     this.app.use(this.paths.attractions, attractionRoute);
     this.app.use(this.paths.charge, chargeRoute);
     this.app.use(this.paths.concept, conceptRoute);
@@ -91,6 +103,7 @@ export class Server {
     this.app.use(this.paths.empleoyees, empleoyeeRoute);
     this.app.use(this.paths.empleoyeeUser, empleoyeeUserRoute);
     this.app.use(this.paths.inventory, inventoryRoute);
+    this.app.use(this.paths.journal, journalRoute);
     this.app.use(this.paths.paysheetDetail, paysheetDetailRoute);
     this.app.use(this.paths.paysheet, paysheetRoute);
     this.app.use(this.paths.performanceEvaluation, performanceEvaluationRoute);
@@ -104,8 +117,9 @@ export class Server {
     this.app.use(this.paths.touristPackage, touristPackageRoute);
     this.app.use(this.paths.unitMeasurement, unitmeasurementRoute);
     this.app.use(this.paths.eventRoute, eventRoute);
+    this.app.use(this.paths.resquest_type, resquest_typeRoute);
+    this.app.use(this.paths.resquest, resquestRoute);
     this.app.use(this.paths.routesRoute, routesRoute);
-  
   }
   async connectDB() {
     await db

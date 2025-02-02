@@ -1,0 +1,551 @@
+/contract:
+  get:
+    summary: "Obtener Contratos"
+    tags:
+      - "Contratos"
+    description: "Endpoint para obtener la lista de contratos"
+    produces:
+      - "application/json"
+    responses:
+      "200":
+        description: "Respuesta exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Registros encontrados"
+                data:
+                  type: "object"
+                  properties:
+                    contract:
+                      type: "array"
+                      items:
+                        type: "object"
+                        properties:
+                          id:
+                            type: "integer"
+                            example: 1
+                          name:
+                            type: "string"
+                            example: "Contrato Ejemplo"
+                          date:
+                            type: "string" 
+                            format: "Date"
+                            example: "2024-01-20"
+                          salary:
+                            type: "number"
+                            format: "float"
+                            example: 1500.50
+                          state:
+                            type: "boolean"
+                            example: true
+                          hours:
+                            type: "integer"
+                            example: 40
+                          days:
+                            type: "integer"
+                            example: 30
+                          id_empleoyee:
+                            type: "integer"
+                            example: 1
+                          id_charge:
+                            type: "integer"
+                            example: 1
+                          id_departament: 
+                            type: "integer"
+                            example: 1
+                          createdAt:
+                            type: "string"
+                            format: "date-time"
+                            example: "2024-01-20T10:00:00.000Z"
+                          updatedAt:
+                            type: "string"
+                            format: "date-time"
+                            example: "2024-01-20T12:00:00.000Z"
+                          deletedAt:
+                            type: "string"
+                            format: "null"
+                            example: null
+      "404":
+        description: "Registros no encontrados"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Registros no encontrados"
+                data:
+                  type: "object"
+                  properties:
+                    roles:
+                      type: "array"
+                      items: {}
+                      example: []
+      "500":
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+  post:
+    summary: "Crear un nuevo contrato"
+    tags:
+      - "Contratos" 
+    description: "Endpoint para crear un nuevo contrato"
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: "object"
+            properties:
+              name:
+                type: "string"
+                example: "Contrato Ejemplo"
+              date:
+                type: "string"
+                format: "Date"
+                example: "2024-01-20"
+              salary:
+                type: "number"
+                format: "float"
+                example: 1500.50
+              state:
+                type: "boolean"
+                example: true
+              hours:
+                type: "integer"
+                example: 40
+              days:
+                type: "integer"
+                example: 30
+              id_empleoyee:
+                type: "integer"
+                example: 1
+              id_charge:
+                type: "integer"
+                example: 1
+              id_departament:
+                type: "integer"
+                example: 1
+    responses:
+      201:
+        description: "Creación exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Creación exitosa"
+                data:
+                  type: "object"
+                  properties:
+                    contract:
+                      type: "object"
+                      properties:
+                        id:
+                          type: "integer"
+                          example: 1
+                        name:
+                          type: "string"
+                          example: "Contrato Ejemplo"
+                        date:
+                          type: "string" 
+                          format: "Date"
+                          example: "2024-01-20"
+                        salary:
+                          type: "number"
+                          format: "float"
+                          example: 1500.50
+                        state:
+                          type: "boolean"
+                          example: true
+                        hours:
+                          type: "integer"
+                          example: 40
+                        days:
+                          type: "integer"
+                          example: 30
+                        id_empleoyee:
+                          type: "integer"
+                          example: 1
+                        id_charge:
+                          type: "integer"
+                          example: 1
+                        id_departament: 
+                          type: "integer"
+                          example: 1
+                        createdAt:
+                          type: "string"
+                          format: "date-time"
+                          example: "2024-01-20T10:00:00.000Z"
+                        updatedAt:
+                          type: "string"
+                          format: "date-time"
+                          example: "2024-01-20T12:00:00.000Z"
+                        deletedAt:
+                          type: "string"
+                          format: "null"
+                          example: null
+      400:
+        description: "Error en la solicitud"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                errors:
+                  type: "array"
+                  items:
+                    type: "object"
+                    properties:
+                      type:
+                        type: "string"
+                        example: "field"
+                      msg:
+                        type: "string"
+                        example: "Contract Name is required"
+                      path:
+                        type: "string"
+                        example: "name"
+                      location:
+                        type: "string"
+                        example: "body"
+      500:
+        description: "Error del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+/contract/{id}:
+  get:
+    summary: "Obtener un Contract"
+    tags:
+      - "Contratos"
+    description: "Endpoint para obtener un concepto por su id"
+    parameters:
+      - in: "path"
+        name: "id"
+        required: true
+        description: "Id del concepto"
+        schema:
+          type: "integer"
+    responses:
+      200:
+        description: "Respuesta exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Registro encontrado"
+                data:
+                  type: "object"
+                  properties:
+                    contract:
+                      type: "object"
+                      properties:
+                        id:
+                          type: "integer"
+                          example: 1
+                        name:
+                          type: "string"
+                          example: "Contrato Ejemplo"
+                        date:
+                          type: "string" 
+                          format: "Date"
+                          example: "2024-01-20"
+                        salary:
+                          type: "number"
+                          format: "float"
+                          example: 1500.50
+                        state:
+                          type: "boolean"
+                          example: true
+                        hours:
+                          type: "integer"
+                          example: 40
+                        days:
+                          type: "integer"
+                          example: 30
+                        id_empleoyee:
+                          type: "integer"
+                          example: 1
+                        id_charge:
+                          type: "integer"
+                          example: 1
+                        id_departament: 
+                          type: "integer"
+                          example: 1
+                        createdAt:
+                          type: "string"
+                          format: "date-time"
+                          example: "2024-01-20T10:00:00.000Z"
+                        updatedAt:
+                          type: "string"
+                          format: "date-time"
+                          example: "2024-01-20T12:00:00.000Z"
+                        deletedAt:
+                          type: "string"
+                          format: "null"
+                          example: null
+
+      404:
+        description: "Registro no encontrado"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Registro no encontrado"
+                data:
+                  type: "object"
+                  properties: {}
+      500:
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+  put:
+    summary: "Obtener un Contract"
+    tags:
+      - "Contratos"
+    description: "Endpoint para obtener un concepto por su id"
+    parameters:
+      - in: "path"
+        name: "id"
+        required: true
+        description: "Id del concepto"
+        schema:
+          type: "integer"
+      - in: "query"
+        name: "example-query"
+        required: true
+        description: "ejemplo para query"
+        schema:
+          type: "integer"
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: "object"
+            properties:
+              name:
+                type: "string"
+                example: "Contrato Ejemplo"
+              date:
+                type: "string"
+                format: "Date"
+                example: "2024-01-20"
+              salary:
+                type: "number"
+                format: "float"
+                example: 1500.50
+              state:
+                type: "boolean"
+                example: true
+              hours:
+                type: "integer"
+                example: 40
+              days:
+                type: "integer"
+                example: 30
+              id_empleoyee:
+                type: "integer"
+                example: 1
+              id_charge:
+                type: "integer"
+                example: 1
+              id_departament:
+                type: "integer"
+                example: 1
+    responses:
+      200:
+        description: "Respuesta exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Registro encontrado"
+                data:
+                  type: "object"
+                  properties:
+                    contract:
+                      type: "object"
+                      properties:
+                        id:
+                          type: "integer"
+                          example: 1
+                        name:
+                          type: "string"
+                          example: "Contrato Ejemplo"
+                        date:
+                          type: "string" 
+                          format: "Date"
+                          example: "2024-01-20"
+                        salary:
+                          type: "number"
+                          format: "float"
+                          example: 1500.50
+                        state:
+                          type: "boolean"
+                          example: true
+                        hours:
+                          type: "integer"
+                          example: 40
+                        days:
+                          type: "integer"
+                          example: 30
+                        id_empleoyee:
+                          type: "integer"
+                          example: 1
+                        id_charge:
+                          type: "integer"
+                          example: 1
+                        id_departament: 
+                          type: "integer"
+                          example: 1
+                        createdAt:
+                          type: "string"
+                          format: "date-time"
+                          example: "2024-01-20T10:00:00.000Z"
+                        updatedAt:
+                          type: "string"
+                          format: "date-time"
+                          example: "2024-01-20T12:00:00.000Z"
+                        deletedAt:
+                          type: "string"
+                          format: "null"
+                          example: null
+      400:
+        description: "Error en la solicitud"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                errors:
+                  type: "array"
+                  items:
+                    type: "object"
+                    properties:
+                      type:
+                        type: "string"
+                        example: "field"
+                      msg:
+                        type: "string"
+                        example: "Contract Name is required"
+                      path:
+                        type: "string"
+                        example: "name"
+                      location:
+                        type: "string"
+                        example: "body"
+      404:
+        description: "Registro no encontrado para actualizar"
+        content:
+          application/json:
+            schema:
+              properties:
+                errors:
+                  type: "array"
+                  items:
+                    type: "object"
+                    properties:
+                      type:
+                        type: "string"
+                        example: "field"
+                      msg:
+                        type: "string"
+                        example: "El parametro id : 1, no existe en la base de datos."
+                      path:
+                        type: "string"
+                        example: "id"
+                      location:
+                        type: "string"
+                        example: "param"
+      500:
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+  delete:
+    summary: "Eliminar un Contract"
+    tags:
+      - "Contratos"
+    description: "Endpoint para eliminar un contrato"
+    parameters:
+      - name: "id"
+        in: "path"
+        description: "ID del concepto a eliminar"
+        required: true
+        type: "integer"
+    responses:
+      204:
+        description: "Contract eliminado exitosamente, no se devuelve contenido"
+      404:
+        description: "Registro no encontrado para actualizar"
+        content:
+          application/json:
+            schema:
+              properties:
+                errors:
+                  type: "array"
+                  items:
+                    type: "object"
+                    properties:
+                      type:
+                        type: "string"
+                        example: "field"
+                      msg:
+                        type: "string"
+                        example: "El parametro id : 1, no existe en la base de datos."
+                      path:
+                        type: "string"
+                        example: "id"
+                      location:
+                        type: "string"
+                        example: "param"
+      500:
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                messsage:
+                  type: "string"
+                  example: "Contacte con el administrador"
