@@ -30,7 +30,7 @@ const BookingServices = {
       };
     }
   },
-  getOne: async (id: number) => {
+  getOne: async (id: number | string) => {
     try {
       const booking = await BookingDB.findOne({
         where: {
