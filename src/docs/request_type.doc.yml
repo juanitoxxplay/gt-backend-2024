@@ -1,0 +1,358 @@
+/request_types:
+  get:
+    summary: "Obtener request_types"
+    tags:
+      - "Request_types"
+    description: "Endpoint para obtener la lista de request_types"
+    produces:
+      - "application/json"
+    responses:
+      "200":
+        description: "Respuesta exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Registros encontrados"
+                data:
+                  type: "object"
+                  properties:
+                    request_types:
+                      type: "array"
+                      items:
+                        type: "object"
+                        properties:
+                          id:
+                            type: "integer"
+                            example: 1
+                          name:
+                            type: "string"
+                            example: "administrador"
+                          bot:
+                            type: "boolean"
+                            example: true
+      "404":
+        description: "Registros no encontrados"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Registros no encontrados"
+                data:
+                  type: "object"
+                  properties:
+                    request_types:
+                      type: "array"
+                      items: {}
+                      example: []
+      "500":
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+  post:
+    summary: "Crear un nuevo request_type"
+    tags:
+      - "Request_types" 
+    description: "Endpoint para crear un nuevo request_type"
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: "object"
+            properties:
+              name:
+                type: "string"
+                example: "solicitud"
+    responses:
+      201:
+        description: "Creación exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Creación exitosa"
+                data:
+                  type: "object"
+                  properties:
+                    request_type:
+                      type: "object"
+                      properties:
+                        id:
+                          type: "integer"
+                          example: 1
+                        name:
+                          type: "string"
+                          example: "administrador"
+                        bot:
+                          type: "boolean"
+                          example: true
+      400:
+        description: "Error en la solicitud"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                errors:
+                  type: "array"
+                  items:
+                    type: "object"
+                    properties:
+                      type:
+                        type: "string"
+                        example: "field"
+                      msg:
+                        type: "string"
+                        example: "request_type Name is required"
+                      path:
+                        type: "string"
+                        example: "name"
+                      location:
+                        type: "string"
+                        example: "body"
+      500:
+        description: "Error del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+/request_types/{id}:
+  get:
+    summary: "Obtener un request_type"
+    tags:
+      - "Request_types"
+    description: "Endpoint para obtener un request_type por su id"
+    parameters:
+      - in: "path"
+        name: "id"
+        required: true
+        description: "Id del request_type"
+        schema:
+          type: "integer"
+    responses:
+      200:
+        description: "Respuesta exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Registro encontrado"
+                data:
+                  type: "object"
+                  properties:
+                    request_type:
+                      type: "object"
+                      properties:
+                        id:
+                          type: "integer"
+                          example: 1
+                        name:
+                          type: "string"
+                          example: "administrador"
+                        bot:
+                          type: "boolean"
+                          example: true
+      404:
+        description: "Registro no encontrado"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Registro no encontrado"
+                data:
+                  type: "object"
+                  properties: {}
+      500:
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+  put:
+    summary: "Obtener un request_type"
+    tags:
+      - "Request_types"
+    description: "Endpoint para obtener un request_type por su id"
+    parameters:
+      - in: "path"
+        name: "id"
+        required: true
+        description: "Id del request_type"
+        schema:
+          type: "integer"
+      - in: "query"
+        name: "example-query"
+        required: true
+        description: "ejemplo para query"
+        schema:
+          type: "integer"
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: "object"
+            properties:
+              name:
+                type: "string"
+                example: "solicitud"
+    responses:
+      200:
+        description: "Respuesta exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Registro encontrado"
+                data:
+                  type: "object"
+                  properties:
+                    request_type:
+                      type: "object"
+                      properties:
+                        id:
+                          type: "integer"
+                          example: 1
+                        name:
+                          type: "string"
+                          example: "administrador"
+                        bot:
+                          type: "boolean"
+                          example: true
+      400:
+        description: "Error en la solicitud"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                errors:
+                  type: "array"
+                  items:
+                    type: "object"
+                    properties:
+                      type:
+                        type: "string"
+                        example: "field"
+                      msg:
+                        type: "string"
+                        example: "request_type Name is required"
+                      path:
+                        type: "string"
+                        example: "name"
+                      location:
+                        type: "string"
+                        example: "body"
+      404:
+        description: "Registro no encontrado para actualizar"
+        content:
+          application/json:
+            schema:
+              properties:
+                errors:
+                  type: "array"
+                  items:
+                    type: "object"
+                    properties:
+                      type:
+                        type: "string"
+                        example: "field"
+                      msg:
+                        type: "string"
+                        example: "El parametro id : 1, no existe en la base de datos."
+                      path:
+                        type: "string"
+                        example: "id"
+                      location:
+                        type: "string"
+                        example: "param"
+      500:
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+  delete:
+    summary: "Eliminar un request_type"
+    tags:
+      - "Request_types"
+    description: "Endpoint para eliminar un request_type"
+    parameters:
+      - name: "id"
+        in: "path"
+        description: "ID del request_type a eliminar"
+        required: true
+        type: "integer"
+    responses:
+      204:
+        description: "request_type eliminado exitosamente, no se devuelve contenido"
+      404:
+        description: "Registro no encontrado para actualizar"
+        content:
+          application/json:
+            schema:
+              properties:
+                errors:
+                  type: "array"
+                  items:
+                    type: "object"
+                    properties:
+                      type:
+                        type: "string"
+                        example: "field"
+                      msg:
+                        type: "string"
+                        example: "El parametro id : 1, no existe en la base de datos."
+                      path:
+                        type: "string"
+                        example: "id"
+                      location:
+                        type: "string"
+                        example: "param"
+      500:
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
