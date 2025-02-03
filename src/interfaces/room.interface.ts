@@ -6,12 +6,12 @@ export interface RoomInterface {
     capacity: number;
     price: number;
     id_typeroom?: number;
-    typeroom: TypeRoomInterface;
+    typeroom?: TypeRoomInterface;
     id_hotel?: number;
-    hotel: HotelInterface;
+    hotel?: HotelInterface;
 
     createdAt?:Date;
     updatedAt?:Date;
     deletedAt?:Date;
-    status?:boolean
+    status?:boolean;
 }

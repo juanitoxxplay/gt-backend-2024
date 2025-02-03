@@ -32,7 +32,7 @@ class BookingValidator {
     next: NextFunction
   ) => {
     const { status } = req.body;
-    if (typeof status != 'undefined'){
+    if (status){
       return res.status(403).json({
         errors: [
           {

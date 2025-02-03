@@ -13,7 +13,6 @@ router.get("/:id", bookingController.one);
 router.post(
   "/",
   bookingvalidator.validateBooking,
-  bookingvalidator.validateIfIdExist,
   bookingvalidator.validateIfExistStatusField,
   validateFields,
   bookingController.create

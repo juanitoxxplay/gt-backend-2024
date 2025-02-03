@@ -40,7 +40,7 @@ const RoomServices = {
       const room = await RoomDB.findOne({
         attributes: { exclude: ['status']},
         where: {
-          id: id,
+          id_room: id,
           status: true
         }
       });
@@ -90,7 +90,7 @@ const RoomServices = {
   update: async (id: number|string, dat: Partial<RoomInterface>) => {
     try {
       let room: RoomInterface | any = await RoomDB.update(dat, { where: {
-        id,
+        id_room: id,
       }
     });
       const { data } = await RoomServices.getOne(id);
@@ -117,7 +117,7 @@ const RoomServices = {
           status: false,
           deletedAt: new Date(),
         },
-        { where: { id } }
+        { where: { id_room: id } }
       );
       return {
         message: `Eliminación exitosa`,

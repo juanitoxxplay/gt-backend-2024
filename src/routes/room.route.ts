@@ -13,9 +13,9 @@ router.get("/:id", roomController.one);
 router.post(
   "/",
   roomvalidator.validateRoom,
+  roomvalidator.validateIfExistStatusField,
   roomvalidator.validateIfIdHotelExist,
   roomvalidator.validateIfIdTypeRoomExist,
-  roomvalidator.validateIfExistStatusField,
   validateFields,
   roomController.create
 );
@@ -23,9 +23,9 @@ router.post(
 router.put(
   "/:id",
   roomvalidator.validateRoom,
+  roomvalidator.validateIfIdExist,
   roomvalidator.validateIfIdHotelExist,
   roomvalidator.validateIfIdTypeRoomExist,
-  roomvalidator.validateIfIdExist,
   roomvalidator.validateIfExistStatusField,
   validateFields,
   roomController.update

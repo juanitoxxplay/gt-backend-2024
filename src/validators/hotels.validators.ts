@@ -13,9 +13,9 @@ class HotelValidator {
     body("tematic").notEmpty().withMessage("Tematic field is required"),
     body("tematic").isString().withMessage("Tematic field must be string"),
     
-    body("starts").notEmpty().withMessage("Stats field is required"),
-    body("starts").isFloat().withMessage("Stats field must be number"),
-    body("starts").isFloat({ min: 0.0, max: 5.0}).withMessage("Stats field must be number between 0 or 5"),
+    body("stars").notEmpty().withMessage("Stars field is required"),
+    body("stars").isFloat().withMessage("Stars field must be number"),
+    body("stars").isFloat({ min: 0.0, max: 5.0}).withMessage("Stats field must be number between 0 or 5"),
   ];
 
   verifyId = (req: Request, res: Response, next: NextFunction) => {
@@ -28,7 +28,8 @@ class HotelValidator {
     res: Response,
     next: NextFunction
   ) => {
-    if(check("status").isEmpty()) {
+    const { status } = req.body;
+    if (status){
       return res.status(403).json({
         errors: [
           {
@@ -123,25 +124,36 @@ class HotelValidator {
     res: Response,
     next: NextFunction
   ) => {
-    const { id } = req.params;
-    const { status, message, data } = await SupervisorServices.getOne(id);
-    if (status == 500) {
-      return res.status(status).json({
-        message,
-      });
-    } else if (status == 404) {
-      if (id) {
+    const { id_supervisor } = req.body;
+    if (id_supervisor){
+     const { status, message, data } = await SupervisorServices.getOne(id_supervisor);
+     if (status == 500) {
+       return res.status(status).json({
+         message,
+       });
+      } else if (status == 404) {
         return res.status(404).json({
           errors: [
             {
               type: "field",
-              msg: `El Supervisor identificado por: ${id}, no existe en la base de datos.`,
+              msg: `El Supervisor identificado por: ${id_supervisor}, no existe en la base de datos.`,
               path: "id",
               location: "param",
             },
           ],
-        });
+        }); 
       }
+    } else {
+      return res.status(400).json({
+          errors: [
+            {
+              type: "field",
+              msg: `El id del Supervisor es equerido.`,
+              path: "id",
+              location: "body",
+            },
+          ],
+      }); 
     }
     next();
   };

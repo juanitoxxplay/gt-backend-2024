@@ -18,7 +18,8 @@ class IndividualServiceValidator {
     res: Response,
     next: NextFunction
   ) => {
-    if(check("status").isEmpty()) {
+    const { status } = req.body;
+    if (status){
       return res.status(403).json({
         errors: [
           {

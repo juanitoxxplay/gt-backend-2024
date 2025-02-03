@@ -6,8 +6,10 @@ class IndividualServiceValidator {
   public validateIndividualService = [
     body("name").notEmpty().withMessage("Service Name is required"),
     body("name").isString().withMessage("Service Name must be string"),
+
     body("price").notEmpty().withMessage("Service Price is required"),
     body("price").isNumeric().withMessage("Service Price must be numeric"),
+    body("price").isFloat({ min: 0.0 }).withMessage("Service price must be positive number.")
   ];
 
   // Verifica que el campo status no pueda actualizrse
@@ -16,7 +18,8 @@ class IndividualServiceValidator {
     res: Response,
     next: NextFunction
   ) => {
-    if(check("status").isEmpty()) {
+    const { status } = req.body;
+    if (status){
       return res.status(403).json({
         errors: [
           {
