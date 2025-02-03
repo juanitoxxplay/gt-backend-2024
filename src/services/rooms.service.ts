@@ -5,7 +5,7 @@ const RoomServices = {
   getAll: async () => {
     try {
       const rooms = await RoomDB.findAll({
-        attributes: { exclude: ['status']},
+        attributes: { exclude: ['status', 'deletedAt']},
         where: {
           status: true
       }
@@ -38,7 +38,7 @@ const RoomServices = {
   getOne: async (id: number|string) => {
     try {
       const room = await RoomDB.findOne({
-        attributes: { exclude: ['status']},
+        attributes: { exclude: ['status', 'deletedAt']},
         where: {
           id_room: id,
           status: true
@@ -137,7 +137,7 @@ const RoomServices = {
   findByIdOrNameHotel: async (id_hotel: number | string) => {
     try {
       const rooms = await RoomDB.findAll({
-        attributes: { exclude: ['status']},
+        attributes: { exclude: ['status', 'deletedAt']},
         where: {
             include: [
                 {
@@ -146,23 +146,23 @@ const RoomServices = {
                 }
             ]
         }
-    });
-        if (rooms.length===0) {
-            console.log("Ninguna habitación pertenece al hotel de id: ")
-            return {
-                message: `Registro no encontrado`,
-                status: 404,
-                data: {},
-            };
-        } else {
-            return {
-            message: `Registros encontrados`,
-            status: 200,
-            data: {
-                rooms,
-            },
-            };
-        }
+      });
+      if (rooms.length===0) {
+          console.log("Ninguna habitación pertenece al hotel de id: ")
+          return {
+              message: `Registro no encontrado`,
+              status: 404,
+              data: {},
+          };
+      } else {
+          return {
+          message: `Registros encontrados`,
+          status: 200,
+          data: {
+              rooms,
+          },
+          };
+      }
     } catch (error) {
       console.log(error);
       return {

@@ -12,19 +12,25 @@ class IndividualServiceValidator {
     body("price").isFloat({ min: 0.0 }).withMessage("Service price must be positive number.")
   ];
 
-  // Verifica que el campo status no pueda actualizrse
-  public validateIfExistStatusField = async (
+  // Verifica que no deban modificarse campos no modificables como status, createdAt o deleteAt
+  public validateNonModifiableFieldInput = async (
     req: Request,
     res: Response,
     next: NextFunction
   ) => {
-    const { status } = req.body;
-    if (status){
+    const { id, status, createdAt, updatedAt, deletedAt } = req.body;
+    if (
+    (id !== undefined)        ||
+    (status !== undefined)    ||
+    (createdAt !== undefined) ||
+    (updatedAt !== undefined) ||
+    (deletedAt !== undefined)
+  ) {
       return res.status(403).json({
         errors: [
           {
             type: "field",
-            msg: `El campo status, no debe actualizarse.`,
+            msg: `Los campos id, status, createdAt, updatedAt o deletedAt, no pueden crearse o modificarse de forma arbitraria o explícita.`,
             path: "id",
             location: "body",
           },

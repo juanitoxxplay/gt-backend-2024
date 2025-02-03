@@ -25,6 +25,7 @@ export * from './role.interface';
 export * from './room.interface';
 export * from './routes.interface';
 export * from './service-hotel.interface';
+export * from './serviceHotel.interface';
 export * from './settings.interface';
 export * from './supervisor.interface';
 export * from './supplier.interface';

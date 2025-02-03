@@ -5,7 +5,7 @@ const HotelServices = {
   getAll: async () => {
     try {
       const hotels = await HotelDB.findAll({
-        attributes: { exclude: ['status']},
+        attributes: { exclude: ['status', 'deletedAt']},
         where: {
           status: true,
       }
@@ -37,7 +37,7 @@ const HotelServices = {
   getOne: async (id: number|string) => {
     try {
       const hotel = await HotelDB.findOne({
-        attributes: { exclude: ['status']},
+        attributes: { exclude: ['status', 'deletedAt']},
         where: {
           id: id,
           status: true
@@ -131,7 +131,7 @@ const HotelServices = {
   findByName: async (name: string) => {
     try {
       const hotel = await HotelDB.findAll({
-        attributes: { exclude: ['status']},
+        attributes: { exclude: ['status', 'deletedAt']},
         where: {
           name: name
       }
@@ -163,7 +163,7 @@ const HotelServices = {
   findByIdSupervisor: async (id_supervisor: number) => {
     try {
       const hotel = await HotelDB.findAll({
-        attributes: { exclude: ['status']},
+        attributes: { exclude: ['status', 'deletedAt']},
         where: {
           id_supervisor: id_supervisor
       }

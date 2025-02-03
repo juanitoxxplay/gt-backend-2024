@@ -14,7 +14,7 @@ router.post(
   "/",
   individualserviceValidator.validateIndividualService,
   individualserviceValidator.validateIfNameIsUse,
-  individualserviceValidator.validateIfExistStatusField,
+  individualserviceValidator.validateNonModifiableFieldInput,
   validateFields,
   individualserviceController.create
 );
@@ -24,7 +24,7 @@ router.put(
   individualserviceValidator.validateIndividualService,
   individualserviceValidator.validateIfIdExist,
   individualserviceValidator.validateIfNameIsUse,
-  individualserviceValidator.validateIfExistStatusField,
+  individualserviceValidator.validateNonModifiableFieldInput,
   validateFields,
   individualserviceController.update
 );

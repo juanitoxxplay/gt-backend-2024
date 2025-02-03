@@ -13,7 +13,7 @@ router.get("/:id", roomController.one);
 router.post(
   "/",
   roomvalidator.validateRoom,
-  roomvalidator.validateIfExistStatusField,
+  roomvalidator.validateNonModifiableFieldInput,
   roomvalidator.validateIfIdHotelExist,
   roomvalidator.validateIfIdTypeRoomExist,
   validateFields,
@@ -26,7 +26,7 @@ router.put(
   roomvalidator.validateIfIdExist,
   roomvalidator.validateIfIdHotelExist,
   roomvalidator.validateIfIdTypeRoomExist,
-  roomvalidator.validateIfExistStatusField,
+  roomvalidator.validateNonModifiableFieldInput,
   validateFields,
   roomController.update
 );

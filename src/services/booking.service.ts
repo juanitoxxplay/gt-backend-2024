@@ -7,7 +7,7 @@ const BookingServices = {
     try {
       const bookings = await BookingDB.findAll({
         where: { status: true, },
-        attributes: { exclude: ['status']}
+        attributes: { exclude: ['status', 'deletedAt']}
       });
       if (bookings.length === 0) {
         return {
@@ -36,7 +36,7 @@ const BookingServices = {
   getOne: async (id: number | string) => {
     try {
       const booking = await BookingDB.findOne({
-        attributes: { exclude: ['status']},
+        attributes: { exclude: ['status', 'deletedAt']},
         where: {
           id: id,
           status: true,

@@ -6,7 +6,7 @@ const serviceIndividualServices = {
   getAll: async () => {
     try {
       const services = await IndividualServicesDB.findAll({
-        attributes: { exclude: ['status']},
+        attributes: { exclude: ['status', 'deletedAt']},
         where: {
           status: true
       }
@@ -38,7 +38,7 @@ const serviceIndividualServices = {
   getOne: async (id: number|string) => {
     try {
       const service = await IndividualServicesDB.findOne({
-        attributes: { exclude: ['status']},
+        attributes: { exclude: ['status', 'deletedAt']},
         where: {
           id: id,
           status: true
@@ -132,7 +132,7 @@ const serviceIndividualServices = {
   findByName: async (name: string) => {
     try {
       const service = await IndividualServicesDB.findAll({
-        attributes: { exclude: ['status']},
+        attributes: { exclude: ['status', 'deletedAt']},
         where: {
           name
       }
