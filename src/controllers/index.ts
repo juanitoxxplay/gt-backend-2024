@@ -1,5 +1,6 @@
 export * from './account.controller';
 export * from './charge.controller';
+export * from './client.controller';
 export * from './category.controller';
 export * from './concept.controller';
 export * from './contract.controller';

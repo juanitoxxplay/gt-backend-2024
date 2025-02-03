@@ -1,10 +1,10 @@
 import "dotenv/config";
-import { CategoryDB, db, RoleDB, UserDB, ChargeDB, ConceptDB, ContractDB, DepartamentDB, EmpleoyeeDB, EmpleoyeeAssistanceDB, EmpleoyeeUserDB,
-PaysheetDB,InventoryDB, PaysheetDetailDB, ProductDB, PerformanceEvaluationDB, IndividualServicesDB, SupervisorDB, SupplierDB
+import { CategoryDB, db, RoleDB, UserDB, ChargeDB, ClientDB, ConceptDB, ContractDB, DepartamentDB, EmpleoyeeDB, EmpleoyeeAssistanceDB, EmpleoyeeUserDB,
+PaysheetDB,InventoryDB, PaysheetDetailDB, ProductDB, PerformanceEvaluationDB, RestaurantDB , IndividualServicesDB, SupervisorDB, SupplierDB,
  } from "../config";
 
-import { categoriesSeeds, rolesSeeds, userSeeds, chargeSeeds, conceptSeeds, contractSeeds, departamentSeeds, empleoyeeSeeds, empleoyeeAssistanceSeeds, empleoyeeUserSeeds,
-  paysheetSeeds, inventorySeeds, paysheetDetailSeeds, performanceEvaluationSeeds,productSeeds, individualserviceSeeds, supervisorSeeds, suppliersSeeds
+import { categoriesSeeds, rolesSeeds, userSeeds, chargeSeeds, clientsSeeds,  conceptSeeds, contractSeeds, departamentSeeds, empleoyeeSeeds, empleoyeeAssistanceSeeds, empleoyeeUserSeeds,
+  paysheetSeeds, inventorySeeds, paysheetDetailSeeds, performanceEvaluationSeeds,productSeeds, restaurantSeeds , individualserviceSeeds, supervisorSeeds, suppliersSeeds, 
  } from "./seeders";
 
 const eject = async () => {
@@ -26,6 +26,7 @@ async function insertSeeders() {
     users: "users",
     categories:"categories",
     charge: "charge",
+    client: "client",
     concept: "concept",
     contract: "contract",
     departament: "departament",
@@ -37,6 +38,7 @@ async function insertSeeders() {
     paysheetDetail: "paysheetDetail",
     performanceEvaluation: "performanceEvaluation",
     product: "product",
+    restaurant: "restaurant",
     service: "service",
     supervisor: "supervisor",
     supplier: "supplier",
@@ -66,13 +68,21 @@ async function insertSeeders() {
     console.error(`Error al insertar registros de ${models.users}:`, error);
   }
   //NIVEL 3
- try {
+  try {
     console.log(`Insertando seeds de : ${models.charge}`);
     const result = await ChargeDB.bulkCreate(chargeSeeds, { ignoreDuplicates: true,validate: true });
     console.log(`Registros insertado exitosamente de ${models.charge}`);
   } catch (error) {
     console.error(`Error al insertar registros de ${models.charge}:`, error);
+  } 
+  try {
+    console.log(`Insertando seeds de : ${models.client}`);
+    const result = await ClientDB.bulkCreate(clientsSeeds, { ignoreDuplicates: true,validate: true });
+    console.log(`Registros insertado exitosamente de ${models.client}`);
+  } catch (error) {
+    console.error(`Error al insertar registros de ${models.client}:`, error);
   }
+ 
   try {
     console.log(`Insertando seeds de : ${models.concept}`);
     const result = await ConceptDB.bulkCreate(conceptSeeds, { ignoreDuplicates: true,validate: true });

@@ -3,6 +3,7 @@ import accountRoute from "./account.route";
 import attractionRoute from "./attraction.route";
 import categoryRoute from "./category.route";
 import chargeRoute from "./charge.route";
+import clientRoute from "./client.route";
 import conceptRoute from "./concept.route";
 import contractRoute from "./contract.route";
 import departamentRoute from "./departament.route";
@@ -33,6 +34,7 @@ export {
   attractionRoute,
   categoryRoute,
   chargeRoute,
+  clientRoute,
   conceptRoute,
   contractRoute,
   departamentRoute,

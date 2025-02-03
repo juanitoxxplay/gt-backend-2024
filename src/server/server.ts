@@ -11,6 +11,7 @@ import {
   attractionRoute,
   categoryRoute,
   chargeRoute,
+  clientRoute,
   conceptRoute,
   contractRoute,
   departamentRoute,
@@ -50,6 +51,7 @@ export class Server {
     
       account: this.pre + "/account",
       charge: this.pre + "/chargeRoute",
+      client: this.pre + "/clientRoute",
       concept: this.pre + "/conceptRoute",
       attractions:this.pre + "/attractions",
       categories: this.pre + "/categories",
@@ -64,6 +66,7 @@ export class Server {
       performanceEvaluation: this.pre + "/performance_evaluation",
       product: this.pre + "/products",
       roles: this.pre + "/roles",
+      restaurant: this.pre + "/restaurants",
       services: this.pre + "/services",
       supervisor: this.pre + "/supervisor",
       supplier: this.pre + "/supplier",
@@ -93,6 +96,7 @@ export class Server {
     this.app.use(this.paths.account, accountRoute);
     this.app.use(this.paths.attractions, attractionRoute);
     this.app.use(this.paths.charge, chargeRoute);
+    this.app.use(this.paths.charge, clientRoute);
     this.app.use(this.paths.concept, conceptRoute);
     this.app.use(this.paths.contract, contractRoute);
     this.app.use(this.paths.departament, departamentRoute);
@@ -107,6 +111,7 @@ export class Server {
     this.app.use(this.paths.supervisor, supervisorRoute);
     this.app.use(this.paths.categories, categoryRoute);
     this.app.use(this.paths.roles, roleRoute);
+    this.app.use(this.paths.restaurant, restaurantRoute),
     this.app.use(this.paths.supplier, supplierRoute);
     this.app.use(this.paths.services, serviceRoute);
     this.app.use(this.paths.users, userRoute);
