@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { body, check } from "express-validator";
+import { body } from "express-validator";
 import { BookingServices } from "../services";
 import { or } from "sequelize";
 
