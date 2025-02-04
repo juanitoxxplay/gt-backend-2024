@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { body } from "express-validator";
-import { bookingtransportationservice } from "../services";
+//import { bookingtransportationservice } from "../services";
 
 class BookingtransportationValidator {
   public validateBookingtransportation = [
@@ -11,6 +11,8 @@ class BookingtransportationValidator {
   ];
 
   //un middleware en el caso de campo id
+  /*
+
   public validateIfIdExist = async (
     req: Request,
     res: Response,
@@ -38,5 +40,7 @@ class BookingtransportationValidator {
     }
     next();
   };
+  
+  */
 }
 export { BookingtransportationValidator };

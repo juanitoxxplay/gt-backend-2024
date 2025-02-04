@@ -13,7 +13,7 @@ router.get("/:id", transportController.one);
 router.post(
   "/",
   transportValidator.validateTransport,
-  transportValidator.validateIfNameIsUse,
+  //transportValidator.validateIfNameIsUse,
   validateFields,
   transportController.create
 );

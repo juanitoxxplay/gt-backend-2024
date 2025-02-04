@@ -6,7 +6,7 @@ const TransportModel = {
         autoIncrement: true,
         primaryKey: true,
       },
-      name: {
+      model: {
         type: DataTypes.STRING(50),
         allowNull: false,
       },
@@ -14,19 +14,15 @@ const TransportModel = {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
+      id_contract: {   
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
       id_route: {   
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      description: {
-        type: DataTypes.TEXT,
-        allowNull: false,
-      },
-      price: {
-        type: DataTypes.DECIMAL(10, 2),
-        allowNull: false,
-      },
-      status: {
+      state: {
         type: DataTypes.BOOLEAN,
         defaultValue: true,
       }, 

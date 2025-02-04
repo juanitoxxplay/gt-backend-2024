@@ -10,10 +10,10 @@ class TransportValidator {
     body("capacity").isNumeric().withMessage("Capacity must be a number"),
     body("state").notEmpty().withMessage("State is required"),
     body("state").isNumeric().withMessage("State must be a number"),
-    body("id_routes").notEmpty().withMessage("id_routes is required"),
-    body("id_routes").isNumeric().withMessage("id_routes must be a number"),  
-    body("id_vehicle").notEmpty().withMessage("id_vehicle is required"),
-    body("id_vehicle").isNumeric().withMessage("id_vehicle must be a number"),
+    body("id_route").notEmpty().withMessage("id_routes is required"),
+    body("id_route").isNumeric().withMessage("id_routes must be a number"),  
+    //body("id_vehicle").notEmpty().withMessage("id_vehicle is required"),
+    //body("id_vehicle").isNumeric().withMessage("id_vehicle must be a number"),//se comentan por que no se realizaron sus cruds
     body("id_contract").notEmpty().withMessage("id_contract is required"),
     body("id_contract").isNumeric().withMessage("id_contract must be a number"),
   ];
