@@ -21,9 +21,9 @@ const EventRegistrationModel = {
         allowNull: false,
       },
       status: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
+      }, 
       unitPrice: {
         type: DataTypes.DECIMAL(10, 2),
         allowNull: false,

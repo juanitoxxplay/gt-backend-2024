@@ -11,7 +11,7 @@ class EventRegistrationValidator {
     body("registrationDate").notEmpty().withMessage("Registration Date is required"),
     body("registrationDate").isDate().withMessage("Registration Date must be a valid date"),
     body("status").notEmpty().withMessage("Status is required"),
-    body("status").isInt().withMessage("Status must be integer"),
+    body("status").isBoolean().withMessage("Status must be boolean"),
     body("unitPrice").notEmpty().withMessage("Unit Price is required"),
     body("unitPrice").isFloat().withMessage("Unit Price must be a number"),
   ];

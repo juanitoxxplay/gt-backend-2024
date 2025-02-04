@@ -28,7 +28,7 @@ const TransportModel = {
         allowNull: false,
       },
       *///se comentan por que no se realizaron sus cruds
-      state: {
+      status: {
         type: DataTypes.BOOLEAN,
         defaultValue: true,
       }, 

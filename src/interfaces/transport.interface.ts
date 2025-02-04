@@ -7,7 +7,7 @@ export interface TransportInterface {
     id?: number;
     model: string;
     capacity: number;
-    state: number;
+    status?: boolean;
     id_route?: number;
     routes?: RoutesInterface;
     //id_vehicle?: number;

@@ -7,6 +7,6 @@ export interface EventRegistrationInterface{
   //id_client:number;
   //client: ClientInterface;//se comentan por que no se realizaron sus cruds
     registrationDate:Date;
-    status:number;
+    status?:boolean;
     unitPrice:number;
 }
