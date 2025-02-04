@@ -268,8 +268,10 @@ EventsDB.hasMany(EventRegistrationDB, { foreignKey: "id_event" });
 EventRegistrationDB.belongsTo(EventsDB, { foreignKey: "id_event" });+
 
 //Relacion de Inscripcion de eventos con cliente
-ClientDB.hasMany(EventRegistrationDB, { foreignKey: "id_client" });
-EventRegistrationDB.belongsTo(ClientDB, { foreignKey: "id_client" });
+//ClientDB.hasMany(EventRegistrationDB, { foreignKey: "id_client" });
+//EventRegistrationDB.belongsTo(ClientDB, { foreignKey: "id_client" });
+
+//se comentan por que no se realizo el crud de client
 
 // Relaciones de la tabla ajustes con eventos
 SettingsDB.hasMany(SettingsEventDb, { foreignKey: "id_settings" });

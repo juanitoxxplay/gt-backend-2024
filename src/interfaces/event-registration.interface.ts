@@ -1,11 +1,11 @@
-//import { ClientInterface } from "./client.interface";
+//import { ClientInterface } from "./client.interface";//se comentan por que no se realizaron sus cruds
 import { EventInterface } from "./event.interface";
 export interface EventRegistrationInterface{
     id?:number;
-    eventId:number;
+    id_event:number;
     event: EventInterface;
-    clienId:number;
-  //  client: ClientInterface;
+  //id_client:number;
+  //client: ClientInterface;//se comentan por que no se realizaron sus cruds
     registrationDate:Date;
     status:number;
     unitPrice:number;

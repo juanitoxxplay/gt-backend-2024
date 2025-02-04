@@ -13,7 +13,7 @@ router.get("/:id", eventRegistrationController.one);
 router.post(
   "/",
   eventRegistrationValidator.validateEventRegistration,
-  eventRegistrationValidator.validateIfNameIsUse,
+  //eventRegistrationValidator.validateIfNameIsUse,
   validateFields,
   eventRegistrationController.create
 );
@@ -22,7 +22,7 @@ router.put(
   "/:id",
   eventRegistrationValidator.validateEventRegistration,
   eventRegistrationValidator.validateIfIdExist,
-  eventRegistrationValidator.validateIfNameIsUse,
+  //eventRegistrationValidator.validateIfNameIsUse,
   validateFields,
   eventRegistrationController.update
 );

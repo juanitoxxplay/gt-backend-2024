@@ -22,7 +22,7 @@ router.put(
   "/:id",
   transportValidator.validateTransport,
   transportValidator.validateIfIdExist,
-  transportValidator.validateIfNameIsUse,
+  //transportValidator.validateIfNameIsUse,
   validateFields,
   transportController.update
 );
