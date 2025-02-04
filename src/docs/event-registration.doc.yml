@@ -1,0 +1,223 @@
+paths:
+  /event-registration:
+    get:
+      summary: Obtiene registros de eventos
+      responses:
+        '200':
+          description: Registros encontrados
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Mensaje de respuesta
+                    example: "Registros encontrados"
+                  data:
+                    type: object
+                    properties:
+                      event-registration:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              description: ID del registro
+                              example: 1
+                            id_event:
+                              type: integer
+                              description: ID del evento
+                              example: 1
+                            registrationDate:
+                              type: string
+                              format: date-time
+                              description: Fecha de registro
+                              example: "2025-02-04T19:10:18.000Z"
+                            status:
+                              type: boolean
+                              description: Estado del registro
+                              example: true
+                            unitPrice:
+                              type: string
+                              description: Precio unitario
+                              example: "1.00"
+                            createdAt:
+                              type: string
+                              format: date-time
+                              description: Fecha de creación
+                              example: "2025-02-04T19:10:18.000Z"
+                            updatedAt:
+                              type: string
+                              format: date-time
+                              description: Fecha de actualización
+                              example: "2025-02-04T19:10:18.000Z"
+                    example:
+                      Routes:
+                        - id: 1
+                          id_event: 1
+                          registrationDate: "2025-02-04T19:10:18.000Z"
+                          status: true
+                          unitPrice: "1.00"
+                          createdAt: "2025-02-04T19:10:18.000Z"
+                          updatedAt: "2025-02-04T19:10:18.000Z"
+
+    post:
+      summary: Crea un nuevo registro de evento
+      requestBody: # Definición del cuerpo de la petición
+        content:
+          application/json: # Tipo de contenido JSON
+            schema: # Esquema del objeto a crear
+              type: object
+              properties:
+                id_event: # ID del evento
+                  type: integer
+                  example: 1
+                registrationDate: # Fecha de registro
+                  type: string
+                  format: date-time
+                  example: "2025-02-04T19:10:18.000Z"
+                status: # Estado del registro
+                  type: boolean
+                  example: true
+                unitPrice: # Precio unitario
+                  type: string
+                  example: "1.00"
+      responses:
+        '201': # Código de respuesta 201 (Created)
+          description: Creación exitosa
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Mensaje de respuesta
+                    example: "Creación exitosa"
+                  data:
+                    type: object
+                    properties:
+                      event-registration:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            description: ID del registro
+                            example: 1
+                          id_event:
+                            type: integer
+                            description: ID del evento
+                            example: 1
+                          registrationDate:
+                            type: string
+                            format: date-time
+                            description: Fecha de registro
+                            example: "2025-02-04T19:10:18.000Z"
+                          status:
+                            type: boolean
+                            description: Estado del registro
+                            example: true
+                          unitPrice:
+                            type: string
+                            description: Precio unitario
+                            example: "1.00"
+                          createdAt:
+                            type: string
+                            format: date-time
+                            description: Fecha de creación
+                            example: "2025-02-04T19:10:18.000Z"
+                          updatedAt:
+                            type: string
+                            format: date-time
+                            description: Fecha de actualización
+                            example: "2025-02-04T19:10:18.000Z"
+                    example:
+                      event-registration:
+                        id: 1
+                        id_event: 1
+                        registrationDate: "2025-02-04T19:10:18.000Z"
+                        status: true
+                        unitPrice: "1.00"
+                        createdAt: "2025-02-04T19:10:18.000Z"
+                        updatedAt: "2025-02-04T19:10:18.000Z"
+
+
+
+
+/event-registration/{id}:
+  delete:
+    summary: "Eliminar"
+    description: "Endpoint para eliminar un event-registration"
+    parameters:
+      - name: "id"
+        in: "path"
+        description: "ID del event-registration a eliminar"
+        required: true
+        type: "integer"
+    responses:
+      204:
+        description: "event-registration eliminado exitosamente, no se devuelve contenido"
+
+  put:
+      summary: Actualizar registro de evento
+      description: Actualiza la información de un registro de evento existente.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: ID del registro de evento a actualizar.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                origin:
+                  type: string
+                  description: Origen del evento.
+                  example: Holita
+                destination:
+                  type: string
+                  description: Destino del evento.
+                  example: Holita
+                distance:
+                  type: integer
+                  description: Distancia del evento.
+                  example: 2
+                duration:
+                  type: integer
+                  description: Duración del evento.
+                  example: 2
+                price:
+                  type: integer
+                  description: Precio del evento.
+                  example: 2
+              example:
+                origin: Holita
+                destination: Holita
+                distance: 2
+                duration: 2
+                price: 2
+      responses:
+        '200':
+          description: Actualización exitosa.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Mensaje de respuesta.
+                    example: Actualización exitosa
+                  data:
+                    type: object
+                    description: Datos de respuesta.
+                    example: {}
+              example:
+                message: Actualización exitosa
+                data: {}
