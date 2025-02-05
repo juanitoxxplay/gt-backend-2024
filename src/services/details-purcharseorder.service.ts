@@ -1,10 +1,10 @@
-import { DetailsPurcharseOrderModelDB } from "../config";
+import { DetailsOrderBuyDB } from "../config";
 import { DetailsPurcharseOrderInterface } from "../interfaces";
 
 class DetailsPurcharseOrderService {
   async getAll(): Promise<{ status: number; message: string; data: any }> {
     try {
-      const details = await DetailsPurcharseOrderModelDB.findAll(); 
+      const details = await DetailsOrderBuyDB.findAll(); 
       return { status: 200, message: "Detalles obtenidos correctamente", data: details };
     } catch (error) {
       return { status: 500, message: "Error al obtener los detalles", data: error };
@@ -13,7 +13,7 @@ class DetailsPurcharseOrderService {
 
   async getOne(id: string): Promise<{ status: number; message: string; data: any }> {
     try {
-      const detail = await DetailsPurcharseOrderModelDB.findByPk(id); 
+      const detail = await DetailsOrderBuyDB.findByPk(id); 
       if (!detail) {
         return { status: 404, message: "Detalle no encontrado", data: null };
       }
@@ -25,7 +25,7 @@ class DetailsPurcharseOrderService {
 
   async create(detail: DetailsPurcharseOrderInterface): Promise<{ status: number; message: string; data: any }> {
     try {
-      const newDetail = await DetailsPurcharseOrderModelDB.create(detail as any); 
+      const newDetail = await DetailsOrderBuyDB.create(detail as any); 
       return { status: 201, message: "Detalle creado correctamente", data: newDetail };
     } catch (error) {
       return { status: 500, message: "Error al crear el detalle", data: error };
@@ -34,11 +34,11 @@ class DetailsPurcharseOrderService {
 
   async update(id: string, detail: DetailsPurcharseOrderInterface): Promise<{ status: number; message: string; data: any }> {
     try {
-      const [updated] = await DetailsPurcharseOrderModelDB.update(detail as any, { where: { id } });
+      const [updated] = await DetailsOrderBuyDB.update(detail as any, { where: { id } });
       if (!updated) {
         return { status: 404, message: "Detalle no encontrado", data: null };
       }
-      const updatedDetail = await DetailsPurcharseOrderModelDB.findByPk(id); 
+      const updatedDetail = await DetailsOrderBuyDB.findByPk(id); 
       return { status: 200, message: "Detalle actualizado correctamente", data: updatedDetail };
     } catch (error) {
       return { status: 500, message: "Error al actualizar el detalle", data: error };
@@ -47,7 +47,7 @@ class DetailsPurcharseOrderService {
 
   async delete(id: string): Promise<{ status: number; message: string; data: any }> {
     try {
-      const deleted = await DetailsPurcharseOrderModelDB.destroy({ where: { id } }); 
+      const deleted = await DetailsOrderBuyDB.destroy({ where: { id } }); 
       if (!deleted) {
         return { status: 404, message: "Detalle no encontrado", data: null };
       }

@@ -13,7 +13,6 @@ export * from './paysheetDetail.controller';
 export * from './performanceEvaluation.controller';
 export * from './product.controller';
 export * from './role.controller';
-export * from './service.controller';
 export * from './purcharse_order.controller';
 export * from './details-purcharseorder.controller';
 export * from './request_type.controller';

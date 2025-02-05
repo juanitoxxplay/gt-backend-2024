@@ -17,7 +17,6 @@ export * from './request_type.interface';
 export * from './supervisor.interface';
 export * from './category.interface';
 export * from './role.interface';
-export * from './service.interface';
 export * from './purcharse_order.interface';
 export * from './details-purcharseorder.interface';
 export * from './interfaceService.interface';
