@@ -13,11 +13,10 @@ const BookingRestaurantModel = {
         type: DataTypes.INTEGER,
         allowNull: false
     },
-    Reservation_rate: {
+    reservation_rate: {
         type: DataTypes.DECIMAL,
         allowNull: false,   
     },
-    
     reservation_date:  {
     type: DataTypes.DATE,
     allowNull: false, 
