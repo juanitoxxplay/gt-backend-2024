@@ -32,6 +32,8 @@ import {
   touristPackageRoute,
   unitmeasurementRoute,
   userRoute,
+  journalRoute,
+  routesRoute
   purcharsesRoute,
   detailspurcharsesRoute,
   TransportRoute,
@@ -62,6 +64,7 @@ export class Server {
       empleoyeeUser: this.pre + "/empleoyee_user",
       empleoyees: this.pre + "/empleoyees",
       inventory: this.pre + "/inventory",
+      journal: this.pre + "/journal",
       paysheet: this.pre + "/paysheet",
       paysheetDetail: this.pre + "/paysheet_details",
       performanceEvaluation: this.pre + "/performance_evaluation",
@@ -106,6 +109,7 @@ export class Server {
     this.app.use(this.paths.empleoyees, empleoyeeRoute);
     this.app.use(this.paths.empleoyeeUser, empleoyeeUserRoute);
     this.app.use(this.paths.inventory, inventoryRoute);
+    this.app.use(this.paths.journal, journalRoute);
     this.app.use(this.paths.paysheetDetail, paysheetDetailRoute);
     this.app.use(this.paths.paysheet, paysheetRoute);
     this.app.use(this.paths.performanceEvaluation, performanceEvaluationRoute);
@@ -123,6 +127,7 @@ export class Server {
     this.app.use(this.paths.eventregistration, eventRegistrationRoute);
     this.app.use(this.paths.touristPackage, touristPackageRoute);
     this.app.use(this.paths.unitMeasurement, unitmeasurementRoute);
+    this.app.use(this.paths.routesRoute, routesRoute);
     this.app.use(this.paths.transport, TransportRoute);
     this.app.use(this.paths.eventRoute, eventRoute);
   }

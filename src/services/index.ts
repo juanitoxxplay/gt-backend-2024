@@ -4,7 +4,7 @@ export * from './category.service';
 export * from './charge.service';
 export * from './concept.service';
 export * from './contract.service';
-export * from './departament.service';
+export * from './departament.service';r
 export * from './empleoyeeAssistance.service';
 export * from './empleoyeeUser.service';
 export * from './empleoyee.service';
@@ -32,3 +32,8 @@ export * from './tourist-package.service';
 export * from './transport.service';
 export * from './unitMeasurement.service';
 export * from './user.service';
+export * from './routes.service';
+export * from './journal.services';
+export * from './account_records.services';
+export * from './requests.services';
+

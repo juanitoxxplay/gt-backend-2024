@@ -57,3 +57,6 @@ export * from './supervisor.model';
 export * from './unit-measurement.model';
 export * from './user_client.model';
 export * from './user.model';
+export * from './journal.model';
+export * from './requests.model';
+export * from './account_records';
