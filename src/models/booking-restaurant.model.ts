@@ -24,9 +24,7 @@ const BookingRestaurantModel = {
     reservation_time: {
         type: DataTypes.TIME,
         allowNull: false,
-        
     } ,
-
     state: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
