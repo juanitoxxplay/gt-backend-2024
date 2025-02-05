@@ -1,3 +1,4 @@
+export * from './account.controller';
 export * from './charge.controller';
 export * from './category.controller';
 export * from './concept.controller';
@@ -12,8 +13,14 @@ export * from './paysheetDetail.controller';
 export * from './performanceEvaluation.controller';
 export * from './product.controller';
 export * from './role.controller';
+export * from './service.controller';
+export * from './purcharse_order.controller';
+export * from './details-purcharseorder.controller';
+export * from './request_type.controller';
 export * from './individualService.controller';
+export * from './setting.controller';
 export * from './supervisor.controller';
+export * from './event-registration.controller';
 export * from './supplier.controller';
 export * from './restaurant.controller';
 export * from './unit-measurement.controller';
@@ -22,3 +29,6 @@ export * from './user.controller';
 export * from './attraction.controller';
 export * from './route.controller';
 export * from './journal.controller';
+export * from './transport.controller';
+export * from './event.controller';
+

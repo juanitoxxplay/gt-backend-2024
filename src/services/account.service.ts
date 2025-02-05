@@ -1,44 +1,43 @@
+import { AccountDB } from "../config";
+import { accountinterface } from "../interfaces/account.interface";
 
-import { EmpleoyeeDB } from "../config";
-import { EmpleoyeeInterface } from "../interfaces";
-
-const empleoyeeServices = {
-  getAll: async () => {
-    try {
-      const empleoyees = await EmpleoyeeDB.findAll({ where: { status: true } });
-      if (empleoyees.length === 0) {
+const accountservice = {
+    getAll: async () => {
+        try {
+            const account = await AccountDB.findAll({ where: { status: true } });
+            if (account.length === 0) {
+                return {
+                    message: `Registros no encontrados`,
+                    status: 404,
+                    data: {
+                      account,
+                    },
+                };
+        }; 
         return {
-          message: `Registros no encontrados`,
-          status: 404,
-          data: {
-            empleoyees,
-          },
+            message: `Registros encontrados`,
+            status: 200,
+            data: {
+              account,
+            },        
         };
-      }
-      return {
-        message: `Registros encontrados`,
-        status: 200,
-        data: {
-          empleoyees,
-        },
-      };
-    } catch (error) {
-      console.log(error);
-      return {
-        message: `Contacte con el administrador`,
-        status: 500,
-      };
-    }
-  },
-  getOne: async (id: number|string) => {
+} catch (error) {
+    console.log(error);
+    return {
+      message: `Contacte con el administrador`,
+      status: 500,
+    };
+  }
+},
+getOne: async (id: number|string) => {
     try {
-      const Empleoyee = await EmpleoyeeDB.findOne({
+      const account = await AccountDB.findOne({
         where: {
           id: id,
           status: true
         }
       });
-      if (!Empleoyee) {
+      if (!account) {
         return {
           message: `Registro no encontrado`,
           status: 404,
@@ -49,7 +48,7 @@ const empleoyeeServices = {
           message: `Registro encontrado`,
           status: 200,
           data: {
-            Empleoyee,
+            account,
           },
         };
       }
@@ -61,15 +60,15 @@ const empleoyeeServices = {
       };
     }
   },
-  create: async (data: Partial<EmpleoyeeInterface>) => {
+  create: async (data: Partial<accountinterface>) => {
     data.name=data.name?.toLowerCase();
     try {
-      const Empleoyee = await EmpleoyeeDB.create({ ...data });
+      const account = await AccountDB.create({ ...data });
       return {
         message: `Creación exitosa`,
         status: 201,
         data: {
-          Empleoyee,
+            account,
         },
       };
     } catch (error) {
@@ -80,16 +79,16 @@ const empleoyeeServices = {
       };
     }
   },
-  update: async (id: number|string, dat: Partial<EmpleoyeeInterface>) => {
+  update: async (id: number|string, dat: Partial<accountinterface>) => {
     dat.name=dat.name?.toLowerCase();
     try {
-      let Empleoyee: EmpleoyeeInterface | any = await EmpleoyeeDB.update(dat, { where: { id } });
-      const { data } = await empleoyeeServices.getOne(id);
+      let account: accountinterface | any = await AccountDB.update(dat, { where: { id } });
+      const { data } = await accountservice.getOne(id);
       return {
         message: `Actualización exitosa`,
         status: 200,
         data: {
-          Empleoyee: data?.Empleoyee,
+            account: data?.account,
         },
       };
     } catch (error) {
@@ -102,7 +101,7 @@ const empleoyeeServices = {
   },
   delete: async (id: number) => {
     try {
-      const Empleoyee = await EmpleoyeeDB.update(
+      const account = await AccountDB.update(
         {
           status: false,
           deletedAt: new Date(),
@@ -113,7 +112,7 @@ const empleoyeeServices = {
         message: `Eliminación exitosa`,
         status: 204,
         data: {
-          Empleoyee:null,
+            account:null,
         },
       };
     } catch (error) {
@@ -125,8 +124,8 @@ const empleoyeeServices = {
   },
   findByName: async (name: string) => {
     try {
-      const Empleoyee = await EmpleoyeeDB.findAll({ where: { name } });
-      if (Empleoyee.length===0) {
+      const account = await AccountDB.findAll({ where: { name } });
+      if (account.length===0) {
         console.log("Registro no encontrado")
         return {
           message: `Registro no encontrado`,
@@ -138,7 +137,7 @@ const empleoyeeServices = {
           message: `Service encontrado`,
           status: 200,
           data: {
-            Empleoyee:Empleoyee[0],
+            account:account[0],
           },
         };
       }
@@ -153,7 +152,5 @@ const empleoyeeServices = {
 };
 
 export {
-  empleoyeeServices
+  accountservice
 }
-
-

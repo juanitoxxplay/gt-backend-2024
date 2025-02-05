@@ -1,3 +1,5 @@
+
+import accountRoute from "./account.route";
 import attractionRoute from "./attraction.route";
 import categoryRoute from "./category.route";
 import chargeRoute from "./charge.route";
@@ -11,20 +13,29 @@ import inventoryRoute from "./inventory.route";
 import paysheetDetailRoute from "./paysheetDetail.route";
 import paysheetRoute from "./paysheet.route";
 import performanceEvaluationRoute from "./performanceEvaluation.route";
+import eventRegistrationRoute from "./event-registration.route";
 import productRoute from "./product.route";
 import restaurantRoute from "./restaurant.route";
 import roleRoute from "./role.route";
+import requestTypeRoute from "./request_type.route";
 import serviceRoute from "./individualService.route";
+import settingRoute from "./setting.route";
 import supervisorRoute from "./supervisor.route";
 import supplierRoute from "./supplier.route";
 import touristPackageRoute from "./tourist-package.route";
 import unitmeasurementRoute from "./unitMeasurement.route";
 import userRoute from "./user.route";
-/*import eventRoute from "./event.route"*/
 import journalRoute from "./journal.route";
+import purcharsesRoute from "./purcharse_order.route";
+import detailspurcharsesRoute from "./details-purcharseorder.route";
+import TransportRoute from "./transport.route";
+import eventRoute from "./event.route";
 import routesRoute from "./routes.route";
 
+
+
 export {
+  accountRoute,
   attractionRoute,
   categoryRoute,
   chargeRoute,
@@ -41,13 +52,20 @@ export {
   productRoute,
   restaurantRoute,
   roleRoute,
+  requestTypeRoute,
   serviceRoute,
+  settingRoute,
   supervisorRoute,
   supplierRoute,
   touristPackageRoute,
   unitmeasurementRoute,
   userRoute,
-  /*eventRoute,*/
   journalRoute,
+  purcharsesRoute,
+  detailspurcharsesRoute,
+  TransportRoute,
+  eventRegistrationRoute,
+  eventRoute,
   routesRoute
 };
+

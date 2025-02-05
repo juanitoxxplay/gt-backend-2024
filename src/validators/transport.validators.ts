@@ -1,20 +1,21 @@
 import { NextFunction, Request, Response } from "express";
 import { body } from "express-validator";
-import { empleoyeeServices } from "../services";
+import { TransportServices } from "../services";
 
-class EmpleoyeeValidator {
-  public validateEmpleoyee = [
-    body("name").notEmpty().withMessage("Empleoyee Name is required"),
-    body("name").isString().withMessage("Empleoyee Name must be string"),
-    body("last_name").notEmpty().withMessage("Empleoyee last_name is required"),
-    body("last_name").isString().withMessage("Empleoyee last_name must be string"),
-    body("Tshirt_size").notEmpty().withMessage("Empleoyee Tshirt_size is required"),
-    body("Tshirt_size").isInt().withMessage("Empleoyee Tshirt_size must be Integer"),
-    body("Pants_size").notEmpty().withMessage("Empleoyee Pants_size is required"),
-    body("Pants_size").isInt().withMessage("Empleoyee Pants_size must be Integer"),
-    body("Shoes_size").notEmpty().withMessage("Empleoyee Shoes_size is required"),
-    body("Shoes_size").isInt().withMessage("Empleoyee Shoes_size must be Integer"),
-    
+class TransportValidator {
+  public validateTransport = [
+    body("model").notEmpty().withMessage("Transport Model is required"),
+    body("model").isString().withMessage("Transport Model must be string"),
+    body("capacity").notEmpty().withMessage("Capacity is required"),
+    body("capacity").isNumeric().withMessage("Capacity must be a number"),
+    body("state").notEmpty().withMessage("State is required"),
+    body("state").isNumeric().withMessage("State must be a number"),
+    body("id_routes").notEmpty().withMessage("id_routes is required"),
+    body("id_routes").isNumeric().withMessage("id_routes must be a number"),  
+    body("id_vehicle").notEmpty().withMessage("id_vehicle is required"),
+    body("id_vehicle").isNumeric().withMessage("id_vehicle must be a number"),
+    body("id_contract").notEmpty().withMessage("id_contract is required"),
+    body("id_contract").isNumeric().withMessage("id_contract must be a number"),
   ];
 
   //un middleware en el caso de campo id
@@ -24,7 +25,7 @@ class EmpleoyeeValidator {
     next: NextFunction
   ) => {
     const { id } = req.params;
-    const { status, message, data } = await empleoyeeServices.getOne(id);
+    const { status, message, data } = await TransportServices.getOne(id);
     if (status == 500) {
       return res.status(status).json({
         message,
@@ -53,13 +54,13 @@ class EmpleoyeeValidator {
   ) => {
     const { id } = req.params;
     let { name } = req.body;
-    const { status, message, data } = await empleoyeeServices.findByName(name);
+    const { status, message, data } = await TransportServices.findByName(name);
     if (status == 500) {
       return res.status(status).json({
         message,
       });
     } else if (status == 200) {
-      const service: any = data?.Empleoyee;
+      const service: any = data?.Transport;
       if (id) {
         //caso si es para actualizar datos
         if (id != service.id) {
@@ -91,4 +92,4 @@ class EmpleoyeeValidator {
     next();
   };
 }
-export { EmpleoyeeValidator };
+export {TransportValidator};
