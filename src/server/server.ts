@@ -24,7 +24,9 @@ import {
   productRoute,
   restaurantRoute,
   roleRoute,
+  requestTypeRoute,
   serviceRoute,
+  settingRoute,
   supervisorRoute,
   supplierRoute,
   touristPackageRoute,
@@ -49,7 +51,6 @@ export class Server {
     this.port = process.env.API_PORT || 3800;
     this.pre = "/api";
     this.paths = {
-    
       account: this.pre + "/account",
       charge: this.pre + "/chargeRoute",
       concept: this.pre + "/conceptRoute",
@@ -66,7 +67,9 @@ export class Server {
       performanceEvaluation: this.pre + "/performance_evaluation",
       product: this.pre + "/products",
       roles: this.pre + "/roles",
+      requestType: this.pre + "/request_type",
       services: this.pre + "/services",
+      setting: this.pre + "/settings",
       supervisor: this.pre + "/supervisor",
       supplier: this.pre + "/supplier",
       touristPackage: this.pre + "/tourist_packages",
@@ -88,10 +91,8 @@ export class Server {
 
   middlewares() {
     this.app.use(cors());
-    this.app.use(express.json());
+    this.app.use(express.json());//estos erializa las respeusta json cuando consumen no es necesario body parser
     this.app.use(express.static("src/public"));
-    this.app.use(bodyParser.json());
-    this.app.use(bodyParser.urlencoded({ extended: true }));
   }
 
   routes() {
@@ -112,8 +113,10 @@ export class Server {
     this.app.use(this.paths.supervisor, supervisorRoute);
     this.app.use(this.paths.categories, categoryRoute);
     this.app.use(this.paths.roles, roleRoute);
+    this.app.use(this.paths.requestType, requestTypeRoute);
     this.app.use(this.paths.supplier, supplierRoute);
     this.app.use(this.paths.services, serviceRoute);
+    this.app.use(this.paths.setting, settingRoute);
     this.app.use(this.paths.users, userRoute);
     this.app.use(this.paths.purcharses, purcharsesRoute);
     this.app.use(this.paths.detailspurcharses, detailspurcharsesRoute);
