@@ -1,19 +1,18 @@
 import { DataTypes } from "sequelize";
-const SupervisorModel= {
-    id_supervisor: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true,
-    },
 
-    contract_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-            model: "contract",
-            key: "id_contract",
-        },
-    },
-    
-}; 
-export {SupervisorModel};
+const SupervisorModel = {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+  },
+  name: {
+    type: DataTypes.STRING(50),
+    allowNull: false,
+  },
+  id_contrato: {
+    type: DataTypes.INTEGER,
+  },
+};
+
+export { SupervisorModel };

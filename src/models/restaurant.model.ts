@@ -1,4 +1,5 @@
 import { DataTypes } from "sequelize";
+
 const RestaurantModel = {
     id_restaurant: {
         type: DataTypes.INTEGER,
@@ -24,15 +25,9 @@ const RestaurantModel = {
         allowNull: false,
     },  
 
-  contract_id: {
+  id_supervisor : {
     type: DataTypes.INTEGER,
     allowNull: false,
-    references: {
-      model: 'Contract',
-      key: 'id'
-    },
-    onDelete: 'CASCADE', // elimina el registro en Restaurant cuando se elimine el registro en Contract
-    onUpdate: 'CASCADE', // actualiza el registro en Restaurant cuando se actualice el registro en Contract
   },
   
     status: {

@@ -24,9 +24,8 @@ const UserModel = {
   },
 
   
-  status: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: true,
+  id_state: {
+    type: DataTypes.INTEGER,
   },
    
   createdAt: {

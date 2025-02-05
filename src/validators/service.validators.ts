@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response } from "express";
 import { body } from "express-validator";
-import { serviceServices } from "../services";
+import { serviceIndividualServices } from "../services";
 
-class ServiceValidator {
-  public validateService = [
+class IndividualServiceValidator {
+  public validateIndividualService = [
     body("name").notEmpty().withMessage("Service Name is required"),
     body("name").isString().withMessage("Service Name must be string"),
     body("price").notEmpty().withMessage("Service Price is required"),
@@ -17,7 +17,7 @@ class ServiceValidator {
     next: NextFunction
   ) => {
     const { id } = req.params;
-    const { status, message, data } = await serviceServices.getOne(id);
+    const { status, message, data } = await serviceIndividualServices.getOne(id);
     if (status == 500) {
       return res.status(status).json({
         message,
@@ -46,7 +46,7 @@ class ServiceValidator {
   ) => {
     const { id } = req.params;
     let { name } = req.body;
-    const { status, message, data } = await serviceServices.findByName(name);
+    const { status, message, data } = await serviceIndividualServices.findByName(name);
     if (status == 500) {
       return res.status(status).json({
         message,
@@ -73,7 +73,7 @@ class ServiceValidator {
           errors: [
             {
               type: "field",
-              msg: `Nombre en uso : ${name}, para el nuevo rol`,
+              msg: `Nombre en uso : ${name}, para el nuevo registro`,
               path: "name",
               location: "body",
             },
@@ -84,4 +84,4 @@ class ServiceValidator {
     next();
   };
 }
-export { ServiceValidator };
+export { IndividualServiceValidator };
