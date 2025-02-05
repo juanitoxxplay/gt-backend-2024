@@ -7,13 +7,15 @@ export * from './departament.controller';
 export * from './empleoyee.controller';
 export * from './empleoyeeAssistance.controller';
 export * from './empleoyeeUser.controller';
-
 export * from './inventory.controller';
 export * from './paysheet.controller';
 export * from './paysheetDetail.controller';
 export * from './performanceEvaluation.controller';
 export * from './product.controller';
 export * from './role.controller';
+export * from './service.controller';
+export * from './purcharse_order.controller';
+export * from './details-purcharseorder.controller';
 export * from './request_type.controller';
 export * from './individualService.controller';
 export * from './setting.controller';
@@ -28,4 +30,3 @@ export * from './attraction.controller';
 export * from './transport.controller';
 export * from './event.controller';
 export * from './route.controller';
-

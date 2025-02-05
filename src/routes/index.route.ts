@@ -25,9 +25,12 @@ import supplierRoute from "./supplier.route";
 import touristPackageRoute from "./tourist-package.route";
 import unitmeasurementRoute from "./unitMeasurement.route";
 import userRoute from "./user.route";
+import purcharsesRoute from "./purcharse_order.route";
+import detailspurcharsesRoute from "./details-purcharseorder.route";
 import TransportRoute from "./transport.route";
 import eventRoute from "./event.route";
 import routesRoute from "./routes.route";
+
 
 
 export {
@@ -56,8 +59,11 @@ export {
   touristPackageRoute,
   unitmeasurementRoute,
   userRoute,
+  purcharsesRoute,
+  detailspurcharsesRoute,
   TransportRoute,
   eventRegistrationRoute,
   eventRoute,
   routesRoute
 };
+
