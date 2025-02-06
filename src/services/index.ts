@@ -32,3 +32,8 @@ export * from './tourist-package.service';
 export * from './transport.service';
 export * from './unitMeasurement.service';
 export * from './user.service';
+export * from './routes.service';
+export * from './journal.services';
+export * from './account_records.services';
+export * from './requests.services';
+
