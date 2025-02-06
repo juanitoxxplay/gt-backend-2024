@@ -14,3 +14,4 @@ const journalSeeds: Partial<JournalInterface>[] = [
 export{
     journalSeeds
 }
+

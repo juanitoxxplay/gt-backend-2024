@@ -1,3 +1,4 @@
+
 export * from './account_record.model';
 export * from './accounts.model';
 export * from './activity-history.model';
@@ -39,6 +40,7 @@ export * from './resquest.model';
 export * from './role.model';
 export * from './room.model';
 export * from './route.model';
+export * from './request_type.model';
 export * from './sale-product.model';
 export * from './sale-service.model';
 export * from './satisfaction-survey.model';
@@ -60,3 +62,7 @@ export * from './supervisor.model';
 export * from './unit-measurement.model';
 export * from './user_client.model';
 export * from './user.model';
+export * from './journal.model';
+export * from './requests.model';
+export * from './request_type.model';
+export * from './account_records';

@@ -14,10 +14,12 @@ import journalRoute from "./journal.route";
 import paysheetDetailRoute from "./paysheetDetail.route";
 import paysheetRoute from "./paysheet.route";
 import performanceEvaluationRoute from "./performanceEvaluation.route";
+import eventRegistrationRoute from "./event-registration.route";
 import productRoute from "./product.route";
 import restaurantRoute from "./restaurant.route";
 import roleRoute from "./role.route";
 import serviceRoute from "./individualService.route";
+import settingRoute from "./setting.route";
 import supervisorRoute from "./supervisor.route";
 import supplierRoute from "./supplier.route";
 import touristPackageRoute from "./tourist-package.route";
@@ -26,7 +28,14 @@ import userRoute from "./user.route";
 import eventRoute from "./event.route"
 import resquest_typeRoute from "./resquest_type.route";
 import resquestRoute from "./resquest.route";
+import journalRoute from "./journal.route";
+import purcharsesRoute from "./purcharse_order.route";
+import detailspurcharsesRoute from "./details-purcharseorder.route";
+import TransportRoute from "./transport.route";
+import eventRoute from "./event.route";
 import routesRoute from "./routes.route";
+
+
 
 export {
   account_recordRoute,
@@ -48,14 +57,24 @@ export {
   productRoute,
   restaurantRoute,
   roleRoute,
+  requestTypeRoute,
   serviceRoute,
+  settingRoute,
   supervisorRoute,
   supplierRoute,
   touristPackageRoute,
   unitmeasurementRoute,
   userRoute,
+  journalRoute,
+  requestsRoute,
+  request_typeRoute,
+  purcharsesRoute,
+  detailspurcharsesRoute,
+  TransportRoute,
+  eventRegistrationRoute,
   eventRoute,
   resquest_typeRoute,
   resquestRoute,
   routesRoute
 };
+

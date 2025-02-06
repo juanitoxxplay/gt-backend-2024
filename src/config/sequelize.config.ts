@@ -1,5 +1,6 @@
 import { Sequelize } from "sequelize";
 import {
+
   Account_RecordModel,
   AccountsModel,
   ActivityHistoryModel,
@@ -34,6 +35,8 @@ import {
   PerformanceEvaluationModel,
   ProductModel,
   PurcharseOrderModel,
+  RequestsModel,
+  RequestTypeModel,
   ResourceAllocationModel,
   RestaurantModel,
   Resquest_TypesModel,
@@ -79,6 +82,7 @@ const db = new Sequelize(dbName, dbUser, dbPassword, {
   logging: false,
 });
 // CREAMOS LAS TABLAS EN ORDEN ALFABETICO
+
 const Account_RecordDB = db.define("accounts_record", Account_RecordModel);
 const AccountsDB = db.define("accounts", AccountsModel);
 const ActivityHistoryDB = db.define("activityHistory", ActivityHistoryModel);
@@ -120,6 +124,7 @@ const ResquestDB = db.define("resquest", ResquestModel);
 const RoleDB = db.define("roles", RoleModel);
 const RoomDB = db.define("rooms", RoomModel);
 const RouteDb = db.define("routes", RouteModel);
+const RequestTypeDb = db.define("requestTypes", RequestTypeModel);
 const SaleProductDb = db.define("saleproducts", SaleProductModel);
 const SaleServicesDB = db.define("saleServicesDB", SaleServicesModel);
 const SatisfactionSurveysDB = db.define("satisfactionSurveysDB", SatisfactionSurveysModel);
@@ -467,6 +472,7 @@ export {
   RoleDB,
   RoomDB,
   RouteDb,
+  RequestTypeDb,
   SaleProductDb,
   SaleServicesDB,
   SatisfactionSurveysDB,

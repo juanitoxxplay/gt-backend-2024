@@ -25,11 +25,18 @@ import {
   restaurantRoute,
   roleRoute,
   serviceRoute,
+  settingRoute,
   supervisorRoute,
   supplierRoute,
   touristPackageRoute,
   unitmeasurementRoute,
   userRoute,
+  journalRoute,
+  routesRoute,
+  purcharsesRoute,
+  detailspurcharsesRoute,
+  TransportRoute,
+  eventRegistrationRoute,
   eventRoute,
   resquest_typeRoute,
   resquestRoute,
@@ -38,11 +45,13 @@ import {
 
 import { db } from "../config/sequelize.config";
 import { swaggerOptions } from "../config";
+
 export class Server {
   private app: any;
   private port: string | number;
   private pre: string;
   private paths: any;
+
   constructor() {
     this.app = express();
     this.port = process.env.API_PORT || 3800;
@@ -53,7 +62,7 @@ export class Server {
       attractions:this.pre + "/attractions",
       charge: this.pre + "/charge",
       categories: this.pre + "/categories",
-      concept: this.pre + "/concepts",
+      concepts: this.pre + "/concepts",
       contract: this.pre + "/contract",
       departament: this.pre + "/departaments",
       empleoyeeAssistance: this.pre + "/empleoyee_assistance",
@@ -72,10 +81,16 @@ export class Server {
       touristPackage: this.pre + "/tourist_packages",
       unitMeasurement: this.pre + "/unit_measurement",
       users: this.pre + "/users",
+      purcharses: this.pre + "/purcharses",
+      detailspurcharses: this.pre + "/detailspurcharses",
+      transport: this.pre + "/transport",
+      eventRegistration: this.pre + "/event-registration",
       eventRoute: this.pre + "/event",
       resquest_type: this.pre + "/resquest_type",
       resquest: this.pre + "/resquest",
-      routesRoute: this.pre + "/route"
+      routesRoute: this.pre + "/route",
+      setting: this.pre + "/settings",
+
     };
     this.connectDB();
     this.middlewares();
@@ -85,18 +100,17 @@ export class Server {
 
   middlewares() {
     this.app.use(cors());
-    this.app.use(express.json());
+    this.app.use(express.json()); // Serializa las respuestas JSON cuando consumen, no es necesario body parser
     this.app.use(express.static("src/public"));
-    this.app.use(bodyParser.json());
-    this.app.use(bodyParser.urlencoded({ extended: true }));
   }
 
   routes() {
+
     this.app.use(this.paths.account_record, account_recordRoute);
     this.app.use(this.paths.account, accountsRoute);
     this.app.use(this.paths.attractions, attractionRoute);
     this.app.use(this.paths.charge, chargeRoute);
-    this.app.use(this.paths.concept, conceptRoute);
+    this.app.use(this.paths.concepts, conceptRoute);
     this.app.use(this.paths.contract, contractRoute);
     this.app.use(this.paths.departament, departamentRoute);
     this.app.use(this.paths.empleoyeeAssistance, empleoyeeAssistanceRoute);
@@ -111,16 +125,24 @@ export class Server {
     this.app.use(this.paths.supervisor, supervisorRoute);
     this.app.use(this.paths.categories, categoryRoute);
     this.app.use(this.paths.roles, roleRoute);
+    this.app.use(this.paths.requestType, requestTypeRoute);
     this.app.use(this.paths.supplier, supplierRoute);
     this.app.use(this.paths.services, serviceRoute);
+    this.app.use(this.paths.setting, settingRoute);
     this.app.use(this.paths.users, userRoute);
+    this.app.use(this.paths.purcharses, purcharsesRoute);
+    this.app.use(this.paths.detailspurcharses, detailspurcharsesRoute);
+    this.app.use(this.paths.eventRegistration, eventRegistrationRoute);
     this.app.use(this.paths.touristPackage, touristPackageRoute);
     this.app.use(this.paths.unitMeasurement, unitmeasurementRoute);
     this.app.use(this.paths.eventRoute, eventRoute);
     this.app.use(this.paths.resquest_type, resquest_typeRoute);
     this.app.use(this.paths.resquest, resquestRoute);
     this.app.use(this.paths.routesRoute, routesRoute);
+    this.app.use(this.paths.transport, TransportRoute);
+
   }
+
   async connectDB() {
     await db
       .authenticate()
@@ -137,6 +159,7 @@ export class Server {
       console.log(`Servidor corriendo en localhost:${this.port}`);
     });
   }
+
   swaggerSetup() {
     const swaggerDocs = swaggerJsDoc(swaggerOptions);
     this.app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerDocs));

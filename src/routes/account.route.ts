@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { validateFields } from "../middlewares";
+
 import { AccountsController } from "../controllers";
 import { AccountsValidator } from "../validators";
 const router = Router();
@@ -16,6 +17,7 @@ router.post(
   AccountValidator.validateIfNameIsUse,
   validateFields,
   AccountController.create
+
 );
 
 router.put(
@@ -29,3 +31,4 @@ router.put(
 
 router.delete("/:id", AccountController.delete); 
 export default router;
+
