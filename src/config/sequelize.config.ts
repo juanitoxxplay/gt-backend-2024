@@ -1,7 +1,8 @@
 import { Sequelize } from "sequelize";
 import {
-  AccountRecordsModel,
-  AccountModel,
+
+  Account_RecordModel,
+  AccountsModel,
   ActivityHistoryModel,
   AttractionModel,
   BookingAttractionModel,
@@ -38,6 +39,8 @@ import {
   RequestTypeModel,
   ResourceAllocationModel,
   RestaurantModel,
+  Resquest_TypesModel,
+  ResquestModel,
   RoleModel,
   RoomModel,
   RouteModel,
@@ -80,8 +83,8 @@ const db = new Sequelize(dbName, dbUser, dbPassword, {
 });
 // CREAMOS LAS TABLAS EN ORDEN ALFABETICO
 
-const AccountRecordsDB = db.define("account_records", AccountRecordsModel);
-const AccountDB = db.define("account", AccountModel);
+const Account_RecordDB = db.define("accounts_record", Account_RecordModel);
+const AccountsDB = db.define("accounts", AccountsModel);
 const ActivityHistoryDB = db.define("activityHistory", ActivityHistoryModel);
 const AttractionDB = db.define("attractions", AttractionModel);
 const BookingAttractionDB = db.define("bookingattractions", BookingAttractionModel);
@@ -116,8 +119,8 @@ const ProductDB = db.define("products", ProductModel);
 const PurcharseOrderDB = db.define("purcharses", PurcharseOrderModel);
 const RestaurantDB = db.define("restaurants", RestaurantModel);
 const ResourceAllocationDb = db.define("resourceallocation", ResourceAllocationModel);
-const RequestsDB = db.define("requests", RequestsModel);
-const RequestTypeDB = db.define("request_type", RequestTypeModel);
+const Resquest_TypesDB = db.define("resquest_types", Resquest_TypesModel);
+const ResquestDB = db.define("resquest", ResquestModel);
 const RoleDB = db.define("roles", RoleModel);
 const RoomDB = db.define("rooms", RoomModel);
 const RouteDb = db.define("routes", RouteModel);
@@ -396,19 +399,18 @@ TransportDB.belongsTo(RouteDb, { foreignKey: "id_route" });
 ContractDB.hasMany(TransportDB, { foreignKey: "id_contract" });
 TransportDB.belongsTo(ContractDB, { foreignKey: "id_contract" });
 
-//Relacion de request con Journal
-RequestsDB.hasMany(JournalDB, { foreignKey: "request_id" });
-JournalDB.belongsTo(RequestsDB, { foreignKey: "request_id" });
+// Relaciones entre journal
+Resquest_TypesDB.hasMany(ResquestDB, { foreignKey: "resquest_type_id" });
+ResquestDB.belongsTo(Resquest_TypesDB, { foreignKey: "resquest_type_id" });
 
-// Relaciones de request con request Type
-RequestTypeDB.hasMany(RequestsDB, { foreignKey: "request_type_id" });
-RequestsDB.belongsTo(RequestTypeDB, { foreignKey: "request_type_id" });
+AccountsDB.hasMany(Account_RecordDB, { foreignKey: "account_id" });
+Account_RecordDB.belongsTo(AccountsDB, { foreignKey: "account_id" });
 
-//Relacion de account_records con JOURNAL
-AccountRecordsDB.hasOne(JournalDB, { foreignKey: "account_record_id" });
-JournalDB.belongsTo(AccountRecordsDB, { foreignKey: "account_record_id" });
+ResquestDB.hasMany(JournalDB, { foreignKey: "request_id" });
+JournalDB.belongsTo(ResquestDB, { foreignKey: "request_id" });
 
-
+Account_RecordDB.hasOne(JournalDB, { foreignKey: "id_account_records" });
+JournalDB.belongsTo(Account_RecordDB, { foreignKey: "id_account_records" });
 
 
 
@@ -429,8 +431,8 @@ const syncModels = async () => {
 syncModels();
 
 export {
-  AccountRecordsDB,
-  AccountDB,
+  Account_RecordDB,
+  AccountsDB,
   ActivityHistoryDB,
   AttractionDB,
   BookingAttractionDB,
@@ -465,8 +467,8 @@ export {
   PurcharseOrderDB,
   RestaurantDB,
   ResourceAllocationDb,
-  RequestsDB,
-  RequestTypeDB,
+  Resquest_TypesDB,
+  ResquestDB,
   RoleDB,
   RoomDB,
   RouteDb,

@@ -1,4 +1,5 @@
-export * from './account.service';
+
+export * from './accounts.service';
 export * from './attraction.service';
 export * from './category.service';
 export * from './charge.service';
@@ -15,6 +16,7 @@ export * from './role.service';
 export * from './request_type.service';
 export * from './individualService.service';
 export * from './inventory.service';
+export * from './journal.services';
 export * from './paysheet.service';
 export * from './paysheetDetail.service';
 export * from './performanceEvaluation.service';
@@ -32,8 +34,7 @@ export * from './tourist-package.service';
 export * from './transport.service';
 export * from './unitMeasurement.service';
 export * from './user.service';
+export * from './resquest_type.service';
+export * from './resquest.service';
 export * from './routes.service';
 export * from './journal.services';
-export * from './account_records.services';
-export * from './requests.services';
-

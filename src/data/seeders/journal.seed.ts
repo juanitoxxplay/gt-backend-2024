@@ -1,21 +1,17 @@
 import { JournalInterface } from "../../interfaces";
+import { Account_RecordInterface } from "../../interfaces";
+import { ResquestInterface } from "../../interfaces";
 
-const journalSeed: Partial<JournalInterface>[] = [
-    {
-        id:1,
-        request_id:1, 
-        id_account_records: 1,
-    },
-    {
-        id:2,
-        request_id:2, 
-        id_account_records: 2,
-    },
-    {
-        id:3,
-        request_id:3, 
-        id_account_records: 3,
-    },
+
+const journalSeeds: Partial<JournalInterface>[] = [
+  {
+    id:1,
+    request_id:{ id: 1 } as ResquestInterface,
+    account_record_id:{ id: 1 } as Account_RecordInterface,
+  },
 ];
 
-export{ journalSeed }
+export{
+    journalSeeds
+}
+

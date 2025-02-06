@@ -1,11 +1,11 @@
 import { NextFunction, Request, Response } from "express";
 import { body } from "express-validator";
-import { AccountsServices } from "../services";
+import { Resquest_TypesServices } from "../services";
 
-class AccountsValidator {
-  public validateAccounts = [
-    body("name").notEmpty().withMessage("Accounts Name is required"),
-    body("name").isString().withMessage("Accounts Name must be string"),
+class Resquest_TypesValidator {
+  public validateResquest_Types = [
+    body("name").notEmpty().withMessage("Resquest_Types Name is required"),
+    body("name").isString().withMessage("Resquest_Types Name must be string"),
   ];
 
   //un middleware en el caso de campo id
@@ -15,7 +15,7 @@ class AccountsValidator {
     next: NextFunction
   ) => {
     const { id } = req.params;
-    const { status, message, data } = await AccountsServices.getOne(id);
+    const { status, message, data } = await Resquest_TypesServices.getOne(id);
     if (status == 500) {
       return res.status(status).json({
         message,
@@ -44,13 +44,13 @@ class AccountsValidator {
   ) => {
     const { id } = req.params;
     let { name } = req.body;
-    const { status, message, data } = await AccountsServices.findByName(name);
+    const { status, message, data } = await Resquest_TypesServices.findByName(name);
     if (status == 500) {
       return res.status(status).json({
         message,
       });
     } else if (status == 200) {
-      const service: any = data?.Accounts;
+      const service: any = data?.Resquest_Types;
       if (id) {
         //caso si es para actualizar datos
         if (id != service.id) {
@@ -82,4 +82,4 @@ class AccountsValidator {
     next();
   };
 }
-export { AccountsValidator };
+export { Resquest_TypesValidator };

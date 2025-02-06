@@ -1,5 +1,5 @@
-
-import accountRoute from "./account.route";
+import account_recordRoute from "./account_record.route";
+import accountsRoute from "./account.route";
 import attractionRoute from "./attraction.route";
 import categoryRoute from "./category.route";
 import chargeRoute from "./charge.route";
@@ -10,6 +10,7 @@ import empleoyeeAssistanceRoute from "./empleoyeeAssistance.route";
 import empleoyeeRoute from "./empleoyee.route";
 import empleoyeeUserRoute from "./empleoyeeUser.route";
 import inventoryRoute from "./inventory.route";
+import journalRoute from "./journal.route";
 import paysheetDetailRoute from "./paysheetDetail.route";
 import paysheetRoute from "./paysheet.route";
 import performanceEvaluationRoute from "./performanceEvaluation.route";
@@ -17,7 +18,6 @@ import eventRegistrationRoute from "./event-registration.route";
 import productRoute from "./product.route";
 import restaurantRoute from "./restaurant.route";
 import roleRoute from "./role.route";
-import requestTypeRoute from "./request_type.route";
 import serviceRoute from "./individualService.route";
 import settingRoute from "./setting.route";
 import supervisorRoute from "./supervisor.route";
@@ -25,19 +25,21 @@ import supplierRoute from "./supplier.route";
 import touristPackageRoute from "./tourist-package.route";
 import unitmeasurementRoute from "./unitMeasurement.route";
 import userRoute from "./user.route";
+import eventRoute from "./event.route"
+import resquest_typeRoute from "./resquest_type.route";
+import resquestRoute from "./resquest.route";
 import journalRoute from "./journal.route";
 import purcharsesRoute from "./purcharse_order.route";
 import detailspurcharsesRoute from "./details-purcharseorder.route";
 import TransportRoute from "./transport.route";
 import eventRoute from "./event.route";
 import routesRoute from "./routes.route";
-import requestsRoute from "./requests.route";
-import request_typeRoute from "./request_type.route";
 
 
 
 export {
-  accountRoute,
+  account_recordRoute,
+  accountsRoute,
   attractionRoute,
   categoryRoute,
   chargeRoute,
@@ -48,6 +50,7 @@ export {
   empleoyeeRoute,
   empleoyeeUserRoute,
   inventoryRoute,
+  journalRoute,
   paysheetDetailRoute,
   paysheetRoute,
   performanceEvaluationRoute,
@@ -70,6 +73,8 @@ export {
   TransportRoute,
   eventRegistrationRoute,
   eventRoute,
+  resquest_typeRoute,
+  resquestRoute,
   routesRoute
 };
 
