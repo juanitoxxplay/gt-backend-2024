@@ -36,5 +36,4 @@ export * from './routes.service';
 export * from './journal.services';
 export * from './account_records.services';
 export * from './requests.services';
-export * from './request_type.Service';
 

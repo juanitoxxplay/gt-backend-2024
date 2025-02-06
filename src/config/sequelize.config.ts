@@ -41,7 +41,6 @@ import {
   RoleModel,
   RoomModel,
   RouteModel,
-  RequestTypeModel,
   SaleProductModel,
   SaleServicesModel,
   SatisfactionSurveysModel,

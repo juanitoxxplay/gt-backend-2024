@@ -22,6 +22,7 @@ import {
   productRoute,
   restaurantRoute,
   roleRoute,
+  requestsRoute,
   requestTypeRoute,
   serviceRoute,
   settingRoute,
@@ -111,7 +112,7 @@ export class Server {
     this.app.use(this.paths.empleoyeeUser, empleoyeeUserRoute);
     this.app.use(this.paths.inventory, inventoryRoute);
     this.app.use(this.paths.journal, journalRoute);
-    this.app.use(this.paths.request, requestRoute);
+    this.app.use(this.paths.request, requestsRoute);
     this.app.use(this.paths.paysheetDetail, paysheetDetailRoute);
     this.app.use(this.paths.paysheet, paysheetRoute);
     this.app.use(this.paths.performanceEvaluation, performanceEvaluationRoute);
