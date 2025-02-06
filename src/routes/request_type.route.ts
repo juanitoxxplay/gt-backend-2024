@@ -5,6 +5,7 @@ import { RequestTypeValidator } from "../validators";
 const router = Router();
 const requestTypeValidator = new RequestTypeValidator();
 const requestTypeController = new RequestTypeController();
+
 router.get("/", requestTypeController.all);
 
 router.get("/:id", requestTypeController.one);
@@ -22,5 +23,6 @@ router.put("/:id",
     requestTypeController.update
 );
 router.delete("/:id", requestTypeController.delete);
+
 
 export default router;

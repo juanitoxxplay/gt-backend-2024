@@ -1,22 +1,18 @@
 import { DataTypes } from "sequelize";
 
-const SettingsModel = {
+const AccountModel = {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true,
   },
   name: {
-    type: DataTypes.STRING(50),
+    type: DataTypes.STRING(30),
+    allowNull: false
+  },
+  type_account: {
+    type: DataTypes.ENUM('Activo','Pasivo','Ingreso','Egreso','Capital'),
     allowNull: false,
-  },
-  formula: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
-  },
-  description: {
-    type: DataTypes.STRING(100),
-    allowNull: true,
   },
   deletedAt: {
     type: DataTypes.DATE,
@@ -27,4 +23,4 @@ const SettingsModel = {
   },
 };
 
-export { SettingsModel };
+export { AccountModel };

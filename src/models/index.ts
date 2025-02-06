@@ -1,3 +1,4 @@
+export * from './account.model';
 export * from './activity-history.model';
 export * from './attraction.model';
 export * from './booking-attraction.model';
@@ -34,6 +35,7 @@ export * from './restaurant.model';
 export * from './role.model';
 export * from './room.model';
 export * from './route.model';
+export * from './request_type.model';
 export * from './sale-product.model';
 export * from './sale-service.model';
 export * from './satisfaction-survey.model';

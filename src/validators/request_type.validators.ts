@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { body } from "express-validator";
+
 import { RequestTypeServices } from "../services";
 
 class RequestTypeValidator {
@@ -61,3 +62,4 @@ class RequestTypeValidator {
 }
 
 export { RequestTypeValidator };
+

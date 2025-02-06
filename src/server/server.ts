@@ -5,6 +5,7 @@ import swaggerUi from "swagger-ui-express";
 import bodyParser from "body-parser";
 
 import {
+  accountRoute,
   attractionRoute,
   categoryRoute,
   chargeRoute,
@@ -20,59 +21,71 @@ import {
   performanceEvaluationRoute,
   productRoute,
   restaurantRoute,
-  request_typeRoute,
-  requestsRoute,
   roleRoute,
+  requestTypeRoute,
   serviceRoute,
+  settingRoute,
   supervisorRoute,
   supplierRoute,
   touristPackageRoute,
   unitmeasurementRoute,
   userRoute,
-  /*eventRoute,*/
   journalRoute,
-  routesRoute
+  routesRoute,
+  purcharsesRoute,
+  detailspurcharsesRoute,
+  TransportRoute,
+  eventRegistrationRoute,
+  eventRoute,
 } from "../routes/index.route";
 
 import { db } from "../config/sequelize.config";
 import { swaggerOptions } from "../config";
+
 export class Server {
   private app: any;
   private port: string | number;
   private pre: string;
   private paths: any;
+
   constructor() {
     this.app = express();
     this.port = process.env.API_PORT || 3800;
     this.pre = "/api";
     this.paths = {
-      attractions:            this.pre + "/attractions",
-      charge:                 this.pre + "/charge",
-      categories:             this.pre + "/categories",
-      concept:                this.pre + "/concepts",
-      contract:               this.pre + "/contract",
-      departament:            this.pre + "/departaments",
-      empleoyeeAssistance:    this.pre + "/empleoyee_assistance",
-      empleoyeeUser:          this.pre + "/empleoyee_user",
-      empleoyees:             this.pre + "/empleoyees",
-      inventory:              this.pre + "/inventory",
-      journal:                this.pre + "/journal",
-      request:                this.pre + "/request",
-      paysheet:               this.pre + "/paysheet",
-      paysheetDetail:         this.pre + "/paysheet_details",
-      performanceEvaluation:  this.pre + "/performance_evaluation",
-      product:                this.pre + "/products",
-      roles:                  this.pre + "/roles",
-      services:               this.pre + "/services",
-      supervisor:             this.pre + "/supervisor",
-      supplier:               this.pre + "/supplier",
-      touristPackage:         this.pre + "/tourist_packages",
-      unitMeasurement:        this.pre + "/unit_measurement",
-      users:                  this.pre + "/users",
-      eventRoute:             this.pre + "/event",
-      routesRoute:            this.pre + "/route",
-      requests:               this.pre + "/requests",
-      request_type:           this.pre + "/request-type"
+      account: this.pre + "/account",
+      attractions: this.pre + "/attractions",
+      charge: this.pre + "/charge",
+      categories: this.pre + "/categories",
+      concepts: this.pre + "/concepts",
+      contract: this.pre + "/contract",
+      departament: this.pre + "/departaments",
+      empleoyeeAssistance: this.pre + "/empleoyee_assistance",
+      empleoyeeUser: this.pre + "/empleoyee_user",
+      empleoyees: this.pre + "/empleoyees",
+      inventory: this.pre + "/inventory",
+      journal: this.pre + "/journal",
+      request: this.pre + "/request",
+      paysheet: this.pre + "/paysheet",
+      paysheetDetail: this.pre + "/paysheet_details",
+      performanceEvaluation: this.pre + "/performance_evaluation",
+      product: this.pre + "/products",
+      roles: this.pre + "/roles",
+      requestType: this.pre + "/request_type",
+      services: this.pre + "/services",
+      supervisor: this.pre + "/supervisor",
+      supplier: this.pre + "/supplier",
+      touristPackage: this.pre + "/tourist_packages",
+      unitMeasurement: this.pre + "/unit_measurement",
+      users: this.pre + "/users",
+      purcharses: this.pre + "/purcharses",
+      detailspurcharses: this.pre + "/detailspurcharses",
+      transport: this.pre + "/transport",
+      eventRegistration: this.pre + "/event-registration",
+      eventRoute: this.pre + "/event",
+      routesRoute: this.pre + "/route",
+      requests: this.pre + "/requests",
+      setting: this.pre + "/settings",
     };
     this.connectDB();
     this.middlewares();
@@ -82,16 +95,15 @@ export class Server {
 
   middlewares() {
     this.app.use(cors());
-    this.app.use(express.json());
+    this.app.use(express.json()); // Serializa las respuestas JSON cuando consumen, no es necesario body parser
     this.app.use(express.static("src/public"));
-    this.app.use(bodyParser.json());
-    this.app.use(bodyParser.urlencoded({ extended: true }));
   }
 
   routes() {
+    this.app.use(this.paths.account, accountRoute);
     this.app.use(this.paths.attractions, attractionRoute);
     this.app.use(this.paths.charge, chargeRoute);
-    this.app.use(this.paths.concept, conceptRoute);
+    this.app.use(this.paths.concepts, conceptRoute);
     this.app.use(this.paths.contract, contractRoute);
     this.app.use(this.paths.departament, departamentRoute);
     this.app.use(this.paths.empleoyeeAssistance, empleoyeeAssistanceRoute);
@@ -99,6 +111,7 @@ export class Server {
     this.app.use(this.paths.empleoyeeUser, empleoyeeUserRoute);
     this.app.use(this.paths.inventory, inventoryRoute);
     this.app.use(this.paths.journal, journalRoute);
+    this.app.use(this.paths.request, requestRoute);
     this.app.use(this.paths.paysheetDetail, paysheetDetailRoute);
     this.app.use(this.paths.paysheet, paysheetRoute);
     this.app.use(this.paths.performanceEvaluation, performanceEvaluationRoute);
@@ -106,16 +119,21 @@ export class Server {
     this.app.use(this.paths.supervisor, supervisorRoute);
     this.app.use(this.paths.categories, categoryRoute);
     this.app.use(this.paths.roles, roleRoute);
+    this.app.use(this.paths.requestType, requestTypeRoute);
     this.app.use(this.paths.supplier, supplierRoute);
     this.app.use(this.paths.services, serviceRoute);
+    this.app.use(this.paths.setting, settingRoute);
     this.app.use(this.paths.users, userRoute);
+    this.app.use(this.paths.purcharses, purcharsesRoute);
+    this.app.use(this.paths.detailspurcharses, detailspurcharsesRoute);
+    this.app.use(this.paths.eventRegistration, eventRegistrationRoute);
     this.app.use(this.paths.touristPackage, touristPackageRoute);
     this.app.use(this.paths.unitMeasurement, unitmeasurementRoute);
-    /*this.app.use(this.paths.eventRoute, eventRoute);*/
     this.app.use(this.paths.routesRoute, routesRoute);
-    this.app.use(this.paths.requests, requestsRoute);
-    this.app.use(this.paths.request_type, request_typeRoute);
+    this.app.use(this.paths.transport, TransportRoute);
+    this.app.use(this.paths.eventRoute, eventRoute);
   }
+
   async connectDB() {
     await db
       .authenticate()
@@ -132,6 +150,7 @@ export class Server {
       console.log(`Servidor corriendo en localhost:${this.port}`);
     });
   }
+
   swaggerSetup() {
     const swaggerDocs = swaggerJsDoc(swaggerOptions);
     this.app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerDocs));

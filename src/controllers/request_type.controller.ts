@@ -9,6 +9,7 @@ export class RequestTypeController {
         return res.status(status).json({
         message,
         data,
+
         });
     };
 

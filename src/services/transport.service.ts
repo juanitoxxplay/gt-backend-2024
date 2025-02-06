@@ -1,17 +1,17 @@
 
-import { EmpleoyeeDB } from "../config";
-import { EmpleoyeeInterface } from "../interfaces";
+import { TransportDB } from "../config";
+import { TransportInterface } from "../interfaces";
 
-const empleoyeeServices = {
+const TransportServices = {
   getAll: async () => {
     try {
-      const empleoyees = await EmpleoyeeDB.findAll({ where: { status: true } });
-      if (empleoyees.length === 0) {
+      const Transports = await TransportDB.findAll({ where: { status: true } });
+      if (Transports.length === 0) {
         return {
           message: `Registros no encontrados`,
           status: 404,
           data: {
-            empleoyees,
+            Transports,
           },
         };
       }
@@ -19,7 +19,7 @@ const empleoyeeServices = {
         message: `Registros encontrados`,
         status: 200,
         data: {
-          empleoyees,
+          Transports,
         },
       };
     } catch (error) {
@@ -32,13 +32,13 @@ const empleoyeeServices = {
   },
   getOne: async (id: number|string) => {
     try {
-      const Empleoyee = await EmpleoyeeDB.findOne({
+      const Transport = await TransportDB.findOne({
         where: {
           id: id,
           status: true
         }
       });
-      if (!Empleoyee) {
+      if (!Transport) {
         return {
           message: `Registro no encontrado`,
           status: 404,
@@ -49,7 +49,7 @@ const empleoyeeServices = {
           message: `Registro encontrado`,
           status: 200,
           data: {
-            Empleoyee,
+            Transport,
           },
         };
       }
@@ -61,15 +61,15 @@ const empleoyeeServices = {
       };
     }
   },
-  create: async (data: Partial<EmpleoyeeInterface>) => {
-    data.name=data.name?.toLowerCase();
+  create: async (data: Partial<TransportInterface>) => {
+    data.model=data.model?.toLowerCase();
     try {
-      const Empleoyee = await EmpleoyeeDB.create({ ...data });
+      const Transport = await TransportDB.create({ ...data });
       return {
         message: `Creación exitosa`,
         status: 201,
         data: {
-          Empleoyee,
+          Transport,
         },
       };
     } catch (error) {
@@ -80,16 +80,16 @@ const empleoyeeServices = {
       };
     }
   },
-  update: async (id: number|string, dat: Partial<EmpleoyeeInterface>) => {
-    dat.name=dat.name?.toLowerCase();
+  update: async (id: number|string, dat: Partial<TransportInterface>) => {
+    dat.model=dat.model?.toLowerCase();
     try {
-      let Empleoyee: EmpleoyeeInterface | any = await EmpleoyeeDB.update(dat, { where: { id } });
-      const { data } = await empleoyeeServices.getOne(id);
+      let Transport: TransportInterface | any = await TransportDB.update(dat, { where: { id } });
+      const { data } = await TransportServices.getOne(id);
       return {
         message: `Actualización exitosa`,
         status: 200,
         data: {
-          Empleoyee: data?.Empleoyee,
+          Transport: data?.Transport,
         },
       };
     } catch (error) {
@@ -102,7 +102,7 @@ const empleoyeeServices = {
   },
   delete: async (id: number) => {
     try {
-      const Empleoyee = await EmpleoyeeDB.update(
+      const Transport = await TransportDB.update(
         {
           status: false,
           deletedAt: new Date(),
@@ -113,7 +113,7 @@ const empleoyeeServices = {
         message: `Eliminación exitosa`,
         status: 204,
         data: {
-          Empleoyee:null,
+          Transport:null,
         },
       };
     } catch (error) {
@@ -125,8 +125,8 @@ const empleoyeeServices = {
   },
   findByName: async (name: string) => {
     try {
-      const Empleoyee = await EmpleoyeeDB.findAll({ where: { name } });
-      if (Empleoyee.length===0) {
+      const Transport = await TransportDB.findAll({ where: { name } });
+      if (Transport.length===0) {
         console.log("Registro no encontrado")
         return {
           message: `Registro no encontrado`,
@@ -138,7 +138,7 @@ const empleoyeeServices = {
           message: `Service encontrado`,
           status: 200,
           data: {
-            Empleoyee:Empleoyee[0],
+            Transport:Transport[0],
           },
         };
       }
@@ -153,7 +153,7 @@ const empleoyeeServices = {
 };
 
 export {
-  empleoyeeServices
+  TransportServices
 }
 
 

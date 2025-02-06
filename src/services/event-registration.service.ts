@@ -1,17 +1,17 @@
 
-import { EmpleoyeeDB } from "../config";
-import { EmpleoyeeInterface } from "../interfaces";
+import { EventRegistrationDB } from "../config";
+import { EventRegistrationInterface } from "../interfaces";
 
-const empleoyeeServices = {
+const EventRegistrationServices = {
   getAll: async () => {
     try {
-      const empleoyees = await EmpleoyeeDB.findAll({ where: { status: true } });
-      if (empleoyees.length === 0) {
+      const EventRegistration = await EventRegistrationDB.findAll({ where: { status: true } });
+      if (EventRegistration.length === 0) {
         return {
           message: `Registros no encontrados`,
           status: 404,
           data: {
-            empleoyees,
+            EventRegistration,
           },
         };
       }
@@ -19,7 +19,7 @@ const empleoyeeServices = {
         message: `Registros encontrados`,
         status: 200,
         data: {
-          empleoyees,
+          EventRegistration,
         },
       };
     } catch (error) {
@@ -32,13 +32,13 @@ const empleoyeeServices = {
   },
   getOne: async (id: number|string) => {
     try {
-      const Empleoyee = await EmpleoyeeDB.findOne({
+      const EventRegistration = await EventRegistrationDB.findOne({
         where: {
           id: id,
           status: true
         }
       });
-      if (!Empleoyee) {
+      if (!EventRegistration) {
         return {
           message: `Registro no encontrado`,
           status: 404,
@@ -49,7 +49,7 @@ const empleoyeeServices = {
           message: `Registro encontrado`,
           status: 200,
           data: {
-            Empleoyee,
+            EventRegistration,
           },
         };
       }
@@ -61,15 +61,15 @@ const empleoyeeServices = {
       };
     }
   },
-  create: async (data: Partial<EmpleoyeeInterface>) => {
-    data.name=data.name?.toLowerCase();
+  create: async (data: Partial<EventRegistrationInterface>) => {
+    //data.name=data.name?.toLowerCase();
     try {
-      const Empleoyee = await EmpleoyeeDB.create({ ...data });
+      const EventRegistration = await EventRegistrationDB.create({ ...data });
       return {
         message: `Creación exitosa`,
         status: 201,
         data: {
-          Empleoyee,
+          EventRegistration,
         },
       };
     } catch (error) {
@@ -80,16 +80,16 @@ const empleoyeeServices = {
       };
     }
   },
-  update: async (id: number|string, dat: Partial<EmpleoyeeInterface>) => {
-    dat.name=dat.name?.toLowerCase();
+  update: async (id: number|string, dat: Partial<EventRegistrationInterface>) => {
+    //dat.name=dat.name?.toLowerCase();
     try {
-      let Empleoyee: EmpleoyeeInterface | any = await EmpleoyeeDB.update(dat, { where: { id } });
-      const { data } = await empleoyeeServices.getOne(id);
+      let EventRegistration: EventRegistrationInterface | any = await EventRegistrationDB.update(dat, { where: { id } });
+      const { data } = await EventRegistrationServices.getOne(id);
       return {
         message: `Actualización exitosa`,
         status: 200,
         data: {
-          Empleoyee: data?.Empleoyee,
+          EventRegistration: data?.EventRegistration,
         },
       };
     } catch (error) {
@@ -102,7 +102,7 @@ const empleoyeeServices = {
   },
   delete: async (id: number) => {
     try {
-      const Empleoyee = await EmpleoyeeDB.update(
+      const EventRegistration = await EventRegistrationDB.update(
         {
           status: false,
           deletedAt: new Date(),
@@ -113,7 +113,7 @@ const empleoyeeServices = {
         message: `Eliminación exitosa`,
         status: 204,
         data: {
-          Empleoyee:null,
+          EventRegistration:null,
         },
       };
     } catch (error) {
@@ -125,8 +125,8 @@ const empleoyeeServices = {
   },
   findByName: async (name: string) => {
     try {
-      const Empleoyee = await EmpleoyeeDB.findAll({ where: { name } });
-      if (Empleoyee.length===0) {
+      const EventRegistration = await EventRegistrationDB.findAll({ where: { name } });
+      if (EventRegistration.length===0) {
         console.log("Registro no encontrado")
         return {
           message: `Registro no encontrado`,
@@ -138,7 +138,7 @@ const empleoyeeServices = {
           message: `Service encontrado`,
           status: 200,
           data: {
-            Empleoyee:Empleoyee[0],
+            EventRegistration:EventRegistration[0],
           },
         };
       }
@@ -153,7 +153,7 @@ const empleoyeeServices = {
 };
 
 export {
-  empleoyeeServices
+  EventRegistrationServices
 }
 
 

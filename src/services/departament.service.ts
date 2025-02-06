@@ -1,4 +1,3 @@
-
 import { DepartamentDB } from "../config";
 import { DepartamentInterface } from "../interfaces";
 

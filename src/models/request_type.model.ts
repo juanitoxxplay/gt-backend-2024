@@ -1,4 +1,5 @@
 import { DataTypes } from "sequelize";
+
 const RequestTypeModel = {
     request_type_id: {
         type: DataTypes.INTEGER,
@@ -31,3 +32,4 @@ const RequestTypeModel = {
 };    
 
 export {RequestTypeModel}; 
+

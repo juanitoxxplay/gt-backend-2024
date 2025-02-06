@@ -1,20 +1,21 @@
 import { NextFunction, Request, Response } from "express";
 import { body } from "express-validator";
-import { empleoyeeServices } from "../services";
+import { EventRegistrationServices } from "../services";
 
-class EmpleoyeeValidator {
-  public validateEmpleoyee = [
-    body("name").notEmpty().withMessage("Empleoyee Name is required"),
-    body("name").isString().withMessage("Empleoyee Name must be string"),
-    body("last_name").notEmpty().withMessage("Empleoyee last_name is required"),
-    body("last_name").isString().withMessage("Empleoyee last_name must be string"),
-    body("Tshirt_size").notEmpty().withMessage("Empleoyee Tshirt_size is required"),
-    body("Tshirt_size").isInt().withMessage("Empleoyee Tshirt_size must be Integer"),
-    body("Pants_size").notEmpty().withMessage("Empleoyee Pants_size is required"),
-    body("Pants_size").isInt().withMessage("Empleoyee Pants_size must be Integer"),
-    body("Shoes_size").notEmpty().withMessage("Empleoyee Shoes_size is required"),
-    body("Shoes_size").isInt().withMessage("Empleoyee Shoes_size must be Integer"),
-    
+class EventRegistrationValidator {
+  public validateEventRegistration = [
+    body("name").notEmpty().withMessage("EventRegistration Name is required"),
+    body("name").isString().withMessage("EventRegistration Name must be string"),
+    body("eventId").notEmpty().withMessage("Event ID is required"),
+    body("eventId").isInt().withMessage("Event ID must be integer"),
+    body("clienId").notEmpty().withMessage("Client ID is required"),
+    body("clienId").isInt().withMessage("Client ID must be integer"),
+    body("registrationDate").notEmpty().withMessage("Registration Date is required"),
+    body("registrationDate").isDate().withMessage("Registration Date must be a valid date"),
+    body("status").notEmpty().withMessage("Status is required"),
+    body("status").isInt().withMessage("Status must be integer"),
+    body("unitPrice").notEmpty().withMessage("Unit Price is required"),
+    body("unitPrice").isFloat().withMessage("Unit Price must be a number"),
   ];
 
   //un middleware en el caso de campo id
@@ -24,7 +25,7 @@ class EmpleoyeeValidator {
     next: NextFunction
   ) => {
     const { id } = req.params;
-    const { status, message, data } = await empleoyeeServices.getOne(id);
+    const { status, message, data } = await EventRegistrationServices.getOne(id);
     if (status == 500) {
       return res.status(status).json({
         message,
@@ -53,13 +54,13 @@ class EmpleoyeeValidator {
   ) => {
     const { id } = req.params;
     let { name } = req.body;
-    const { status, message, data } = await empleoyeeServices.findByName(name);
+    const { status, message, data } = await EventRegistrationServices.findByName(name);
     if (status == 500) {
       return res.status(status).json({
         message,
       });
     } else if (status == 200) {
-      const service: any = data?.Empleoyee;
+      const service: any = data?.EventRegistration;
       if (id) {
         //caso si es para actualizar datos
         if (id != service.id) {
@@ -91,4 +92,4 @@ class EmpleoyeeValidator {
     next();
   };
 }
-export { EmpleoyeeValidator };
+export { EventRegistrationValidator };
