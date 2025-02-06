@@ -31,6 +31,7 @@ import {
   unitmeasurementRoute,
   userRoute,
   journalRoute,
+  routesRoute,
   purcharsesRoute,
   detailspurcharsesRoute,
   TransportRoute,
@@ -53,10 +54,10 @@ export class Server {
     this.pre = "/api";
     this.paths = {
       account: this.pre + "/account",
-      charge: this.pre + "/charge",
-      concept: this.pre + "/concept",
       attractions: this.pre + "/attractions",
+      charge: this.pre + "/charge",
       categories: this.pre + "/categories",
+      concepts: this.pre + "/concepts",
       contract: this.pre + "/contract",
       departament: this.pre + "/departaments",
       empleoyeeAssistance: this.pre + "/empleoyee_assistance",
@@ -64,6 +65,7 @@ export class Server {
       empleoyees: this.pre + "/empleoyees",
       inventory: this.pre + "/inventory",
       journal: this.pre + "/journal",
+      request: this.pre + "/request",
       paysheet: this.pre + "/paysheet",
       paysheetDetail: this.pre + "/paysheet_details",
       performanceEvaluation: this.pre + "/performance_evaluation",
@@ -71,7 +73,6 @@ export class Server {
       roles: this.pre + "/roles",
       requestType: this.pre + "/request_type",
       services: this.pre + "/services",
-      setting: this.pre + "/settings",
       supervisor: this.pre + "/supervisor",
       supplier: this.pre + "/supplier",
       touristPackage: this.pre + "/tourist_packages",
@@ -80,8 +81,11 @@ export class Server {
       purcharses: this.pre + "/purcharses",
       detailspurcharses: this.pre + "/detailspurcharses",
       transport: this.pre + "/transport",
-      eventregistration: this.pre + "/event-registration",
+      eventRegistration: this.pre + "/event-registration",
       eventRoute: this.pre + "/event",
+      routesRoute: this.pre + "/route",
+      requests: this.pre + "/requests",
+      setting: this.pre + "/settings",
     };
     this.connectDB();
     this.middlewares();
@@ -99,7 +103,7 @@ export class Server {
     this.app.use(this.paths.account, accountRoute);
     this.app.use(this.paths.attractions, attractionRoute);
     this.app.use(this.paths.charge, chargeRoute);
-    this.app.use(this.paths.concept, conceptRoute);
+    this.app.use(this.paths.concepts, conceptRoute);
     this.app.use(this.paths.contract, contractRoute);
     this.app.use(this.paths.departament, departamentRoute);
     this.app.use(this.paths.empleoyeeAssistance, empleoyeeAssistanceRoute);
@@ -107,6 +111,7 @@ export class Server {
     this.app.use(this.paths.empleoyeeUser, empleoyeeUserRoute);
     this.app.use(this.paths.inventory, inventoryRoute);
     this.app.use(this.paths.journal, journalRoute);
+    this.app.use(this.paths.request, requestRoute);
     this.app.use(this.paths.paysheetDetail, paysheetDetailRoute);
     this.app.use(this.paths.paysheet, paysheetRoute);
     this.app.use(this.paths.performanceEvaluation, performanceEvaluationRoute);
@@ -121,9 +126,10 @@ export class Server {
     this.app.use(this.paths.users, userRoute);
     this.app.use(this.paths.purcharses, purcharsesRoute);
     this.app.use(this.paths.detailspurcharses, detailspurcharsesRoute);
-    this.app.use(this.paths.eventregistration, eventRegistrationRoute);
+    this.app.use(this.paths.eventRegistration, eventRegistrationRoute);
     this.app.use(this.paths.touristPackage, touristPackageRoute);
     this.app.use(this.paths.unitMeasurement, unitmeasurementRoute);
+    this.app.use(this.paths.routesRoute, routesRoute);
     this.app.use(this.paths.transport, TransportRoute);
     this.app.use(this.paths.eventRoute, eventRoute);
   }

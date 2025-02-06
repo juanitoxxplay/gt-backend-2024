@@ -1,28 +1,28 @@
 import { Request, Response } from "express";
-import { RequestTypeServices } from "../services";
+import { RequestsServices } from "../services";
 
-export class RequestTypeController {
+export class RequestsController {
+
     constructor() {}
 
     all = async (req: Request, res: Response) => {
-        const { status, message, data } = await RequestTypeServices.getAll();
+        const { status, message, data } = await RequestsServices.getAll();
         return res.status(status).json({
         message,
         data,
-
         });
     };
 
     one = async (req: Request, res: Response) => {
         const {id}=req.params
-        const { status, message, data } = await RequestTypeServices.getOne(parseInt(id) as number);
+        const { status, message, data } = await RequestsServices.getOne(parseInt(id) as number);
         return res.status(status).json({
         message,
         data,
         });
     };
     create = async (req: Request, res: Response) => {
-        const { status, message, data } = await RequestTypeServices.create(req.body);
+        const { status, message, data } = await RequestsServices.create(req.body);
         return res.status(status).json({
         message,
         data,
@@ -30,7 +30,7 @@ export class RequestTypeController {
     };
     update = async (req: Request, res: Response) => {
         const {id}=req.params
-        const { status, message, data } = await RequestTypeServices.update(parseInt(id) as number,req.body);
+        const { status, message, data } = await RequestsServices.update(parseInt(id) as number,req.body);
         return res.status(status).json({
         message,
         data,
@@ -39,7 +39,7 @@ export class RequestTypeController {
 
     delete = async (req: Request, res: Response) => {
         const {id}=req.params
-        const { status, message, data } = await RequestTypeServices.delete(parseInt(id) as number);
+        const { status, message, data } = await RequestsServices.delete(parseInt(id) as number);
         return res.status(status).json({
         message,
         data,

@@ -31,6 +31,8 @@ import detailspurcharsesRoute from "./details-purcharseorder.route";
 import TransportRoute from "./transport.route";
 import eventRoute from "./event.route";
 import routesRoute from "./routes.route";
+import requestsRoute from "./requests.route";
+import request_typeRoute from "./request_type.route";
 
 
 
@@ -61,6 +63,8 @@ export {
   unitmeasurementRoute,
   userRoute,
   journalRoute,
+  requestsRoute,
+  request_typeRoute,
   purcharsesRoute,
   detailspurcharsesRoute,
   TransportRoute,

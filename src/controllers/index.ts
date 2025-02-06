@@ -28,6 +28,8 @@ export * from './user.controller';
 export * from './attraction.controller';
 export * from './route.controller';
 export * from './journal.controller';
+export * from './request_type.controller';
+export * from './requests.controller';
 export * from './transport.controller';
 export * from './event.controller';
 

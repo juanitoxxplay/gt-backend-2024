@@ -1,8 +1,11 @@
 export interface RequestTypeInterface{
-    id?: number;
+
+    id?:number;
     name: string;
     bot: boolean;
-    createdAt:Date;
-    updatedAt:Date;
-    deletedAt:Date;
+    status?: boolean;
+    createAt: Date;
+    updateAt: Date;
+    deleteAt: Date; 
+
 }

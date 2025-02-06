@@ -1,19 +1,11 @@
 import sequelize from "sequelize";
 import { RequestsDB, RequestTypeDB } from "../config";
-import { RequestsInterface } from "../interfaces";
+import { RequestTypeInterface } from "../interfaces";
 
-const RequestsServices = {
+const RequestTypeServices = {
     getAll: async () => {
         try {
-            const requests = await RequestsDB.findAll({
-                where: {
-                    status: true,
-                    include: [{
-                        model: RequestTypeDB,
-                        attributes: ['request_type_id'],
-                    }],
-                }
-            });
+        const requests = await RequestTypeDB.findAll({ where: { status: true } });
         if (requests.length === 0) {
             return {
             message: `Registros no encontrados`,
@@ -38,10 +30,9 @@ const RequestsServices = {
         };
         }
     },
-
     getOne: async (id: number|string) => {
         try {
-        const request = await RequestsDB.findOne({
+        const request = await RequestTypeDB.findOne({
             where: {
             id: id,
             status: true
@@ -70,10 +61,10 @@ const RequestsServices = {
         };
         }
     },
-    create: async (data: Partial<RequestsInterface>) => {
+    create: async (data: Partial<RequestTypeInterface>) => {
         data.id=data.id;
         try {
-        const request = await RequestsDB.create({ ...data });
+        const request = await RequestTypeDB.create({ ...data });
         return {
             message: `Creación exitosa`,
             status: 201,
@@ -89,11 +80,11 @@ const RequestsServices = {
         };
         }
     },
-    update: async (id: number|string, dat: Partial<RequestsInterface>) => {
+    update: async (id: number|string, dat: Partial<RequestTypeInterface>) => {
         dat.id=dat.id;
         try {
-        let request: RequestsInterface | any = await RequestsDB.update(dat, { where: { id } });
-        const { data } = await RequestsServices.getOne(id);
+        /*let request: RequestTypeInterface | any =*/ await RequestTypeDB.update(dat, { where: { id } });
+        const { data } = await RequestTypeServices.getOne(id);
         return {
             message: `Actualización exitosa`,
             status: 200,
@@ -111,7 +102,7 @@ const RequestsServices = {
     },
     delete: async (id: number) => {
         try {
-        const request = await RequestsDB.update(
+        const request = await RequestTypeDB.update(
             {
             status: false,
             deletedAt: new Date(),
@@ -134,7 +125,7 @@ const RequestsServices = {
     },
     findByid: async (id: string) => {
         try {
-        const request = await RequestsDB.findAll({ where: { id } });
+        const request = await RequestTypeDB.findAll({ where: { id } });
         if (request.length===0) {
             console.log("Registro no encontrado")
             return {
@@ -159,77 +150,36 @@ const RequestsServices = {
         };
         }
     },
-    findByRequestTypeName: async (request_type_name: string) => {
+    findByName: async (name: string) => {
         try {
-            const request = await RequestsDB.findAll({
-                where: {
-                    status: true,
-                    include: [{
-                        model: RequestTypeDB,
-                        [sequelize.Op.like]: "%"+request_type_name+"%",
-                        attributes: [['name', 'rquest_type_name']],
-                    }],
-                }});
-
-            if(request.length == 0) {
-                return {
-                    message: 'No hay ningún registro asociado',
-                    status: 404,
-                    data: {},
-                };
-            } else {
-                return {
-                    message: 'Búsqueda exitosa',
-                    status: 200,
-                    data: { request },
-                }; 
-            }
-        } catch (er) {
-            console.log(er);
-
+          const request_type = await RequestTypeDB.findAll({ where: { name } });
+          if (request_type.length===0) {
+            console.log("Registro no encontrado")
             return {
-                message: 'Error en el servidor. Contacte con su administrador',
-                status: 500,
+              message: `Registro no encontrado`,
+              status: 404,
+              data: {},
             };
-        }
-    },
-    findByRequestTypeId: async (request_type_id: number) => {
-        try {
-            const request = await RequestsDB.findAll({
-                where: {
-                    status: true,
-                    include: [{
-                        model: RequestTypeDB,
-                        [sequelize.Op.eq]: request_type_id,
-                        attributes: ['request_type_id'],
-                    }],
-                }});
-
-            if(request.length == 0) {
-                return {
-                    message: 'No hay ningún registro asociado',
-                    status: 404,
-                    data: {},
-                };
-            } else {
-                return {
-                    message: 'Búsqueda exitosa',
-                    status: 200,
-                    data: { request },
-                }; 
-            }
-        } catch (er) {
-            console.log(er);
-
+          } else {
             return {
-                message: 'Error en el servidor. Contacte con su administrador',
-                status: 500,
+              message: `resquest type encontrado`,
+              status: 200,
+              data: {
+                request_type:request_type[0],
+              },
             };
+          }
+        } catch (error) {
+          console.log(error);
+          return {
+            message: `Contact the administrator: error`,
+            status: 500,
+          };
         }
-    }
+      },
 };
 
 export {
-    RequestsServices
+    RequestTypeServices
 }
 

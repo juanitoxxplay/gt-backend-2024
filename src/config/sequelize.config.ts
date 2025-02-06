@@ -35,6 +35,7 @@ import {
   ProductModel,
   PurcharseOrderModel,
   RequestsModel,
+  RequestTypeModel,
   ResourceAllocationModel,
   RestaurantModel,
   RoleModel,
@@ -117,6 +118,7 @@ const PurcharseOrderDB = db.define("purcharses", PurcharseOrderModel);
 const RestaurantDB = db.define("restaurants", RestaurantModel);
 const ResourceAllocationDb = db.define("resourceallocation", ResourceAllocationModel);
 const RequestsDB = db.define("requests", RequestsModel);
+const RequestTypeDB = db.define("request_type", RequestTypeModel);
 const RoleDB = db.define("roles", RoleModel);
 const RoomDB = db.define("rooms", RoomModel);
 const RouteDb = db.define("routes", RouteModel);
@@ -399,6 +401,10 @@ TransportDB.belongsTo(ContractDB, { foreignKey: "id_contract" });
 RequestsDB.hasMany(JournalDB, { foreignKey: "request_id" });
 JournalDB.belongsTo(RequestsDB, { foreignKey: "request_id" });
 
+// Relaciones de request con request Type
+RequestTypeDB.hasMany(RequestsDB, { foreignKey: "request_type_id" });
+RequestsDB.belongsTo(RequestTypeDB, { foreignKey: "request_type_id" });
+
 //Relacion de account_records con JOURNAL
 AccountRecordsDB.hasOne(JournalDB, { foreignKey: "account_record_id" });
 JournalDB.belongsTo(AccountRecordsDB, { foreignKey: "account_record_id" });
@@ -461,6 +467,7 @@ export {
   RestaurantDB,
   ResourceAllocationDb,
   RequestsDB,
+  RequestTypeDB,
   RoleDB,
   RoomDB,
   RouteDb,

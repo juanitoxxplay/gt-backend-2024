@@ -24,6 +24,7 @@ export * from "./inventory.interface";
 export * from "./event-registration.interface";
 export * from "./supplier.interface";
 export * from "./routes.interface";
+export * from "./requests.interface";
 export * from "./request_type.interface";
 export * from "./settings.interface";
 export * from "./purcharse_order.interface";

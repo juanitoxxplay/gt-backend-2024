@@ -30,4 +30,5 @@ export * from './transport.validators';
 export * from './event.validators';
 export * from './routes.validators';
 export * from './journal.valitators';
+export * from './request.validators';
 
