@@ -1,34 +1,34 @@
 import { Router } from "express";
 import { validateFields } from "../middlewares";
-import { AccountController } from "../controllers";
-import { Accountvalidator } from "../validators";
+
+import { AccountsController } from "../controllers";
+import { AccountsValidator } from "../validators";
 const router = Router();
-const accountvalidator = new Accountvalidator();
-const accountController = new AccountController();
+const AccountValidator = new AccountsValidator();
+const AccountController = new AccountsController();
 
+router.get("/", AccountController.all);
 
-
-
-router.get("/", accountController.all);
-
-router.get("/:id", accountController.one);
+router.get("/:id", AccountController.one);
 
 router.post(
   "/",
-  accountvalidator.validatoraccount,
-  accountvalidator.validateIfNameIsUse,
+  AccountValidator.validateAccounts,
+  AccountValidator.validateIfNameIsUse,
   validateFields,
-  accountController.create
+  AccountController.create
+
 );
 
 router.put(
   "/:id",
-  accountvalidator.validatoraccount,
-  accountvalidator.validateIfIdExist,
-  accountvalidator.validateIfNameIsUse,
+  AccountValidator.validateAccounts,
+  AccountValidator.validateIfIdExist,
+  AccountValidator.validateIfNameIsUse,
   validateFields,
-  accountController.update
+  AccountController.update
 );
 
-router.delete("/:id", accountController.delete); 
+router.delete("/:id", AccountController.delete); 
 export default router;
+

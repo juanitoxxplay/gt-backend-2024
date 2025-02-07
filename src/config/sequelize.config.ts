@@ -1,6 +1,8 @@
 import { Sequelize } from "sequelize";
 import {
-  AccountModel,
+
+  Account_RecordModel,
+  AccountsModel,
   ActivityHistoryModel,
   AttractionModel,
   BookingAttractionModel,
@@ -26,18 +28,22 @@ import {
   IndividualServicesModel,
   InventoryModel,
   InventoryhistoryModel,
+  JournalModel,
   PackageSaleModel,
   PaysheetDetailModel,
   PaysheetModel,
   PerformanceEvaluationModel,
   ProductModel,
   PurcharseOrderModel,
+  RequestsModel,
+  RequestTypeModel,
   ResourceAllocationModel,
   RestaurantModel,
+  Resquest_TypesModel,
+  ResquestModel,
   RoleModel,
   RoomModel,
   RouteModel,
-  RequestTypeModel,
   SaleProductModel,
   SaleServicesModel,
   SatisfactionSurveysModel,
@@ -76,7 +82,9 @@ const db = new Sequelize(dbName, dbUser, dbPassword, {
   logging: false,
 });
 // CREAMOS LAS TABLAS EN ORDEN ALFABETICO
-const AccountDB = db.define("account", AccountModel);
+
+const Account_RecordDB = db.define("accounts_record", Account_RecordModel);
+const AccountsDB = db.define("accounts", AccountsModel);
 const ActivityHistoryDB = db.define("activityHistory", ActivityHistoryModel);
 const AttractionDB = db.define("attractions", AttractionModel);
 const BookingAttractionDB = db.define("bookingattractions", BookingAttractionModel);
@@ -102,6 +110,7 @@ const HotelDB = db.define("hotels", HotelModel);
 const IndividualServicesDB = db.define("individualServices", IndividualServicesModel);
 const InventoryDB = db.define("inventories", InventoryModel);
 const InventoryhistoryDB = db.define("inventoriesistories", InventoryhistoryModel);
+const JournalDB = db.define("journal", JournalModel);
 const PackageSaleDb = db.define("packagesale", PackageSaleModel);
 const PaysheetDB = db.define("Paysheet", PaysheetModel);
 const PaysheetDetailDB = db.define("PaysheetDetail", PaysheetDetailModel);
@@ -110,6 +119,8 @@ const ProductDB = db.define("products", ProductModel);
 const PurcharseOrderDB = db.define("purcharses", PurcharseOrderModel);
 const RestaurantDB = db.define("restaurants", RestaurantModel);
 const ResourceAllocationDb = db.define("resourceallocation", ResourceAllocationModel);
+const Resquest_TypesDB = db.define("resquest_types", Resquest_TypesModel);
+const ResquestDB = db.define("resquest", ResquestModel);
 const RoleDB = db.define("roles", RoleModel);
 const RoomDB = db.define("rooms", RoomModel);
 const RouteDb = db.define("routes", RouteModel);
@@ -388,7 +399,18 @@ TransportDB.belongsTo(RouteDb, { foreignKey: "id_route" });
 ContractDB.hasMany(TransportDB, { foreignKey: "id_contract" });
 TransportDB.belongsTo(ContractDB, { foreignKey: "id_contract" });
 
+// Relaciones entre journal
+Resquest_TypesDB.hasMany(ResquestDB, { foreignKey: "resquest_type_id" });
+ResquestDB.belongsTo(Resquest_TypesDB, { foreignKey: "resquest_type_id" });
 
+AccountsDB.hasMany(Account_RecordDB, { foreignKey: "account_id" });
+Account_RecordDB.belongsTo(AccountsDB, { foreignKey: "account_id" });
+
+ResquestDB.hasMany(JournalDB, { foreignKey: "request_id" });
+JournalDB.belongsTo(ResquestDB, { foreignKey: "request_id" });
+
+Account_RecordDB.hasOne(JournalDB, { foreignKey: "id_account_records" });
+JournalDB.belongsTo(Account_RecordDB, { foreignKey: "id_account_records" });
 
 
 
@@ -416,7 +438,8 @@ const syncModels = async () => {
 syncModels();
 
 export {
-  AccountDB,
+  Account_RecordDB,
+  AccountsDB,
   ActivityHistoryDB,
   AttractionDB,
   BookingAttractionDB,
@@ -442,6 +465,7 @@ export {
   IndividualServicesDB,
   InventoryDB,
   InventoryhistoryDB,
+  JournalDB,
   PackageSaleDb,
   PaysheetDB,
   PaysheetDetailDB,
@@ -450,6 +474,8 @@ export {
   PurcharseOrderDB,
   RestaurantDB,
   ResourceAllocationDb,
+  Resquest_TypesDB,
+  ResquestDB,
   RoleDB,
   RoomDB,
   RouteDb,
