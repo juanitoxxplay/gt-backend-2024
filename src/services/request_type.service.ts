@@ -1,44 +1,43 @@
+import { RequestTypeDb } from "../config";
+import { RequestTypeInterface } from "../interfaces/request_type.interface";
 
-import { EmpleoyeeDB } from "../config";
-import { EmpleoyeeInterface } from "../interfaces";
-
-const empleoyeeServices = {
-  getAll: async () => {
-    try {
-      const empleoyees = await EmpleoyeeDB.findAll({ where: { status: true } });
-      if (empleoyees.length === 0) {
+const RequestTypeService = {
+    getAll: async () => {
+        try {
+            const RequestType = await RequestTypeDb.findAll({ where: { bot: true } });
+            if (RequestType.length === 0) {
+                return {
+                    message: `Registros no encontrados`,
+                    status: 404,
+                    data: {
+                      RequestType,
+                    },
+                };
+        }; 
         return {
-          message: `Registros no encontrados`,
-          status: 404,
-          data: {
-            empleoyees,
-          },
+            message: `Registros encontrados`,
+            status: 200,
+            data: {
+              RequestType,
+            },        
         };
-      }
-      return {
-        message: `Registros encontrados`,
-        status: 200,
-        data: {
-          empleoyees,
-        },
-      };
-    } catch (error) {
-      console.log(error);
-      return {
-        message: `Contacte con el administrador`,
-        status: 500,
-      };
-    }
-  },
-  getOne: async (id: number|string) => {
+} catch (error) {
+    console.log(error);
+    return {
+      message: `Contacte con el administrador`,
+      status: 500,
+    };
+  }
+},
+getOne: async (id: number|string) => {
     try {
-      const Empleoyee = await EmpleoyeeDB.findOne({
+      const RequestType = await RequestTypeDb.findOne({
         where: {
           id: id,
           status: true
         }
       });
-      if (!Empleoyee) {
+      if (!RequestType) {
         return {
           message: `Registro no encontrado`,
           status: 404,
@@ -49,7 +48,7 @@ const empleoyeeServices = {
           message: `Registro encontrado`,
           status: 200,
           data: {
-            Empleoyee,
+            RequestType,
           },
         };
       }
@@ -61,15 +60,15 @@ const empleoyeeServices = {
       };
     }
   },
-  create: async (data: Partial<EmpleoyeeInterface>) => {
+  create: async (data: Partial<RequestTypeInterface>) => {
     data.name=data.name?.toLowerCase();
     try {
-      const Empleoyee = await EmpleoyeeDB.create({ ...data });
+      const RequestType = await RequestTypeDb.create({ ...data });
       return {
         message: `Creación exitosa`,
         status: 201,
         data: {
-          Empleoyee,
+            RequestType,
         },
       };
     } catch (error) {
@@ -80,16 +79,16 @@ const empleoyeeServices = {
       };
     }
   },
-  update: async (id: number|string, dat: Partial<EmpleoyeeInterface>) => {
+  update: async (id: number|string, dat: Partial<RequestTypeInterface>) => {
     dat.name=dat.name?.toLowerCase();
     try {
-      let Empleoyee: EmpleoyeeInterface | any = await EmpleoyeeDB.update(dat, { where: { id } });
-      const { data } = await empleoyeeServices.getOne(id);
+      let RequestType: RequestTypeInterface | any = await RequestTypeDb.update(dat, { where: { id } });
+      const { data } = await RequestTypeService.getOne(id);
       return {
         message: `Actualización exitosa`,
         status: 200,
         data: {
-          Empleoyee: data?.Empleoyee,
+            RequestType: data?.RequestType,
         },
       };
     } catch (error) {
@@ -102,7 +101,7 @@ const empleoyeeServices = {
   },
   delete: async (id: number) => {
     try {
-      const Empleoyee = await EmpleoyeeDB.update(
+      const RequestType = await RequestTypeDb.update(
         {
           status: false,
           deletedAt: new Date(),
@@ -113,7 +112,7 @@ const empleoyeeServices = {
         message: `Eliminación exitosa`,
         status: 204,
         data: {
-          Empleoyee:null,
+            RequestType:null,
         },
       };
     } catch (error) {
@@ -125,8 +124,8 @@ const empleoyeeServices = {
   },
   findByName: async (name: string) => {
     try {
-      const Empleoyee = await EmpleoyeeDB.findAll({ where: { name } });
-      if (Empleoyee.length===0) {
+      const RequestType = await RequestTypeDb.findAll({ where: { name } });
+      if (RequestType.length===0) {
         console.log("Registro no encontrado")
         return {
           message: `Registro no encontrado`,
@@ -138,7 +137,7 @@ const empleoyeeServices = {
           message: `Service encontrado`,
           status: 200,
           data: {
-            Empleoyee:Empleoyee[0],
+            RequestType:RequestType[0],
           },
         };
       }
@@ -153,7 +152,5 @@ const empleoyeeServices = {
 };
 
 export {
-  empleoyeeServices
+    RequestTypeService
 }
-
-

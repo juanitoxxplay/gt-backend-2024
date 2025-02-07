@@ -1,17 +1,16 @@
+import { ServiceHotelDb } from "../config"; /*Mantener la b minuscula*/
+import { ServiceHotelInterface } from "../interfaces"; 
 
-import { EmpleoyeeDB } from "../config";
-import { EmpleoyeeInterface } from "../interfaces";
-
-const empleoyeeServices = {
+const ServiceHotelServices = {
   getAll: async () => {
     try {
-      const empleoyees = await EmpleoyeeDB.findAll({ where: { status: true } });
-      if (empleoyees.length === 0) {
+      const ServiceHotel = await ServiceHotelDb.findAll({ where: { status: true } });
+      if (ServiceHotel.length === 0) {
         return {
           message: `Registros no encontrados`,
           status: 404,
           data: {
-            empleoyees,
+            ServiceHotel,
           },
         };
       }
@@ -19,7 +18,7 @@ const empleoyeeServices = {
         message: `Registros encontrados`,
         status: 200,
         data: {
-          empleoyees,
+          ServiceHotel,
         },
       };
     } catch (error) {
@@ -32,13 +31,13 @@ const empleoyeeServices = {
   },
   getOne: async (id: number|string) => {
     try {
-      const Empleoyee = await EmpleoyeeDB.findOne({
+      const ServiceHotel = await ServiceHotelDb.findOne({
         where: {
           id: id,
           status: true
         }
       });
-      if (!Empleoyee) {
+      if (!ServiceHotel) {
         return {
           message: `Registro no encontrado`,
           status: 404,
@@ -49,7 +48,7 @@ const empleoyeeServices = {
           message: `Registro encontrado`,
           status: 200,
           data: {
-            Empleoyee,
+            ServiceHotel,
           },
         };
       }
@@ -61,15 +60,14 @@ const empleoyeeServices = {
       };
     }
   },
-  create: async (data: Partial<EmpleoyeeInterface>) => {
-    data.name=data.name?.toLowerCase();
+  create: async (data: Partial<ServiceHotelInterface>) => {
     try {
-      const Empleoyee = await EmpleoyeeDB.create({ ...data });
+      const ServiceHotel = await ServiceHotelDb.create({ ...data });
       return {
         message: `Creación exitosa`,
         status: 201,
         data: {
-          Empleoyee,
+          ServiceHotel,
         },
       };
     } catch (error) {
@@ -80,16 +78,15 @@ const empleoyeeServices = {
       };
     }
   },
-  update: async (id: number|string, dat: Partial<EmpleoyeeInterface>) => {
-    dat.name=dat.name?.toLowerCase();
+  update: async (id: number|string, dat: Partial<ServiceHotelInterface>) => {
     try {
-      let Empleoyee: EmpleoyeeInterface | any = await EmpleoyeeDB.update(dat, { where: { id } });
-      const { data } = await empleoyeeServices.getOne(id);
+      let ServiceHotel: ServiceHotelInterface | any = await ServiceHotelDb.update(dat, { where: { id } });
+      const { data } = await ServiceHotelServices.getOne(id);
       return {
         message: `Actualización exitosa`,
         status: 200,
         data: {
-          Empleoyee: data?.Empleoyee,
+          ServiceHotel: data?.ServiceHotel,
         },
       };
     } catch (error) {
@@ -102,7 +99,7 @@ const empleoyeeServices = {
   },
   delete: async (id: number) => {
     try {
-      const Empleoyee = await EmpleoyeeDB.update(
+      const ServiceHotel = await ServiceHotelDb.update(
         {
           status: false,
           deletedAt: new Date(),
@@ -113,7 +110,7 @@ const empleoyeeServices = {
         message: `Eliminación exitosa`,
         status: 204,
         data: {
-          Empleoyee:null,
+          ServiceHotel:null,
         },
       };
     } catch (error) {
@@ -125,8 +122,8 @@ const empleoyeeServices = {
   },
   findByName: async (name: string) => {
     try {
-      const Empleoyee = await EmpleoyeeDB.findAll({ where: { name } });
-      if (Empleoyee.length===0) {
+      const ServiceHotel = await ServiceHotelDb.findAll({ where: { name } });
+      if (ServiceHotel.length===0) {
         console.log("Registro no encontrado")
         return {
           message: `Registro no encontrado`,
@@ -138,7 +135,7 @@ const empleoyeeServices = {
           message: `Service encontrado`,
           status: 200,
           data: {
-            Empleoyee:Empleoyee[0],
+            ServiceHotel:ServiceHotel[0],
           },
         };
       }
@@ -153,7 +150,5 @@ const empleoyeeServices = {
 };
 
 export {
-  empleoyeeServices
-}
-
-
+  ServiceHotelServices
+};

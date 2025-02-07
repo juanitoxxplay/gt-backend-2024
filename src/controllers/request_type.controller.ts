@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
-import { RoomServices } from "../services";
-export class RoomController {
+import { RequestTypeService } from "../services";
+export class RequestTypeController {
     constructor () {
 
     }
 
     all = async (req: Request, res: Response) => {
-        const { status, message, data } = await RoomServices.getAll();
+        const { status, message, data } = await RequestTypeService.getAll();
         return res.status(status).json({
             message,
             data,
@@ -15,14 +15,14 @@ export class RoomController {
 
     one = async (req: Request, res: Response) => {
         const {id}=req.params
-        const {status, message, data} = await RoomServices.getOne(Number(id));
+        const {status, message, data} = await RequestTypeService.getOne(Number(id));
         return res.status(status).json({
             message,
             data,
           });
     };
     create = async (req: Request, res: Response) => {
-        const { status, message, data } = await RoomServices.create(req.body);
+        const { status, message, data } = await RequestTypeService.create(req.body);
         return res.status(status).json({
           message,
           data,
@@ -30,7 +30,7 @@ export class RoomController {
       };
       update = async (req: Request, res: Response) => {
         const {id}=req.params
-        const { status, message, data } = await RoomServices.update(Number(id),req.body);
+        const { status, message, data } = await RequestTypeService.update(Number(id),req.body);
         return res.status(status).json({
           message,
           data,
@@ -39,7 +39,7 @@ export class RoomController {
     
       delete = async (req: Request, res: Response) => {
         const {id}=req.params
-        const { status, message, data } = await RoomServices.delete(Number(id));
+        const { status, message, data } = await RequestTypeService.delete(Number(id));
         return res.status(status).json({
           message,
           data,

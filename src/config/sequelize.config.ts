@@ -37,6 +37,7 @@ import {
   RoleModel,
   RoomModel,
   RouteModel,
+  RequestTypeModel,
   SaleProductModel,
   SaleServicesModel,
   SatisfactionSurveysModel,
@@ -112,6 +113,7 @@ const ResourceAllocationDb = db.define("resourceallocation", ResourceAllocationM
 const RoleDB = db.define("roles", RoleModel);
 const RoomDB = db.define("rooms", RoomModel);
 const RouteDb = db.define("routes", RouteModel);
+const RequestTypeDb = db.define("requestTypes", RequestTypeModel);
 const SaleProductDb = db.define("saleproducts", SaleProductModel);
 const SaleServicesDB = db.define("saleServicesDB", SaleServicesModel);
 const SatisfactionSurveysDB = db.define("satisfactionSurveysDB", SatisfactionSurveysModel);
@@ -397,7 +399,14 @@ TransportDB.belongsTo(ContractDB, { foreignKey: "id_contract" });
 
 // Sincroniza los modelos con la base de datos
 const syncModels = async () => {
-  await db.sync({ alter: true });
+  /* Colocar alter en falso en caso de que se valla a reiniciar la api
+   * constantemente, a menos que se valla a reiniciar por alguna modificación
+   * hecha en los modelos. De lo contrario la base de datos se podría
+   * sobrecargar de índices con cada reinicio de la api,
+   * y esto eventualmente podría causar errores
+   * al consultar a tavés de la api
+   */ 
+  await db.sync({ alter: false });
   try {
   } catch (error) {
     console.error(error);
@@ -444,6 +453,7 @@ export {
   RoleDB,
   RoomDB,
   RouteDb,
+  RequestTypeDb,
   SaleProductDb,
   SaleServicesDB,
   SatisfactionSurveysDB,

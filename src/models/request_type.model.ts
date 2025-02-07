@@ -1,6 +1,6 @@
 import { DataTypes } from "sequelize";
 
-const AccountModel = {
+const RequestTypeModel = {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -10,17 +10,13 @@ const AccountModel = {
     type: DataTypes.STRING(30),
     allowNull: false
   },
-  type_account: {
-    type: DataTypes.ENUM('Activo','Pasivo','Ingreso','Egreso','Capital'),
-    allowNull: false,
-  },
   deletedAt: {
     type: DataTypes.DATE,
   },
-  status: {
+  bot: {
     type: DataTypes.BOOLEAN,
     defaultValue: true,
   },
 };
 
-export { AccountModel };
+export { RequestTypeModel };

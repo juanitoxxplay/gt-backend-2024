@@ -1,17 +1,21 @@
+import { HotelDB, RoomDB } from "../config";
+import { RoomInterface } from "../interfaces";
 
-import { EmpleoyeeDB } from "../config";
-import { EmpleoyeeInterface } from "../interfaces";
-
-const empleoyeeServices = {
+const RoomServices = {
   getAll: async () => {
     try {
-      const empleoyees = await EmpleoyeeDB.findAll({ where: { status: true } });
-      if (empleoyees.length === 0) {
+      const rooms = await RoomDB.findAll({
+        attributes: { exclude: ['status', 'deletedAt']},
+        where: {
+          status: true
+      }
+    });
+      if (rooms.length === 0) {
         return {
           message: `Registros no encontrados`,
           status: 404,
           data: {
-            empleoyees,
+            rooms,
           },
         };
       }
@@ -19,7 +23,7 @@ const empleoyeeServices = {
         message: `Registros encontrados`,
         status: 200,
         data: {
-          empleoyees,
+          rooms,
         },
       };
     } catch (error) {
@@ -30,15 +34,17 @@ const empleoyeeServices = {
       };
     }
   },
+
   getOne: async (id: number|string) => {
     try {
-      const Empleoyee = await EmpleoyeeDB.findOne({
+      const room = await RoomDB.findOne({
+        attributes: { exclude: ['status', 'deletedAt']},
         where: {
-          id: id,
+          id_room: id,
           status: true
         }
       });
-      if (!Empleoyee) {
+      if (!room) {
         return {
           message: `Registro no encontrado`,
           status: 404,
@@ -49,7 +55,7 @@ const empleoyeeServices = {
           message: `Registro encontrado`,
           status: 200,
           data: {
-            Empleoyee,
+            room,
           },
         };
       }
@@ -61,15 +67,15 @@ const empleoyeeServices = {
       };
     }
   },
-  create: async (data: Partial<EmpleoyeeInterface>) => {
-    data.name=data.name?.toLowerCase();
+
+  create: async (data: Partial<RoomInterface>) => {
     try {
-      const Empleoyee = await EmpleoyeeDB.create({ ...data });
+      const room = await RoomDB.create({ ...data });
       return {
         message: `Creación exitosa`,
         status: 201,
         data: {
-          Empleoyee,
+          room,
         },
       };
     } catch (error) {
@@ -80,16 +86,19 @@ const empleoyeeServices = {
       };
     }
   },
-  update: async (id: number|string, dat: Partial<EmpleoyeeInterface>) => {
-    dat.name=dat.name?.toLowerCase();
+
+  update: async (id: number|string, dat: Partial<RoomInterface>) => {
     try {
-      let Empleoyee: EmpleoyeeInterface | any = await EmpleoyeeDB.update(dat, { where: { id } });
-      const { data } = await empleoyeeServices.getOne(id);
+      let room: RoomInterface | any = await RoomDB.update(dat, { where: {
+        id_room: id,
+      }
+    });
+      const { data } = await RoomServices.getOne(id);
       return {
         message: `Actualización exitosa`,
         status: 200,
         data: {
-          Empleoyee: data?.Empleoyee,
+          room: data?.room,
         },
       };
     } catch (error) {
@@ -100,20 +109,21 @@ const empleoyeeServices = {
       };
     }
   },
+
   delete: async (id: number) => {
     try {
-      const Empleoyee = await EmpleoyeeDB.update(
+      const room = await RoomDB.update(
         {
           status: false,
           deletedAt: new Date(),
         },
-        { where: { id } }
+        { where: { id_room: id } }
       );
       return {
         message: `Eliminación exitosa`,
         status: 204,
         data: {
-          Empleoyee:null,
+          room:null,
         },
       };
     } catch (error) {
@@ -123,24 +133,35 @@ const empleoyeeServices = {
       };
     }
   },
-  findByName: async (name: string) => {
+
+  findByIdOrNameHotel: async (id_hotel: number | string) => {
     try {
-      const Empleoyee = await EmpleoyeeDB.findAll({ where: { name } });
-      if (Empleoyee.length===0) {
-        console.log("Registro no encontrado")
-        return {
-          message: `Registro no encontrado`,
-          status: 404,
-          data: {},
-        };
+      const rooms = await RoomDB.findAll({
+        attributes: { exclude: ['status', 'deletedAt']},
+        where: {
+            include: [
+                {
+                  model: HotelDB,
+                  where: { id_hotel, status: true }
+                }
+            ]
+        }
+      });
+      if (rooms.length===0) {
+          console.log("Ninguna habitación pertenece al hotel de id: ")
+          return {
+              message: `Registro no encontrado`,
+              status: 404,
+              data: {},
+          };
       } else {
-        return {
-          message: `Service encontrado`,
+          return {
+          message: `Registros encontrados`,
           status: 200,
           data: {
-            Empleoyee:Empleoyee[0],
+              rooms,
           },
-        };
+          };
       }
     } catch (error) {
       console.log(error);
@@ -153,7 +174,7 @@ const empleoyeeServices = {
 };
 
 export {
-  empleoyeeServices
+  RoomServices
 }
 
 

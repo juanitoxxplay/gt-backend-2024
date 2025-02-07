@@ -1,8 +1,7 @@
-export interface accountinterface{
+export interface RequestTypeInterface{
     id?: number;
     name: string;
-    type_account: Enumerator;
-    status: boolean;
+    bot: boolean;
     createdAt:Date;
     updatedAt:Date;
     deletedAt:Date;

@@ -1,17 +1,20 @@
 
-import { EmpleoyeeDB } from "../config";
-import { EmpleoyeeInterface } from "../interfaces";
+import { BookingDB } from "../config";
+import { BookingInterface } from "../interfaces";
 
-const empleoyeeServices = {
+const BookingServices = {
   getAll: async () => {
     try {
-      const empleoyees = await EmpleoyeeDB.findAll({ where: { status: true } });
-      if (empleoyees.length === 0) {
+      const bookings = await BookingDB.findAll({
+        where: { status: true, },
+        attributes: { exclude: ['status', 'deletedAt']}
+      });
+      if (bookings.length === 0) {
         return {
           message: `Registros no encontrados`,
           status: 404,
           data: {
-            empleoyees,
+            bookings,
           },
         };
       }
@@ -19,7 +22,7 @@ const empleoyeeServices = {
         message: `Registros encontrados`,
         status: 200,
         data: {
-          empleoyees,
+          bookings,
         },
       };
     } catch (error) {
@@ -30,15 +33,16 @@ const empleoyeeServices = {
       };
     }
   },
-  getOne: async (id: number|string) => {
+  getOne: async (id: number | string) => {
     try {
-      const Empleoyee = await EmpleoyeeDB.findOne({
+      const booking = await BookingDB.findOne({
+        attributes: { exclude: ['status', 'deletedAt']},
         where: {
           id: id,
-          status: true
-        }
+          status: true,
+        },
       });
-      if (!Empleoyee) {
+      if (!booking) {
         return {
           message: `Registro no encontrado`,
           status: 404,
@@ -49,7 +53,7 @@ const empleoyeeServices = {
           message: `Registro encontrado`,
           status: 200,
           data: {
-            Empleoyee,
+            booking,
           },
         };
       }
@@ -61,15 +65,14 @@ const empleoyeeServices = {
       };
     }
   },
-  create: async (data: Partial<EmpleoyeeInterface>) => {
-    data.name=data.name?.toLowerCase();
+  create: async (data: Partial<BookingInterface>) => {
     try {
-      const Empleoyee = await EmpleoyeeDB.create({ ...data });
+      const booking = await BookingDB.create({ ...data });
       return {
         message: `Creación exitosa`,
         status: 201,
         data: {
-          Empleoyee,
+          booking,
         },
       };
     } catch (error) {
@@ -80,16 +83,15 @@ const empleoyeeServices = {
       };
     }
   },
-  update: async (id: number|string, dat: Partial<EmpleoyeeInterface>) => {
-    dat.name=dat.name?.toLowerCase();
+  update: async (id: number, dat: Partial<BookingInterface>) => {
     try {
-      let Empleoyee: EmpleoyeeInterface | any = await EmpleoyeeDB.update(dat, { where: { id } });
-      const { data } = await empleoyeeServices.getOne(id);
+      let booking: BookingInterface | any = await BookingDB.update(dat, { where: { id: id } });
+      const { data } = await BookingServices.getOne(id);
       return {
         message: `Actualización exitosa`,
         status: 200,
         data: {
-          Empleoyee: data?.Empleoyee,
+          booking: data?.booking,
         },
       };
     } catch (error) {
@@ -102,7 +104,7 @@ const empleoyeeServices = {
   },
   delete: async (id: number) => {
     try {
-      const Empleoyee = await EmpleoyeeDB.update(
+      const booking = await BookingDB.update(
         {
           status: false,
           deletedAt: new Date(),
@@ -113,7 +115,7 @@ const empleoyeeServices = {
         message: `Eliminación exitosa`,
         status: 204,
         data: {
-          Empleoyee:null,
+          booking:null,
         },
       };
     } catch (error) {
@@ -123,37 +125,10 @@ const empleoyeeServices = {
       };
     }
   },
-  findByName: async (name: string) => {
-    try {
-      const Empleoyee = await EmpleoyeeDB.findAll({ where: { name } });
-      if (Empleoyee.length===0) {
-        console.log("Registro no encontrado")
-        return {
-          message: `Registro no encontrado`,
-          status: 404,
-          data: {},
-        };
-      } else {
-        return {
-          message: `Service encontrado`,
-          status: 200,
-          data: {
-            Empleoyee:Empleoyee[0],
-          },
-        };
-      }
-    } catch (error) {
-      console.log(error);
-      return {
-        message: `Contact the administrator: error`,
-        status: 500,
-      };
-    }
-  },
 };
 
 export {
-  empleoyeeServices
+  BookingServices
 }
 
 

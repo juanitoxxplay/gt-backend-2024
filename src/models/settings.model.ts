@@ -11,11 +11,11 @@ const SettingsModel = {
     allowNull: false,
   },
   formula: {
-    type: DataTypes.STRING(255),
+    type: DataTypes.INTEGER,
     allowNull: true,
   },
   description: {
-    type: DataTypes.TEXT,
+    type: DataTypes.STRING(100),
     allowNull: true,
   },
   deletedAt: {
