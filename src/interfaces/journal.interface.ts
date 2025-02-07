@@ -9,8 +9,7 @@ export interface JournalInterface{
     deletedAt:Date;
     request_id:ResquestInterface;
     account_record_id:Account_RecordInterface;
-    request_id?:number|string;
-    unitMeasurement?:AccountRecordsInterface;
+    unitMeasurement?:Account_RecordInterface;
     id_account_records?:number|string;
 
 }

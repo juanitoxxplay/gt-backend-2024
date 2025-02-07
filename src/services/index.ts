@@ -1,5 +1,5 @@
-
 export * from './accounts.service';
+export * from './account_record.service';
 export * from './attraction.service';
 export * from './category.service';
 export * from './charge.service';
@@ -13,7 +13,6 @@ export * from './event.service';
 export * from './event-registration.service';
 export * from './restaurant.service';
 export * from './role.service';
-export * from './request_type.service';
 export * from './individualService.service';
 export * from './inventory.service';
 export * from './journal.services';

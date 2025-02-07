@@ -33,5 +33,4 @@ export * from './details-purcharseorder.validators';
 export * from './transport.validators';
 export * from './event.validators';
 export * from './routes.validators';
-export * from './journal.valitators';
 

@@ -28,11 +28,9 @@ import userRoute from "./user.route";
 import eventRoute from "./event.route"
 import resquest_typeRoute from "./resquest_type.route";
 import resquestRoute from "./resquest.route";
-import journalRoute from "./journal.route";
 import purcharsesRoute from "./purcharse_order.route";
 import detailspurcharsesRoute from "./details-purcharseorder.route";
 import TransportRoute from "./transport.route";
-import eventRoute from "./event.route";
 import routesRoute from "./routes.route";
 
 
@@ -50,14 +48,12 @@ export {
   empleoyeeRoute,
   empleoyeeUserRoute,
   inventoryRoute,
-  journalRoute,
   paysheetDetailRoute,
   paysheetRoute,
   performanceEvaluationRoute,
   productRoute,
   restaurantRoute,
   roleRoute,
-  requestTypeRoute,
   serviceRoute,
   settingRoute,
   supervisorRoute,
@@ -66,8 +62,6 @@ export {
   unitmeasurementRoute,
   userRoute,
   journalRoute,
-  requestsRoute,
-  request_typeRoute,
   purcharsesRoute,
   detailspurcharsesRoute,
   TransportRoute,

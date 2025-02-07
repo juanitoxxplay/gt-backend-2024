@@ -1,4 +1,3 @@
-
 export * from './account_record.controller';
 export * from './account.controller';
 export * from './charge.controller';
@@ -18,7 +17,7 @@ export * from './product.controller';
 export * from './role.controller';
 export * from './purcharse_order.controller';
 export * from './details-purcharseorder.controller';
-export * from './request_type.controller';
+export * from './resquest_type.controller';
 export * from './individualService.controller';
 export * from './setting.controller';
 export * from './supervisor.controller';

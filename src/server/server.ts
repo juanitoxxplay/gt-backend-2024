@@ -17,7 +17,6 @@ import {
   empleoyeeRoute,
   empleoyeeUserRoute,
   inventoryRoute,
-  journalRoute,
   paysheetDetailRoute,
   paysheetRoute,
   performanceEvaluationRoute,
@@ -32,7 +31,6 @@ import {
   unitmeasurementRoute,
   userRoute,
   journalRoute,
-  routesRoute,
   purcharsesRoute,
   detailspurcharsesRoute,
   TransportRoute,
@@ -114,7 +112,7 @@ export class Server {
     this.app.use(this.paths.contract, contractRoute);
     this.app.use(this.paths.departament, departamentRoute);
     this.app.use(this.paths.empleoyeeAssistance, empleoyeeAssistanceRoute);
-    this.app.use(this.paths.empleoyees, empleoyeeRoute);
+    this.app.use(this.paths.empleoyee, empleoyeeRoute);
     this.app.use(this.paths.empleoyeeUser, empleoyeeUserRoute);
     this.app.use(this.paths.inventory, inventoryRoute);
     this.app.use(this.paths.journal, journalRoute);
@@ -125,7 +123,6 @@ export class Server {
     this.app.use(this.paths.supervisor, supervisorRoute);
     this.app.use(this.paths.categories, categoryRoute);
     this.app.use(this.paths.roles, roleRoute);
-    this.app.use(this.paths.requestType, requestTypeRoute);
     this.app.use(this.paths.supplier, supplierRoute);
     this.app.use(this.paths.services, serviceRoute);
     this.app.use(this.paths.setting, settingRoute);
