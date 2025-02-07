@@ -5,12 +5,7 @@ import { IndividualServiceInterface } from "../interfaces";
 const serviceIndividualServices = {
   getAll: async () => {
     try {
-      const services = await IndividualServicesDB.findAll({
-        attributes: { exclude: ['status', 'deletedAt']},
-        where: {
-          status: true
-      }
-    });
+      const services = await IndividualServicesDB.findAll({ where: { status: true } });
       if (services.length === 0) {
         return {
           message: `Registros no encontrados`,
@@ -38,7 +33,6 @@ const serviceIndividualServices = {
   getOne: async (id: number|string) => {
     try {
       const service = await IndividualServicesDB.findOne({
-        attributes: { exclude: ['status', 'deletedAt']},
         where: {
           id: id,
           status: true
@@ -131,12 +125,7 @@ const serviceIndividualServices = {
   },
   findByName: async (name: string) => {
     try {
-      const service = await IndividualServicesDB.findAll({
-        attributes: { exclude: ['status', 'deletedAt']},
-        where: {
-          name
-      }
-    });
+      const service = await IndividualServicesDB.findAll({ where: { name } });
       if (service.length===0) {
         console.log("Registro no encontrado")
         return {

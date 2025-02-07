@@ -13,18 +13,6 @@ const SupervisorModel = {
   id_contrato: {
     type: DataTypes.INTEGER,
   },
-  
-  createdAt: {
-    type: DataTypes.DATE,
-  
-  },
-  deletedAt: {
-      type: DataTypes.DATE,
-  },
-  status: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: true,
-  }
 };
 
 export { SupervisorModel };
