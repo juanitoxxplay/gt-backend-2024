@@ -2,12 +2,12 @@ import express from "express";
 import cors from "cors";
 import swaggerJsDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
-import bodyParser from "body-parser";
 
 import {
   account_recordRoute,
   accountsRoute,
   attractionRoute,
+  BookingRoute,
   categoryRoute,
   chargeRoute,
   conceptRoute,
@@ -16,26 +16,30 @@ import {
   empleoyeeAssistanceRoute,
   empleoyeeRoute,
   empleoyeeUserRoute,
+  eventRegistrationRoute,
+  eventRoute,
+  HotelRoute,
   inventoryRoute,
   paysheetDetailRoute,
   paysheetRoute,
   performanceEvaluationRoute,
   productRoute,
+  requestTypeRoute,
   restaurantRoute,
   roleRoute,
+  RoomRoute,
   serviceRoute,
   settingRoute,
   supervisorRoute,
   supplierRoute,
   touristPackageRoute,
+  TransportRoute,
   unitmeasurementRoute,
   userRoute,
   journalRoute,
   purcharsesRoute,
   detailspurcharsesRoute,
-  TransportRoute,
-  eventRegistrationRoute,
-  eventRoute,
+  purcharsesRoute,
   resquest_typeRoute,
   resquestRoute,
   routesRoute
@@ -57,38 +61,42 @@ export class Server {
     this.paths = {
       account_record: this.pre + "/account_record",
       account: this.pre + "/account",
-      attractions:this.pre + "/attractions",
-      charge: this.pre + "/charge",
+      attractions: this.pre + "/attractions",
+      bookings: this.pre + "/bookings",
       categories: this.pre + "/categories",
+      charge: this.pre + "/charge",
       concepts: this.pre + "/concepts",
       contract: this.pre + "/contract",
       departament: this.pre + "/departaments",
+      empleoyee: this.pre + "/empleoyee",
       empleoyeeAssistance: this.pre + "/empleoyee_assistance",
       empleoyeeUser: this.pre + "/empleoyee_user",
-      empleoyee: this.pre + "/empleoyee",
+      eventRoute: this.pre + "/event",
+      eventRegistration: this.pre + "/event-registration",
+      hotels: this.pre + "/hotels",
       inventory: this.pre + "/inventory",
       journal: this.pre + "/journal",
       paysheet: this.pre + "/paysheet",
       paysheetDetail: this.pre + "/paysheet_details",
       performanceEvaluation: this.pre + "/performance_evaluation",
-      product: this.pre + "/products",
+      products: this.pre + "/products",
+      requestType: this.pre + "/request_type",
+      restaurant: this.pre + "/restaurant",
       roles: this.pre + "/roles",
+      rooms: this.pre + "/rooms",
+      routes: this.pre + "/routes",
       services: this.pre + "/services",
+      settings: this.pre + "/settings",
       supervisor: this.pre + "/supervisor",
       supplier: this.pre + "/supplier",
       touristPackage: this.pre + "/tourist_packages",
+      transport: this.pre + "/transport",
       unitMeasurement: this.pre + "/unit_measurement",
       users: this.pre + "/users",
       purcharses: this.pre + "/purcharses",
       detailspurcharses: this.pre + "/detailspurcharses",
-      transport: this.pre + "/transport",
-      eventRegistration: this.pre + "/event-registration",
-      eventRoute: this.pre + "/event",
       resquest_type: this.pre + "/resquest_type",
-      resquest: this.pre + "/resquest",
-      routesRoute: this.pre + "/route",
-      setting: this.pre + "/settings",
-
+      resquest: this.pre + "/resquest"
     };
     this.connectDB();
     this.middlewares();
@@ -103,10 +111,11 @@ export class Server {
   }
 
   routes() {
-
     this.app.use(this.paths.account_record, account_recordRoute);
     this.app.use(this.paths.account, accountsRoute);
     this.app.use(this.paths.attractions, attractionRoute);
+    this.app.use(this.paths.bookings, BookingRoute);
+    this.app.use(this.paths.categories, categoryRoute);
     this.app.use(this.paths.charge, chargeRoute);
     this.app.use(this.paths.concepts, conceptRoute);
     this.app.use(this.paths.contract, contractRoute);
@@ -114,30 +123,34 @@ export class Server {
     this.app.use(this.paths.empleoyeeAssistance, empleoyeeAssistanceRoute);
     this.app.use(this.paths.empleoyee, empleoyeeRoute);
     this.app.use(this.paths.empleoyeeUser, empleoyeeUserRoute);
+    this.app.use(this.paths.eventRoute, eventRoute);
+    this.app.use(this.paths.eventRegistration, eventRegistrationRoute);
+    this.app.use(this.paths.hotels, HotelRoute);
     this.app.use(this.paths.inventory, inventoryRoute);
     this.app.use(this.paths.journal, journalRoute);
-    this.app.use(this.paths.paysheetDetail, paysheetDetailRoute);
     this.app.use(this.paths.paysheet, paysheetRoute);
+    this.app.use(this.paths.paysheetDetail, paysheetDetailRoute);
     this.app.use(this.paths.performanceEvaluation, performanceEvaluationRoute);
     this.app.use(this.paths.product, productRoute);
+    this.app.use(this.paths.restaurant, restaurantRoute);
+    this.app.use(this.paths.rooms, RoomRoute);
+    this.app.use(this.paths.routes, routesRoute);
     this.app.use(this.paths.supervisor, supervisorRoute);
     this.app.use(this.paths.categories, categoryRoute);
     this.app.use(this.paths.roles, roleRoute);
     this.app.use(this.paths.supplier, supplierRoute);
     this.app.use(this.paths.services, serviceRoute);
     this.app.use(this.paths.setting, settingRoute);
+    this.app.use(this.paths.supervisor, supervisorRoute);
+    this.app.use(this.paths.supplier, supplierRoute);
+    this.app.use(this.paths.touristPackage, touristPackageRoute);
+    this.app.use(this.paths.transport, TransportRoute);
+    this.app.use(this.paths.unitMeasurement, unitmeasurementRoute);
     this.app.use(this.paths.users, userRoute);
     this.app.use(this.paths.purcharses, purcharsesRoute);
     this.app.use(this.paths.detailspurcharses, detailspurcharsesRoute);
-    this.app.use(this.paths.eventRegistration, eventRegistrationRoute);
-    this.app.use(this.paths.touristPackage, touristPackageRoute);
-    this.app.use(this.paths.unitMeasurement, unitmeasurementRoute);
-    this.app.use(this.paths.eventRoute, eventRoute);
     this.app.use(this.paths.resquest_type, resquest_typeRoute);
     this.app.use(this.paths.resquest, resquestRoute);
-    this.app.use(this.paths.routesRoute, routesRoute);
-    this.app.use(this.paths.transport, TransportRoute);
-
   }
 
   async connectDB() {

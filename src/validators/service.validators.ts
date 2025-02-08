@@ -6,9 +6,39 @@ class IndividualServiceValidator {
   public validateIndividualService = [
     body("name").notEmpty().withMessage("Service Name is required"),
     body("name").isString().withMessage("Service Name must be string"),
+
     body("price").notEmpty().withMessage("Service Price is required"),
     body("price").isNumeric().withMessage("Service Price must be numeric"),
+    body("price").isFloat({ min: 0.0 }).withMessage("Service price must be positive number.")
   ];
+
+  // Verifica que no deban modificarse campos no modificables como status, createdAt o deleteAt
+  public validateNonModifiableFieldInput = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
+    const { id, status, createdAt, updatedAt, deletedAt } = req.body;
+    if (
+    (id !== undefined)        ||
+    (status !== undefined)    ||
+    (createdAt !== undefined) ||
+    (updatedAt !== undefined) ||
+    (deletedAt !== undefined)
+  ) {
+      return res.status(403).json({
+        errors: [
+          {
+            type: "field",
+            msg: `Los campos id, status, createdAt, updatedAt o deletedAt, no pueden crearse o modificarse de forma arbitraria o explícita.`,
+            path: "id",
+            location: "body",
+          },
+        ],
+      });
+    }
+    next();
+  };
 
   //un middleware en el caso de campo id
   public validateIfIdExist = async (

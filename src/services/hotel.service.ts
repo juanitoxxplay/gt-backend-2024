@@ -1,22 +1,21 @@
+import { HotelDB } from "../config";
+import { HotelInterface } from "../interfaces";
 
-import { IndividualServicesDB } from "../config";
-import { IndividualServiceInterface } from "../interfaces";
-
-const serviceIndividualServices = {
+const HotelServices = {
   getAll: async () => {
     try {
-      const services = await IndividualServicesDB.findAll({
+      const hotels = await HotelDB.findAll({
         attributes: { exclude: ['status', 'deletedAt']},
         where: {
-          status: true
+          status: true,
       }
     });
-      if (services.length === 0) {
+      if (hotels.length === 0) {
         return {
           message: `Registros no encontrados`,
           status: 404,
           data: {
-            services,
+            hotels,
           },
         };
       }
@@ -24,7 +23,7 @@ const serviceIndividualServices = {
         message: `Registros encontrados`,
         status: 200,
         data: {
-          services,
+          hotels,
         },
       };
     } catch (error) {
@@ -37,14 +36,14 @@ const serviceIndividualServices = {
   },
   getOne: async (id: number|string) => {
     try {
-      const service = await IndividualServicesDB.findOne({
+      const hotel = await HotelDB.findOne({
         attributes: { exclude: ['status', 'deletedAt']},
         where: {
           id: id,
           status: true
         }
       });
-      if (!service) {
+      if (!hotel) {
         return {
           message: `Registro no encontrado`,
           status: 404,
@@ -55,7 +54,7 @@ const serviceIndividualServices = {
           message: `Registro encontrado`,
           status: 200,
           data: {
-            service,
+            hotel,
           },
         };
       }
@@ -67,15 +66,15 @@ const serviceIndividualServices = {
       };
     }
   },
-  create: async (data: Partial<IndividualServiceInterface>) => {
+  create: async (data: Partial<HotelInterface>) => {
     data.name=data.name?.toLowerCase();
     try {
-      const service = await IndividualServicesDB.create({ ...data });
+      const hotel = await HotelDB.create({ ...data });
       return {
         message: `Creación exitosa`,
         status: 201,
         data: {
-          service,
+          hotel,
         },
       };
     } catch (error) {
@@ -86,16 +85,16 @@ const serviceIndividualServices = {
       };
     }
   },
-  update: async (id: number|string, dat: Partial<IndividualServiceInterface>) => {
+  update: async (id: number|string, dat: Partial<HotelInterface>) => {
     dat.name=dat.name?.toLowerCase();
     try {
-      let service: IndividualServiceInterface | any = await IndividualServicesDB.update(dat, { where: { id } });
-      const { data } = await serviceIndividualServices.getOne(id);
+      let hotel: HotelInterface | any = await HotelDB.update(dat, { where: { id } });
+      const { data } = await HotelServices.getOne(id);
       return {
         message: `Actualización exitosa`,
         status: 200,
         data: {
-          service: data?.service,
+          hotel: data?.hotel,
         },
       };
     } catch (error) {
@@ -108,7 +107,7 @@ const serviceIndividualServices = {
   },
   delete: async (id: number) => {
     try {
-      const service = await IndividualServicesDB.update(
+      const hotel = await HotelDB.update(
         {
           status: false,
           deletedAt: new Date(),
@@ -119,7 +118,7 @@ const serviceIndividualServices = {
         message: `Eliminación exitosa`,
         status: 204,
         data: {
-          service:null,
+          hotel:null,
         },
       };
     } catch (error) {
@@ -131,13 +130,13 @@ const serviceIndividualServices = {
   },
   findByName: async (name: string) => {
     try {
-      const service = await IndividualServicesDB.findAll({
+      const hotel = await HotelDB.findAll({
         attributes: { exclude: ['status', 'deletedAt']},
         where: {
-          name
+          name: name
       }
     });
-      if (service.length===0) {
+      if (hotel.length===0) {
         console.log("Registro no encontrado")
         return {
           message: `Registro no encontrado`,
@@ -149,7 +148,7 @@ const serviceIndividualServices = {
           message: `Service encontrado`,
           status: 200,
           data: {
-            service:service[0],
+            hotel:hotel[0],
           },
         };
       }
@@ -161,10 +160,42 @@ const serviceIndividualServices = {
       };
     }
   },
+  findByIdSupervisor: async (id_supervisor: number) => {
+    try {
+      const hotel = await HotelDB.findAll({
+        attributes: { exclude: ['status', 'deletedAt']},
+        where: {
+          id_supervisor: id_supervisor
+      }
+    });
+      if (hotel.length===0) {
+        console.log("Registro no encontrado")
+        return {
+          message: `Registro no encontrado`,
+          status: 404,
+          data: {},
+        };
+      } else {
+        return {
+          message: `Service encontrado`,
+          status: 200,
+          data: {
+            hotel:hotel[0],
+          },
+        };
+      }
+    } catch (error) {
+      console.log(error);
+      return {
+        message: `Contact the administrator: error`,
+        status: 500,
+      };
+    }
+  }
 };
 
 export {
-  serviceIndividualServices
+  HotelServices
 }
 
 

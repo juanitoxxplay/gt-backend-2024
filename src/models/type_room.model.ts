@@ -10,5 +10,16 @@ const TypeRoomModel = {
         allowNull: false,
       },
       
+    createdAt: {
+      type: DataTypes.DATE,
+    
+    },
+    deletedAt: {
+        type: DataTypes.DATE,
+    },
+    status: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
+    }
 }; 
 export { TypeRoomModel };1

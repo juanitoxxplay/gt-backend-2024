@@ -1,6 +1,7 @@
 import account_recordRoute from "./account_record.route";
 import accountsRoute from "./account.route";
 import attractionRoute from "./attraction.route";
+import BookingRoute from "./booking.route";
 import categoryRoute from "./category.route";
 import chargeRoute from "./charge.route";
 import conceptRoute from "./concept.route";
@@ -9,15 +10,17 @@ import departamentRoute from "./departament.route";
 import empleoyeeAssistanceRoute from "./empleoyeeAssistance.route";
 import empleoyeeRoute from "./empleoyee.route";
 import empleoyeeUserRoute from "./empleoyeeUser.route";
+import eventRegistrationRoute from "./event-registration.route";
+import HotelRoute from "./hotel.route";
 import inventoryRoute from "./inventory.route";
 import journalRoute from "./journal.route";
 import paysheetDetailRoute from "./paysheetDetail.route";
 import paysheetRoute from "./paysheet.route";
 import performanceEvaluationRoute from "./performanceEvaluation.route";
-import eventRegistrationRoute from "./event-registration.route";
 import productRoute from "./product.route";
 import restaurantRoute from "./restaurant.route";
 import roleRoute from "./role.route";
+import RoomRoute from "./room.route";
 import serviceRoute from "./individualService.route";
 import settingRoute from "./setting.route";
 import supervisorRoute from "./supervisor.route";
@@ -39,36 +42,39 @@ export {
   account_recordRoute,
   accountsRoute,
   attractionRoute,
+  BookingRoute,
   categoryRoute,
   chargeRoute,
   conceptRoute,
   contractRoute,
   departamentRoute,
+  detailspurcharsesRoute,
   empleoyeeAssistanceRoute,
   empleoyeeRoute,
   empleoyeeUserRoute,
+  eventRegistrationRoute,
+  eventRoute,
+  HotelRoute,
   inventoryRoute,
   paysheetDetailRoute,
   paysheetRoute,
   performanceEvaluationRoute,
   productRoute,
+  purcharsesRoute,
   restaurantRoute,
   roleRoute,
+  RoomRoute,
   serviceRoute,
   settingRoute,
   supervisorRoute,
   supplierRoute,
   touristPackageRoute,
+  TransportRoute,
   unitmeasurementRoute,
   userRoute,
   journalRoute,
-  purcharsesRoute,
-  detailspurcharsesRoute,
-  TransportRoute,
-  eventRegistrationRoute,
-  eventRoute,
   resquest_typeRoute,
   resquestRoute,
   routesRoute
-};
 
+};
