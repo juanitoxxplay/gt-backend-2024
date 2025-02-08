@@ -1,16 +1,16 @@
-import { DepartamentDB } from "../config";
-import { DepartamentInterface } from "../interfaces";
+import { Account_RecordDB } from "../config";
+import { Account_RecordInterface } from "../interfaces";
 
-const DepartamentServices = {
+const Account_RecordServices = {
   getAll: async () => {
     try {
-      const Departaments = await DepartamentDB.findAll({ where: { status: true } });
-      if (Departaments.length === 0) {
+      const categories = await Account_RecordDB.findAll({ where: { status: true } });
+      if (categories.length === 0) {
         return {
           message: `Registros no encontrados`,
           status: 404,
           data: {
-            Departaments,
+            categories,
           },
         };
       }
@@ -18,7 +18,7 @@ const DepartamentServices = {
         message: `Registros encontrados`,
         status: 200,
         data: {
-          Departaments,
+          categories,
         },
       };
     } catch (error) {
@@ -31,13 +31,13 @@ const DepartamentServices = {
   },
   getOne: async (id: number|string) => {
     try {
-      const Departament = await DepartamentDB.findOne({
+      const Account_Record = await Account_RecordDB.findOne({
         where: {
           id: id,
           status: true
         }
       });
-      if (!Departament) {
+      if (!Account_Record) {
         return {
           message: `Registro no encontrado`,
           status: 404,
@@ -48,7 +48,7 @@ const DepartamentServices = {
           message: `Registro encontrado`,
           status: 200,
           data: {
-            Departament,
+            Account_Record,
           },
         };
       }
@@ -60,15 +60,15 @@ const DepartamentServices = {
       };
     }
   },
-  create: async (data: Partial<DepartamentInterface>) => {
-    data.name=data.name?.toLowerCase();
+  create: async (data: Partial<Account_RecordInterface>) => {
+    data.description=data.description?.toLowerCase();
     try {
-      const Departament = await DepartamentDB.create({ ...data });
+      const Account_Record = await Account_RecordDB.create({ ...data });
       return {
         message: `Creación exitosa`,
         status: 201,
         data: {
-          Departament,
+          Account_Record,
         },
       };
     } catch (error) {
@@ -79,16 +79,16 @@ const DepartamentServices = {
       };
     }
   },
-  update: async (id: number|string, dat: Partial<DepartamentInterface>) => {
-    dat.name=dat.name?.toLowerCase();
+  update: async (id: number|string, dat: Partial<Account_RecordInterface>) => {
+    dat.description=dat.description?.toLowerCase();
     try {
-      let Departament: DepartamentInterface | any = await DepartamentDB.update(dat, { where: { id } });
-      const { data } = await DepartamentServices.getOne(id);
+      let Account_Record: Account_RecordInterface | any = await Account_RecordDB.update(dat, { where: { id } });
+      const { data } = await Account_RecordServices.getOne(id);
       return {
         message: `Actualización exitosa`,
         status: 200,
         data: {
-          Departament: data?.Departament,
+          Account_Record: data?.Account_Record,
         },
       };
     } catch (error) {
@@ -101,7 +101,7 @@ const DepartamentServices = {
   },
   delete: async (id: number) => {
     try {
-      const Departament = await DepartamentDB.update(
+      const Account_Record = await Account_RecordDB.update(
         {
           status: false,
           deletedAt: new Date(),
@@ -112,7 +112,7 @@ const DepartamentServices = {
         message: `Eliminación exitosa`,
         status: 204,
         data: {
-          Departament:null,
+          Account_Record:null,
         },
       };
     } catch (error) {
@@ -122,10 +122,10 @@ const DepartamentServices = {
       };
     }
   },
-  findByName: async (name: string) => {
+  findByDescription: async (description: string) => {
     try {
-      const Departament = await DepartamentDB.findAll({ where: { name } });
-      if (Departament.length===0) {
+      const Account_Record = await Account_RecordDB.findAll({ where: { description } });
+      if (Account_Record.length===0) {
         console.log("Registro no encontrado")
         return {
           message: `Registro no encontrado`,
@@ -137,7 +137,7 @@ const DepartamentServices = {
           message: `Service encontrado`,
           status: 200,
           data: {
-            Departament:Departament[0],
+            Account_Record:Account_Record[0],
           },
         };
       }
@@ -152,7 +152,7 @@ const DepartamentServices = {
 };
 
 export {
-  DepartamentServices
+  Account_RecordServices
 }
 
 

@@ -6,8 +6,8 @@ class ContractValidator {
   public validateContract = [
     body("name").notEmpty().withMessage("Contract Name is required"),
     body("name").isString().withMessage("Contract Name must be string"),
-    body("Date").notEmpty().withMessage("Contract Date is required"),
-    body("Date").isDate().withMessage("Contract Date must be date"),
+    body("date").notEmpty().withMessage("Contract Date is required"),
+    body("date").isDate().withMessage("Contract Date must be date"),
     body("salary").notEmpty().withMessage("Contract salary is required"),
     body("salary").isFloat().withMessage("Contract salary must be float"),
     body("state").notEmpty().withMessage("Contract state is required"),

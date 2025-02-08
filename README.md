@@ -116,3 +116,19 @@ npm run dev
 ```
 http://localhost:3800/swagger
 ```
+```
+const syncModels = async () => {
+  /* Colocar alter en falso en caso de que se valla a reiniciar la api
+   * constantemente, a menos que se valla a reiniciar por alguna modificación
+   * hecha en los modelos. De lo contrario la base de datos se podría
+   * sobrecargar de índices con cada reinicio de la api,
+   * y esto eventualmente podría causar errores
+   * al consultar a tavés de la api
+   */ 
+  await db.sync({ alter: true });
+  try {
+  } catch (error) {
+    console.error(error);
+  }
+};
+```

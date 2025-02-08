@@ -1,11 +1,11 @@
 import { NextFunction, Request, Response } from "express";
 import { body } from "express-validator";
-import { AccountsServices } from "../services";
+import { ResquestServices } from "../services";
 
-class AccountsValidator {
-  public validateAccounts = [
-    body("name").notEmpty().withMessage("Accounts Name is required"),
-    body("name").isString().withMessage("Accounts Name must be string"),
+class ResquestValidator {
+  public validateResquest = [
+    body("description").notEmpty().withMessage("Resquest description is required"),
+    body("description").isString().withMessage("Resquest description must be string"),
   ];
 
   //un middleware en el caso de campo id
@@ -15,7 +15,7 @@ class AccountsValidator {
     next: NextFunction
   ) => {
     const { id } = req.params;
-    const { status, message, data } = await AccountsServices.getOne(id);
+    const { status, message, data } = await ResquestServices.getOne(id);
     if (status == 500) {
       return res.status(status).json({
         message,
@@ -37,20 +37,20 @@ class AccountsValidator {
     next();
   };
   //un middleware en el caso de campo unico
-  public validateIfNameIsUse = async (
+  public validateIfdescriptionIsUse = async (
     req: Request,
     res: Response,
     next: NextFunction
   ) => {
     const { id } = req.params;
-    let { name } = req.body;
-    const { status, message, data } = await AccountsServices.findByName(name);
+    let { description } = req.body;
+    const { status, message, data } = await ResquestServices.findByDescription(description);
     if (status == 500) {
       return res.status(status).json({
         message,
       });
     } else if (status == 200) {
-      const service: any = data?.Accounts;
+      const service: any = data?.Resquest;
       if (id) {
         //caso si es para actualizar datos
         if (id != service.id) {
@@ -58,8 +58,8 @@ class AccountsValidator {
             errors: [
               {
                 type: "field",
-                msg: `Nombre en uso : ${name}, para el registro actual`,
-                path: "name",
+                msg: `Nombre en uso : ${description}, para el registro actual`,
+                path: "description",
                 location: "body",
               },
             ],
@@ -71,8 +71,8 @@ class AccountsValidator {
           errors: [
             {
               type: "field",
-              msg: `Nombre en uso : ${name}, para el nuevo registro`,
-              path: "name",
+              msg: `Nombre en uso : ${description}, para el nuevo registro`,
+              path: "description",
               location: "body",
             },
           ],
@@ -82,4 +82,4 @@ class AccountsValidator {
     next();
   };
 }
-export { AccountsValidator };
+export { ResquestValidator };

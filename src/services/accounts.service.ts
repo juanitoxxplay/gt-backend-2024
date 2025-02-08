@@ -1,16 +1,17 @@
-import { DepartamentDB } from "../config";
-import { DepartamentInterface } from "../interfaces";
 
-const DepartamentServices = {
+import { AccountsDB } from "../config";
+import { AccountsInterface } from "../interfaces";
+
+const AccountsServices = {
   getAll: async () => {
     try {
-      const Departaments = await DepartamentDB.findAll({ where: { status: true } });
-      if (Departaments.length === 0) {
+      const categories = await AccountsDB.findAll({ where: { status: true } });
+      if (categories.length === 0) {
         return {
           message: `Registros no encontrados`,
           status: 404,
           data: {
-            Departaments,
+            categories,
           },
         };
       }
@@ -18,7 +19,7 @@ const DepartamentServices = {
         message: `Registros encontrados`,
         status: 200,
         data: {
-          Departaments,
+          categories,
         },
       };
     } catch (error) {
@@ -31,13 +32,13 @@ const DepartamentServices = {
   },
   getOne: async (id: number|string) => {
     try {
-      const Departament = await DepartamentDB.findOne({
+      const Accounts = await AccountsDB.findOne({
         where: {
           id: id,
           status: true
         }
       });
-      if (!Departament) {
+      if (!Accounts) {
         return {
           message: `Registro no encontrado`,
           status: 404,
@@ -48,7 +49,7 @@ const DepartamentServices = {
           message: `Registro encontrado`,
           status: 200,
           data: {
-            Departament,
+            Accounts,
           },
         };
       }
@@ -60,15 +61,15 @@ const DepartamentServices = {
       };
     }
   },
-  create: async (data: Partial<DepartamentInterface>) => {
+  create: async (data: Partial<AccountsInterface>) => {
     data.name=data.name?.toLowerCase();
     try {
-      const Departament = await DepartamentDB.create({ ...data });
+      const Accounts = await AccountsDB.create({ ...data });
       return {
         message: `Creación exitosa`,
         status: 201,
         data: {
-          Departament,
+          Accounts,
         },
       };
     } catch (error) {
@@ -79,16 +80,16 @@ const DepartamentServices = {
       };
     }
   },
-  update: async (id: number|string, dat: Partial<DepartamentInterface>) => {
+  update: async (id: number|string, dat: Partial<AccountsInterface>) => {
     dat.name=dat.name?.toLowerCase();
     try {
-      let Departament: DepartamentInterface | any = await DepartamentDB.update(dat, { where: { id } });
-      const { data } = await DepartamentServices.getOne(id);
+      let Accounts: AccountsInterface | any = await AccountsDB.update(dat, { where: { id } });
+      const { data } = await AccountsServices.getOne(id);
       return {
         message: `Actualización exitosa`,
         status: 200,
         data: {
-          Departament: data?.Departament,
+          Accounts: data?.Accounts,
         },
       };
     } catch (error) {
@@ -101,7 +102,7 @@ const DepartamentServices = {
   },
   delete: async (id: number) => {
     try {
-      const Departament = await DepartamentDB.update(
+      const Accounts = await AccountsDB.update(
         {
           status: false,
           deletedAt: new Date(),
@@ -112,7 +113,7 @@ const DepartamentServices = {
         message: `Eliminación exitosa`,
         status: 204,
         data: {
-          Departament:null,
+          Accounts:null,
         },
       };
     } catch (error) {
@@ -124,8 +125,8 @@ const DepartamentServices = {
   },
   findByName: async (name: string) => {
     try {
-      const Departament = await DepartamentDB.findAll({ where: { name } });
-      if (Departament.length===0) {
+      const Accounts = await AccountsDB.findAll({ where: { name } });
+      if (Accounts.length===0) {
         console.log("Registro no encontrado")
         return {
           message: `Registro no encontrado`,
@@ -137,7 +138,7 @@ const DepartamentServices = {
           message: `Service encontrado`,
           status: 200,
           data: {
-            Departament:Departament[0],
+            Accounts:Accounts[0],
           },
         };
       }
@@ -152,7 +153,7 @@ const DepartamentServices = {
 };
 
 export {
-  DepartamentServices
+  AccountsServices
 }
 
 

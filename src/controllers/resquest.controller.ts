@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
-import { AccountsServices } from "../services";
-export class AccountsController {
+import { ResquestServices } from "../services";
+export class ResquestController {
   constructor() {
     
   }
 
   all = async (req: Request, res: Response) => {
-    const { status, message, data } = await AccountsServices.getAll();
+    const { status, message, data } = await ResquestServices.getAll();
     return res.status(status).json({
       message,
       data,
@@ -15,14 +15,14 @@ export class AccountsController {
 
   one = async (req: Request, res: Response) => {
     const {id}=req.params
-    const { status, message, data } = await AccountsServices.getOne(Number(id));
+    const { status, message, data } = await ResquestServices.getOne(Number(id));
     return res.status(status).json({
       message,
       data,
     });
   };
   create = async (req: Request, res: Response) => {
-    const { status, message, data } = await AccountsServices.create(req.body);
+    const { status, message, data } = await ResquestServices.create(req.body);
     return res.status(status).json({
       message,
       data,
@@ -30,7 +30,7 @@ export class AccountsController {
   };
   update = async (req: Request, res: Response) => {
     const {id}=req.params
-    const { status, message, data } = await AccountsServices.update(Number(id),req.body);
+    const { status, message, data } = await ResquestServices.update(Number(id),req.body);
     return res.status(status).json({
       message,
       data,
@@ -39,12 +39,10 @@ export class AccountsController {
 
   delete = async (req: Request, res: Response) => {
     const {id}=req.params
-    const { status, message, data } = await AccountsServices.delete(Number(id));
+    const { status, message, data } = await ResquestServices.delete(Number(id));
     return res.status(status).json({
       message,
       data,
     });
   };
 }
-
-

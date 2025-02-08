@@ -1,43 +1,44 @@
-import { RequestTypeDb } from "../config";
-import { RequestTypeInterface } from "../interfaces/request_type.interface";
 
-const RequestTypeService = {
-    getAll: async () => {
-        try {
-            const RequestType = await RequestTypeDb.findAll({ where: { bot: true } });
-            if (RequestType.length === 0) {
-                return {
-                    message: `Registros no encontrados`,
-                    status: 404,
-                    data: {
-                      RequestType,
-                    },
-                };
-        }; 
-        return {
-            message: `Registros encontrados`,
-            status: 200,
-            data: {
-              RequestType,
-            },        
-        };
-} catch (error) {
-    console.log(error);
-    return {
-      message: `Contacte con el administrador`,
-      status: 500,
-    };
-  }
-},
-getOne: async (id: number|string) => {
+import { ResquestDB } from "../config";
+import { ResquestInterface } from "../interfaces";
+
+const ResquestServices = {
+  getAll: async () => {
     try {
-      const RequestType = await RequestTypeDb.findOne({
+      const categories = await ResquestDB.findAll({ where: { status: true } });
+      if (categories.length === 0) {
+        return {
+          message: `Registros no encontrados`,
+          status: 404,
+          data: {
+            categories,
+          },
+        };
+      }
+      return {
+        message: `Registros encontrados`,
+        status: 200,
+        data: {
+          categories,
+        },
+      };
+    } catch (error) {
+      console.log(error);
+      return {
+        message: `Contacte con el administrador`,
+        status: 500,
+      };
+    }
+  },
+  getOne: async (id: number|string) => {
+    try {
+      const Resquest = await ResquestDB.findOne({
         where: {
           id: id,
           status: true
         }
       });
-      if (!RequestType) {
+      if (!Resquest) {
         return {
           message: `Registro no encontrado`,
           status: 404,
@@ -48,7 +49,7 @@ getOne: async (id: number|string) => {
           message: `Registro encontrado`,
           status: 200,
           data: {
-            RequestType,
+            Resquest,
           },
         };
       }
@@ -60,15 +61,15 @@ getOne: async (id: number|string) => {
       };
     }
   },
-  create: async (data: Partial<RequestTypeInterface>) => {
-    data.name=data.name?.toLowerCase();
+  create: async (data: Partial<ResquestInterface>) => {
+    data.description=data.description?.toLowerCase();
     try {
-      const RequestType = await RequestTypeDb.create({ ...data });
+      const Resquest = await ResquestDB.create({ ...data });
       return {
         message: `Creación exitosa`,
         status: 201,
         data: {
-            RequestType,
+          Resquest,
         },
       };
     } catch (error) {
@@ -79,16 +80,16 @@ getOne: async (id: number|string) => {
       };
     }
   },
-  update: async (id: number|string, dat: Partial<RequestTypeInterface>) => {
-    dat.name=dat.name?.toLowerCase();
+  update: async (id: number|string, dat: Partial<ResquestInterface>) => {
+    dat.description=dat.description?.toLowerCase();
     try {
-      let RequestType: RequestTypeInterface | any = await RequestTypeDb.update(dat, { where: { id } });
-      const { data } = await RequestTypeService.getOne(id);
+      let Resquest: ResquestInterface | any = await ResquestDB.update(dat, { where: { id } });
+      const { data } = await ResquestServices.getOne(id);
       return {
         message: `Actualización exitosa`,
         status: 200,
         data: {
-            RequestType: data?.RequestType,
+          Resquest: data?.Resquest,
         },
       };
     } catch (error) {
@@ -101,7 +102,7 @@ getOne: async (id: number|string) => {
   },
   delete: async (id: number) => {
     try {
-      const RequestType = await RequestTypeDb.update(
+      const Resquest = await ResquestDB.update(
         {
           status: false,
           deletedAt: new Date(),
@@ -112,7 +113,7 @@ getOne: async (id: number|string) => {
         message: `Eliminación exitosa`,
         status: 204,
         data: {
-            RequestType:null,
+          Resquest:null,
         },
       };
     } catch (error) {
@@ -122,10 +123,10 @@ getOne: async (id: number|string) => {
       };
     }
   },
-  findByName: async (name: string) => {
+  findByDescription: async (description: string) => {
     try {
-      const RequestType = await RequestTypeDb.findAll({ where: { name } });
-      if (RequestType.length===0) {
+      const Resquest = await ResquestDB.findAll({ where: { description } });
+      if (Resquest.length===0) {
         console.log("Registro no encontrado")
         return {
           message: `Registro no encontrado`,
@@ -137,7 +138,7 @@ getOne: async (id: number|string) => {
           message: `Service encontrado`,
           status: 200,
           data: {
-            RequestType:RequestType[0],
+            Resquest:Resquest[0],
           },
         };
       }
@@ -152,5 +153,7 @@ getOne: async (id: number|string) => {
 };
 
 export {
-    RequestTypeService
+  ResquestServices
 }
+
+
