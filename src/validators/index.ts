@@ -4,6 +4,7 @@ export * from './attraction.validators';
 export * from './bookings.validators';
 export * from './category.validators';
 export * from './charge.validators';
+export * from './client.validators';
 export * from './concept.validators';
 export * from './contract.validators';
 export * from './departament.validators';

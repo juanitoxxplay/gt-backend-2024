@@ -10,6 +10,7 @@ import {
   BookingRoute,
   categoryRoute,
   chargeRoute,
+  clientRoute,
   conceptRoute,
   contractRoute,
   departamentRoute,
@@ -59,6 +60,7 @@ export class Server {
     this.paths = {
       account_record: this.pre + "/account_record",
       account: this.pre + "/account",
+      client: this.pre + "/clientRoute",
       attractions: this.pre + "/attractions",
       bookings: this.pre + "/bookings",
       categories: this.pre + "/categories",
@@ -114,6 +116,7 @@ export class Server {
     this.app.use(this.paths.bookings, BookingRoute);
     this.app.use(this.paths.categories, categoryRoute);
     this.app.use(this.paths.charge, chargeRoute);
+    this.app.use(this.paths.charge, clientRoute);
     this.app.use(this.paths.concepts, conceptRoute);
     this.app.use(this.paths.contract, contractRoute);
     this.app.use(this.paths.departament, departamentRoute);
@@ -134,6 +137,7 @@ export class Server {
     this.app.use(this.paths.routes, routesRoute);
     this.app.use(this.paths.supervisor, supervisorRoute);
     this.app.use(this.paths.roles, roleRoute);
+    this.app.use(this.paths.restaurant, restaurantRoute),
     this.app.use(this.paths.supplier, supplierRoute);
     this.app.use(this.paths.services, serviceRoute);
     this.app.use(this.paths.settings, settingRoute);

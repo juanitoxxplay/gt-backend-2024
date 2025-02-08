@@ -5,6 +5,7 @@ export * from './booking-room.interface';
 export * from './booking.interface';
 export * from './category.interface';
 export * from './charge.interface';
+export * from './client.interface';
 export * from './concept.interface';
 export * from './contract.interface';
 export * from './departament.interface';

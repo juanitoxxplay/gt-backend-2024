@@ -3,6 +3,7 @@
 export * from './account_record.seed';
 export * from './accounts.seed';
 export * from './charge.seed';
+export * from './client.seed';
 export * from './concept.seed';
 export * from './contract.seed';
 export * from './category.seed';
