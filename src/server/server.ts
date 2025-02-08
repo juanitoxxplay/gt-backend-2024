@@ -13,6 +13,7 @@ import {
   conceptRoute,
   contractRoute,
   departamentRoute,
+  detailspurcharsesRoute,
   empleoyeeAssistanceRoute,
   empleoyeeRoute,
   empleoyeeUserRoute,
@@ -20,11 +21,12 @@ import {
   eventRoute,
   HotelRoute,
   inventoryRoute,
+  journalRoute,
   paysheetDetailRoute,
   paysheetRoute,
   performanceEvaluationRoute,
   productRoute,
-  requestTypeRoute,
+  purcharsesRoute,
   restaurantRoute,
   roleRoute,
   RoomRoute,
@@ -36,10 +38,6 @@ import {
   TransportRoute,
   unitmeasurementRoute,
   userRoute,
-  journalRoute,
-  purcharsesRoute,
-  detailspurcharsesRoute,
-  purcharsesRoute,
   resquest_typeRoute,
   resquestRoute,
   routesRoute
@@ -67,11 +65,11 @@ export class Server {
       charge: this.pre + "/charge",
       concepts: this.pre + "/concepts",
       contract: this.pre + "/contract",
-      departament: this.pre + "/departaments",
+      departament: this.pre + "/departament",
       empleoyee: this.pre + "/empleoyee",
       empleoyeeAssistance: this.pre + "/empleoyee_assistance",
       empleoyeeUser: this.pre + "/empleoyee_user",
-      eventRoute: this.pre + "/event",
+      event: this.pre + "/event",
       eventRegistration: this.pre + "/event-registration",
       hotels: this.pre + "/hotels",
       inventory: this.pre + "/inventory",
@@ -80,7 +78,6 @@ export class Server {
       paysheetDetail: this.pre + "/paysheet_details",
       performanceEvaluation: this.pre + "/performance_evaluation",
       products: this.pre + "/products",
-      requestType: this.pre + "/request_type",
       restaurant: this.pre + "/restaurant",
       roles: this.pre + "/roles",
       rooms: this.pre + "/rooms",
@@ -89,7 +86,7 @@ export class Server {
       settings: this.pre + "/settings",
       supervisor: this.pre + "/supervisor",
       supplier: this.pre + "/supplier",
-      touristPackage: this.pre + "/tourist_packages",
+      touristPackage: this.pre + "/tourist_package",
       transport: this.pre + "/transport",
       unitMeasurement: this.pre + "/unit_measurement",
       users: this.pre + "/users",
@@ -123,7 +120,7 @@ export class Server {
     this.app.use(this.paths.empleoyeeAssistance, empleoyeeAssistanceRoute);
     this.app.use(this.paths.empleoyee, empleoyeeRoute);
     this.app.use(this.paths.empleoyeeUser, empleoyeeUserRoute);
-    this.app.use(this.paths.eventRoute, eventRoute);
+    this.app.use(this.paths.event, eventRoute);
     this.app.use(this.paths.eventRegistration, eventRegistrationRoute);
     this.app.use(this.paths.hotels, HotelRoute);
     this.app.use(this.paths.inventory, inventoryRoute);
@@ -131,18 +128,15 @@ export class Server {
     this.app.use(this.paths.paysheet, paysheetRoute);
     this.app.use(this.paths.paysheetDetail, paysheetDetailRoute);
     this.app.use(this.paths.performanceEvaluation, performanceEvaluationRoute);
-    this.app.use(this.paths.product, productRoute);
+    this.app.use(this.paths.products, productRoute);
     this.app.use(this.paths.restaurant, restaurantRoute);
     this.app.use(this.paths.rooms, RoomRoute);
     this.app.use(this.paths.routes, routesRoute);
     this.app.use(this.paths.supervisor, supervisorRoute);
-    this.app.use(this.paths.categories, categoryRoute);
     this.app.use(this.paths.roles, roleRoute);
     this.app.use(this.paths.supplier, supplierRoute);
     this.app.use(this.paths.services, serviceRoute);
-    this.app.use(this.paths.setting, settingRoute);
-    this.app.use(this.paths.supervisor, supervisorRoute);
-    this.app.use(this.paths.supplier, supplierRoute);
+    this.app.use(this.paths.settings, settingRoute);
     this.app.use(this.paths.touristPackage, touristPackageRoute);
     this.app.use(this.paths.transport, TransportRoute);
     this.app.use(this.paths.unitMeasurement, unitmeasurementRoute);

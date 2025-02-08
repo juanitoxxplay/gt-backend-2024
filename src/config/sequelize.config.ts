@@ -411,11 +411,6 @@ JournalDB.belongsTo(Account_RecordDB, { foreignKey: "id_account_records" });
 
 
 
-
-
-
-
-
 // Sincroniza los modelos con la base de datos
 const syncModels = async () => {
   /* Colocar alter en falso en caso de que se valla a reiniciar la api
@@ -425,7 +420,7 @@ const syncModels = async () => {
    * y esto eventualmente podría causar errores
    * al consultar a tavés de la api
    */ 
-  await db.sync({ alter: false });
+  await db.sync({ alter: false});
   try {
   } catch (error) {
     console.error(error);

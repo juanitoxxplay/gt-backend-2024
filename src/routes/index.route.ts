@@ -76,5 +76,4 @@ export {
   resquest_typeRoute,
   resquestRoute,
   routesRoute
-
 };
