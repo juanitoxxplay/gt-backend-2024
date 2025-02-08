@@ -1,5 +1,5 @@
-
 export * from './accounts.service';
+export * from './account_record.service';
 export * from './attraction.service';
 export * from './booking-rooms.service';
 export * from './booking.service';
@@ -14,6 +14,7 @@ export * from './empleoyeeUser.service';
 export * from './event-registration.service';
 export * from './event.service';
 export * from './hotel.service';
+export * from './restaurant.service';
 export * from './individualService.service';
 export * from './inventory.service';
 export * from './journal.services';

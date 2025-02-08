@@ -9,7 +9,6 @@ const resquestSeeds: Partial<ResquestInterface>[] = [
     resquest_type_id:{ id: 1 } as Resquest_TypesInterface,
     amount:1,
     bot:true,
-    status:true,
   },
 ];
 

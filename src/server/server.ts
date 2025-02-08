@@ -20,7 +20,6 @@ import {
   eventRoute,
   HotelRoute,
   inventoryRoute,
-  journalRoute,
   paysheetDetailRoute,
   paysheetRoute,
   performanceEvaluationRoute,
@@ -37,6 +36,8 @@ import {
   TransportRoute,
   unitmeasurementRoute,
   userRoute,
+  journalRoute,
+  purcharsesRoute,
   detailspurcharsesRoute,
   purcharsesRoute,
   resquest_typeRoute,
@@ -119,8 +120,8 @@ export class Server {
     this.app.use(this.paths.concepts, conceptRoute);
     this.app.use(this.paths.contract, contractRoute);
     this.app.use(this.paths.departament, departamentRoute);
-    this.app.use(this.paths.empleoyee, empleoyeeRoute);
     this.app.use(this.paths.empleoyeeAssistance, empleoyeeAssistanceRoute);
+    this.app.use(this.paths.empleoyee, empleoyeeRoute);
     this.app.use(this.paths.empleoyeeUser, empleoyeeUserRoute);
     this.app.use(this.paths.eventRoute, eventRoute);
     this.app.use(this.paths.eventRegistration, eventRegistrationRoute);
@@ -131,11 +132,13 @@ export class Server {
     this.app.use(this.paths.paysheetDetail, paysheetDetailRoute);
     this.app.use(this.paths.performanceEvaluation, performanceEvaluationRoute);
     this.app.use(this.paths.product, productRoute);
-    this.app.use(this.paths.requestType, requestTypeRoute);
     this.app.use(this.paths.restaurant, restaurantRoute);
-    this.app.use(this.paths.roles, roleRoute);
     this.app.use(this.paths.rooms, RoomRoute);
     this.app.use(this.paths.routes, routesRoute);
+    this.app.use(this.paths.supervisor, supervisorRoute);
+    this.app.use(this.paths.categories, categoryRoute);
+    this.app.use(this.paths.roles, roleRoute);
+    this.app.use(this.paths.supplier, supplierRoute);
     this.app.use(this.paths.services, serviceRoute);
     this.app.use(this.paths.setting, settingRoute);
     this.app.use(this.paths.supervisor, supervisorRoute);
