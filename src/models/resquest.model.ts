@@ -1,26 +1,28 @@
 import { DataTypes } from "sequelize";
 
-const AccountModel = {
+const ResquestModel = {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true,
   },
-  name: {
-    type: DataTypes.STRING(30),
-    allowNull: false
+  description: {
+    type: DataTypes.STRING(50),
+    allowNull: false,
+    unique: true,
   },
-  type_account: {
+  resquest_type_id: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  deletedAt: {
-    type: DataTypes.DATE,
+  amount: {
+    type: DataTypes.DOUBLE,
+    allowNull: false,
   },
   status: {
     type: DataTypes.BOOLEAN,
-    defaultValue: true,
+    allowNull: false,
   },
 };
 
-export { AccountModel };
+export { ResquestModel };

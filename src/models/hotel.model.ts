@@ -22,12 +22,21 @@ const HotelModel = {
     type: DataTypes.BIGINT,
     allowNull: false
   },
-  deletedAt: {
-    type: DataTypes.DATE,
-  },
   id_supervisor: {
     type: DataTypes.INTEGER,
     allowNull: false
+  },
+
+  createdAt: {
+    type: DataTypes.DATE,
+
+  },
+  deletedAt: {
+      type: DataTypes.DATE,
+  },
+  status: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
   },
 };
 

@@ -1,10 +1,12 @@
 import "dotenv/config";
 import { CategoryDB, db, RoleDB, UserDB, ChargeDB, ClientDB, ConceptDB, ContractDB, DepartamentDB, EmpleoyeeDB, EmpleoyeeAssistanceDB, EmpleoyeeUserDB,
-PaysheetDB,InventoryDB, PaysheetDetailDB, ProductDB, PerformanceEvaluationDB, RestaurantDB , IndividualServicesDB, SupervisorDB, SupplierDB,
- } from "../config";
+  PaysheetDB, InventoryDB, PaysheetDetailDB, ProductDB, PerformanceEvaluationDB, RestaurantDB, IndividualServicesDB, SupervisorDB, SupplierDB,
+  Account_RecordDB, AccountsDB, ResquestDB, Resquest_TypesDB, JournalDB
+} from "../config";
 
-import { categoriesSeeds, rolesSeeds, userSeeds, chargeSeeds, clientsSeeds,  conceptSeeds, contractSeeds, departamentSeeds, empleoyeeSeeds, empleoyeeAssistanceSeeds, empleoyeeUserSeeds,
-  paysheetSeeds, inventorySeeds, paysheetDetailSeeds, performanceEvaluationSeeds,productSeeds, restaurantSeeds , individualserviceSeeds, supervisorSeeds, suppliersSeeds, 
+import { categoriesSeeds, rolesSeeds, userSeeds, chargeSeeds, clientsSeeds, conceptSeeds, contractSeeds, departamentSeeds, empleoyeeSeeds, empleoyeeAssistanceSeeds, empleoyeeUserSeeds,
+  paysheetSeeds, inventorySeeds, paysheetDetailSeeds, performanceEvaluationSeeds, productSeeds, restaurantSeeds, individualserviceSeeds, supervisorSeeds, suppliersSeeds, 
+  account_recordSeeds, accountsSeeds, resquestSeeds, resquest_typesSeeds, journalSeeds
  } from "./seeders";
 
 const eject = async () => {
@@ -42,6 +44,11 @@ async function insertSeeders() {
     service: "service",
     supervisor: "supervisor",
     supplier: "supplier",
+    account_record: "account_record",
+    accounts: "accounts",
+    resquest: "resquest",
+    resquest_types: "resquest_types",
+    journal: "journal",
   };
 
   //NIVEL 1
@@ -180,6 +187,41 @@ async function insertSeeders() {
     console.log(`Registros insertado exitosamente de ${models.inventory}`);
   } catch (error) {
     console.error(`Error al insertar registros de ${models.inventory}:`, error);
+  }
+  try {
+    console.log(`Insertando seeds de : ${models.account_record}`);
+    const result = await Account_RecordDB.bulkCreate(account_recordSeeds, { ignoreDuplicates: true,validate: true });
+    console.log(`Registros insertado exitosamente de ${models.account_record}`);
+  } catch (error) {
+    console.error(`Error al insertar registros de ${models.account_record}:`, error);
+  }
+  try {
+    console.log(`Insertando seeds de : ${models.accounts}`);
+    const result = await AccountsDB.bulkCreate(accountsSeeds, { ignoreDuplicates: true,validate: true });
+    console.log(`Registros insertado exitosamente de ${models.accounts}`);
+  } catch (error) {
+    console.error(`Error al insertar registros de ${models.accounts}:`, error);
+  }
+  try {
+    console.log(`Insertando seeds de : ${models.resquest}`);
+    const result = await ResquestDB.bulkCreate(resquestSeeds, { ignoreDuplicates: true,validate: true });
+    console.log(`Registros insertado exitosamente de ${models.resquest}`);
+  } catch (error) {
+    console.error(`Error al insertar registros de ${models.resquest}:`, error);
+  }
+  try {
+    console.log(`Insertando seeds de : ${models.resquest_types}`);
+    const result = await Resquest_TypesDB.bulkCreate(resquest_typesSeeds, { ignoreDuplicates: true,validate: true });
+    console.log(`Registros insertado exitosamente de ${models.resquest_types}`);
+  } catch (error) {
+    console.error(`Error al insertar registros de ${models.resquest_types}:`, error);
+  }
+  try {
+    console.log(`Insertando seeds de : ${models.journal}`);
+    const result = await JournalDB.bulkCreate(journalSeeds, { ignoreDuplicates: true,validate: true });
+    console.log(`Registros insertado exitosamente de ${models.journal}`);
+  } catch (error) {
+    console.error(`Error al insertar registros de ${models.journal}:`, error);
   }
 }
 eject();

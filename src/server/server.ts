@@ -2,81 +2,100 @@ import express from "express";
 import cors from "cors";
 import swaggerJsDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
-import bodyParser from "body-parser";
-
-
 
 import {
-  accountRoute,
+  account_recordRoute,
+  accountsRoute,
   attractionRoute,
+  BookingRoute,
   categoryRoute,
   chargeRoute,
   clientRoute,
   conceptRoute,
   contractRoute,
   departamentRoute,
+  detailspurcharsesRoute,
   empleoyeeAssistanceRoute,
   empleoyeeRoute,
   empleoyeeUserRoute,
+  eventRegistrationRoute,
+  eventRoute,
+  HotelRoute,
   inventoryRoute,
+  journalRoute,
   paysheetDetailRoute,
   paysheetRoute,
   performanceEvaluationRoute,
   productRoute,
+  purcharsesRoute,
   restaurantRoute,
   roleRoute,
+  RoomRoute,
   serviceRoute,
+  settingRoute,
   supervisorRoute,
   supplierRoute,
   touristPackageRoute,
+  TransportRoute,
   unitmeasurementRoute,
   userRoute,
-  TransportRoute,
-  eventRegistrationRoute,
-  eventRoute,
+  resquest_typeRoute,
+  resquestRoute,
+  routesRoute
 } from "../routes/index.route";
 
 import { db } from "../config/sequelize.config";
 import { swaggerOptions } from "../config";
+
 export class Server {
   private app: any;
   private port: string | number;
   private pre: string;
   private paths: any;
+
   constructor() {
     this.app = express();
     this.port = process.env.API_PORT || 3800;
     this.pre = "/api";
     this.paths = {
-    
+      account_record: this.pre + "/account_record",
       account: this.pre + "/account",
-      charge: this.pre + "/chargeRoute",
       client: this.pre + "/clientRoute",
-      concept: this.pre + "/conceptRoute",
-      attractions:this.pre + "/attractions",
+      attractions: this.pre + "/attractions",
+      bookings: this.pre + "/bookings",
       categories: this.pre + "/categories",
+      charge: this.pre + "/charge",
+      concepts: this.pre + "/concepts",
       contract: this.pre + "/contract",
-      departament: this.pre + "/departaments",
+      departament: this.pre + "/departament",
+      empleoyee: this.pre + "/empleoyee",
       empleoyeeAssistance: this.pre + "/empleoyee_assistance",
       empleoyeeUser: this.pre + "/empleoyee_user",
-      empleoyees: this.pre + "/empleoyees",
+      event: this.pre + "/event",
+      eventRegistration: this.pre + "/event-registration",
+      hotels: this.pre + "/hotels",
       inventory: this.pre + "/inventory",
+      journal: this.pre + "/journal",
       paysheet: this.pre + "/paysheet",
       paysheetDetail: this.pre + "/paysheet_details",
       performanceEvaluation: this.pre + "/performance_evaluation",
-      product: this.pre + "/products",
+      products: this.pre + "/products",
+      restaurant: this.pre + "/restaurant",
       roles: this.pre + "/roles",
-      restaurant: this.pre + "/restaurants",
+      rooms: this.pre + "/rooms",
+      routes: this.pre + "/routes",
       services: this.pre + "/services",
+      settings: this.pre + "/settings",
       supervisor: this.pre + "/supervisor",
       supplier: this.pre + "/supplier",
-      touristPackage: this.pre + "/tourist_packages",
+      touristPackage: this.pre + "/tourist_package",
+      transport: this.pre + "/transport",
       unitMeasurement: this.pre + "/unit_measurement",
       users: this.pre + "/users",
-      transport: this.pre + "/transport",
-      eventregistration: this.pre + "/event-registration",
-      eventRoute: this.pre + "/event",
-    
+      purcharses: this.pre + "/purcharses",
+      detailspurcharses: this.pre + "/detailspurcharses",
+      resquest_type: this.pre + "/resquest_type",
+      resquest: this.pre + "/resquest"
     };
     this.connectDB();
     this.middlewares();
@@ -86,41 +105,52 @@ export class Server {
 
   middlewares() {
     this.app.use(cors());
-    this.app.use(express.json());
+    this.app.use(express.json()); // Serializa las respuestas JSON cuando consumen, no es necesario body parser
     this.app.use(express.static("src/public"));
-    this.app.use(bodyParser.json());
-    this.app.use(bodyParser.urlencoded({ extended: true }));
   }
 
   routes() {
-    this.app.use(this.paths.account, accountRoute);
+    this.app.use(this.paths.account_record, account_recordRoute);
+    this.app.use(this.paths.account, accountsRoute);
     this.app.use(this.paths.attractions, attractionRoute);
+    this.app.use(this.paths.bookings, BookingRoute);
+    this.app.use(this.paths.categories, categoryRoute);
     this.app.use(this.paths.charge, chargeRoute);
     this.app.use(this.paths.charge, clientRoute);
-    this.app.use(this.paths.concept, conceptRoute);
+    this.app.use(this.paths.concepts, conceptRoute);
     this.app.use(this.paths.contract, contractRoute);
     this.app.use(this.paths.departament, departamentRoute);
     this.app.use(this.paths.empleoyeeAssistance, empleoyeeAssistanceRoute);
-    this.app.use(this.paths.empleoyees, empleoyeeRoute);
+    this.app.use(this.paths.empleoyee, empleoyeeRoute);
     this.app.use(this.paths.empleoyeeUser, empleoyeeUserRoute);
+    this.app.use(this.paths.event, eventRoute);
+    this.app.use(this.paths.eventRegistration, eventRegistrationRoute);
+    this.app.use(this.paths.hotels, HotelRoute);
     this.app.use(this.paths.inventory, inventoryRoute);
-    this.app.use(this.paths.paysheetDetail, paysheetDetailRoute);
+    this.app.use(this.paths.journal, journalRoute);
     this.app.use(this.paths.paysheet, paysheetRoute);
+    this.app.use(this.paths.paysheetDetail, paysheetDetailRoute);
     this.app.use(this.paths.performanceEvaluation, performanceEvaluationRoute);
-    this.app.use(this.paths.product, productRoute);
+    this.app.use(this.paths.products, productRoute);
+    this.app.use(this.paths.restaurant, restaurantRoute);
+    this.app.use(this.paths.rooms, RoomRoute);
+    this.app.use(this.paths.routes, routesRoute);
     this.app.use(this.paths.supervisor, supervisorRoute);
-    this.app.use(this.paths.categories, categoryRoute);
     this.app.use(this.paths.roles, roleRoute);
     this.app.use(this.paths.restaurant, restaurantRoute),
     this.app.use(this.paths.supplier, supplierRoute);
     this.app.use(this.paths.services, serviceRoute);
-    this.app.use(this.paths.users, userRoute);
-    this.app.use(this.paths.eventregistration, eventRegistrationRoute);
+    this.app.use(this.paths.settings, settingRoute);
     this.app.use(this.paths.touristPackage, touristPackageRoute);
-    this.app.use(this.paths.unitMeasurement, unitmeasurementRoute);
     this.app.use(this.paths.transport, TransportRoute);
-    this.app.use(this.paths.eventRoute, eventRoute);
+    this.app.use(this.paths.unitMeasurement, unitmeasurementRoute);
+    this.app.use(this.paths.users, userRoute);
+    this.app.use(this.paths.purcharses, purcharsesRoute);
+    this.app.use(this.paths.detailspurcharses, detailspurcharsesRoute);
+    this.app.use(this.paths.resquest_type, resquest_typeRoute);
+    this.app.use(this.paths.resquest, resquestRoute);
   }
+
   async connectDB() {
     await db
       .authenticate()
@@ -137,6 +167,7 @@ export class Server {
       console.log(`Servidor corriendo en localhost:${this.port}`);
     });
   }
+
   swaggerSetup() {
     const swaggerDocs = swaggerJsDoc(swaggerOptions);
     this.app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerDocs));

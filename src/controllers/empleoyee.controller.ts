@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
-import { EmpleoyeeServices } from "../services";
+import { empleoyeeServices } from "../services";
 export class EmpleoyeeController {
   constructor() {
     
   }
 
   all = async (req: Request, res: Response) => {
-    const { status, message, data } = await EmpleoyeeServices.getAll();
+    const { status, message, data } = await empleoyeeServices.getAll();
     return res.status(status).json({
       message,
       data,
@@ -15,14 +15,14 @@ export class EmpleoyeeController {
 
   one = async (req: Request, res: Response) => {
     const {id}=req.params
-    const { status, message, data } = await EmpleoyeeServices.getOne(Number(id));
+    const { status, message, data } = await empleoyeeServices.getOne(Number(id));
     return res.status(status).json({
       message,
       data,
     });
   };
   create = async (req: Request, res: Response) => {
-    const { status, message, data } = await EmpleoyeeServices.create(req.body);
+    const { status, message, data } = await empleoyeeServices.create(req.body);
     return res.status(status).json({
       message,
       data,
@@ -30,7 +30,7 @@ export class EmpleoyeeController {
   };
   update = async (req: Request, res: Response) => {
     const {id}=req.params
-    const { status, message, data } = await EmpleoyeeServices.update(Number(id),req.body);
+    const { status, message, data } = await empleoyeeServices.update(Number(id),req.body);
     return res.status(status).json({
       message,
       data,
@@ -39,7 +39,7 @@ export class EmpleoyeeController {
 
   delete = async (req: Request, res: Response) => {
     const {id}=req.params
-    const { status, message, data } = await EmpleoyeeServices.delete(Number(id));
+    const { status, message, data } = await empleoyeeServices.delete(Number(id));
     return res.status(status).json({
       message,
       data,

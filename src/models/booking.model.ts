@@ -15,5 +15,17 @@ const BookingModel ={
         defaultValue: false,
     },
 
+    createdAt: {
+        type: DataTypes.DATE,
+
+    },
+    deletedAt: {
+        type: DataTypes.DATE,
+    },
+    status: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
+    },
+
 };
 export {BookingModel};

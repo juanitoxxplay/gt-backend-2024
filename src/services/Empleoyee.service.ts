@@ -2,7 +2,7 @@
 import { EmpleoyeeDB } from "../config";
 import { EmpleoyeeInterface } from "../interfaces";
 
-const EmpleoyeeServices = {
+const empleoyeeServices = {
   getAll: async () => {
     try {
       const empleoyees = await EmpleoyeeDB.findAll({ where: { status: true } });
@@ -84,7 +84,7 @@ const EmpleoyeeServices = {
     dat.name=dat.name?.toLowerCase();
     try {
       let Empleoyee: EmpleoyeeInterface | any = await EmpleoyeeDB.update(dat, { where: { id } });
-      const { data } = await EmpleoyeeServices.getOne(id);
+      const { data } = await empleoyeeServices.getOne(id);
       return {
         message: `Actualización exitosa`,
         status: 200,
@@ -153,7 +153,7 @@ const EmpleoyeeServices = {
 };
 
 export {
-  EmpleoyeeServices
+  empleoyeeServices
 }
 
 

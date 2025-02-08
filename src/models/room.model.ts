@@ -18,13 +18,21 @@ const RoomModel = {
         type: DataTypes.DECIMAL(10, 2),
         allowNull: false,
       },
-      status: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: true,
-      },
       id_hotel: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
+
+      createdAt: {
+        type: DataTypes.DATE,
+      
+      },
+      deletedAt: {
+          type: DataTypes.DATE,
+      },
+      status: {
+          type: DataTypes.BOOLEAN,
+          defaultValue: true,
+      }
       
 }; export { RoomModel };
