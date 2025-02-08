@@ -9,7 +9,7 @@ export * from './client.service';
 export * from './concept.service';
 export * from './contract.service';
 export * from './departament.service';
-export * from './Empleoyee.service';
+export * from './empleoyee.service';
 export * from './empleoyeeAssistance.service';
 export * from './empleoyeeUser.service';
 export * from './event-registration.service';
