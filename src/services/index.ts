@@ -5,6 +5,7 @@ export * from './booking-rooms.service';
 export * from './booking.service';
 export * from './category.service';
 export * from './charge.service';
+export * from './client.service';
 export * from './concept.service';
 export * from './contract.service';
 export * from './departament.service';

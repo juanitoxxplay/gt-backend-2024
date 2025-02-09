@@ -1,0 +1,373 @@
+/services:
+  get:
+    summary: "Obtener todos los servicios individuales"
+    tags:
+      - "Servicios Individuales"
+    description: "Endpoint para obtener la lista de todos los servicios individuales"
+    responses:
+      "200":
+        description: "Respuesta exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Servicios individuales encontrados"
+                data:
+                  type: "object"
+                  properties:
+                    individual_services:
+                      type: "array"
+                      items:
+                        type: "object"
+                        properties:
+                          id:
+                            type: "integer"
+                            example: 1
+                          name:
+                            type: "string"
+                            example: "Corte de Cabello"
+                          price:
+                            type: "number"
+                            format: "float" # or double if you prefer
+                            example: 25.00
+                          updatedAt:
+                            type: "string"
+                            format: "date-time"
+                            example: "2024-08-02T10:00:00Z"
+                          deletedAt:
+                            type: "string"
+                            format: "date-time"
+                            example: null
+                          status:
+                            type: "boolean"
+                            example: true
+      "500":
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+
+  post:
+    summary: "Crear un nuevo servicio individual"
+    tags:
+      - "Servicios Individuales"
+    description: "Endpoint para crear un nuevo servicio individual"
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: "object"
+            properties:
+              name:
+                type: "string"
+                example: "Manicura"
+              price:
+                type: "number"
+                format: "float"
+                example: 20.00
+    responses:
+      "201":
+        description: "Creación exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Servicio individual creado exitosamente"
+                data:
+                  type: "object"
+                  properties:
+                    individual_service:
+                      type: "object"
+                      properties: # Same properties as in GET
+                        id:
+                          type: "integer"
+                          example: 2
+                        name:
+                          type: "string"
+                          example: "Manicura"
+                        price:
+                          type: "number"
+                          format: "float"
+                          example: 20.00
+                        updatedAt:
+                          type: "string"
+                          format: "date-time"
+                          example: null
+                        deletedAt:
+                          type: "string"
+                          format: "date-time"
+                          example: null
+                        status:
+                          type: "boolean"
+                          example: true
+      "400": # ... (validation errors - same as previous examples)
+        description: "Error en la solicitud (validación)"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                errors:
+                  type: "array"
+                  items:
+                    type: "object"
+                    properties:
+                      type:
+                        type: "string"
+                        example: "field"
+                      msg:
+                        type: "string"
+                        example: "Name is required" # Or other validation message
+                      path:
+                        type: "string"
+                        example: "name"
+                      location:
+                        type: "string"
+                        example: "body"
+      "500":
+        description: "Error del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+
+/services/{id}:
+  get:
+    summary: "Obtener un servicio individual por ID"
+    tags:
+      - "Servicios Individuales"
+    description: "Endpoint para obtener un servicio individual por su ID"
+    parameters:
+      - in: "path"
+        name: "id"
+        required: true
+        description: "ID del servicio individual"
+        schema:
+          type: "integer"
+    responses:
+      "200":
+        description: "Respuesta exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Servicio individual encontrado"
+                data:
+                  type: "object"
+                  properties:
+                    individual_service:
+                      type: "object"
+                      properties: # Same properties as in GET /individual_services
+                        id:
+                          type: "integer"
+                          example: 2
+                        name:
+                          type: "string"
+                          example: "Manicura"
+                        price:
+                          type: "number"
+                          format: "float"
+                          example: 20.00
+                        updatedAt:
+                          type: "string"
+                          format: "date-time"
+                          example: null
+                        deletedAt:
+                          type: "string"
+                          format: "date-time"
+                          example: null
+                        status:
+                          type: "boolean"
+                          example: true
+      "404":
+        description: "Servicio individual no encontrado"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Servicio individual no encontrado"
+                data:
+                  type: "object"
+                  properties: {}
+      "500":
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+  put:
+    summary: "Actualizar un servicio individual"
+    tags:
+      - "Servicios Individuales"
+    description: "Endpoint para actualizar un servicio individual"
+    parameters:
+      - in: "path"
+        name: "id"
+        required: true
+        description: "ID del servicio individual a actualizar"
+        schema:
+          type: "integer"
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: "object"
+            properties:  # All fields optional for update
+              name:
+                type: "string"
+                example: "Pedicura"
+              price:
+                type: "number"
+                format: "float"
+                example: 30.00
+    responses:
+      "200":
+        description: "Actualización exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Servicio individual actualizado exitosamente"
+                data:
+                  type: "object"
+                  properties:
+                    individual_service:
+                      type: "object"
+                      properties: # Same as GET /individual_services/{id}
+                        id:
+                          type: "integer"
+                          example: 2
+                        name:
+                          type: "string"
+                          example: "Pedicura"
+                        price:
+                          type: "number"
+                          format: "float"
+                          example: 30.00
+                        updatedAt:
+                          type: "string"
+                          format: "date-time"
+                          example: "2024-08-02T14:00:00Z" # Example update time
+                        deletedAt:
+                          type: "string"
+                          format: "date-time"
+                          example: null
+                        status:
+                          type: "boolean"
+                          example: true
+      "400": # ... (validation errors - same as POST)
+        description: "Error en la solicitud (validación)"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                errors:
+                  type: "array"
+                  items:
+                    type: "object"
+                    properties:
+                      type:
+                        type: "string"
+                        example: "field"
+                      msg:
+                        type: "string"
+                        example: "Name is required" # Or other validation message
+                      path:
+                        type: "string"
+                        example: "name"
+                      location:
+                        type: "string"
+                        example: "body"
+      "404":
+        description: "Servicio individual no encontrado"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Servicio individual no encontrado"
+                data:
+                  type: "object"
+                  properties: {}
+      "500": # ... (server error - same as GET /individual_services)
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+
+  delete:
+    summary: "Eliminar un servicio individual"
+    tags:
+      - "Servicios Individuales"
+    description: "Endpoint para eliminar un servicio individual"
+    parameters:
+      - in: "path"
+        name: "id"
+        required: true
+        description: "ID del servicio individual a eliminar"
+        schema:
+          type: "integer"
+    responses:
+      "204":
+        description: "Servicio individual eliminado exitosamente (sin contenido)"
+      "404":
+        description: "Servicio individual no encontrado"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Servicio individual no encontrado"
+                data:
+                  type: "object"
+                  properties: {}
+      "500": # ... (server error - same as GET /individual_services)
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"

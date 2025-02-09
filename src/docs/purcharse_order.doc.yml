@@ -1,0 +1,396 @@
+/purchases:
+  get:
+    summary: "Obtener todas las órdenes de compra"
+    tags:
+      - "Órdenes de Compra"
+    description: "Endpoint para obtener la lista de todas las órdenes de compra"
+    responses:
+      "200":
+        description: "Respuesta exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Órdenes de compra encontradas"
+                data:
+                  type: "object"
+                  properties:
+                    purchase_orders:
+                      type: "array"
+                      items:
+                        type: "object"
+                        properties:
+                          id:
+                            type: "integer"
+                            example: 1
+                          order_date:
+                            type: "string"
+                            format: "date"  # ISO 8601 date format (YYYY-MM-DD)
+                            example: "2024-07-30"
+                          id_supplier:
+                            type: "integer"
+                            example: 123
+                          id_contract:
+                            type: "integer"
+                            example: 456
+                          name_seller:
+                            type: "string"
+                            example: "John Doe"
+                          deletedAt:
+                            type: "string"
+                            format: "date-time"
+                            example: null
+                          status:
+                            type: "boolean"
+                            example: true
+      "500":
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+
+  post:
+    summary: "Crear una nueva orden de compra"
+    tags:
+      - "Órdenes de Compra"
+    description: "Endpoint para crear una nueva orden de compra"
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: "object"
+            properties:
+              order_date:
+                type: "string"
+                format: "date"
+                example: "2024-07-31"
+              id_supplier:
+                type: "integer"
+                example: 789
+              id_contract:
+                type: "integer"
+                example: 101
+              name_seller:
+                type: "string"
+                example: "Jane Smith"
+    responses:
+      "201":
+        description: "Creación exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Orden de compra creada exitosamente"
+                data:
+                  type: "object"
+                  properties:
+                    purchase_order:
+                      type: "object"
+                      properties: # Same properties as in GET
+                        id:
+                          type: "integer"
+                          example: 2
+                        order_date:
+                          type: "string"
+                          format: "date"
+                          example: "2024-07-31"
+                        id_supplier:
+                          type: "integer"
+                          example: 789
+                        id_contract:
+                          type: "integer"
+                          example: 101
+                        name_seller:
+                          type: "string"
+                          example: "Jane Smith"
+                        deletedAt:
+                          type: "string"
+                          format: "date-time"
+                          example: null
+                        status:
+                          type: "boolean"
+                          example: true
+      "400": # ... (validation errors - same as previous examples)
+        description: "Error en la solicitud (validación)"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                errors:
+                  type: "array"
+                  items:
+                    type: "object"
+                    properties:
+                      type:
+                        type: "string"
+                        example: "field"
+                      msg:
+                        type: "string"
+                        example: "order_date is required" # Or other validation message
+                      path:
+                        type: "string"
+                        example: "order_date"
+                      location:
+                        type: "string"
+                        example: "body"
+      "500":
+        description: "Error del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+
+/purchases/{id}:
+  get:
+    summary: "Obtener una orden de compra por ID"
+    tags:
+      - "Órdenes de Compra"
+    description: "Endpoint para obtener una orden de compra por su ID"
+    parameters:
+      - in: "path"
+        name: "id"
+        required: true
+        description: "ID de la orden de compra"
+        schema:
+          type: "integer"
+    responses:
+      "200":
+        description: "Respuesta exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Orden de compra encontrada"
+                data:
+                  type: "object"
+                  properties:
+                    purchase_order:
+                      type: "object"
+                      properties: # Same properties as in GET /purchase_orders
+                        id:
+                          type: "integer"
+                          example: 2
+                        order_date:
+                          type: "string"
+                          format: "date"
+                          example: "2024-07-31"
+                        id_supplier:
+                          type: "integer"
+                          example: 789
+                        id_contract:
+                          type: "integer"
+                          example: 101
+                        name_seller:
+                          type: "string"
+                          example: "Jane Smith"
+                        deletedAt:
+                          type: "string"
+                          format: "date-time"
+                          example: null
+                        status:
+                          type: "boolean"
+                          example: true
+      "404":
+        description: "Orden de compra no encontrada"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Orden de compra no encontrada"
+                data:
+                  type: "object"
+                  properties: {}
+      "500":
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+  put:
+    summary: "Actualizar una orden de compra"
+    tags:
+      - "Órdenes de Compra"
+    description: "Endpoint para actualizar una orden de compra"
+    parameters:
+      - in: "path"
+        name: "id"
+        required: true
+        description: "ID de la orden de compra a actualizar"
+        schema:
+          type: "integer"
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: "object"
+            properties:  # All fields optional for update
+              order_date:
+                type: "string"
+                format: "date"
+                example: "2024-08-01"
+              id_supplier:
+                type: "integer"
+                example: 901
+              id_contract:
+                type: "integer"
+                example: 210
+              name_seller:
+                type: "string"
+                example: "Alice Johnson"
+              status:
+                type: "boolean"
+                example: false
+    responses:
+      "200":
+        description: "Actualización exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Orden de compra actualizada exitosamente"
+                data:
+                  type: "object"
+                  properties:
+                    purchase_order:
+                      type: "object"
+                      properties: # Same as GET /purchase_orders/{id}
+                        id:
+                          type: "integer"
+                          example: 2
+                        order_date:
+                          type: "string"
+                          format: "date"
+                          example: "2024-08-01"
+                        id_supplier:
+                          type: "integer"
+                          example: 901
+                        id_contract:
+                          type: "integer"
+                          example: 210
+                        name_seller:
+                          type: "string"
+                          example: "Alice Johnson"
+                        deletedAt:
+                          type: "string"
+                          format: "date-time"
+                          example: null
+                        status:
+                          type: "boolean"
+                          example: false
+      "400": # ... (validation errors - same as POST)
+        description: "Error en la solicitud (validación)"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                errors:
+                  type: "array"
+                  items:
+                    type: "object"
+                    properties:
+                      type:
+                        type: "string"
+                        example: "field"
+                      msg:
+                        type: "string"
+                        example: "order_date is required" # Or other validation message
+                      path:
+                        type: "string"
+                        example: "order_date"
+                      location:
+                        type: "string"
+                        example: "body"
+      "404":
+        description: "Orden de compra no encontrada"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Orden de compra no encontrada"
+                data:
+                  type: "object"
+                  properties: {}
+      "500": # ... (server error - same as GET /purchase_orders)
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+
+  delete:
+    summary: "Eliminar una orden de compra"
+    tags:
+      - "Órdenes de Compra"
+    description: "Endpoint para eliminar una orden de compra"
+    parameters:
+      - in: "path"
+        name: "id"
+        required: true
+        description: "ID de la orden de compra a eliminar"
+        schema:
+          type: "integer"
+    responses:
+      "204":
+        description: "Orden de compra eliminada exitosamente (sin contenido)"
+      "404":
+        description: "Orden de compra no encontrada"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Orden de compra no encontrada"
+                data:
+                  type: "object"
+                  properties: {}
+      "500": # ... (server error - same as GET /purchase_orders)
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"

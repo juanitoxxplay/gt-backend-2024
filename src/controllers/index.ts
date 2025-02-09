@@ -1,4 +1,5 @@
 export * from './account.controller';
+export * from './client.controller';
 export * from './account_record.controller';
 export * from './attraction.controller';
 export * from './booking.controller';

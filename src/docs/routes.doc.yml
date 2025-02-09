@@ -1,0 +1,367 @@
+
+
+/routes:
+  get:
+    summary: "Obtener todas las rutas"
+    tags:
+      - "Rutas"
+    description: "Endpoint para obtener la lista de todas las rutas"
+    responses:
+      "200":
+        description: "Respuesta exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Rutas encontradas"
+                data:
+                  type: "object"
+                  properties:
+                    routes:
+                      type: "array"
+                      items:
+                        type: "object"
+                        properties:
+                          id:
+                            type: "integer"
+                            example: 1
+                          origin:
+                            type: "string"
+                            example: "Caracas"
+                          destination:
+                            type: "string"
+                            example: "Maracaibo"
+                          duration:
+                            type: "integer"
+                            example: 8
+                          price:
+                            type: "number"
+                            format: "float"
+                            example: 50.00
+      "500":
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+
+  post:
+    summary: "Crear una nueva ruta"
+    tags:
+      - "Rutas"
+    description: "Endpoint para crear una nueva ruta"
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: "object"
+            properties:
+              origin:
+                type: "string"
+                example: "Valencia"
+              destination:
+                type: "string"
+                example: "Barquisimeto"
+              duration:
+                type: "integer"
+                example: 3
+              price:
+                type: "number"
+                format: "float"
+                example: 20.00
+    responses:
+      "201":
+        description: "Creación exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Ruta creada exitosamente"
+                data:
+                  type: "object"
+                  properties:
+                    route:
+                      type: "object"
+                      properties: # Same properties as in GET
+                        id:
+                          type: "integer"
+                          example: 2
+                        origin:
+                          type: "string"
+                          example: "Valencia"
+                        destination:
+                          type: "string"
+                          example: "Barquisimeto"
+                        duration:
+                          type: "integer"
+                          example: 3
+                        price:
+                          type: "number"
+                          format: "float"
+                          example: 20.00
+      "400":
+        description: "Error en la solicitud (validación)"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                errors:
+                  type: "array"
+                  items:
+                    type: "object"
+                    properties:
+                      type:
+                        type: "string"
+                        example: "field"
+                      msg:
+                        type: "string"
+                        example: "Origin is required" # Or other validation message
+                      path:
+                        type: "string"
+                        example: "origin"
+                      location:
+                        type: "string"
+                        example: "body"
+      "500":
+        description: "Error del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+
+/routes/{id}:
+  get:
+    summary: "Obtener una ruta por ID"
+    tags:
+      - "Rutas"
+    description: "Endpoint para obtener una ruta por su ID"
+    parameters:
+      - in: "path"
+        name: "id"
+        required: true
+        description: "ID de la ruta"
+        schema:
+          type: "integer"
+    responses:
+      "200":
+        description: "Respuesta exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Ruta encontrada"
+                data:
+                  type: "object"
+                  properties:
+                    route:
+                      type: "object"
+                      properties: # Same properties as in GET /routes
+                        id:
+                          type: "integer"
+                          example: 2
+                        origin:
+                          type: "string"
+                          example: "Valencia"
+                        destination:
+                          type: "string"
+                          example: "Barquisimeto"
+                        duration:
+                          type: "integer"
+                          example: 3
+                        price:
+                          type: "number"
+                          format: "float"
+                          example: 20.00
+      "404":
+        description: "Ruta no encontrada"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Ruta no encontrada"
+                data:
+                  type: "object"
+                  properties: {}
+      "500":
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+  put:
+    summary: "Actualizar una ruta"
+    tags:
+      - "Rutas"
+    description: "Endpoint para actualizar una ruta"
+    parameters:
+      - in: "path"
+        name: "id"
+        required: true
+        description: "ID de la ruta a actualizar"
+        schema:
+          type: "integer"
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: "object"
+            properties: # All fields optional for update
+              origin:
+                type: "string"
+                example: "Puerto La Cruz"
+              destination:
+                type: "string"
+                example: "Ciudad Bolivar"
+              duration:
+                type: "integer"
+                example: 10
+              price:
+                type: "number"
+                format: "float"
+                example: 60.00
+    responses:
+      "200":
+        description: "Actualización exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Ruta actualizada exitosamente"
+                data:
+                  type: "object"
+                  properties:
+                    route:
+                      type: "object"
+                      properties: # Same as GET /routes/{id}
+                        id:
+                          type: "integer"
+                          example: 2
+                        origin:
+                          type: "string"
+                          example: "Puerto La Cruz"
+                        destination:
+                          type: "string"
+                          example: "Ciudad Bolivar"
+                        duration:
+                          type: "integer"
+                          example: 10
+                        price:
+                          type: "number"
+                          format: "float"
+                          example: 60.00
+      "400": # Same as POST /routes
+        description: "Error en la solicitud (validación)"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                errors:
+                  type: "array"
+                  items:
+                    type: "object"
+                    properties:
+                      type:
+                        type: "string"
+                        example: "field"
+                      msg:
+                        type: "string"
+                        example: "Origin is required" # Or other validation message
+                      path:
+                        type: "string"
+                        example: "origin"
+                      location:
+                        type: "string"
+                        example: "body"
+      "404":
+        description: "Ruta no encontrada"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Ruta no encontrada"
+                data:
+                  type: "object"
+                  properties: {}
+      "500": # Same as GET /routes
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+
+  delete:
+    summary: "Eliminar una ruta"
+    tags:
+      - "Rutas"
+    description: "Endpoint para eliminar una ruta"
+    parameters:
+      - in: "path"
+        name: "id"
+        required: true
+        description: "ID de la ruta a eliminar"
+        schema:
+          type: "integer"
+    responses:
+      "204":
+        description: "Ruta eliminada exitosamente (sin contenido)"
+      "404":
+        description: "Ruta no encontrada"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Ruta no encontrada"
+                data:
+                  type: "object"
+                  properties: {}
+      "500": # Same as GET /routes
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"   

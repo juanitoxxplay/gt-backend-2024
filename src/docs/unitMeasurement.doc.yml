@@ -1,0 +1,325 @@
+/unit_measurements:
+  get:
+    summary: "Obtener todas las unidades de medida"
+    tags:
+      - "Unidades de Medida"
+    description: "Endpoint para obtener la lista de todas las unidades de medida"
+    responses:
+      "200":
+        description: "Respuesta exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Unidades de medida encontradas"
+                data:
+                  type: "object"
+                  properties:
+                    unit_measurements:
+                      type: "array"
+                      items:
+                        type: "object"
+                        properties:
+                          id:
+                            type: "integer"
+                            example: 1
+                          name:
+                            type: "string"
+                            example: "Kilogramo"
+                          state:
+                            type: "boolean"
+                            example: true
+      "500":
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+
+  post:
+    summary: "Crear una nueva unidad de medida"
+    tags:
+      - "Unidades de Medida"
+    description: "Endpoint para crear una nueva unidad de medida"
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: "object"
+            properties:
+              name:
+                type: "string"
+                example: "Litro"
+              state: # Optional, defaults to true
+                type: "boolean"
+                example: true
+    responses:
+      "201":
+        description: "Creación exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Unidad de medida creada exitosamente"
+                data:
+                  type: "object"
+                  properties:
+                    unit_measurement:
+                      type: "object"
+                      properties:
+                        id:
+                          type: "integer"
+                          example: 2
+                        name:
+                          type: "string"
+                          example: "Litro"
+                        state:
+                          type: "boolean"
+                          example: true
+      "400":
+        description: "Error en la solicitud (validación)"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                errors:
+                  type: "array"
+                  items:
+                    type: "object"
+                    properties:
+                      type:
+                        type: "string"
+                        example: "field"
+                      msg:
+                        type: "string"
+                        example: "Name is required" # Or other validation message
+                      path:
+                        type: "string"
+                        example: "name"
+                      location:
+                        type: "string"
+                        example: "body"
+      "500":
+        description: "Error del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+
+/unit_measurements/{id}:
+  get:
+    summary: "Obtener una unidad de medida por ID"
+    tags:
+      - "Unidades de Medida"
+    description: "Endpoint para obtener una unidad de medida por su ID"
+    parameters:
+      - in: "path"
+        name: "id"
+        required: true
+        description: "ID de la unidad de medida"
+        schema:
+          type: "integer"
+    responses:
+      "200":
+        description: "Respuesta exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Unidad de medida encontrada"
+                data:
+                  type: "object"
+                  properties:
+                    unit_measurement:
+                      type: "object"
+                      properties:
+                        id:
+                          type: "integer"
+                          example: 2
+                        name:
+                          type: "string"
+                          example: "Litro"
+                        state:
+                          type: "boolean"
+                          example: true
+      "404":
+        description: "Unidad de medida no encontrada"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Unidad de medida no encontrada"
+                data:
+                  type: "object"
+                  properties: {}
+      "500":
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+
+  put:
+    summary: "Actualizar una unidad de medida"
+    tags:
+      - "Unidades de Medida"
+    description: "Endpoint para actualizar una unidad de medida"
+    parameters:
+      - in: "path"
+        name: "id"
+        required: true
+        description: "ID de la unidad de medida a actualizar"
+        schema:
+          type: "integer"
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: "object"
+            properties:
+              name:
+                type: "string"
+                example: "Milímetro" # New name
+              state: # Optional
+                type: "boolean"
+                example: false # New state
+
+    responses:
+      "200":
+        description: "Actualización exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Unidad de medida actualizada exitosamente"
+                data:
+                  type: "object"
+                  properties:
+                    unit_measurement:
+                      type: "object"
+                      properties:
+                        id:
+                          type: "integer"
+                          example: 2
+                        name:
+                          type: "string"
+                          example: "Milímetro"
+                        state:
+                          type: "boolean"
+                          example: false
+      "400":
+        description: "Error en la solicitud (validación)"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                errors:
+                  type: "array"
+                  items:
+                    type: "object"
+                    properties:
+                      type:
+                        type: "string"
+                        example: "field"
+                      msg:
+                        type: "string"
+                        example: "Name is required" # Or other validation message
+                      path:
+                        type: "string"
+                        example: "name"
+                      location:
+                        type: "string"
+                        example: "body"
+      "404":
+        description: "Unidad de medida no encontrada"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Unidad de medida no encontrada"
+                data:
+                  type: "object"
+                  properties: {}
+      "500":
+        description: "Error del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+
+  delete:
+    summary: "Eliminar una unidad de medida"
+    tags:
+      - "Unidades de Medida"
+    description: "Endpoint para eliminar una unidad de medida"
+    parameters:
+      - in: "path"
+        name: "id"
+        required: true
+        description: "ID de la unidad de medida a eliminar"
+        schema:
+          type: "integer"
+    responses:
+      "204":
+        description: "Unidad de medida eliminada exitosamente (sin contenido)"
+      "404":
+        description:  "Unidad de medida no encontrada"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Unidad de medida no encontradas"
+                data:
+                  type: "object"
+                  properties: {}
+      "500":
+        description:  "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"

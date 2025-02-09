@@ -1,0 +1,323 @@
+/request_types:
+  get:
+    summary: "Obtener todos los tipos de solicitud"
+    tags:
+      - "Tipos de Solicitud"
+    description: "Endpoint para obtener la lista de todos los tipos de solicitud"
+    responses:
+      "200":
+        description: "Respuesta exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Tipos de solicitud encontrados"
+                data:
+                  type: "object"
+                  properties:
+                    request_types:
+                      type: "array"
+                      items:
+                        type: "object"
+                        properties:
+                          id:
+                            type: "integer"
+                            example: 1
+                          name:
+                            type: "string"
+                            example: "Materiales de Oficina"
+                          bot:
+                            type: "boolean"
+                            example: false
+      "500":
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+
+  post:
+    summary: "Crear un nuevo tipo de solicitud"
+    tags:
+      - "Tipos de Solicitud"
+    description: "Endpoint para crear un nuevo tipo de solicitud"
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: "object"
+            properties:
+              name:
+                type: "string"
+                example: "Equipos de Computación"
+              bot:
+                type: "boolean"
+                example: true
+    responses:
+      "201":
+        description: "Creación exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Tipo de solicitud creado exitosamente"
+                data:
+                  type: "object"
+                  properties:
+                    request_type:
+                      type: "object"
+                      properties: # Same properties as in GET
+                        id:
+                          type: "integer"
+                          example: 2
+                        name:
+                          type: "string"
+                          example: "Equipos de Computación"
+                        bot:
+                          type: "boolean"
+                          example: true
+      "400": # ... (validation errors - same as previous examples)
+        description: "Error en la solicitud (validación)"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                errors:
+                  type: "array"
+                  items:
+                    type: "object"
+                    properties:
+                      type:
+                        type: "string"
+                        example: "field"
+                      msg:
+                        type: "string"
+                        example: "Name is required" # Or other validation message
+                      path:
+                        type: "string"
+                        example: "name"
+                      location:
+                        type: "string"
+                        example: "body"
+      "500":
+        description: "Error del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+
+/request_types/{id}:
+  get:
+    summary: "Obtener un tipo de solicitud por ID"
+    tags:
+      - "Tipos de Solicitud"
+    description: "Endpoint para obtener un tipo de solicitud por su ID"
+    parameters:
+      - in: "path"
+        name: "id"
+        required: true
+        description: "ID del tipo de solicitud"
+        schema:
+          type: "integer"
+    responses:
+      "200":
+        description: "Respuesta exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Tipo de solicitud encontrado"
+                data:
+                  type: "object"
+                  properties:
+                    request_type:
+                      type: "object"
+                      properties: # Same properties as in GET /request_types
+                        id:
+                          type: "integer"
+                          example: 2
+                        name:
+                          type: "string"
+                          example: "Equipos de Computación"
+                        bot:
+                          type: "boolean"
+                          example: true
+      "404":
+        description: "Tipo de solicitud no encontrado"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Tipo de solicitud no encontrado"
+                data:
+                  type: "object"
+                  properties: {}
+      "500":
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+
+  put:
+    summary: "Actualizar un tipo de solicitud"
+    tags:
+      - "Tipos de Solicitud"
+    description: "Endpoint para actualizar un tipo de solicitud"
+    parameters:
+      - in: "path"
+        name: "id"
+        required: true
+        description: "ID del tipo de solicitud a actualizar"
+        schema:
+          type: "integer"
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: "object"
+            properties:  # All fields optional for update
+              name:
+                type: "string"
+                example: "Mobiliario de Oficina"
+              bot:
+                type: "boolean"
+                example: false
+    responses:
+      "200":
+        description: "Actualización exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Tipo de solicitud actualizado exitosamente"
+                data:
+                  type: "object"
+                  properties:
+                    request_type:
+                      type: "object"
+                      properties: # Same as GET /request_types/{id}
+                        id:
+                          type: "integer"
+                          example: 2
+                        name:
+                          type: "string"
+                          example: "Mobiliario de Oficina"
+                        bot:
+                          type: "boolean"
+                          example: false
+      "400": # ... (validation errors - same as POST)
+        description: "Error en la solicitud (validación)"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                errors:
+                  type: "array"
+                  items:
+                    type: "object"
+                    properties:
+                      type:
+                        type: "string"
+                        example: "field"
+                      msg:
+                        type: "string"
+                        example: "Name is required" # Or other validation message
+                      path:
+                        type: "string"
+                        example: "name"
+                      location:
+                        type: "string"
+                        example: "body"
+      "404":
+        description: "Tipo de solicitud no encontrado"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Tipo de solicitud no encontrado"
+                data:
+                  type: "object"
+                  properties: {}
+      "500": # ... (server error - same as GET /request_types)
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+  delete:
+    summary: "Eliminar un tipo de solicitud"
+    tags:
+      - "Tipos de Solicitud"
+    description: "Endpoint para eliminar un tipo de solicitud"
+    parameters:
+      - in: "path"
+        name: "id"
+        required: true
+        description: "ID del tipo de solicitud a eliminar"
+        schema:
+          type: "integer"
+    responses:
+      "204":
+        description: "Tipo de solicitud eliminado exitosamente (sin contenido)"
+      "404":
+        description: "Tipo de solicitud no encontrado"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Tipo de solicitud no encontrado"
+                data:
+                  type: "object"
+                  properties: {}
+      "500": # ... (server error - same as GET /request_types)
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
