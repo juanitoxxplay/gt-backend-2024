@@ -1,0 +1,347 @@
+/package_sales:
+  get:
+    summary: "Obtener todas las ventas de paquetes"
+    tags:
+      - "Ventas de Paquetes"
+    description: "Endpoint para obtener la lista de todas las ventas de paquetes"
+    responses:
+      "200":
+        description: "Respuesta exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Ventas de paquetes encontradas"
+                data:
+                  type: "object"
+                  properties:
+                    package_sales:
+                      type: "array"
+                      items:
+                        type: "object"
+                        properties:
+                          id_sale:
+                            type: "integer"
+                            example: 1
+                          name_package:
+                            type: "string"
+                            example: "Paquete Familiar"
+                          id_booking_:
+                            type: "integer"
+                            example: 123
+                          date_sale:
+                            type: "string"
+                            format: "date"  # ISO 8601 date format (YYYY-MM-DD)
+                            example: "2024-08-01"
+      "500":
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+
+  post:
+    summary: "Crear una nueva venta de paquete"
+    tags:
+      - "Ventas de Paquetes"
+    description: "Endpoint para crear una nueva venta de paquete"
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: "object"
+            properties:
+              name_package:
+                type: "string"
+                example: "Paquete Luna de Miel"
+              id_booking_:
+                type: "integer"
+                example: 456
+              date_sale:
+                type: "string"
+                format: "date"
+                example: "2024-08-15"
+    responses:
+      "201":
+        description: "Creación exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Venta de paquete creada exitosamente"
+                data:
+                  type: "object"
+                  properties:
+                    package_sale:
+                      type: "object"
+                      properties: # Same properties as in GET
+                        id_sale:
+                          type: "integer"
+                          example: 2
+                        name_package:
+                          type: "string"
+                          example: "Paquete Luna de Miel"
+                        id_booking_:
+                          type: "integer"
+                          example: 456
+                        date_sale:
+                          type: "string"
+                          format: "date"
+                          example: "2024-08-15"
+      "400": # ... (validation errors - same as previous examples)
+        description: "Error en la solicitud (validación)"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                errors:
+                  type: "array"
+                  items:
+                    type: "object"
+                    properties:
+                      type:
+                        type: "string"
+                        example: "field"
+                      msg:
+                        type: "string"
+                        example: "name_package is required" # Or other validation message
+                      path:
+                        type: "string"
+                        example: "name_package"
+                      location:
+                        type: "string"
+                        example: "body"
+      "500":
+        description: "Error del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+
+/package_sales/{id}:
+  get:
+    summary: "Obtener una venta de paquete por ID"
+    tags:
+      - "Ventas de Paquetes"
+    description: "Endpoint para obtener una venta de paquete por su ID"
+    parameters:
+      - in: "path"
+        name: "id"
+        required: true
+        description: "ID de la venta de paquete"
+        schema:
+          type: "integer"
+    responses:
+      "200":
+        description: "Respuesta exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Venta de paquete encontrada"
+                data:
+                  type: "object"
+                  properties:
+                    package_sale:
+                      type: "object"
+                      properties: # Same properties as in GET /package_sales
+                        id_sale:
+                          type: "integer"
+                          example: 2
+                        name_package:
+                          type: "string"
+                          example: "Paquete Luna de Miel"
+                        id_booking_:
+                          type: "integer"
+                          example: 456
+                        date_sale:
+                          type: "string"
+                          format: "date"
+                          example: "2024-08-15"
+      "404":
+        description: "Venta de paquete no encontrada"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Venta de paquete no encontrada"
+                data:
+                  type: "object"
+                  properties: {}
+      "500":
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+  put:
+    summary: "Actualizar una venta de paquete"
+    tags:
+      - "Ventas de Paquetes"
+    description: "Endpoint para actualizar una venta de paquete"
+    parameters:
+      - in: "path"
+        name: "id"
+        required: true
+        description: "ID de la venta de paquete a actualizar"
+        schema:
+          type: "integer"
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: "object"
+            properties:  # All fields optional for update
+              name_package:
+                type: "string"
+                example: "Paquete Aventura"
+              id_booking_:
+                type: "integer"
+                example: 789
+              date_sale:
+                type: "string"
+                format: "date"
+                example: "2024-08-20"
+    responses:
+      "200":
+        description: "Actualización exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Venta de paquete actualizada exitosamente"
+                data:
+                  type: "object"
+                  properties:
+                    package_sale:
+                      type: "object"
+                      properties: # Same as GET /package_sales/{id}
+                        id_sale:
+                          type: "integer"
+                          example: 2
+                        name_package:
+                          type: "string"
+                          example: "Paquete Aventura"
+                        id_booking_:
+                          type: "integer"
+                          example: 789
+                        date_sale:
+                          type: "string"
+                          format: "date"
+                          example: "2024-08-20"
+      "400": # ... (validation errors - same as POST)
+        description: "Error en la solicitud (validación)"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                errors:
+                  type: "array"
+                  items:
+                    type: "object"
+                    properties:
+                      type:
+                        type: "string"
+                        example: "field"
+                      msg:
+                        type: "string"
+                        example: "name_package is required" # Or other validation message
+                      path:
+                        type: "string"
+                        example: "name_package"
+                      location:
+                        type: "string"
+                        example: "body"
+      "404":
+        description: "Venta de paquete no encontrada"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Venta de paquete no encontrada"
+                data:
+                  type: "object"
+                  properties: {}
+      "500": # ... (server error - same as GET /package_sales)
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+
+  delete:
+    summary: "Eliminar una venta de paquete"
+    tags:
+      - "Ventas de Paquetes"
+    description: "Endpoint para eliminar una venta de paquete"
+    parameters:
+      - in: "path"
+        name: "id"
+        required: true
+        description: "ID de la venta de paquete a eliminar"
+        schema:
+          type: "integer"
+    responses:
+      "204":
+        description: "Venta de paquete eliminada exitosamente (sin contenido)"
+      "404":
+        description: "Venta de paquete no encontrada"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Venta de paquete no encontrada"
+                data:
+                  type: "object"
+                  properties: {}
+      "500": # ... (server error - same as GET /package_sales)
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"

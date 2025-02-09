@@ -1,0 +1,415 @@
+/rooms:
+  get:
+    summary: "Obtener todas las habitaciones"
+    tags:
+      - "Habitaciones"
+    description: "Endpoint para obtener la lista de todas las habitaciones"
+    responses:
+      "200":
+        description: "Respuesta exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Habitaciones encontradas"
+                data:
+                  type: "object"
+                  properties:
+                    rooms:
+                      type: "array"
+                      items:
+                        type: "object"
+                        properties:
+                          id_room:
+                            type: "integer"
+                            example: 1
+                          id_typeRoom:
+                            type: "integer"
+                            example: 101
+                          capacity:
+                            type: "integer"
+                            example: 2
+                          price:
+                            type: "number"
+                            format: "float"
+                            example: 150.00
+                          id_hotel:
+                            type: "integer"
+                            example: 5
+                          createdAt:
+                            type: "string"
+                            format: "date-time"
+                            example: "2024-07-27T10:00:00.000Z"
+                          deletedAt:
+                            type: "string"
+                            format: "date-time"
+                            example: null
+                          status:
+                            type: "boolean"
+                            example: true
+      "500":
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+
+  post:
+    summary: "Crear una nueva habitación"
+    tags:
+      - "Habitaciones"
+    description: "Endpoint para crear una nueva habitación"
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: "object"
+            properties:
+              id_typeRoom:
+                type: "integer"
+                example: 102
+              capacity:
+                type: "integer"
+                example: 4
+              price:
+                type: "number"
+                format: "float"
+                example: 250.00
+              id_hotel:
+                type: "integer"
+                example: 5
+              status: # Optional, defaults to true
+                type: "boolean"
+                example: true
+    responses:
+      "201":
+        description: "Creación exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Habitación creada exitosamente"
+                data:
+                  type: "object"
+                  properties:
+                    room:
+                      type: "object"
+                      properties: # Same properties as in GET
+                        id_room:
+                          type: "integer"
+                          example: 2
+                        id_typeRoom:
+                          type: "integer"
+                          example: 102
+                        capacity:
+                          type: "integer"
+                          example: 4
+                        price:
+                          type: "number"
+                          format: "float"
+                          example: 250.00
+                        id_hotel:
+                          type: "integer"
+                          example: 5
+                        createdAt:
+                          type: "string"
+                          format: "date-time"
+                          example: "2024-07-27T12:00:00.000Z"
+                        deletedAt:
+                          type: "string"
+                          format: "date-time"
+                          example: null
+                        status:
+                          type: "boolean"
+                          example: true
+      "400": # ... (validation errors - same as previous examples)
+        description: "Error en la solicitud (validación)"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                errors:
+                  type: "array"
+                  items:
+                    type: "object"
+                    properties:
+                      type:
+                        type: "string"
+                        example: "field"
+                      msg:
+                        type: "string"
+                        example: "id_typeRoom is required" # Or other validation message
+                      path:
+                        type: "string"
+                        example: "id_typeRoom"
+                      location:
+                        type: "string"
+                        example: "body"
+      "500":
+        description: "Error del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+
+/rooms/{id}:
+  get:
+    summary: "Obtener una habitación por ID"
+    tags:
+      - "Habitaciones"
+    description: "Endpoint para obtener una habitación por su ID"
+    parameters:
+      - in: "path"
+        name: "id"
+        required: true
+        description: "ID de la habitación"
+        schema:
+          type: "integer"
+    responses:
+      "200":
+        description: "Respuesta exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Habitación encontrada"
+                data:
+                  type: "object"
+                  properties:
+                    room:
+                      type: "object"
+                      properties: # Same properties as in GET /rooms
+                        id_room:
+                          type: "integer"
+                          example: 2
+                        id_typeRoom:
+                          type: "integer"
+                          example: 102
+                        capacity:
+                          type: "integer"
+                          example: 4
+                        price:
+                          type: "number"
+                          format: "float"
+                          example: 250.00
+                        id_hotel:
+                          type: "integer"
+                          example: 5
+                        createdAt:
+                          type: "string"
+                          format: "date-time"
+                          example: "2024-07-27T12:00:00.000Z"
+                        deletedAt:
+                          type: "string"
+                          format: "date-time"
+                          example: null
+                        status:
+                          type: "boolean"
+                          example: true
+      "404":
+        description: "Habitación no encontrada"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Habitación no encontrada"
+                data:
+                  type: "object"
+                  properties: {}
+      "500":
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+  put:
+    summary: "Actualizar una habitación"
+    tags:
+      - "Habitaciones"
+    description: "Endpoint para actualizar una habitación"
+    parameters:
+      - in: "path"
+        name: "id"
+        required: true
+        description: "ID de la habitación a actualizar"
+        schema:
+          type: "integer"
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: "object"
+            properties:  # All fields optional for update
+              id_typeRoom:
+                type: "integer"
+                example: 103
+              capacity:
+                type: "integer"
+                example: 3
+              price:
+                type: "number"
+                format: "float"
+                example: 200.00
+              id_hotel:
+                type: "integer"
+                example: 5
+              status:
+                type: "boolean"
+                example: false
+    responses:
+      "200":
+        description: "Actualización exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Habitación actualizada exitosamente"
+                data:
+                  type: "object"
+                  properties:
+                    room:
+                      type: "object"
+                      properties: # Same as GET /rooms/{id}
+                        id_room:
+                          type: "integer"
+                          example: 2
+                        id_typeRoom:
+                          type: "integer"
+                          example: 103
+                        capacity:
+                          type: "integer"
+                          example: 3
+                        price:
+                          type: "number"
+                          format: "float"
+                          example: 200.00
+                        id_hotel:
+                          type: "integer"
+                          example: 5
+                        createdAt:
+                          type: "string"
+                          format: "date-time"
+                          example: "2024-07-27T12:00:00.000Z"
+                        deletedAt:
+                          type: "string"
+                          format: "date-time"
+                          example: null
+                        status:
+                          type: "boolean"
+                          example: false
+      "400": # ... (validation errors - same as POST)
+        description: "Error en la solicitud (validación)"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                errors:
+                  type: "array"
+                  items:
+                    type: "object"
+                    properties:
+                      type:
+                        type: "string"
+                        example: "field"
+                      msg:
+                        type: "string"
+                        example: "id_typeRoom is required" # Or other validation message
+                      path:
+                        type: "string"
+                        example: "id_typeRoom"
+                      location:
+                        type: "string"
+                        example: "body"
+      "404":
+        description: "Habitación no encontrada"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Habitación no encontrada"
+                data:
+                  type: "object"
+                  properties: {}
+      "500": # ... (server error - same as GET /rooms)
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+
+  delete:
+    summary: "Eliminar una habitación"
+    tags:
+      - "Habitaciones"
+    description: "Endpoint para eliminar una habitación"
+    parameters:
+      - in: "path"
+        name: "id"
+        required: true
+        description: "ID de la habitación a eliminar"
+        schema:
+          type: "integer"
+    responses:
+      "204":
+        description: "Habitación eliminada exitosamente (sin contenido)"
+      "404":
+        description: "Habitación no encontrada"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Habitación no encontrada"
+                data:
+                  type: "object"
+                  properties: {}
+      "500": # ... (server error - same as GET /rooms)
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"

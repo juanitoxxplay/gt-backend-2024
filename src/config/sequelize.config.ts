@@ -420,7 +420,7 @@ const syncModels = async () => {
    * y esto eventualmente podría causar errores
    * al consultar a tavés de la api
    */ 
-  await db.sync({ alter: true});
+  await db.sync({ alter: false});
   try {
   } catch (error) {
     console.error(error);
