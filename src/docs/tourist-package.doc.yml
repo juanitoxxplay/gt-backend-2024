@@ -1,0 +1,366 @@
+/tourist_package:
+  get:
+    summary: "Obtener todos los paquetes turísticos"
+    tags:
+      - "Paquetes Turísticos"
+    description: "Endpoint para obtener la lista de todos los paquetes turísticos"
+    responses:
+      "200":
+        description: "Respuesta exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Paquetes turísticos encontrados"
+                data:
+                  type: "object"
+                  properties:
+                    tourist_packages:
+                      type: "array"
+                      items:
+                        type: "object"
+                        properties:
+                          id:
+                            type: "integer"
+                            example: 1
+                          name:
+                            type: "string"
+                            example: "Aventura en la Selva"
+                          description:
+                            type: "string"
+                            example: "Paquete de 7 días con caminatas y rafting."
+                          price:
+                            type: "number"
+                            format: "float" # or double if needed
+                            example: 999.99
+                          status:
+                            type: "boolean"
+                            example: true
+      "500":
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+
+  post:
+    summary: "Crear un nuevo paquete turístico"
+    tags:
+      - "Paquetes Turísticos"
+    description: "Endpoint para crear un nuevo paquete turístico"
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: "object"
+            properties:
+              name:
+                type: "string"
+                example: "Escapada Romántica"
+              description:
+                type: "string"
+                example: "Paquete de fin de semana para parejas."
+              price:
+                type: "number"
+                format: "float"
+                example: 499.99
+              status: # Optional, defaults to true
+                type: "boolean"
+                example: true
+    responses:
+      "201":
+        description: "Creación exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Paquete turístico creado exitosamente"
+                data:
+                  type: "object"
+                  properties:
+                    tourist_package: # Single tourist package object
+                      type: "object"
+                      properties: # ... (same properties as in the GET response)
+                        id:
+                          type: "integer"
+                          example: 2
+                        name:
+                          type: "string"
+                          example: "Escapada Romántica"
+                        description:
+                          type: "string"
+                          example: "Paquete de fin de semana para parejas."
+                        price:
+                          type: "number"
+                          format: "float"
+                          example: 499.99
+                        status:
+                          type: "boolean"
+                          example: true
+      "400":
+        description: "Error en la solicitud (validación)"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                errors:
+                  type: "array"
+                  items:
+                    type: "object"
+                    properties:
+                      type:
+                        type: "string"
+                        example: "field"
+                      msg:
+                        type: "string"
+                        example: "Name is required" # Or other validation message
+                      path:
+                        type: "string"
+                        example: "name"
+                      location:
+                        type: "string"
+                        example: "body"
+      "500":
+        description: "Error del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+
+/tourist_package/{id}:
+  get:
+    summary: "Obtener un paquete turístico por ID"
+    tags:
+      - "Paquetes Turísticos"
+    description: "Endpoint para obtener un paquete turístico por su ID"
+    parameters:
+      - in: "path"
+        name: "id"
+        required: true
+        description: "ID del paquete turístico"
+        schema:
+          type: "integer"
+    responses:
+      "200":
+        description: "Respuesta exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Paquete turístico encontrado"
+                data:
+                  type: "object"
+                  properties:
+                    tourist_package: # Single tourist package object
+                      type: "object"
+                      properties: # ... (same properties as in the GET /tourist_packages response)
+                        id:
+                          type: "integer"
+                          example: 2
+                        name:
+                          type: "string"
+                          example: "Escapada Romántica"
+                        description:
+                          type: "string"
+                          example: "Paquete de fin de semana para parejas."
+                        price:
+                          type: "number"
+                          format: "float"
+                          example: 499.99
+                        status:
+                          type: "boolean"
+                          example: true
+      "404":
+        description: "Paquete turístico no encontrado"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Paquete turístico no encontrado"
+                data:
+                  type: "object"
+                  properties: {}
+      "500":
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+
+  put:
+    summary: "Actualizar un paquete turístico"
+    tags:
+      - "Paquetes Turísticos"
+    description: "Endpoint para actualizar un paquete turístico"
+    parameters:
+      - in: "path"
+        name: "id"
+        required: true
+        description: "ID del paquete turístico a actualizar"
+        schema:
+          type: "integer"
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: "object"
+            properties: # All fields are optional for update
+              name:
+                type: "string"
+                example: "Escapada Romántica de Lujo"
+              description:
+                type: "string"
+                example: "Paquete de fin de semana para parejas con spa y cena."
+              price:
+                type: "number"
+                format: "float"
+                example: 799.99
+              status:
+                type: "boolean"
+                example: true
+    responses:
+      "200":
+        description: "Actualización exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Paquete turístico actualizado exitosamente"
+                data:
+                  type: "object"
+                  properties:
+                    tourist_package: # Single tourist package object
+                      type: "object"
+                      properties: # ... (same properties as in the GET /tourist_packages/{id} response)
+                        id:
+                          type: "integer"
+                          example: 2
+                        name:
+                          type: "string"
+                          example: "Escapada Romántica de Lujo"
+                        description:
+                          type: "string"
+                          example: "Paquete de fin de semana para parejas con spa y cena."
+                        price:
+                          type: "number"
+                          format: "float"
+                          example: 799.99
+                        status:
+                          type: "boolean"
+                          example: true
+      "400": # ... (same as POST /tourist_packages)
+        description: "Error en la solicitud (validación)"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                errors:
+                  type: "array"
+                  items:
+                    type: "object"
+                    properties:
+                      type:
+                        type: "string"
+                        example: "field"
+                      msg:
+                        type: "string"
+                        example: "Name is required" # Or other validation message
+                      path:
+                        type: "string"
+                        example: "name"
+                      location:
+                        type: "string"
+                        example: "body"
+      "404":
+        description: "Paquete turístico no encontrado"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Paquete turístico no encontrado"
+                data:
+                  type: "object"
+                  properties: {}
+      "500": # ... (same as GET /tourist_packages)
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+
+  delete:
+    summary: "Eliminar un paquete turístico"
+    tags:
+      - "Paquetes Turísticos"
+    description: "Endpoint para eliminar un paquete turístico"
+    parameters:
+      - in: "path"
+        name: "id"
+        required: true
+        description: "ID del paquete turístico a eliminar"
+        schema:
+          type: "integer"
+    responses:
+      "204":
+        description: "Paquete turístico eliminado exitosamente (sin contenido)"
+      "404":
+        description: "Paquete turístico no encontrado"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Paquete turístico no encontrado"
+                data:
+                  type: "object"
+                  properties: {}
+      "500": # ... (same as GET /tourist_packages)
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"

@@ -1,0 +1,413 @@
+/products:
+  get:
+    summary: "Obtener todos los productos"
+    tags:
+      - "Productos"
+    description: "Endpoint para obtener la lista de todos los productos"
+    responses:
+      "200":
+        description: "Respuesta exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Productos encontrados"
+                data:
+                  type: "object"
+                  properties:
+                    products:
+                      type: "array"
+                      items:
+                        type: "object"
+                        properties:
+                          id_product:
+                            type: "integer"
+                            example: 1
+                          name:
+                            type: "string"
+                            example: "Camisa"
+                          unit_price:
+                            type: "number"
+                            format: "float" # or double if you prefer
+                            example: 25.00
+                          category_id:
+                            type: "integer"
+                            example: 1
+                          cost_price:
+                            type: "number"
+                            format: "float"
+                            example: 15.00
+                          sales_price:
+                            type: "number"
+                            format: "float"
+                            example: 30.00
+                          id_unitMeasurement:
+                            type: "integer"
+                            example: 10
+      "500":
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+
+  post:
+    summary: "Crear un nuevo producto"
+    tags:
+      - "Productos"
+    description: "Endpoint para crear un nuevo producto"
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: "object"
+            properties:
+              name:
+                type: "string"
+                example: "Pantalón"
+              unit_price:
+                type: "number"
+                format: "float"
+                example: 40.00
+              category_id:
+                type: "integer"
+                example: 2
+              cost_price:
+                type: "number"
+                format: "float"
+                example: 20.00
+              sales_price:
+                type: "number"
+                format: "float"
+                example: 50.00
+              id_unitMeasurement:
+                type: "integer"
+                example: 10
+    responses:
+      "201":
+        description: "Creación exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Producto creado exitosamente"
+                data:
+                  type: "object"
+                  properties:
+                    product:
+                      type: "object"
+                      properties: # Same properties as in GET
+                        id_product:
+                          type: "integer"
+                          example: 2
+                        name:
+                          type: "string"
+                          example: "Pantalón"
+                        unit_price:
+                          type: "number"
+                          format: "float"
+                          example: 40.00
+                        category_id:
+                          type: "integer"
+                          example: 2
+                        cost_price:
+                          type: "number"
+                          format: "float"
+                          example: 20.00
+                        sales_price:
+                          type: "number"
+                          format: "float"
+                          example: 50.00
+                        id_unitMeasurement:
+                          type: "integer"
+                          example: 10
+      "400": # ... (validation errors - same as previous examples)
+        description: "Error en la solicitud (validación)"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                errors:
+                  type: "array"
+                  items:
+                    type: "object"
+                    properties:
+                      type:
+                        type: "string"
+                        example: "field"
+                      msg:
+                        type: "string"
+                        example: "Name is required" # Or other validation message
+                      path:
+                        type: "string"
+                        example: "name"
+                      location:
+                        type: "string"
+                        example: "body"
+      "500":
+        description: "Error del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+
+/products/{id}:
+  get:
+    summary: "Obtener un producto por ID"
+    tags:
+      - "Productos"
+    description: "Endpoint para obtener un producto por su ID"
+    parameters:
+      - in: "path"
+        name: "id"
+        required: true
+        description: "ID del producto"
+        schema:
+          type: "integer"
+    responses:
+      "200":
+        description: "Respuesta exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Producto encontrado"
+                data:
+                  type: "object"
+                  properties:
+                    product:
+                      type: "object"
+                      properties: # Same properties as in GET /products
+                        id_product:
+                          type: "integer"
+                          example: 2
+                        name:
+                          type: "string"
+                          example: "Pantalón"
+                        unit_price:
+                          type: "number"
+                          format: "float"
+                          example: 40.00
+                        category_id:
+                          type: "integer"
+                          example: 2
+                        cost_price:
+                          type: "number"
+                          format: "float"
+                          example: 20.00
+                        sales_price:
+                          type: "number"
+                          format: "float"
+                          example: 50.00
+                        id_unitMeasurement:
+                          type: "integer"
+                          example: 10
+      "404":
+        description: "Producto no encontrado"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Producto no encontrado"
+                data:
+                  type: "object"
+                  properties: {}
+      "500":
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+  put:
+    summary: "Actualizar un producto"
+    tags:
+      - "Productos"
+    description: "Endpoint para actualizar un producto"
+    parameters:
+      - in: "path"
+        name: "id"
+        required: true
+        description: "ID del producto a actualizar"
+        schema:
+          type: "integer"
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: "object"
+            properties:  # All fields optional for update
+              name:
+                type: "string"
+                example: "Pantalón Actualizado"
+              unit_price:
+                type: "number"
+                format: "float"
+                example: 45.00
+              category_id:
+                type: "integer"
+                example: 2
+              cost_price:
+                type: "number"
+                format: "float"
+                example: 25.00
+              sales_price:
+                type: "number"
+                format: "float"
+                example: 55.00
+              id_unitMeasurement:
+                type: "integer"
+                example: 10
+    responses:
+      "200":
+        description: "Actualización exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Producto actualizado exitosamente"
+                data:
+                  type: "object"
+                  properties:
+                    product:
+                      type: "object"
+                      properties: # Same as GET /products/{id}
+                        id_product:
+                          type: "integer"
+                          example: 2
+                        name:
+                          type: "string"
+                          example: "Pantalón Actualizado"
+                        unit_price:
+                          type: "number"
+                          format: "float"
+                          example: 45.00
+                        category_id:
+                          type: "integer"
+                          example: 2
+                        cost_price:
+                          type: "number"
+                          format: "float"
+                          example: 25.00
+                        sales_price:
+                          type: "number"
+                          format: "float"
+                          example: 55.00
+                        id_unitMeasurement:
+                          type: "integer"
+                          example: 10
+      "400": # ... (validation errors - same as POST)
+        description: "Error en la solicitud (validación)"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                errors:
+                  type: "array"
+                  items:
+                    type: "object"
+                    properties:
+                      type:
+                        type: "string"
+                        example: "field"
+                      msg:
+                        type: "string"
+                        example: "Name is required" # Or other validation message
+                      path:
+                        type: "string"
+                        example: "name"
+                      location:
+                        type: "string"
+                        example: "body"
+      "404":
+        description: "Producto no encontrado"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Producto no encontrado"
+                data:
+                  type: "object"
+                  properties: {}
+      "500": # ... (server error - same as GET /products)
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+
+  delete:
+    summary: "Eliminar un producto"
+    tags:
+      - "Productos"
+    description: "Endpoint para eliminar un producto"
+    parameters:
+      - in: "path"
+        name: "id"
+        required: true
+        description: "ID del producto a eliminar"
+        schema:
+          type: "integer"
+    responses:
+      "204":
+        description: "Producto eliminado exitosamente (sin contenido)"
+      "404":
+        description: "Producto no encontrado"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Producto no encontrado"
+                data:
+                  type: "object"
+                  properties: {}
+      "500": # ... (server error - same as GET /products)
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"

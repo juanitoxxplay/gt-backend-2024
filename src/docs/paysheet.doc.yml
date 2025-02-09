@@ -1,0 +1,371 @@
+/paysheet:
+  get:
+    summary: "Obtener todas las nóminas"
+    tags:
+      - "Nóminas"
+    description: "Endpoint para obtener la lista de todas las nóminas"
+    responses:
+      "200":
+        description: "Respuesta exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Nóminas encontradas"
+                data:
+                  type: "object"
+                  properties:
+                    paysheets:
+                      type: "array"
+                      items:
+                        type: "object"
+                        properties:
+                          id:
+                            type: "integer"
+                            example: 1
+                          name:
+                            type: "string"
+                            example: "Nómina Quincenal Julio"
+                          start_date:
+                            type: "string"
+                            format: "date"  # ISO 8601 date format (YYYY-MM-DD)
+                            example: "2024-07-01"
+                          end_date:
+                            type: "string"
+                            format: "date"
+                            example: "2024-07-15"
+                          id_contract:
+                            type: "integer"
+                            example: 123
+      "500":
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+
+  post:
+    summary: "Crear una nueva nómina"
+    tags:
+      - "Nóminas"
+    description: "Endpoint para crear una nueva nómina"
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: "object"
+            properties:
+              name:
+                type: "string"
+                example: "Nómina Mensual Agosto"
+              start_date:
+                type: "string"
+                format: "date"
+                example: "2024-08-01"
+              end_date:
+                type: "string"
+                format: "date"
+                example: "2024-08-31"
+              id_contract:
+                type: "integer"
+                example: 456
+    responses:
+      "201":
+        description: "Creación exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Nómina creada exitosamente"
+                data:
+                  type: "object"
+                  properties:
+                    paysheet:
+                      type: "object"
+                      properties: # Same properties as in GET
+                        id:
+                          type: "integer"
+                          example: 2
+                        name:
+                          type: "string"
+                          example: "Nómina Mensual Agosto"
+                        start_date:
+                          type: "string"
+                          format: "date"
+                          example: "2024-08-01"
+                        end_date:
+                          type: "string"
+                          format: "date"
+                          example: "2024-08-31"
+                        id_contract:
+                          type: "integer"
+                          example: 456
+      "400": # ... (validation errors - same as previous examples)
+        description: "Error en la solicitud (validación)"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                errors:
+                  type: "array"
+                  items:
+                    type: "object"
+                    properties:
+                      type:
+                        type: "string"
+                        example: "field"
+                      msg:
+                        type: "string"
+                        example: "Name is required" # Or other validation message
+                      path:
+                        type: "string"
+                        example: "name"
+                      location:
+                        type: "string"
+                        example: "body"
+      "500":
+        description: "Error del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+
+/paysheet/{id}:
+  get:
+    summary: "Obtener una nómina por ID"
+    tags:
+      - "Nóminas"
+    description: "Endpoint para obtener una nómina por su ID"
+    parameters:
+      - in: "path"
+        name: "id"
+        required: true
+        description: "ID de la nómina"
+        schema:
+          type: "integer"
+    responses:
+      "200":
+        description: "Respuesta exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Nómina encontrada"
+                data:
+                  type: "object"
+                  properties:
+                    paysheet:
+                      type: "object"
+                      properties: # Same properties as in GET /paysheets
+                        id:
+                          type: "integer"
+                          example: 2
+                        name:
+                          type: "string"
+                          example: "Nómina Mensual Agosto"
+                        start_date:
+                          type: "string"
+                          format: "date"
+                          example: "2024-08-01"
+                        end_date:
+                          type: "string"
+                          format: "date"
+                          example: "2024-08-31"
+                        id_contract:
+                          type: "integer"
+                          example: 456
+      "404":
+        description: "Nómina no encontrada"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Nómina no encontrada"
+                data:
+                  type: "object"
+                  properties: {}
+      "500":
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+  put:
+    summary: "Actualizar una nómina"
+    tags:
+      - "Nóminas"
+    description: "Endpoint para actualizar una nómina"
+    parameters:
+      - in: "path"
+        name: "id"
+        required: true
+        description: "ID de la nómina a actualizar"
+        schema:
+          type: "integer"
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: "object"
+            properties:  # All fields optional for update
+              name:
+                type: "string"
+                example: "Nómina Quincenal Agosto Actualizada"
+              start_date:
+                type: "string"
+                format: "date"
+                example: "2024-08-16"
+              end_date:
+                type: "string"
+                format: "date"
+                example: "2024-08-31"
+              id_contract:
+                type: "integer"
+                example: 789
+    responses:
+      "200":
+        description: "Actualización exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Nómina actualizada exitosamente"
+                data:
+                  type: "object"
+                  properties:
+                    paysheet:
+                      type: "object"
+                      properties: # Same as GET /paysheets/{id}
+                        id:
+                          type: "integer"
+                          example: 2
+                        name:
+                          type: "string"
+                          example: "Nómina Quincenal Agosto Actualizada"
+                        start_date:
+                          type: "string"
+                          format: "date"
+                          example: "2024-08-16"
+                        end_date:
+                          type: "string"
+                          format: "date"
+                          example: "2024-08-31"
+                        id_contract:
+                          type: "integer"
+                          example: 789
+      "400": # ... (validation errors - same as POST)
+        description: "Error en la solicitud (validación)"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                errors:
+                  type: "array"
+                  items:
+                    type: "object"
+                    properties:
+                      type:
+                        type: "string"
+                        example: "field"
+                      msg:
+                        type: "string"
+                        example: "Name is required" # Or other validation message
+                      path:
+                        type: "string"
+                        example: "name"
+                      location:
+                        type: "string"
+                        example: "body"
+      "404":
+        description: "Nómina no encontrada"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Nómina no encontrada"
+                data:
+                  type: "object"
+                  properties: {}
+      "500": # ... (server error - same as GET /paysheets)
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+
+  delete:
+    summary: "Eliminar una nómina"
+    tags:
+      - "Nóminas"
+    description: "Endpoint para eliminar una nómina"
+    parameters:
+      - in: "path"
+        name: "id"
+        required: true
+        description: "ID de la nómina a eliminar"
+        schema:
+          type: "integer"
+    responses:
+      "204":
+        description: "Nómina eliminada exitosamente (sin contenido)"
+      "404":
+        description: "Nómina no encontrada"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Nómina no encontrada"
+                data:
+                  type: "object"
+                  properties: {}
+      "500": # ... (server error - same as GET /paysheets)
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"

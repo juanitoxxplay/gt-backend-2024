@@ -1,11 +1,9 @@
-/empleoyeeUser:
+/supervisor:
   get:
-    summary: "Obtener empleoyeeUser"
+    summary: "Obtener todos los supervisores"
     tags:
-      - "Usuarios empleados"
-    description: "Endpoint para obtener la lista de empleoyeeUser"
-    produces:
-      - "application/json"
+      - "Supervisores"
+    description: "Endpoint para obtener la lista de todos los supervisores"
     responses:
       "200":
         description: "Respuesta exitosa"
@@ -16,11 +14,11 @@
               properties:
                 message:
                   type: "string"
-                  example: "Registros encontrados"
+                  example: "Supervisores encontrados"
                 data:
                   type: "object"
                   properties:
-                    empleoyeeUser:
+                    supervisors:
                       type: "array"
                       items:
                         type: "object"
@@ -30,42 +28,21 @@
                             example: 1
                           name:
                             type: "string"
-                            example: "administrador"
-                          password:
-                            type: "string"
-                            example: "password"
-                          id_empleoyee:
+                            example: "Juan Perez"
+                          id_contrato:
                             type: "integer"
-                            example: 40
-                          deletedAt:
-                            type: "string"
-                            format: "null"
-                            example: null
+                            example: 123
                           createdAt:
                             type: "string"
-                            format: "date-time"
-                            example: "2024-12-13T01:24:41.000Z"
-                          updatedAt:
+                            format: "date-time"  # Important for dates
+                            example: "2024-07-26T12:00:00.000Z" # ISO 8601 format
+                          deletedAt:
                             type: "string"
                             format: "date-time"
-                            example: "2024-12-13T01:24:41.000Z"
-      "404":
-        description: "Registros no encontrados"
-        content:
-          application/json:
-            schema:
-              type: "object"
-              properties:
-                message:
-                  type: "string"
-                  example: "Registros no encontrados"
-                data:
-                  type: "object"
-                  properties:
-                    empleoyeeUser:
-                      type: "array"
-                      items: {}
-                      example: []
+                            example: null # or "2024-07-27T12:00:00.000Z" if deleted
+                          status:
+                            type: "boolean"
+                            example: true
       "500":
         description: "Error interno del servidor"
         content:
@@ -76,11 +53,12 @@
                 message:
                   type: "string"
                   example: "Contacte con el administrador"
+
   post:
-    summary: "Crear un nuevo empleoyee user"
+    summary: "Crear un nuevo supervisor"
     tags:
-      - "Usuarios empleados" 
-    description: "Endpoint para crear un nuevo empleoyee user"
+      - "Supervisores"
+    description: "Endpoint para crear un nuevo supervisor"
     requestBody:
       required: true
       content:
@@ -90,13 +68,13 @@
             properties:
               name:
                 type: "string"
-                example: "Secretarias"
-              password:
-                type: "string"
-                example: "password"
-              id_empleoyee:
+                example: "Maria Rodriguez"
+              id_contrato:
                 type: "integer"
-                example: 1
+                example: 456
+              status: # Optional, defaults to true
+                type: "boolean"
+                example: true
     responses:
       "201":
         description: "Creación exitosa"
@@ -107,32 +85,35 @@
               properties:
                 message:
                   type: "string"
-                  example: "Creación exitosa"
+                  example: "Supervisor creado exitosamente"
                 data:
                   type: "object"
                   properties:
-                    role:
+                    supervisor:
                       type: "object"
-                      properties:
+                      properties: # Same properties as in GET
+                        id:
+                          type: "integer"
+                          example: 2
                         name:
                           type: "string"
-                          example: "secretarias"
-                        password:
-                          type: "string"
-                          example: "password"
-                        id_empleoyee:
+                          example: "Maria Rodriguez"
+                        id_contrato:
                           type: "integer"
-                          example: 1
-                        updatedAt:
+                          example: 456
+                        createdAt:  # Will be generated by the database
                           type: "string"
                           format: "date-time"
-                          example: "2025-02-01T00:20:51.550Z"
-                        createdAt:
+                          example: "2024-07-26T14:00:00.000Z"
+                        deletedAt:
                           type: "string"
                           format: "date-time"
-                          example: "2025-02-01T00:20:51.550Z"
-      "400":
-        description: "Error en la solicitud"
+                          example: null
+                        status:
+                          type: "boolean"
+                          example: true
+      "400": # ... (validation errors - same as previous examples)
+        description: "Error en la solicitud (validación)"
         content:
           application/json:
             schema:
@@ -148,7 +129,7 @@
                         example: "field"
                       msg:
                         type: "string"
-                        example: "empleoyee user Name is required"
+                        example: "Name is required" # Or other validation message
                       path:
                         type: "string"
                         example: "name"
@@ -165,17 +146,18 @@
                 message:
                   type: "string"
                   example: "Contacte con el administrador"
-/empleoyeeUser/{id}:
+
+/supervisor/{id}:
   get:
-    summary: "Obtener un empleoyee user"
+    summary: "Obtener un supervisor por ID"
     tags:
-      - "Usuarios empleados"
-    description: "Endpoint para obtener un empleoyee user por su id"
+      - "Supervisores"
+    description: "Endpoint para obtener un supervisor por su ID"
     parameters:
       - in: "path"
         name: "id"
         required: true
-        description: "Id de empleoyeeUser"
+        description: "ID del supervisor"
         schema:
           type: "integer"
     responses:
@@ -188,42 +170,35 @@
               properties:
                 message:
                   type: "string"
-                  example: "Registro encontrado"
+                  example: "Supervisor encontrado"
                 data:
                   type: "object"
                   properties:
-                    role:
+                    supervisor:
                       type: "object"
-                      properties:
+                      properties: # Same properties as in GET /supervisors
                         id:
                           type: "integer"
-                          example: 1
+                          example: 2
                         name:
                           type: "string"
-                          example: "administrador"
-                        password:
-                          type: "string"
-                          example: "password"
-                        id_empleoyee:
+                          example: "Maria Rodriguez"
+                        id_contrato:
                           type: "integer"
-                          example: 1
+                          example: 456
+                        createdAt:
+                          type: "string"
+                          format: "date-time"
+                          example: "2024-07-26T14:00:00.000Z"
                         deletedAt:
                           type: "string"
-                          format: "null"
+                          format: "date-time"
                           example: null
                         status:
                           type: "boolean"
                           example: true
-                        createdAt:
-                          type: "string"
-                          format: "date-time"
-                          example: "2024-12-13T01:24:41.000Z"
-                        updatedAt:
-                          type: "string"
-                          format: "date-time"
-                          example: "2024-12-13T01:24:41.000Z"
       "404":
-        description: "Registro no encontrado"
+        description: "Supervisor no encontrado"
         content:
           application/json:
             schema:
@@ -231,7 +206,7 @@
               properties:
                 message:
                   type: "string"
-                  example: "Registro no encontrado"
+                  example: "Supervisor no encontrado"
                 data:
                   type: "object"
                   properties: {}
@@ -245,22 +220,17 @@
                 message:
                   type: "string"
                   example: "Contacte con el administrador"
+      
   put:
-    summary: "Obtener un empleoyee user"
+    summary: "Actualizar un supervisor"
     tags:
-      - "Usuarios empleados"
-    description: "Endpoint para obtener un empleoyee user por su id"
+      - "Supervisores"
+    description: "Endpoint para actualizar un supervisor"
     parameters:
       - in: "path"
         name: "id"
         required: true
-        description: "Id de la empleoyee user"
-        schema:
-          type: "integer"
-      - in: "query"
-        name: "example-query"
-        required: true
-        description: "ejemplo para query"
+        description: "ID del supervisor a actualizar"
         schema:
           type: "integer"
     requestBody:
@@ -269,19 +239,19 @@
         application/json:
           schema:
             type: "object"
-            properties:
+            properties:  # All fields optional for update
               name:
                 type: "string"
-                example: "Secretarias"
-              password:
-                type: "string"
-                example: "password"
-              id_empleoyee:
+                example: "Maria Rodriguez Actualizada"
+              id_contrato:
                 type: "integer"
-                example: 1
+                example: 789
+              status:
+                type: "boolean"
+                example: false
     responses:
       "200":
-        description: "Respuesta exitosa"
+        description: "Actualización exitosa"
         content:
           application/json:
             schema:
@@ -289,39 +259,35 @@
               properties:
                 message:
                   type: "string"
-                  example: "Registro encontrado"
+                  example: "Supervisor actualizado exitosamente"
                 data:
                   type: "object"
                   properties:
-                    role:
+                    supervisor:
                       type: "object"
-                      properties:
+                      properties: # Same as GET /supervisors/{id}
                         id:
                           type: "integer"
-                          example: 1
+                          example: 2
                         name:
                           type: "string"
-                          example: "administrador"
-                        password:
-                          type: "string"
-                          example: "password"
-                        id_empleoyee:
+                          example: "Maria Rodriguez Actualizada"
+                        id_contrato:
                           type: "integer"
-                          example: 1
-                        deletedAt:
-                          type: "string"
-                          format: "null"
-                          example: null
+                          example: 789
                         createdAt:
                           type: "string"
                           format: "date-time"
-                          example: "2024-12-13T01:24:41.000Z"
-                        updatedAt:
+                          example: "2024-07-26T14:00:00.000Z"
+                        deletedAt:
                           type: "string"
                           format: "date-time"
-                          example: "2024-12-13T01:24:41.000Z"
-      "400":
-        description: "Error en la solicitud"
+                          example: null
+                        status:
+                          type: "boolean"
+                          example: false
+      "400": # ... (validation errors - same as POST)
+        description: "Error en la solicitud (validación)"
         content:
           application/json:
             schema:
@@ -337,7 +303,7 @@
                         example: "field"
                       msg:
                         type: "string"
-                        example: "empleoyee user Name is required"
+                        example: "Name is required" # Or other validation message
                       path:
                         type: "string"
                         example: "name"
@@ -345,29 +311,19 @@
                         type: "string"
                         example: "body"
       "404":
-        description: "Registro no encontrado para actualizar"
+        description: "Supervisor no encontrado"
         content:
           application/json:
             schema:
+              type: "object"
               properties:
-                errors:
-                  type: "array"
-                  items:
-                    type: "object"
-                    properties:
-                      type:
-                        type: "string"
-                        example: "field"
-                      msg:
-                        type: "string"
-                        example: "El parametro id : 1, no existe en la base de datos."
-                      path:
-                        type: "string"
-                        example: "id"
-                      location:
-                        type: "string"
-                        example: "param"
-      "500":
+                message:
+                  type: "string"
+                  example: "Supervisor no encontrado"
+                data:
+                  type: "object"
+                  properties: {}
+      "500": # ... (server error - same as GET /supervisors)
         description: "Error interno del servidor"
         content:
           application/json:
@@ -377,44 +333,36 @@
                 message:
                   type: "string"
                   example: "Contacte con el administrador"
+
   delete:
-    summary: "Eliminar un empleoyee user"
+    summary: "Eliminar un supervisor"
     tags:
-      - "Usuarios empleados"
-    description: "Endpoint para eliminar un empleoyee user"
+      - "Supervisores"
+    description: "Endpoint para eliminar un supervisor"
     parameters:
-      - name: "id"
-        in: "path"
-        description: "ID de empleoyee user a eliminar"
+      - in: "path"
+        name: "id"
         required: true
-        type: "integer"
+        description: "ID del supervisor a eliminar"
+        schema:
+          type: "integer"
     responses:
       "204":
-        description: "empleoyee user eliminado exitosamente, no se devuelve contenido"
+        description: "Supervisor eliminado exitosamente (sin contenido)"
       "404":
-        description: "Registro no encontrado para actualizar"
+        description: "Supervisor no encontrado"
         content:
           application/json:
             schema:
+              type: "object"
               properties:
-                errors:
-                  type: "array"
-                  items:
-                    type: "object"
-                    properties:
-                      type:
-                        type: "string"
-                        example: "field"
-                      msg:
-                        type: "string"
-                        example: "El parametro id : 1, no existe en la base de datos."
-                      path:
-                        type: "string"
-                        example: "id"
-                      location:
-                        type: "string"
-                        example: "param"
-      "500":
+                message:
+                  type: "string"
+                  example: "Supervisor no encontrado"
+                data:
+                  type: "object"
+                  properties: {}
+      "500": # ... (server error - same as GET /supervisors)
         description: "Error interno del servidor"
         content:
           application/json:

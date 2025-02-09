@@ -1,0 +1,371 @@
+/journal:
+  get:
+    summary: "Obtener todos los asientos de diario"
+    tags:
+      - "Asientos de Diario"
+    description: "Endpoint para obtener la lista de todos los asientos de diario"
+    responses:
+      "200":
+        description: "Respuesta exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Asientos de diario encontrados"
+                data:
+                  type: "object"
+                  properties:
+                    journals:
+                      type: "array"
+                      items:
+                        type: "object"
+                        properties:
+                          id:
+                            type: "integer"
+                            example: 1
+                          request_id:
+                            type: "integer"
+                            example: 123
+                          account_record_id:
+                            type: "integer"
+                            example: 456
+                          createdAt:
+                            type: "string"
+                            format: "date-time"  # ISO 8601 date-time format
+                            example: "2024-08-01T10:00:00Z"
+                          updatedAt:
+                            type: "string"
+                            format: "date-time"
+                            example: "2024-08-01T12:00:00Z"
+                          deletedAt:
+                            type: "string"
+                            format: "date-time"
+                            example: null # or a date-time string if deleted
+      "500":
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+
+  post:
+    summary: "Crear un nuevo asiento de diario"
+    tags:
+      - "Asientos de Diario"
+    description: "Endpoint para crear un nuevo asiento de diario"
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: "object"
+            properties:
+              request_id:
+                type: "integer"
+                example: 789
+              account_record_id:
+                type: "integer"
+                example: 101
+    responses:
+      "201":
+        description: "Creación exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Asiento de diario creado exitosamente"
+                data:
+                  type: "object"
+                  properties:
+                    journal:
+                      type: "object"
+                      properties: # Same properties as in GET
+                        id:
+                          type: "integer"
+                          example: 2
+                        request_id:
+                          type: "integer"
+                          example: 789
+                        account_record_id:
+                          type: "integer"
+                          example: 101
+                        createdAt:
+                          type: "string"
+                          format: "date-time"
+                          example: "2024-08-16T14:00:00Z"
+                        updatedAt:
+                          type: "string"
+                          format: "date-time"
+                          example: null
+                        deletedAt:
+                          type: "string"
+                          format: "date-time"
+                          example: null
+      "400": # ... (validation errors - same as previous examples)
+        description: "Error en la solicitud (validación)"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                errors:
+                  type: "array"
+                  items:
+                    type: "object"
+                    properties:
+                      type:
+                        type: "string"
+                        example: "field"
+                      msg:
+                        type: "string"
+                        example: "request_id is required" # Or other validation message
+                      path:
+                        type: "string"
+                        example: "request_id"
+                      location:
+                        type: "string"
+                        example: "body"
+      "500":
+        description: "Error del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+
+/journal/{id}:
+  get:
+    summary: "Obtener un asiento de diario por ID"
+    tags:
+      - "Asientos de Diario"
+    description: "Endpoint para obtener un asiento de diario por su ID"
+    parameters:
+      - in: "path"
+        name: "id"
+        required: true
+        description: "ID del asiento de diario"
+        schema:
+          type: "integer"
+    responses:
+      "200":
+        description: "Respuesta exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Asiento de diario encontrado"
+                data:
+                  type: "object"
+                  properties:
+                    journal:
+                      type: "object"
+                      properties: # Same properties as in GET /journals
+                        id:
+                          type: "integer"
+                          example: 2
+                        request_id:
+                          type: "integer"
+                          example: 789
+                        account_record_id:
+                          type: "integer"
+                          example: 101
+                        createdAt:
+                          type: "string"
+                          format: "date-time"
+                          example: "2024-08-16T14:00:00Z"
+                        updatedAt:
+                          type: "string"
+                          format: "date-time"
+                          example: null
+                        deletedAt:
+                          type: "string"
+                          format: "date-time"
+                          example: null
+      "404":
+        description: "Asiento de diario no encontrado"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Asiento de diario no encontrado"
+                data:
+                  type: "object"
+                  properties: {}
+      "500":
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+  put:
+    summary: "Actualizar un asiento de diario"
+    tags:
+      - "Asientos de Diario"
+    description: "Endpoint para actualizar un asiento de diario"
+    parameters:
+      - in: "path"
+        name: "id"
+        required: true
+        description: "ID del asiento de diario a actualizar"
+        schema:
+          type: "integer"
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: "object"
+            properties:  # All fields optional for update
+              request_id:
+                type: "integer"
+                example: 901
+              account_record_id:
+                type: "integer"
+                example: 210
+    responses:
+      "200":
+        description: "Actualización exitosa"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Asiento de diario actualizado exitosamente"
+                data:
+                  type: "object"
+                  properties:
+                    journal:
+                      type: "object"
+                      properties: # Same as GET /journals/{id}
+                        id:
+                          type: "integer"
+                          example: 2
+                        request_id:
+                          type: "integer"
+                          example: 901
+                        account_record_id:
+                          type: "integer"
+                          example: 210
+                        createdAt:
+                          type: "string"
+                          format: "date-time"
+                          example: "2024-08-16T14:00:00Z" # Might not change on update
+                        updatedAt:
+                          type: "string"
+                          format: "date-time"
+                          example: "2024-08-16T15:00:00Z" # Example update time
+                        deletedAt:
+                          type: "string"
+                          format: "date-time"
+                          example: null
+      "400": # ... (validation errors - same as POST)
+        description: "Error en la solicitud (validación)"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                errors:
+                  type: "array"
+                  items:
+                    type: "object"
+                    properties:
+                      type:
+                        type: "string"
+                        example: "field"
+                      msg:
+                        type: "string"
+                        example: "request_id is required" # Or other validation message
+                      path:
+                        type: "string"
+                        example: "request_id"
+                      location:
+                        type: "string"
+                        example: "body"
+      "404":
+        description: "Asiento de diario no encontrado"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Asiento de diario no encontrado"
+                data:
+                  type: "object"
+                  properties: {}
+      "500": # ... (server error - same as GET /journals)
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
+
+  delete:
+    summary: "Eliminar un asiento de diario"
+    tags:
+      - "Asientos de Diario"
+    description: "Endpoint para eliminar un asiento de diario"
+    parameters:
+      - in: "path"
+        name: "id"
+        required: true
+        description: "ID del asiento de diario a eliminar"
+        schema:
+          type: "integer"
+    responses:
+      "204":
+        description: "Asiento de diario eliminado exitosamente (sin contenido)"
+      "404":
+        description: "Asiento de diario no encontrado"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Asiento de diario no encontrado"
+                data:
+                  type: "object"
+                  properties: {}
+      "500": # ... (server error - same as GET /journals)
+        description: "Error interno del servidor"
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                message:
+                  type: "string"
+                  example: "Contacte con el administrador"
