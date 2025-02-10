@@ -22,12 +22,10 @@ const TransportModel = {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      /*
       id_vehicle: {   
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      *///se comentan por que no se realizaron sus cruds
       status: {
         type: DataTypes.BOOLEAN,
         defaultValue: true,

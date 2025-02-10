@@ -10,12 +10,10 @@ const EventRegistrationModel = {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      /*
       id_client: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      *///se comentan por que no se realizaron sus cruds
       registrationDate: {
         type: DataTypes.DATE,
         allowNull: false,

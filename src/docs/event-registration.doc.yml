@@ -1,3 +1,6 @@
+tags:
+  - name: event-registration
+
 paths:
   /event-registration:
     get:
@@ -54,7 +57,7 @@ paths:
                               description: Fecha de actualización
                               example: "2025-02-04T19:10:18.000Z"
                     example:
-                      Routes:
+                      event-registration:
                         - id: 1
                           id_event: 1
                           registrationDate: "2025-02-04T19:10:18.000Z"
@@ -62,30 +65,59 @@ paths:
                           unitPrice: "1.00"
                           createdAt: "2025-02-04T19:10:18.000Z"
                           updatedAt: "2025-02-04T19:10:18.000Z"
+        "404":
+          description: "Registros no encontrados"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  message:
+                    type: "string"
+                    example: "Registros no encontrados"
+                  data:
+                    type: "object"
+                    properties:
+                      charge:
+                        type: "array"
+                        items: {}
+                        example: []
+        "500":
+          description: "Error interno del servidor"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  message:
+                    type: "string"
+                    example: "Contacte con el administrador"                  
+      tags:
+      - event-registration
 
     post:
       summary: Crea un nuevo registro de evento
-      requestBody: # Definición del cuerpo de la petición
+      requestBody: 
         content:
-          application/json: # Tipo de contenido JSON
-            schema: # Esquema del objeto a crear
+          application/json: 
+            schema: 
               type: object
               properties:
-                id_event: # ID del evento
+                id_event: 
                   type: integer
                   example: 1
-                registrationDate: # Fecha de registro
+                registrationDate: 
                   type: string
                   format: date-time
                   example: "2025-02-04T19:10:18.000Z"
-                status: # Estado del registro
+                status: 
                   type: boolean
                   example: true
-                unitPrice: # Precio unitario
+                unitPrice:
                   type: string
                   example: "1.00"
       responses:
-        '201': # Código de respuesta 201 (Created)
+        '201': 
           description: Creación exitosa
           content:
             application/json:
@@ -142,7 +174,84 @@ paths:
                         unitPrice: "1.00"
                         createdAt: "2025-02-04T19:10:18.000Z"
                         updatedAt: "2025-02-04T19:10:18.000Z"
-
+        400:
+          description: "Error en la solicitud"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  errors:
+                    type: "array"
+                    items:
+                      type: "object"
+                      properties:
+                        type:
+                          type: "string"
+                          example: "field"
+                        msg:
+                          type: "string"
+                          example: "Event ID is required"
+                        path:
+                          type: "string"
+                          example: "id_event"
+                        location:
+                          type: "string"
+                          example: "body"
+                example:
+                  errors:
+                    - type: "field"
+                      msg: "Event ID is required"
+                      path: "id_event"
+                      location: "body"
+                    - type: "field"
+                      msg: "Event ID must be integer"
+                      path: "id_event"
+                      location: "body"
+                    - type: "field"
+                      msg: "Client ID is required"
+                      path: "id_client"
+                      location: "body"
+                    - type: "field"
+                      msg: "Client ID must be integer"
+                      path: "id_client"
+                      location: "body"
+                    - type: "field"
+                      msg: "Registration Date is required"
+                      path: "registrationDate"
+                      location: "body"
+                    - type: "field"
+                      msg: "Registration Date must be a valid date"
+                      path: "registrationDate"
+                      location: "body"
+                    - type: "field"
+                      msg: "Status is required"
+                      path: "status"
+                      location: "body"
+                    - type: "field"
+                      msg: "Status must be boolean"
+                      path: "status"
+                      location: "body"
+                    - type: "field"
+                      msg: "Unit Price is required"
+                      path: "unitPrice"
+                      location: "body"
+                    - type: "field"
+                      msg: "Unit Price must be a number"
+                      path: "unitPrice"
+                      location: "body"
+        500:
+          description: "Error del servidor"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  message:
+                    type: "string"
+                    example: "Contacte con el administrador"                
+      tags:
+      - event-registration
 
 
 
@@ -159,6 +268,19 @@ paths:
     responses:
       204:
         description: "event-registration eliminado exitosamente, no se devuelve contenido"
+      500:
+       description: "Error interno del servidor"
+       content:
+         application/json:
+           schema:
+             type: "object"
+             properties:
+               message:
+                 type: "string"
+                 example: "Contacte con el administrador"
+
+    tags:
+    - event-registration
 
   put:
       summary: Actualizar registro de evento
@@ -221,3 +343,135 @@ paths:
               example:
                 message: Actualización exitosa
                 data: {}
+        404:
+          description: "Registro no encontrado para actualizar"
+          content:
+            application/json:
+              schema:
+                properties:
+                  errors:
+                    type: "array"
+                    items:
+                      type: "object"
+                      properties:
+                        type:
+                          type: "string"
+                          example: "field"
+                        msg:
+                          type: "string"
+                          example: "El parametro id : 1, no existe en la base de datos."
+                        path:
+                          type: "string"
+                          example: "id"
+                        location:
+                          type: "string"
+                          example: "param"
+        500:
+          description: "Error interno del servidor"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  message:
+                    type: "string"
+                    example: "Contacte con el administrador"        
+
+      tags:
+      - event-registration
+
+  get:
+      summary: Obtiene un registro de evento por ID
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: ID del registro de evento a obtener
+      responses:
+        '200':
+          description: Registro encontrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Mensaje de respuesta
+                    example: "Registros encontrados"
+                  data:
+                    type: object
+                    properties:
+                      Routes:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              description: ID del registro
+                              example: 1
+                            id_event:
+                              type: integer
+                              description: ID del evento
+                              example: 1
+                            registrationDate:
+                              type: string
+                              format: date-time
+                              description: Fecha de registro
+                              example: "2025-02-04T19:10:18.000Z"
+                            status:
+                              type: boolean
+                              description: Estado del registro
+                              example: true
+                            unitPrice:
+                              type: string
+                              description: Precio unitario
+                              example: "1.00"
+                            createdAt:
+                              type: string
+                              format: date-time
+                              description: Fecha de creación
+                              example: "2025-02-04T19:10:18.000Z"
+                            updatedAt:
+                              type: string
+                              format: date-time
+                              description: Fecha de actualización
+                              example: "2025-02-04T19:10:18.000Z"
+                    example:
+                      Routes:
+                        - id: 1
+                          id_event: 1
+                          registrationDate: "2025-02-04T19:10:18.000Z"
+                          status: true
+                          unitPrice: "1.00"
+                          createdAt: "2025-02-04T19:10:18.000Z"
+                          updatedAt: "2025-02-04T19:10:18.000Z"
+        404:
+         description: "Registro no encontrado"
+         content:
+           application/json:
+             schema:
+               type: "object"
+               properties:
+                 message:
+                   type: "string"
+                   example: "Registro no encontrado"
+                 data:
+                   type: "object"
+                   properties: {}
+        500:
+          description: "Error interno del servidor"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  message:
+                    type: "string"
+                    example: "Contacte con el administrador"                  
+
+      tags:
+      - event-registration

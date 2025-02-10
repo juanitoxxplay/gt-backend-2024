@@ -268,10 +268,8 @@ EventsDB.hasMany(EventRegistrationDB, { foreignKey: "id_event" });
 EventRegistrationDB.belongsTo(EventsDB, { foreignKey: "id_event" });+
 
 //Relacion de Inscripcion de eventos con cliente
-//ClientDB.hasMany(EventRegistrationDB, { foreignKey: "id_client" });
-//EventRegistrationDB.belongsTo(ClientDB, { foreignKey: "id_client" });
-
-//se comentan por que no se realizo el crud de client
+ClientDB.hasMany(EventRegistrationDB, { foreignKey: "id_client" });
+EventRegistrationDB.belongsTo(ClientDB, { foreignKey: "id_client" });
 
 // Relaciones de la tabla ajustes con eventos
 SettingsDB.hasMany(SettingsEventDb, { foreignKey: "id_settings" });
@@ -395,13 +393,23 @@ TransportDB.belongsTo(ContractDB, { foreignKey: "id_contract" });
 
 
 
-
-
-
+/*
+se comenta (o tambien se pone alter: false)
+por que las tablas tienen un limite de 64 llaves foraneas por default
+al usar sync sequelize por un bug oficial referido aqui https://github.com/sequelize/sequelize/discussions/13147
+este crea las llaves foraneas nuevamente cada vez que se inicia y se acumulan
+y al llegar a mayor de 64 da el siguiente error al correr el programa
+code: 'ER_TOO_MANY_KEYS',
+    errno: 1069,
+    sqlState: '42000',
+    sqlMessage: 'Too many keys specified; max 64 keys allowed',
+    
+    por favor no cambiar
+*/
 
 // Sincroniza los modelos con la base de datos
 const syncModels = async () => {
-  await db.sync({ alter: true });
+  //await db.sync({ alter: true });
   try {
   } catch (error) {
     console.error(error);

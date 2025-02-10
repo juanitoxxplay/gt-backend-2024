@@ -6,8 +6,8 @@ class EventRegistrationValidator {
   public validateEventRegistration = [
     body("id_event").notEmpty().withMessage("Event ID is required"),
     body("id_event").isInt().withMessage("Event ID must be integer"),
-    //body("id_client").notEmpty().withMessage("Client ID is required"),
-    //body("id_client").isInt().withMessage("Client ID must be integer"),//se comentan por que no se realizaron sus cruds
+    body("id_client").notEmpty().withMessage("Client ID is required"),
+    body("id_client").isInt().withMessage("Client ID must be integer"),//se comentan por que no se realizaron sus cruds
     body("registrationDate").notEmpty().withMessage("Registration Date is required"),
     body("registrationDate").isDate().withMessage("Registration Date must be a valid date"),
     body("status").notEmpty().withMessage("Status is required"),
