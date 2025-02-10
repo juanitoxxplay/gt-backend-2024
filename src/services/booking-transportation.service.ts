@@ -7,7 +7,7 @@ const bookingtransportationservice = {
             const bookingtransportation = await BookingTransportationDB.findAll({ where: { status: true } });
             if (bookingtransportation.length === 0) {
                 return {
-                    message: `Registros no encontrados`,
+                    message: `Registros Transportes no encontrados`,
                     status: 404,
                     data: {
                         bookingtransportation,
