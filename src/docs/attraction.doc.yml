@@ -1,0 +1,417 @@
+paths:
+  /api/attractions/:
+    get:
+      summary: Obtener todas las atracciones
+      description: Endpoint para obtener todas las atracciones disponibles.
+      responses:
+        '200':
+          description: Registros encontrados
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Registros encontrados
+                  data:
+                    type: object
+                    properties:
+                      attractions:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            name:
+                              type: string
+                              example: pito-grande
+                            capacity:
+                              type: integer
+                              example: 40
+                            theme:
+                              type: string
+                              example: Bowe
+                            createAt:
+                              type: string
+                              format: date-time
+                              example: null
+                            deletedAt:
+                              type: string
+                              format: date-time
+                              example: null
+                            status:
+                              type: boolean
+                              example: true
+                            createdAt:
+                              type: string
+                              format: date-time
+                              example: 2025-02-10T17:04:45.000Z
+                            updatedAt:
+                              type: string
+                              format: date-time
+                              example: 2025-02-10T17:06:32.000Z
+        "404":
+          description: "Registros no encontrados"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  message:
+                    type: "string"
+                    example: "Registros no encontrados"
+                  data:
+                    type: "object"
+                    properties:
+                      charge:
+                        type: "array"
+                        items: {}
+                        example: []
+        "500":
+          description: "Error interno del servidor"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  message:
+                    type: "string"
+                    example: "Contacte con el administrador"                      
+      tags:
+      - attractions
+    
+    post:
+      summary: Crear una nueva atracción
+      description: Endpoint para crear una nueva atracción.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "Pulpo"
+                capacity:
+                  type: integer
+                  example: 30
+                theme:
+                  type: string
+                  example: "Oceano"
+      responses:
+        '201':
+          description: Creación exitosa
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Creación exitosa
+                  data:
+                    type: object
+                    properties:
+                      attractions:
+                        type: object
+                        properties:
+                          status:
+                            type: boolean
+                            example: true
+                          id:
+                            type: integer
+                            example: 3
+                          name:
+                            type: string
+                            example: pulpo
+                          capacity:
+                            type: integer
+                            example: 30
+                          theme:
+                            type: string
+                            example: Oceano
+                          updatedAt:
+                            type: string
+                            format: date-time
+                            example: 2025-02-10T21:21:38.563Z
+                          createdAt:
+                            type: string
+                            format: date-time
+                            example: 2025-02-10T21:21:38.563Z
+        '400':
+          description: Errores de validación
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                          description: Tipo de error
+                          example: "field"
+                        msg:
+                          type: string
+                          description: Mensaje de error
+                          example: "The name of attractions is required"
+                        path:
+                          type: string
+                          description: Ruta del campo con error
+                          example: "name"
+                        location:
+                          type: string
+                          description: Ubicación del error
+                          example: "body"
+                example: 
+                  errors:
+                    - type: "field"
+                      msg: "The name of attractions is required"
+                      path: "name"
+                      location: "body"
+                    - type: "field"
+                      msg: "The name of attraction must be a string"
+                      path: "name"
+                      location: "body"
+                    - type: "field"
+                      msg: "Attraction's capacity is required"
+                      path: "capacity"
+                      location: "body"
+                    - type: "field"
+                      msg: "Attraction's capacity must be integer"
+                      path: "capacity"
+                      location: "body"
+                    - type: "field"
+                      msg: "Attraction's theme is required"
+                      path: "theme"
+                      location: "body"
+                    - type: "field"
+                      msg: "Attraction's theme must be a string"
+                      path: "theme"
+                      location: "body"                    
+      tags:
+      - attractions
+
+
+
+  /api/attractions/{id}:
+      get:
+        summary: Obtener una atracción por ID
+        description: Endpoint para obtener una atracción específica por su ID.
+        parameters:
+          - name: id
+            in: path
+            required: true
+            description: ID de la atracción
+            schema:
+              type: integer
+        responses:
+          '200':
+            description: Registros encontrados
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    message:
+                      type: string
+                      example: Registros encontrados
+                    data:
+                      type: object
+                      properties:
+                        attractions:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 1
+                              name:
+                                type: string
+                                example: pito-grande
+                              capacity:
+                                type: integer
+                                example: 40
+                              theme:
+                                type: string
+                                example: Bowe
+                              createAt:
+                                type: string
+                                format: date-time
+                                example: null
+                              deletedAt:
+                                type: string
+                                format: date-time
+                                example: null
+                              status:
+                                type: boolean
+                                example: true
+                              createdAt:
+                                type: string
+                                format: date-time
+                                example: 2025-02-10T17:04:45.000Z
+                              updatedAt:
+                                type: string
+                                format: date-time
+                                example: 2025-02-10T17:06:32.000Z
+          '404':
+            description: "Registro no encontrado"
+            content:
+              application/json:
+                schema:
+                  type: "object"
+                  properties:
+                    message:
+                      type: "string"
+                      example: "Registro no encontrado"
+                    data:
+                      type: "object"
+                      properties: {}
+          '500':
+            description: "Error interno del servidor"
+            content:
+              application/json:
+                schema:
+                  type: "object"
+                  properties:
+                    message:
+                      type: "string"
+                      example: "Contacte con el administrador"
+        tags:
+        - attractions
+
+      put:
+        summary: Actualizar una atracción
+        description: Endpoint para actualizar una atracción existente.
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: "Pulpos"
+                  capacity:
+                    type: integer
+                    example: 30
+                  theme:
+                    type: string
+                    example: "Oceano"
+        responses:
+          '200':
+            description: Actualización exitosa
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    message:
+                      type: string
+                      example: Actualización exitosa
+                    data:
+                      type: object
+                      properties:
+                        attractions:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 3
+                            name:
+                              type: string
+                              example: pulpos
+                            capacity:
+                              type: integer
+                              example: 30
+                            theme:
+                              type: string
+                              example: Oceano
+                            createAt:
+                              type: string
+                              format: date-time
+                              example: null
+                            deletedAt:
+                              type: string
+                              format: date-time
+                              example: null
+                            status:
+                              type: boolean
+                              example: true
+                            createdAt:
+                              type: string
+                              format: date-time
+                              example: 2025-02-10T21:21:38.000Z
+                            updatedAt:
+                              type: string
+                              format: date-time
+                              example: 2025-02-10T21:29:43.000Z
+          '404':
+            description: "Registro no encontrado para actualizar"
+            content:
+              application/json:
+                schema:
+                  properties:
+                    errors:
+                      type: "array"
+                      items:
+                        type: "object"
+                        properties:
+                          type:
+                            type: "string"
+                            example: "field"
+                          msg:
+                            type: "string"
+                            example: "El parametro id : 1, no existe en la base de datos."
+                          path:
+                            type: "string"
+                            example: "id"
+                          location:
+                            type: "string"
+                            example: "param"
+          '500':
+            description: "Error interno del servidor"
+            content:
+              application/json:
+                schema:
+                  type: "object"
+                  properties:
+                    message:
+                      type: "string"
+                      example: "Contacte con el administrador"
+        tags:
+        - attractions
+
+      delete:
+        summary: "Eliminar atracción"
+        description: "Endpoint para eliminar una atracción"
+        parameters:
+          - name: "id"
+            in: "path"
+            description: "ID de la atracción a eliminar"
+            required: true
+            type: "integer"
+        responses:
+          '204':
+            description: "atracción eliminada exitosamente, no se devuelve contenido"
+          '500':
+            description: "Error interno del servidor"
+            content:
+              application/json:
+                schema:
+                  type: "object"
+                  properties:
+                    message:
+                      type: "string"
+                      example: "Contacte con el administrador"
+        tags:
+        - attractions
