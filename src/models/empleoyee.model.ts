@@ -23,6 +23,11 @@ const EmpleoyeeModel = {
   Shoes_size: {
     type: DataTypes.INTEGER,
   },
+  status: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: true,
+  },
 };
 
 export { EmpleoyeeModel };

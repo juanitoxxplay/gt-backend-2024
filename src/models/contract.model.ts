@@ -14,7 +14,7 @@ const ContractModel = {
     type: DataTypes.FLOAT,
     allowNull: false,
   },
-  state: {
+  status: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
   },

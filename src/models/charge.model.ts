@@ -10,6 +10,11 @@ const ChargeModel = {
     type: DataTypes.STRING(50),
     allowNull: false,
   },
+  status: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: true,
+  },
 };
 
 export { ChargeModel };
