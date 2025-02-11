@@ -9,10 +9,9 @@ class RoutesValidators {
     body("destination").notEmpty().withMessage("This field is required"),
     body("destination").isString().withMessage("The destination must be string"),
     body("duration").notEmpty().withMessage("The duration is required"),
-    body("duration").isInt().withMessage("The duration must be integert"),
-    body("sales_price").notEmpty().withMessage("Inventory quantity current is required"),
-    body("price").notEmpty().withMessage("Inventory quantity current is required"),
-    body("price").isFloat().withMessage("Inventory quantity current must be float"),
+    body("duration").isInt().withMessage("The duration must be integer"),
+    body("price").notEmpty().withMessage("Price is required"),
+    body("price").isFloat().withMessage("Price must be float"),
   ];
 
  //un middleware en el caso de campo unico
