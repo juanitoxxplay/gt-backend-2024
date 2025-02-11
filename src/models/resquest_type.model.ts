@@ -11,9 +11,10 @@ const Resquest_TypesModel = {
     allowNull: false,
     unique: true,
   },
-  bot: {
+  status: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
+    defaultValue: true,
   },
 };
 

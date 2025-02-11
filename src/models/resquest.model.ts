@@ -11,6 +11,7 @@ const ResquestModel = {
     allowNull: false,
     unique: true,
   },
+  
   resquest_type_id: {
     type: DataTypes.INTEGER,
     allowNull: false,
