@@ -204,8 +204,8 @@ UserDB.hasMany(ActivityHistoryDB, { foreignKey: "id_user" });
 ActivityHistoryDB.belongsTo(UserDB, { foreignKey: "id_user" });
 
 //Relacion de Usuario con estado
-StateDb.hasMany(UserDB, { foreignKey: "id_state" });
-UserDB.belongsTo(StateDb, { foreignKey: "id_state" });
+//StateDb.hasMany(UserDB, { foreignKey: "id_state" });
+//UserDB.belongsTo(StateDb, { foreignKey: "id_state" });
 
 //Relacion de clientes con encuestas
 ClientDB.hasMany(SatisfactionSurveysDB, { foreignKey: "id_client" });

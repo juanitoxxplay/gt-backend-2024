@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
 
 const UserModel = {
-  id_user: {
+  id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true,
@@ -24,9 +24,10 @@ const UserModel = {
   },
 
   
-  id_state: {
-    type: DataTypes.INTEGER,
-  },
+  status: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: true,
+  }, 
    
   createdAt: {
   type: DataTypes.DATE,

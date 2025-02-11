@@ -4,8 +4,8 @@ import { roleServices } from "../services";
 
 class UserValidator {
   public validateUser = [
-    body("name").notEmpty().withMessage("Name is required"),
-    body("name").isString().withMessage("Name must be string"),
+    body("user").notEmpty().withMessage("Name is required"),
+    body("user").isString().withMessage("Name must be string"),
     body("email").notEmpty().withMessage("Email is required"),
     body("email").isEmail().withMessage("Email must be email"),
     body("password").notEmpty().withMessage("Passowrd is required"),

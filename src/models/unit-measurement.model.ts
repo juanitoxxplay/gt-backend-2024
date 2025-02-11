@@ -10,7 +10,7 @@ const UnitMeasurementModel = {
         type: DataTypes.STRING(50),
         allowNull: false,
     },
-    state: {
+    status: {
         type: DataTypes.BOOLEAN,
         defaultValue: true,
     },

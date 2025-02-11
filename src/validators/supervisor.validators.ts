@@ -6,9 +6,10 @@ class SupervisorValidator {
   public validateSupervisor = [
     body("name").notEmpty().withMessage("Supervisor Name is required"),
     body("name").isString().withMessage("Supervisor Name must be string"),
-    body("id_contrato").notEmpty().withMessage("Supervisor Name is required"),
-    body("id_contrato").isInt().withMessage("Supervisor Name must be integer"),
+    body("id_contrato").notEmpty().withMessage("Contract ID is required"),
+    body("id_contrato").isInt().withMessage("Contract ID must be integer"),
   ];
+
 
   //un middleware en el caso de campo id
   public validateIfIdExist = async (
