@@ -3,6 +3,7 @@ export * from './client.controller';
 export * from './account_record.controller';
 export * from './attraction.controller';
 export * from './booking.controller';
+export * from './booking_restaurant.controller';
 export * from './booking_room.controller';
 export * from './category.controller';
 export * from './charge.controller';

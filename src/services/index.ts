@@ -1,6 +1,7 @@
 export * from './accounts.service';
 export * from './account_record.service';
 export * from './attraction.service';
+export * from './booking-restaurant.service';
 export * from './booking-rooms.service';
 export * from './booking.service';
 export * from './category.service';

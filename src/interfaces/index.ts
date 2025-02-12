@@ -1,6 +1,7 @@
 export * from './account_record.interface';
 export * from './accounts.interface';
 export * from './attraction.interface';
+export * from './booking-restaurant.interface';
 export * from './booking-room.interface';
 export * from './booking.interface';
 export * from './category.interface';
