@@ -1,11 +1,11 @@
 
-import { PaysheetDetailDB } from "../config";
+import { PaysheetDetailsDB } from "../config";
 import { PaysheetDetailInterface } from "../interfaces";
 
 const PaysheetDetailServices = {
   getAll: async () => {
     try {
-      const PaysheetDetails = await PaysheetDetailDB.findAll({ where: { status: true } });
+      const PaysheetDetails = await PaysheetDetailsDB.findAll({ where: { status: true } });
       if (PaysheetDetails.length === 0) {
         return {
           message: `Registros no encontrados`,
@@ -32,7 +32,7 @@ const PaysheetDetailServices = {
   },
   getOne: async (id: number|string) => {
     try {
-      const PaysheetDetail = await PaysheetDetailDB.findOne({
+      const PaysheetDetail = await PaysheetDetailsDB.findOne({
         where: {
           id: id,
           status: true
@@ -64,7 +64,7 @@ const PaysheetDetailServices = {
   create: async (data: Partial<PaysheetDetailInterface>) => {
     data.name=data.name?.toLowerCase();
     try {
-      const PaysheetDetail = await PaysheetDetailDB.create({ ...data });
+      const PaysheetDetail = await PaysheetDetailsDB.create({ ...data });
       return {
         message: `Creación exitosa`,
         status: 201,
@@ -83,7 +83,7 @@ const PaysheetDetailServices = {
   update: async (id: number|string, dat: Partial<PaysheetDetailInterface>) => {
     dat.name=dat.name?.toLowerCase();
     try {
-      let PaysheetDetail: PaysheetDetailInterface | any = await PaysheetDetailDB.update(dat, { where: { id } });
+      let PaysheetDetail: PaysheetDetailInterface | any = await PaysheetDetailsDB.update(dat, { where: { id } });
       const { data } = await PaysheetDetailServices.getOne(id);
       return {
         message: `Actualización exitosa`,
@@ -102,7 +102,7 @@ const PaysheetDetailServices = {
   },
   delete: async (id: number) => {
     try {
-      const PaysheetDetail = await PaysheetDetailDB.update(
+      const PaysheetDetail = await PaysheetDetailsDB.update(
         {
           status: false,
           deletedAt: new Date(),
@@ -125,7 +125,7 @@ const PaysheetDetailServices = {
   },
   findByName: async (name: string) => {
     try {
-      const PaysheetDetail = await PaysheetDetailDB.findAll({ where: { name } });
+      const PaysheetDetail = await PaysheetDetailsDB.findAll({ where: { name } });
       if (PaysheetDetail.length===0) {
         console.log("Registro no encontrado")
         return {

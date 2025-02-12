@@ -30,7 +30,7 @@ import {
   InventoryhistoryModel,
   JournalModel,
   PackageSaleModel,
-  PaysheetDetailModel,
+  PaysheetDetailsModel,
   PaysheetModel,
   PerformanceEvaluationModel,
   ProductModel,
@@ -111,7 +111,7 @@ const InventoryhistoryDB = db.define("inventoriesistories", InventoryhistoryMode
 const JournalDB = db.define("journals", JournalModel);
 const PackageSaleDb = db.define("packagesale", PackageSaleModel);
 const PaysheetDB = db.define("Paysheet", PaysheetModel);
-const PaysheetDetailDB = db.define("PaysheetDetail", PaysheetDetailModel);
+const PaysheetDetailsDB = db.define("PaysheetDetails", PaysheetDetailsModel);
 const PerformanceEvaluationDB = db.define("PerformanceEvaluation", PerformanceEvaluationModel);
 const ProductDB = db.define("products", ProductModel);
 const PurcharseOrderDB = db.define("purcharses", PurcharseOrderModel);
@@ -186,11 +186,11 @@ ContractDB.hasMany(PaysheetDB, { foreignKey: "id_contract" });
 PaysheetDB.belongsTo(ContractDB, { foreignKey: "id_contract" });
 
 //Relaciones tabla Detalle Nomina
-PaysheetDB.hasMany(PaysheetDetailDB, { foreignKey: "id_paysheet" });
-PaysheetDetailDB.belongsTo(PaysheetDB, { foreignKey: "id_paysheet" });
+PaysheetDB.hasMany(PaysheetDetailsDB, { foreignKey: "id_paysheet" });
+PaysheetDetailsDB.belongsTo(PaysheetDB, { foreignKey: "id_paysheet" });
 
-ConceptDB.hasMany(PaysheetDetailDB, { foreignKey: "id_concept" });
-PaysheetDetailDB.belongsTo(ConceptDB, { foreignKey: "id_concept" });
+ConceptDB.hasMany(PaysheetDetailsDB, { foreignKey: "id_concept" });
+PaysheetDetailsDB.belongsTo(ConceptDB, { foreignKey: "id_concept" });
 
 
 //Relaciones Usuarios Clientes
@@ -460,7 +460,7 @@ export {
   JournalDB,
   PackageSaleDb,
   PaysheetDB,
-  PaysheetDetailDB,
+  PaysheetDetailsDB,
   PerformanceEvaluationDB,
   ProductDB,
   PurcharseOrderDB,
