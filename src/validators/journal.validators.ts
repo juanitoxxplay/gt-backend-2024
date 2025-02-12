@@ -4,10 +4,10 @@ import { JournalServices } from "../services";
 
 class JournalValitator {
     public validateJournal = [
-        body("request_id").notEmpty().withMessage("Inventory id_product is required"),
-        body("request_id").isInt().withMessage("Inventory id_product must be integer"),
-        body("account_record_id").notEmpty().withMessage("Inventory id_departament is required"),
-        body("account_record_id").isInt().withMessage("Inventory id_departament must be integer"),
+        body("resquest_id").notEmpty().withMessage("Inventory id_product is required"),
+        body("resquest_id").isInt().withMessage("Inventory id_product must be integer"),
+        body("id_account_records").notEmpty().withMessage("Inventory id_departament is required"),
+        body("id_account_records").isInt().withMessage("Inventory id_departament must be integer"),
     ];
 
     //un middleware en el caso de campo unico

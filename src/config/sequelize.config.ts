@@ -403,8 +403,8 @@ ResquestDB.belongsTo(Resquest_TypesDB, { foreignKey: "resquest_type_id" });
 AccountsDB.hasMany(Account_RecordDB, { foreignKey: "account_id" });
 Account_RecordDB.belongsTo(AccountsDB, { foreignKey: "account_id" });
 
-ResquestDB.hasMany(JournalDB, { foreignKey: "request_id" });
-JournalDB.belongsTo(ResquestDB, { foreignKey: "request_id" });
+ResquestDB.hasMany(JournalDB, { foreignKey: "resquest_id" });
+JournalDB.belongsTo(ResquestDB, { foreignKey: "resquest_id" });
 
 Account_RecordDB.hasOne(JournalDB, { foreignKey: "id_account_records" });
 JournalDB.belongsTo(Account_RecordDB, { foreignKey: "id_account_records" });
