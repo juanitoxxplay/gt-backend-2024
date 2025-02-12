@@ -4,7 +4,7 @@ import { Request, Response, NextFunction } from "express";
 
 class DetailsPurcharseOrderValidator {
   public validateDetails = [
-    body("id_order").notEmpty().withMessage("El campo 'id_order' es requerido"),
+    //body("id_order").notEmpty().withMessage("El campo 'id_order' es requerido"),
     body("id_product").notEmpty().withMessage("El campo 'id_product' es requerido"),
     body("unit_price").isDecimal().withMessage("El campo 'unit_price' debe ser un número decimal"),
     body("quantity").isInt().withMessage("El campo 'quantity' debe ser un número entero"),

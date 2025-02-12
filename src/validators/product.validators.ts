@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { body } from "express-validator";
-import { ProductServices } from "../services";
+import { categoryServices, ProductServices } from "../services";
 
 class ProductValidator {
   public validateProduct = [
@@ -25,7 +25,7 @@ class ProductValidator {
   next: NextFunction
 ) => {
   const{ category_id } = req.body;
-  const { status, message, data } = await ProductServices.getOne(category_id);
+  const { status, message, data } = await categoryServices.getOne(category_id);
   if (status == 500) {
     return res.status(status).json({
       message,

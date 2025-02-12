@@ -23,6 +23,7 @@ const ResquestModel = {
   status: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
+    defaultValue: true,
   },
 };
 
