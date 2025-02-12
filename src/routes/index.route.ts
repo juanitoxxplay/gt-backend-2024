@@ -35,6 +35,7 @@ import resquestRoute from "./resquest.route";
 import purcharsesRoute from "./purcharse_order.route";
 import detailspurcharsesRoute from "./details-purcharseorder.route";
 import TransportRoute from "./transport.route";
+import TypeRoomRoute from "./typeroom.route";
 import routesRoute from "./routes.route";
 
 
@@ -77,5 +78,6 @@ export {
   journalRoute,
   resquest_typeRoute,
   resquestRoute,
-  routesRoute
+  routesRoute,
+  TypeRoomRoute
 };
