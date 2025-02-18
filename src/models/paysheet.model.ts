@@ -21,6 +21,11 @@ const PaysheetModel = {
   id_contract: {
     type: DataTypes.INTEGER,
   },
+  status: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: true,
+  },
 };
 
 export { PaysheetModel };

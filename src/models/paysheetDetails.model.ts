@@ -1,6 +1,6 @@
 import { DataTypes } from "sequelize";
 
-const PaysheetDetailModel = {
+const PaysheetDetailsModel = {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -20,6 +20,11 @@ const PaysheetDetailModel = {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
+  status: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: true,
+  },
 };
 
-export { PaysheetDetailModel };
+export { PaysheetDetailsModel };

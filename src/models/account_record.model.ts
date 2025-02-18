@@ -26,6 +26,7 @@ const Account_RecordModel = {
   status: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
+    defaultValue: true,
   },
 };
 

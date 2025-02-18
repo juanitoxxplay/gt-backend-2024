@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
 
 const RestaurantModel = {
-    id_restaurant: {
+    id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,

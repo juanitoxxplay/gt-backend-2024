@@ -29,7 +29,7 @@ export * from './inventory-history.model';
 export * from './journal.model';
 export * from './package-sale.model';
 export * from './paysheet.model';
-export * from './paysheetDetail.model';
+export * from './paysheetDetails.model';
 export * from './performanceEvaluation.model';
 export * from './product.model';
 export * from './purcharse_order.model';

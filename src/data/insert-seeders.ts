@@ -1,6 +1,6 @@
 import "dotenv/config";
 import { CategoryDB, db, RoleDB, UserDB, ChargeDB, ClientDB, ConceptDB, ContractDB, DepartamentDB, EmpleoyeeDB, EmpleoyeeAssistanceDB, EmpleoyeeUserDB,
-  PaysheetDB, InventoryDB, PaysheetDetailDB, ProductDB, PerformanceEvaluationDB, RestaurantDB, IndividualServicesDB, SupervisorDB, SupplierDB,
+  PaysheetDB, InventoryDB, PaysheetDetailsDB, ProductDB, PerformanceEvaluationDB, RestaurantDB, IndividualServicesDB, SupervisorDB, SupplierDB,
   Account_RecordDB, AccountsDB, ResquestDB, Resquest_TypesDB, JournalDB
 } from "../config";
 
@@ -141,7 +141,7 @@ async function insertSeeders() {
   }
   try {
     console.log(`Insertando seeds de : ${models.paysheetDetail}`);
-    const result = await PaysheetDetailDB.bulkCreate(paysheetDetailSeeds, { ignoreDuplicates: true,validate: true });
+    const result = await PaysheetDetailsDB.bulkCreate(paysheetDetailSeeds, { ignoreDuplicates: true,validate: true });
     console.log(`Registros insertado exitosamente de ${models.paysheetDetail}`);
   } catch (error) {
     console.error(`Error al insertar registros de ${models.paysheetDetail}:`, error);

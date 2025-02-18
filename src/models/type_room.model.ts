@@ -5,7 +5,7 @@ const TypeRoomModel = {
         autoIncrement: true,
         primaryKey: true,
       },
-      name_type_room: {
+      name: {
         type: DataTypes.STRING(50),
         allowNull: false,
       },

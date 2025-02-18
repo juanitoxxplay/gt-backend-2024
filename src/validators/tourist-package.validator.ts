@@ -11,8 +11,7 @@ class TouristPackageValidator {
     body("description").isString().withMessage("Package description must be string"),
     body("price").notEmpty().withMessage("Package price is required"),
     body("price").isFloat().withMessage("Package price must be float"),
-    body("status").notEmpty().withMessage("Package status is required"),
-    body("status").isBoolean().withMessage("Package status must be boolean"),
+
   ];
 
   //un middleware en el caso de campo id

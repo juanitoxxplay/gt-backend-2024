@@ -1,7 +1,6 @@
 export interface TypeRoomInterface {
     id?: number;
-    name_type_room: string;
-
+    name: string;
     status?:boolean;
     createdAt?:Date;
     updatedAt?:Date;

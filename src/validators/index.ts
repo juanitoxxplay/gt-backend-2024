@@ -34,5 +34,6 @@ export * from './supervisor.validators';
 export * from './supplier.validators';
 export * from './tourist-package.validator';
 export * from './transport.validators';
+export * from './typeroom.validators';
 export * from './unitMeasurement.validators';
 export * from './user.validators';

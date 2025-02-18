@@ -6,4 +6,5 @@ export interface EmpleoyeeInterface{
     Tshirt_size:number;
     Pants_size:number;
     Shoes_size:number;
+    status?:boolean;
 }

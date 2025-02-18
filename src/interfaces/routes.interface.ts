@@ -5,6 +5,7 @@ export interface RoutesInterface{
     distance:number;
     duration:number;
     price:number;
+    status?:boolean;
     createdAt: Date;
     updatedAt: Date;
 }

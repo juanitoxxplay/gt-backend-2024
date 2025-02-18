@@ -7,7 +7,7 @@ const journalSeeds: Partial<JournalInterface>[] = [
   {
     id:1,
     request_id:{ id: 1 } as ResquestInterface,
-    account_record_id:{ id: 1 } as Account_RecordInterface,
+    id_account_records:{ id: 1 } as Account_RecordInterface,
   },
 ];
 

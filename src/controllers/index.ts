@@ -35,5 +35,6 @@ export * from './supervisor.controller';
 export * from './supplier.controller';
 export * from './tourist-package.controller';
 export * from './transport.controller';
+export * from './typeroom.controller';
 export * from './unit-measurement.controller';
 export * from './user.controller';

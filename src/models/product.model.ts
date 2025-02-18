@@ -1,6 +1,6 @@
 import { DataTypes } from "sequelize";
 const ProductModel = {
-    id_product: {
+    id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
@@ -33,6 +33,11 @@ const ProductModel = {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
+    status: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: true,
+      },
 
 };    
     export {ProductModel}; 

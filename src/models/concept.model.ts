@@ -18,6 +18,11 @@ const ConceptModel = {
     type: DataTypes.STRING(100),
     allowNull: false,
   },
+  status: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: true,
+  },
 };
 
 export { ConceptModel };

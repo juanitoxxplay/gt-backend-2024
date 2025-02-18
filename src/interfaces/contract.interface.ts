@@ -6,7 +6,7 @@ export interface ContractInterface{
     id?:number;
     date:Date;
     salary:number;
-    state:boolean;
+    status:boolean;
     hours:number;
     days:number;
     name:string;

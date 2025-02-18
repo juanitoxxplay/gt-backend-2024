@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { body } from "express-validator";
 
-import { RestaurantServices } from "../services";
+import { RestaurantServices, SupervisorServices } from "../services";
 
 class RestaurantValidator {
     public validaterestaurant = [
@@ -24,7 +24,7 @@ class RestaurantValidator {
         next: NextFunction
     ) => {
         const { id_supervisor } = req.body;
-        const { status, message, data } = await RestaurantServices.getOne(id_supervisor);
+        const { status, message, data } = await SupervisorServices.getOne(id_supervisor);
         if (status == 500) {
             return res.status(status).json({
                 message,

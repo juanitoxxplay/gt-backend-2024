@@ -41,6 +41,7 @@ import {
   userRoute,
   resquest_typeRoute,
   resquestRoute,
+  TypeRoomRoute,
   routesRoute
 } from "../routes/index.route";
 
@@ -89,6 +90,7 @@ export class Server {
       supervisor: this.pre + "/supervisor",
       supplier: this.pre + "/supplier",
       touristPackage: this.pre + "/tourist_package",
+     typeroom: this.pre + "/typeroom",
       transport: this.pre + "/transport",
       unitMeasurement: this.pre + "/unit_measurement",
       users: this.pre + "/users",
@@ -143,6 +145,7 @@ export class Server {
     this.app.use(this.paths.settings, settingRoute);
     this.app.use(this.paths.touristPackage, touristPackageRoute);
     this.app.use(this.paths.transport, TransportRoute);
+    this.app.use(this.paths.typeroom, TypeRoomRoute);
     this.app.use(this.paths.unitMeasurement, unitmeasurementRoute);
     this.app.use(this.paths.users, userRoute);
     this.app.use(this.paths.purcharses, purcharsesRoute);

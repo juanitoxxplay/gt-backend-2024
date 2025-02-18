@@ -1,15 +1,10 @@
 import { NextFunction, Request, Response } from "express";
 import { body } from "express-validator";
-import { TransportServices } from "../services";
+import {  TypeRoomServices } from "../services";
 
-class TransportValidator {
-  public validateTransport = [
+class TypeRoomValidator {
+  public validateTypeRoom = [
 
-
-    body("id_route").notEmpty().withMessage("id_routes is required"),
-    body("id_route").isNumeric().withMessage("id_routes must be a number"),  
-    body("id_contract").notEmpty().withMessage("id_contract is required"),
-    body("id_contract").isNumeric().withMessage("id_contract must be a number"),
   ];
 
   //un middleware en el caso de campo id
@@ -19,7 +14,7 @@ class TransportValidator {
     next: NextFunction
   ) => {
     const { id } = req.params;
-    const { status, message, data } = await TransportServices.getOne(id);
+    const { status, message, data } = await TypeRoomServices.getOne(id);
     if (status == 500) {
       return res.status(status).json({
         message,
@@ -48,13 +43,13 @@ class TransportValidator {
   ) => {
     const { id } = req.params;
     let { name } = req.body;
-    const { status, message, data } = await TransportServices.findByName(name);
+    const { status, message, data } = await TypeRoomServices.findByName(name);
     if (status == 500) {
       return res.status(status).json({
         message,
       });
     } else if (status == 200) {
-      const service: any = data?.Transport;
+      const service: any = data?.typeRoom;
       if (id) {
         //caso si es para actualizar datos
         if (id != service.id) {
@@ -86,4 +81,4 @@ class TransportValidator {
     next();
   };
 }
-export {TransportValidator};
+export {TypeRoomValidator};

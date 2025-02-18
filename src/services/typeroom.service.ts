@@ -10,8 +10,7 @@ const TypeRoomServices = {
         return {
           message: `Registros no encontrados`,
           status: constants.HTTP_STATUS_NOT_FOUND,
-          data: {
-          },
+          data: {},
         };
       }
       return {
@@ -60,7 +59,29 @@ const TypeRoomServices = {
       };
     }
   },
-  /* Hace falta crear TypeRoomInterface */
+  findByName: async (name: string) => {
+    try {
+      const typeRoom = await TypeRoomDb.findOne({ where: { name, status: true } });
+      if (!typeRoom) {
+        return {
+          message: `Tipo de habitación no encontrado`,
+          status: constants.HTTP_STATUS_NOT_FOUND,
+          data: null,
+        };
+      }
+      return {
+        message: `Tipo de habitación encontrado`,
+        status: constants.HTTP_STATUS_OK,
+        data: { typeRoom },
+      };
+    } catch (error) {
+      console.log(error);
+      return {
+        message: `Contacte con el administrador`,
+        status: constants.HTTP_STATUS_INTERNAL_SERVER_ERROR,
+      };
+    }
+  },
   create: async (data: Partial<TypeRoomInterface>) => {
     try {
       const type = await TypeRoomDb.create({ ...data });
@@ -111,7 +132,7 @@ const TypeRoomServices = {
         message: `Eliminación exitosa`,
         status: constants.HTTP_STATUS_NO_CONTENT,
         data: {
-          booking:null,
+          booking: null,
         },
       };
     } catch (error) {
@@ -123,6 +144,4 @@ const TypeRoomServices = {
   },
 };
 
-export {
-  TypeRoomServices
-};
+export { TypeRoomServices };

@@ -6,21 +6,21 @@ const JournalModel = {
         primaryKey: true,
     },
     
-    request_id: {
+    resquest_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
     
-    account_record_id: {
-        type: DataTypes.INTEGER,
+    status: {
+        type: DataTypes.BOOLEAN,
         allowNull: false,
-    },
-
+        defaultValue: true,
+      },
     createdAt: {
         type: DataTypes.DATE,
     },
 
-    updateAt: {
+    updatedAt: {
         type: DataTypes.DATE,
     },
 

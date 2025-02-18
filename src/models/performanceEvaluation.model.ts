@@ -28,6 +28,11 @@ const PerformanceEvaluationModel = {
   id_supervisor: {
     type: DataTypes.INTEGER,
   },
+  status: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: true,
+  },
 };
 
 export { PerformanceEvaluationModel };

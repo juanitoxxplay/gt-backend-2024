@@ -4,9 +4,8 @@ import { purcharseOrderService } from "../services";
 
 class PurcharseOrderValidator {
   public validateOrder = [
-    body("orderNumber").notEmpty().withMessage("El número de orden es requerido"),
-    body("supplierName").notEmpty().withMessage("El nombre del proveedor es requerido"),
-    body("totalAmount").isFloat({ gt: 0 }).withMessage("El monto total debe ser mayor a 0"),
+    body("order_date").notEmpty().withMessage("El número de orden es requerido"),
+   
   ];
 
   public validateIfIdExist = async (
