@@ -6,13 +6,11 @@ class BookingtransportationValidator {
   public validateBookingtransportation = [
     body("id_transport").notEmpty().withMessage("Transport Name is required"),
     body("id_transport").isInt().withMessage("Transport Name must be integer"),
-    body("id_booking").notEmpty().withMessage("Booking Name is required"),
-    body("id_booking").isInt().withMessage("Booking Name must be integer"),
+//    body("id_booking").notEmpty().withMessage("Booking Name is required"),
+ //   body("id_booking").isInt().withMessage("Booking Name must be integer"),
   ];
 
-  //un middleware en el caso de campo id
-  /*
-
+ /* //un middleware en el caso de campo id
   public validateIfIdExist = async (
     req: Request,
     res: Response,
@@ -39,8 +37,6 @@ class BookingtransportationValidator {
       }
     }
     next();
-  };
-  
-  */
+  };*/
 }
 export { BookingtransportationValidator };

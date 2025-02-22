@@ -16,7 +16,7 @@ router.get("/:id", attractioncontroller.one);
 router.post(
   "/",
   attractionvalidator.validatorattractions,
-  attractionvalidator.validateIfNameIsUse,
+  //attractionvalidator.validateIfNameIsUse,
   validateFields,
   attractioncontroller.create
 );
@@ -25,7 +25,7 @@ router.put(
   "/:id",
   attractionvalidator.validatorattractions,
   attractionvalidator.validateIfIdExist,
-  attractionvalidator.validateIfNameIsUse,
+ // attractionvalidator.validateIfNameIsUse,
   validateFields,
   attractioncontroller.update
 );

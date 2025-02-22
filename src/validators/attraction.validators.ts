@@ -9,8 +9,8 @@ class Attractionvalidator {
             body("name").isString().withMessage("The name of attraction must be a string"),
             body("capacity").notEmpty().withMessage("Attraction's capacity is required"),
             body("capacity").isInt().withMessage("Attraction's capacity must be integer"), 
-            body("Theme").notEmpty().withMessage("Attraction's Theme is required"),
-            body("Theme").isString().withMessage("Attraction's Theme must be a string"),
+            body("theme").notEmpty().withMessage("Attraction's theme is required"),
+            body("theme").isString().withMessage("Attraction's theme must be a string"),
         ];
 
         public validateIfIdExist = async (
