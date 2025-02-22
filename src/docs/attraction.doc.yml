@@ -27,7 +27,7 @@ paths:
                               example: 1
                             name:
                               type: string
-                              example: pito-grande
+                              example: Elefante
                             capacity:
                               type: integer
                               example: 40
@@ -236,7 +236,7 @@ paths:
                                 example: 1
                               name:
                                 type: string
-                                example: pito-grande
+                                example: Elefante
                               capacity:
                                 type: integer
                                 example: 40
